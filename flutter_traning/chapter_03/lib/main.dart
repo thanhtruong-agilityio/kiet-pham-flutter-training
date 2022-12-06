@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '/immutable_widget.dart';
+import 'immutable_widget.dart';
+import 'basic_screen.dart';
 
 void main() => runApp(StaticApp());
 
@@ -10,7 +11,7 @@ class StaticApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ImmutableWidget(),
+      home: BasicScreen(),
     );
   }
 }
