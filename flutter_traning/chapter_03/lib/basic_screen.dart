@@ -18,15 +18,11 @@ class BasicScreen extends StatelessWidget {
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 1.0,
-            child: ImmutableWidget(),
-          ),
-          TextLayout()
-        ],
-      ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Image.asset('assets/beach.jpeg'),
+            TextLayout(),
+          ]),
       drawer: Drawer(
         child: Container(
           color: Colors.lightBlue,

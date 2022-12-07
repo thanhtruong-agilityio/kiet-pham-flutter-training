@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextLayout extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class TextLayout extends StatelessWidget {
       children: <Widget>[
         Text(
           'Hello, World!',
-          style: TextStyle(fontSize: 36),
+          style: GoogleFonts.leckerliOne(fontSize: 40),
         ),
         Text(
           'Text can wrap without issue',
@@ -44,26 +45,3 @@ class TextLayout extends StatelessWidget {
     );
   }
 }
-Divider(),
-        RichText(
-          text: TextSpan(
-              text: 'Flutter text is ',
-              style: TextStyle(fontSize: 20, color: Colors.black),
-              children: <TextSpan>[
-                TextSpan(
-                    text: 'really ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'powerful.',
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationStyle: TextDecorationStyle.double,
-                            fontSize: 25),
-                      )
-                    ])
-              ]),
-        ),
