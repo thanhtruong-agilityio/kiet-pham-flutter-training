@@ -2,6 +2,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
+import 'star.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -52,6 +54,7 @@ class ProfileScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          StarRating(value: 5),
           _buildDetailsRow('Age: ', '4'),
           _buildDetailsRow('Status: ', 'Goodboy'),
         ],
