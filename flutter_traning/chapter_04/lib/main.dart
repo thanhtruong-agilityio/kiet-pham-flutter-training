@@ -1,3 +1,4 @@
+import 'package:chapter_04/flex_screen.dart';
 import 'package:chapter_04/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const ProfileScreen(),
+      home: const FlexScreen(),
     );
   }
 }
