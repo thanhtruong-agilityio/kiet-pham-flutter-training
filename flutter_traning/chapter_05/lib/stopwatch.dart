@@ -9,24 +9,17 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  int? seconds;
+  // int? seconds;
   Timer? timer;
-
-  @override
-  void initState() {
-    super.initState();
-
-    seconds = 0;
-    timer = Timer.periodic(Duration(seconds: 1), _onTick);
-  }
+  int seconds = 0;
+  bool isTicking = true;
+  String _secondsText() => seconds == 1 && seconds == 0 ? 'second' : 'seconds';
 
   void _onTick(Timer time) {
     setState(() {
-      seconds = seconds! + 1;
+      seconds = seconds + 1;
     });
   }
-
-  String _secondsText() => seconds == 1 ? 'second' : 'seconds';
 
   @override
   void dispose() {
@@ -39,12 +32,57 @@ class _StopWatchState extends State<StopWatch> {
       appBar: AppBar(
         title: Text('Stopwatch'),
       ),
-      body: Center(
-        child: Text(
-          '$seconds ${_secondsText()}',
-          style: Theme.of(context).textTheme.headline5,
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            '$seconds ${_secondsText()}',
+            style: Theme.of(context).textTheme.headline5,
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: isTicking ? null : _startTimer,
+                child: Text('Start'),
+              ),
+              SizedBox(width: 20),
+              TextButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: isTicking ? _stopTimer : null,
+                child: Text('Stop'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
+  }
+
+  void _startTimer() {
+    setState(() {
+      timer = Timer.periodic(Duration(seconds: 1), _onTick);
+      isTicking = true;
+    });
+  }
+
+  void _stopTimer() {
+    setState(() {
+      // timer?.cancel();
+      timer?.cancel();
+      isTicking = false;
+    });
   }
 }
