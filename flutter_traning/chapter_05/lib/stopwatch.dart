@@ -11,14 +11,37 @@ class StopWatch extends StatefulWidget {
 class _StopWatchState extends State<StopWatch> {
   // int? seconds;
   Timer? timer;
-  int seconds = 0;
+  int milliseconds = 0;
   bool isTicking = true;
-  String _secondsText() => seconds == 1 && seconds == 0 ? 'second' : 'seconds';
+  String _secondsText(int milliseconds) {
+    final seconds = milliseconds / 1000;
+    return '$seconds seconds';
+  }
+
+  final laps = <int>[];
+
+  void _lap() {
+    setState(() {
+      laps.add(milliseconds);
+      milliseconds = 0;
+    });
+  }
 
   void _onTick(Timer time) {
     setState(() {
-      seconds = seconds + 1;
+      milliseconds += 100;
     });
+  }
+
+  Widget _buildLapDisplay() {
+    return ListView(
+      children: [
+        for (int milliseconds in laps)
+          ListTile(
+            title: Text(_secondsText(milliseconds)),
+          )
+      ],
+    );
   }
 
   @override
@@ -33,48 +56,79 @@ class _StopWatchState extends State<StopWatch> {
         title: Text('Stopwatch'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            '$seconds ${_secondsText()}',
-            style: Theme.of(context).textTheme.headline5,
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.green),
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                ),
-                onPressed: isTicking ? null : _startTimer,
-                child: Text('Start'),
-              ),
-              SizedBox(width: 20),
-              TextButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.green),
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                ),
-                onPressed: isTicking ? _stopTimer : null,
-                child: Text('Stop'),
-              ),
-            ],
-          ),
+          Expanded(child: _buildCounter(context)),
+          Expanded(child: _buildLapDisplay()),
         ],
       ),
     );
   }
 
+  Container _buildCounter(BuildContext context) {
+    return Container(
+      color: Theme.of(context).primaryColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Lap ${laps.length + 1}',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                ?.copyWith(color: Colors.white),
+          ),
+          Text(
+            _secondsText(milliseconds),
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                ?.copyWith(color: Colors.white),
+          ),
+          SizedBox(height: 20),
+          _buildControls(),
+        ],
+      ),
+    );
+  }
+
+  Row _buildControls() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          ),
+          onPressed: isTicking ? null : _startTimer,
+          child: Text('Start'),
+        ),
+        SizedBox(width: 20),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+          ),
+          child: Text('Lap'),
+          onPressed: isTicking ? _lap : null,
+        ),
+        SizedBox(width: 20),
+        TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          ),
+          onPressed: isTicking ? _stopTimer : null,
+          child: Text('Stop'),
+        ),
+      ],
+    );
+  }
+
   void _startTimer() {
     setState(() {
-      timer = Timer.periodic(Duration(seconds: 1), _onTick);
+      timer = Timer.periodic(Duration(milliseconds: 100), _onTick);
       isTicking = true;
+      laps.clear();
     });
   }
 
