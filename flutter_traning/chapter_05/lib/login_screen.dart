@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const route = '/login';
+
   const LoginScreen({super.key});
 
   @override
@@ -105,14 +107,13 @@ class _LoginScreenState extends State<LoginScreen> {
     email = _emailController.text;
     phoneNumber = _phoneNumberController.text;
 
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => StopWatch(name: name, email: email),
-      ),
+    Navigator.of(context).pushReplacementNamed(
+      StopWatch.route,
+      arguments: name,
     );
 
-    setState(() {
-      // loggedIn = true;
-    });
+    // setState(() {
+    //   // loggedIn = true;
+    // });
   }
 }

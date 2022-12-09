@@ -15,11 +15,17 @@ class StopwatchApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
+      routes: {
+        '/': (context) => LoginScreen(),
+        LoginScreen.route: (context) => LoginScreen(),
+        StopWatch.route: (context) => StopWatch(),
+      },
+      initialRoute: '/',
+      // title: 'Flutter Demo',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
+      // home: LoginScreen(),
     );
   }
 }
