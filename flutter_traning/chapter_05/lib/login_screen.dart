@@ -1,3 +1,4 @@
+import 'package:chapter_05/stopwatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool loggedIn = false;
+  // bool loggedIn = false;
   String? name;
   String? email;
   String? phoneNumber;
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SafeArea(
           child: Center(
-        child: loggedIn ? _buildSuccess() : _buildLoginForm(),
+        child: _buildLoginForm(),
       )),
     );
   }
@@ -95,11 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (_) => StopWatch(name: name, email: email),
+    //   ),
+    // );
+    name = _nameController.text;
+    email = _emailController.text;
+    phoneNumber = _phoneNumberController.text;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => StopWatch(name: name, email: email),
+      ),
+    );
+
     setState(() {
-      loggedIn = true;
-      name = _nameController.text;
-      email = _emailController.text;
-      phoneNumber = _phoneNumberController.text;
+      // loggedIn = true;
     });
   }
 }
