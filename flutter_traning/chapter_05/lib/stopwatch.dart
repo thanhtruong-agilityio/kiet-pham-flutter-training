@@ -140,13 +140,23 @@ class _StopWatchState extends State<StopWatch> {
           onPressed: isTicking ? _lap : null,
         ),
         SizedBox(width: 20),
-        TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        // TextButton(
+        //   style: ButtonStyle(
+        //     backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+        //     foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        //   ),
+        //   onPressed: isTicking ? _stopTimer : null,
+        //   child: Text('Stop'),
+        // ),
+        Builder(
+          builder: (context) => TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+              // foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
+            child: Text('Stop'),
+            onPressed: isTicking ? () => _stopTimer(context) : null,
           ),
-          onPressed: isTicking ? _stopTimer : null,
-          child: Text('Stop'),
         ),
         SizedBox(width: 20),
         TextButton(
@@ -170,18 +180,24 @@ class _StopWatchState extends State<StopWatch> {
     });
   }
 
-  void _stopTimer() {
+  void _stopTimer(BuildContext context) {
     setState(() {
-      // timer?.cancel();
       timer?.cancel();
       isTicking = false;
     });
-    final totalRuntime = laps.fold(milliseconds, (total, lap) => total + lap);
-    final alert = PlatformAlert(
-      title: 'Run Completed!',
-      message: 'Total Run Time is ${_secondsText(totalRuntime)}.',
-    );
-    alert.show(context);
+    // final totalRuntime = laps.fold(milliseconds, (total, lap) => total + lap);
+    // final alert = PlatformAlert(
+    //   title: 'Run Completed!',
+    //   message: 'Total Run Time is ${_secondsText(totalRuntime)}.',
+    // );
+    // alert.show(context);
+
+    showBottomSheet(context: context, builder: _buildRunCompleteSheet);
+    final controller =
+        showBottomSheet(context: context, builder: _buildRunCompleteSheet);
+    Future.delayed(Duration(seconds: 5)).then((_) {
+      controller.close();
+    });
   }
 
   void _resetTimer() {
@@ -191,5 +207,26 @@ class _StopWatchState extends State<StopWatch> {
       timer?.cancel();
       laps.clear();
     });
+  }
+
+  Widget _buildRunCompleteSheet(BuildContext context) {
+    final totalRuntime = laps.fold(milliseconds, (total, lap) => total + lap);
+    final textTheme = Theme.of(context).textTheme;
+    return SafeArea(
+      child: Container(
+        color: Theme.of(context).cardColor,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Run finished!', style: textTheme.headline6),
+              Text('Total Run Time is ${_secondsText(totalRuntime)}.')
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
