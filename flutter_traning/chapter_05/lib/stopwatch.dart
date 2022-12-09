@@ -18,12 +18,19 @@ class _StopWatchState extends State<StopWatch> {
     return '$seconds seconds';
   }
 
+  final itemHeight = 60.0;
+  final scrollController = ScrollController();
   final laps = <int>[];
 
   void _lap() {
     setState(() {
       laps.add(milliseconds);
       milliseconds = 0;
+      scrollController.animateTo(
+        itemHeight * laps.length,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+      );
     });
   }
 
@@ -34,13 +41,26 @@ class _StopWatchState extends State<StopWatch> {
   }
 
   Widget _buildLapDisplay() {
-    return ListView(
-      children: [
-        for (int milliseconds in laps)
-          ListTile(
-            title: Text(_secondsText(milliseconds)),
-          )
-      ],
+    return Scrollbar(
+      child: ListView.builder(
+        controller: scrollController,
+        itemExtent: itemHeight,
+        itemCount: laps.length,
+        itemBuilder: (context, index) {
+          final milliseconds = laps[index];
+          return ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 50),
+            title: Text('Lap ${index + 1}'),
+            trailing: Text(_secondsText(milliseconds)),
+          );
+        },
+        // children: [
+        //   for (int milliseconds in laps)
+        //     ListTile(
+        //       title: Text(_secondsText(milliseconds)),
+        //     )
+        // ],
+      ),
     );
   }
 
@@ -120,12 +140,22 @@ class _StopWatchState extends State<StopWatch> {
           onPressed: isTicking ? _stopTimer : null,
           child: Text('Stop'),
         ),
+        SizedBox(width: 20),
+        TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          ),
+          onPressed: _resetTimer,
+          child: Text('reset'),
+        ),
       ],
     );
   }
 
   void _startTimer() {
     setState(() {
+      milliseconds = 0;
       timer = Timer.periodic(Duration(milliseconds: 100), _onTick);
       isTicking = true;
       laps.clear();
@@ -137,6 +167,15 @@ class _StopWatchState extends State<StopWatch> {
       // timer?.cancel();
       timer?.cancel();
       isTicking = false;
+    });
+  }
+
+  void _resetTimer() {
+    setState(() {
+      milliseconds = 0;
+      isTicking = false;
+      timer?.cancel();
+      laps.clear();
     });
   }
 }
