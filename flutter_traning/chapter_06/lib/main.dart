@@ -1,6 +1,7 @@
 import 'package:chapter_06/plan_provider.dart';
 import 'package:flutter/material.dart';
 
+import 'views/plan_creator_screen.dart';
 import 'views/plan_screen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MasterPlanApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       home: PlanProvider(
-        child: PlanScreen(),
+        child: PlanCreatorScreen(),
       ),
     );
   }

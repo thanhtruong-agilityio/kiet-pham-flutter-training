@@ -7,7 +7,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
-  const PlanScreen({super.key});
+  final plan;
+  const PlanScreen({super.key, this.plan});
 
   @override
   State<PlanScreen> createState() => _PlanScreenState();
@@ -16,6 +17,7 @@ class PlanScreen extends StatefulWidget {
 class _PlanScreenState extends State<PlanScreen> {
   // final plan = Plan();
   ScrollController? scrollController;
+  Plan get plan => widget.plan;
 
   @override
   void dispose() {
@@ -34,10 +36,10 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final plan = PlanProvider.of(context);
+    // final plan = PlanProvider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Master Plan'),
+        title: Text(plan.name),
       ),
       body: Column(children: <Widget>[
         Expanded(child: _buildList()),
@@ -48,7 +50,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   _buildAskTaskButton() {
-    final plan = PlanProvider.of(context);
+    // final plan = PlanProvider.of(context);
     return FloatingActionButton(
       child: Icon(Icons.add),
       onPressed: () {
@@ -60,7 +62,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   _buildList() {
-    final plan = PlanProvider.of(context);
+    // final plan = PlanProvider.of(context);
     return ListView.builder(
       itemBuilder: (context, index) => _buildTaskTile(plan.tasks[index]),
       itemCount: plan.tasks.length,
