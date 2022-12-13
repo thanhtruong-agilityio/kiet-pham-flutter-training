@@ -1,36 +1,40 @@
+import '../services/plan_services.dart';
 import '/models/data_layer.dart';
 
 class PlanController {
-  final _plans = <Plan>[];
+  // final _plans = <Plan>[];
+  final services = PlanServices();
 
   // This public getter cannot be modified by any other object
-  List<Plan> get plans => List.unmodifiable(_plans);
+  List<Plan> get plans => List.unmodifiable(services.getAllPlans());
 
   void addNewPlan(String name) {
     if (name.isEmpty) {
       return;
     }
-    name = _checkForDuplicates(_plans.map((plan) => plan.name), name);
-    final plan = Plan()..name = name;
-    _plans.add(plan);
+    name = _checkForDuplicates(plans.map((plan) => plan.name), name);
+    services.createPlan(name);
+  }
+
+  void savePlan(Plan plan) {
+    services.savePlan(plan);
   }
 
   void deletePlan(Plan plan) {
-    _plans.remove(plan);
+    services.delete(plan);
   }
 
-  void createNewTask(Plan plan, [String? descriotion]) {
-    if (descriotion == null || descriotion.isEmpty) {
-      descriotion = 'New Task';
+  void createNewTask(Plan plan, [String? description]) {
+    if (description == null || description.isEmpty) {
+      description = 'New Task';
     }
-    descriotion = _checkForDuplicates(
-        plan.tasks.map((task) => task.description), descriotion);
-    final task = Task()..description = descriotion;
-    plan.tasks.add(task);
+    description = _checkForDuplicates(
+        plan.tasks.map((task) => task.description), description);
+    services.addTask(plan, description);
   }
 
   void deleteTask(Plan plan, Task task) {
-    plan.tasks.remove(task);
+    services.deleteTask(plan, task);
   }
 
   String _checkForDuplicates(Iterable<String> items, String text) {
