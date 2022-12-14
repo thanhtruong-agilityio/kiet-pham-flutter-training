@@ -54,7 +54,17 @@ class _FuturePageState extends State<FuturePage> {
                 //     result = value.toString();
                 //   });
                 // });
-                returnFG();
+                // returnFG();
+                // returnError().then((value) {
+                //   setState(() {
+                //     result = 'Success';
+                //   });
+                // }).catchError((onError) {
+                //   setState(() {
+                //     result = onError;
+                //   });
+                // }).whenComplete(() => print('Complete'));
+                handleError();
               },
             ),
             Spacer(),
@@ -127,5 +137,21 @@ class _FuturePageState extends State<FuturePage> {
         result = total.toString();
       });
     });
+  }
+
+  Future returnError() {
+    throw ('Something terrible happened!');
+  }
+
+  Future handleError() async {
+    try {
+      await returnError();
+    } catch (error) {
+      setState(() {
+        result = error as String;
+      });
+    } finally {
+      print('Complete');
+    }
   }
 }
