@@ -48,7 +48,11 @@ class _FuturePageState extends State<FuturePage> {
             ElevatedButton(
               child: Text('GO!'),
               onPressed: () {
-                count();
+                getNumber().then((value) {
+                  setState(() {
+                    result = value.toString();
+                  });
+                });
               },
             ),
             Spacer(),
@@ -92,5 +96,17 @@ class _FuturePageState extends State<FuturePage> {
     final String path = '/books/v1/volumes/junbDwAAQBAJ';
     Uri url = Uri.https(authority, path);
     return http.get(url);
+  }
+
+  Completer? completer;
+  Future getNumber() {
+    completer = Completer<int>();
+    calculate();
+    return completer!.future;
+  }
+
+  calculate() async {
+    await Future.delayed(const Duration(seconds: 5));
+    completer!.complete(42);
   }
 }
