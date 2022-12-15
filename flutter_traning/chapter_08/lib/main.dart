@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import './pizza.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,11 +35,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String pizzaString = '';
+  int? appCounter;
 
   @override
   void initState() {
-    readJsonFile();
     super.initState();
+    readAndWritePreference();
   }
 
   @override
@@ -48,20 +50,34 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('JSON'),
       ),
       body: Container(
-        child: FutureBuilder(
-          future: readJsonFile(),
-          builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
-            return ListView.builder(
-              itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
-              itemBuilder: (BuildContext context, int position) {
-                return ListTile(
-                  title: Text(pizzas.data![position].pizzaName),
-                  subtitle: Text(
-                      '${pizzas.data![position].description} -€ ${pizzas.data![position].price}'),
-                );
-              },
-            );
-          },
+        // child: FutureBuilder(
+        //   future: readJsonFile(),
+        //   builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
+        //     return ListView.builder(
+        //       itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
+        //       itemBuilder: (BuildContext context, int position) {
+        //         return ListTile(
+        //           title: Text(pizzas.data![position].pizzaName),
+        //           subtitle: Text(
+        //               '${pizzas.data![position].description} -€ ${pizzas.data![position].price}'),
+        //         );
+        //       },
+        //     );
+        //   },
+        // ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text('You have opened the app $appCounter times.'),
+              ElevatedButton(
+                onPressed: () {
+                  deletePreference();
+                },
+                child: Text('Reset counter'),
+              )
+            ],
+          ),
         ),
         // child: Text(pizzaString),
       ),
@@ -96,5 +112,27 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     json += ']';
     return json;
+  }
+
+  Future readAndWritePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appCounter = prefs.getInt('appCounter');
+    if (appCounter == null) {
+      appCounter = 1;
+    } else {
+      appCounter = appCounter! + 1;
+    }
+    await prefs.setInt('appCounter', appCounter!);
+    setState(() {
+      appCounter = appCounter;
+    });
+  }
+
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    setState(() {
+      appCounter = 0;
+    });
   }
 }
