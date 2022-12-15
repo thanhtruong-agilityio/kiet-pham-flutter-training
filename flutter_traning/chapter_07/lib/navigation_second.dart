@@ -1,4 +1,3 @@
-import 'package:chapter_07/navigation_first.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -34,11 +33,7 @@ class _NavigationSecondState extends State<NavigationSecond> {
                 child: Text('Green'),
                 onPressed: () {
                   color = Colors.green[700]!;
-                  // Navigator.pop(context, color);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NavigationFirst()));
+                  Navigator.pop(context, color);
                 },
               ),
               ElevatedButton(
