@@ -1,26 +1,19 @@
-import 'dart:convert';
-import 'dart:math';
-import './pizza.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter JSON Demo',
+      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -29,177 +22,65 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String pizzaString = '';
-  int? appCounter;
-  String documentsPath = '';
-  String tempPath = '';
-  File? myFile;
-  String fileText = '';
+  final pwdController = TextEditingController();
+  String myPass = '';
+  final storage = FlutterSecureStorage();
+  final myKey = 'myPass';
 
   @override
   void initState() {
     super.initState();
-    getPaths().then((_) {
-      myFile = File('$documentsPath/pizzas.txt');
-      writeFile();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Path Provider'),
-      ),
-      body: SafeArea(
-        child: Container(
-          // child: FutureBuilder(
-          //   future: readJsonFile(),
-          //   builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
-          //     return ListView.builder(
-          //       itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
-          //       itemBuilder: (BuildContext context, int position) {
-          //         return ListTile(
-          //           title: Text(pizzas.data![position].pizzaName),
-          //           subtitle: Text(
-          //               '${pizzas.data![position].description} -€ ${pizzas.data![position].price}'),
-          //         );
-          //       },
-          //     );
-          //   },
-          // ),
-          // child: Center(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: [
-          //       Text('You have opened the app $appCounter times.'),
-          //       ElevatedButton(
-          //         onPressed: () {
-          //           deletePreference();
-          //         },
-          //         child: Text('Reset counter'),
-          //       )
-          //     ],
-          //   ),
-          // ),
-          child: Container(
+      appBar: AppBar(title: Text('Path Provider')),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('Doc path: ' + documentsPath),
-                Text('Temp path: ' + tempPath),
-                ElevatedButton(
-                  child: Text('Read File'),
-                  onPressed: () => readFile(),
+                TextField(
+                  controller: pwdController,
                 ),
-                Text(fileText),
+                ElevatedButton(
+                  child: Text('Save Value'),
+                  onPressed: () {
+                    writeToSecureStorage();
+                  },
+                ),
+                ElevatedButton(
+                  child: Text('Read Value'),
+                  onPressed: () {
+                    readFromSecureStorage().then((value) {
+                      setState(() {
+                        myPass = value;
+                      });
+                    });
+                  },
+                ),
+                Text(myPass),
               ],
             ),
           ),
-          // child: Text(pizzaString),
         ),
       ),
     );
   }
 
-  Future<List<Pizza>> readJsonFile() async {
-    String myString = await DefaultAssetBundle.of(context)
-        .loadString('assets/pizzalist.json');
-
-    List myMap = jsonDecode(myString);
-
-    List<Pizza> myPizzas = [];
-
-    myMap.forEach((dynamic pizza) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      myPizzas.add(myPizza);
-    });
-
-    setState(() {
-      // pizzaString = myString;
-    });
-    // String json = convertToJSON(myPizzas);
-    // print(json);
-    return myPizzas;
+  Future writeToSecureStorage() async {
+    await storage.write(key: myKey, value: pwdController.text);
   }
 
-  String convertToJSON(List<Pizza> pizzas) {
-    String json = '[';
-    pizzas.forEach((pizza) {
-      json += jsonEncode(pizza);
-    });
-    json += ']';
-    return json;
-  }
-
-  Future readAndWritePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    appCounter = prefs.getInt('appCounter');
-    if (appCounter == null) {
-      appCounter = 1;
-    } else {
-      appCounter = appCounter! + 1;
-    }
-    await prefs.setInt('appCounter', appCounter!);
-    setState(() {
-      appCounter = appCounter;
-    });
-  }
-
-  Future deletePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    setState(() {
-      appCounter = 0;
-    });
-  }
-
-  // Future getPaths() async {
-  //   final docDir = await getApplicationDocumentsDirectory();
-  //   final tempDir = await getTemporaryDirectory();
-  //   setState(() {
-  //     documentsPath = docDir.path;
-  //     tempPath = tempDir.path;
-  //   });
-  // }
-
-  Future getPaths() async {
-    final docDir = await getApplicationDocumentsDirectory();
-    final tempDir = await getTemporaryDirectory();
-    setState(() {
-      documentsPath = docDir.path;
-      tempPath = tempDir.path;
-    });
-  }
-
-  Future<bool> writeFile() async {
-    try {
-      await myFile?.writeAsString('Margherita, Capricciosa, Napoli');
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  Future<bool> readFile() async {
-    try {
-      // Read the file.
-      String fileContent = await myFile!.readAsString();
-      setState(() {
-        fileText = fileContent;
-      });
-      return true;
-    } catch (e) {
-      // On error, return false.
-      return false;
-    }
+  Future<String> readFromSecureStorage() async {
+    String? secret = await storage.read(key: myKey);
+    return secret!;
   }
 }
