@@ -18,4 +18,15 @@ class HttpHelper {
     }
     return null;
   }
+
+  Future<String> postPizza(Pizza pizza) async {
+    const String pathPost = 'pizza';
+    String post = json.encode(pizza.toJson());
+    Uri url = Uri.https(authority, pathPost);
+    http.Response r = await http.post(
+      url,
+      body: post,
+    );
+    return r.body;
+  }
 }
