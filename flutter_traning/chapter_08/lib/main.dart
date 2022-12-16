@@ -56,7 +56,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   title: Text(pizzas.data![position].pizzaName),
                   subtitle: Text(
-                      '${pizzas.data![position].description}- € ${pizzas.data![position].price}'),
+                      '${pizzas.data![position].description} - € ${pizzas.data![position].price}'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PizzaDetail(
+                          pizzas.data![position],
+                          false,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             );
@@ -98,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PizzaDetail(),
+              builder: (context) => PizzaDetail(Pizza(), false),
             ),
           );
         },
