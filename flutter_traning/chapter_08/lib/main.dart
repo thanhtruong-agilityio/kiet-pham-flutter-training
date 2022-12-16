@@ -4,6 +4,7 @@ import './pizza.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -39,59 +40,72 @@ class _MyHomePageState extends State<MyHomePage> {
   int? appCounter;
   String documentsPath = '';
   String tempPath = '';
+  File? myFile;
+  String fileText = '';
 
   @override
   void initState() {
     super.initState();
-    getPaths();
+    getPaths().then((_) {
+      myFile = File('$documentsPath/pizzas.txt');
+      writeFile();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Path Provider'),
       ),
-      body: Container(
-        // child: FutureBuilder(
-        //   future: readJsonFile(),
-        //   builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
-        //     return ListView.builder(
-        //       itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
-        //       itemBuilder: (BuildContext context, int position) {
-        //         return ListTile(
-        //           title: Text(pizzas.data![position].pizzaName),
-        //           subtitle: Text(
-        //               '${pizzas.data![position].description} -€ ${pizzas.data![position].price}'),
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
-        // child: Center(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //     children: [
-        //       Text('You have opened the app $appCounter times.'),
-        //       ElevatedButton(
-        //         onPressed: () {
-        //           deletePreference();
-        //         },
-        //         child: Text('Reset counter'),
-        //       )
-        //     ],
-        //   ),
-        // ),
+      body: SafeArea(
         child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('Doc path: ' + documentsPath),
-              Text('Temp path: ' + tempPath),
-            ],
+          // child: FutureBuilder(
+          //   future: readJsonFile(),
+          //   builder: (BuildContext context, AsyncSnapshot<List<Pizza>> pizzas) {
+          //     return ListView.builder(
+          //       itemCount: (pizzas.data == null) ? 0 : pizzas.data!.length,
+          //       itemBuilder: (BuildContext context, int position) {
+          //         return ListTile(
+          //           title: Text(pizzas.data![position].pizzaName),
+          //           subtitle: Text(
+          //               '${pizzas.data![position].description} -€ ${pizzas.data![position].price}'),
+          //         );
+          //       },
+          //     );
+          //   },
+          // ),
+          // child: Center(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       Text('You have opened the app $appCounter times.'),
+          //       ElevatedButton(
+          //         onPressed: () {
+          //           deletePreference();
+          //         },
+          //         child: Text('Reset counter'),
+          //       )
+          //     ],
+          //   ),
+          // ),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('Doc path: ' + documentsPath),
+                Text('Temp path: ' + tempPath),
+                ElevatedButton(
+                  child: Text('Read File'),
+                  onPressed: () => readFile(),
+                ),
+                Text(fileText),
+              ],
+            ),
           ),
+          // child: Text(pizzaString),
         ),
-        // child: Text(pizzaString),
       ),
     );
   }
@@ -164,5 +178,28 @@ class _MyHomePageState extends State<MyHomePage> {
       documentsPath = docDir.path;
       tempPath = tempDir.path;
     });
+  }
+
+  Future<bool> writeFile() async {
+    try {
+      await myFile?.writeAsString('Margherita, Capricciosa, Napoli');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> readFile() async {
+    try {
+      // Read the file.
+      String fileContent = await myFile!.readAsString();
+      setState(() {
+        fileText = fileContent;
+      });
+      return true;
+    } catch (e) {
+      // On error, return false.
+      return false;
+    }
   }
 }
