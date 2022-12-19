@@ -38,6 +38,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   int? lastNumber;
   StreamController? numberStreamController;
   NumberStream? numberStream;
+  StreamTransformer? transformer;
 
   @override
   void initState() {
@@ -45,9 +46,22 @@ class _StreamHomePageState extends State<StreamHomePage> {
     numberStream = NumberStream();
     numberStreamController = numberStream!.controller;
     Stream stream = numberStreamController!.stream;
-    stream.listen((event) {
+    transformer = StreamTransformer<int, dynamic>.fromHandlers(
+      handleData: (data, sink) {
+        sink.add(data * 10);
+      },
+      handleError: (error, stackTrace, sink) {
+        sink.add(-1);
+      },
+      handleDone: (sink) => sink.close(),
+    );
+    stream.transform(transformer!).listen((event) {
       setState(() {
         lastNumber = event;
+      });
+    }).onError((error) {
+      setState(() {
+        lastNumber = -1;
       });
     });
   }
@@ -85,7 +99,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
   void addRandomNumber() {
     Random random = Random();
-    int myNum = random.nextInt(100);
+    int myNum = random.nextInt(10);
     numberStream!.addNumberToSink(myNum);
   }
 }
