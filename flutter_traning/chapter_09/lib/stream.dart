@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class ColorStream {
   Stream? colorStream;
@@ -14,5 +15,16 @@ class ColorStream {
       int index = t % 5;
       return colors[index];
     });
+  }
+}
+
+class NumberStream {
+  StreamController<int> controller = StreamController<int>();
+  addNumberToSink(int newNumber) {
+    controller.sink.add(newNumber);
+  }
+
+  close() {
+    controller.close();
   }
 }
