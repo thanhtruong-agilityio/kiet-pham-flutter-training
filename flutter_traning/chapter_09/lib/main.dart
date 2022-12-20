@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'stream.dart';
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter/material.dart';
+import 'countdown_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Stream',
+      title: 'BLoC',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -44,6 +46,9 @@ class _StreamHomePageState extends State<StreamHomePage> {
   String values = '';
   Stream<int>? numberStream;
 
+  TimerBLoC? timerBloc;
+  int? seconds;
+
   @override
   void initState() {
     super.initState();
@@ -69,22 +74,25 @@ class _StreamHomePageState extends State<StreamHomePage> {
     // subscription!.onDone(() {
     //   print('OnDone was called');
     // });
-    numberStream = NumberStream().getNumbers();
+    // numberStream = NumberStream().getNumbers();
+    timerBloc = TimerBLoC();
+    seconds = timerBloc!.seconds;
+    timerBloc!.countDown();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stream'),
+        title: Text('BLoC'),
       ),
       body: Container(
         child: StreamBuilder(
-          stream: numberStream,
-          initialData: 0,
+          stream: timerBloc!.secondsStream,
+          initialData: seconds,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              print("Error!");
+              print("ERROR!");
             }
             if (snapshot.hasData) {
               return Center(
