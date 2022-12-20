@@ -37,62 +37,66 @@ class _StreamHomePageState extends State<StreamHomePage> {
   ColorStream? colorStream;
   int? lastNumber;
   StreamController? numberStreamController;
-  NumberStream? numberStream;
+  // NumberStream? numberStream;
   StreamTransformer? transformer;
   StreamSubscription? subscription;
   StreamSubscription? subscription2;
   String values = '';
+  Stream<int>? numberStream;
 
   @override
   void initState() {
     super.initState();
-    numberStream = NumberStream();
-    numberStreamController = numberStream!.controller;
-    Stream stream = numberStreamController!.stream.asBroadcastStream();
+    // numberStream = NumberStream();
+    // numberStreamController = numberStream!.controller;
+    // Stream stream = numberStreamController!.stream.asBroadcastStream();
 
-    subscription = stream.listen((event) {
-      setState(() {
-        values += '$event - ';
-      });
-    });
-    subscription2 = stream.listen((event) {
-      setState(() {
-        values += '$event - ';
-      });
-    });
-    subscription!.onError((error) {
-      setState(() {
-        lastNumber = -1;
-      });
-    });
-    subscription!.onDone(() {
-      print('OnDone was called');
-    });
+    // subscription = stream.listen((event) {
+    //   setState(() {
+    //     values += '$event - ';
+    //   });
+    // });
+    // subscription2 = stream.listen((event) {
+    //   setState(() {
+    //     values += '$event - ';
+    //   });
+    // });
+    // subscription!.onError((error) {
+    //   setState(() {
+    //     lastNumber = -1;
+    //   });
+    // });
+    // subscription!.onDone(() {
+    //   print('OnDone was called');
+    // });
+    numberStream = NumberStream().getNumbers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Stream"),
+        title: Text('Stream'),
       ),
       body: Container(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(values),
-            Text(lastNumber.toString()),
-            ElevatedButton(
-              onPressed: () => addRandomNumber(),
-              child: Text("New random Number"),
-            ),
-            ElevatedButton(
-              onPressed: () => stopStream(),
-              child: Text('Stop Stream'),
-            )
-          ],
+        child: StreamBuilder(
+          stream: numberStream,
+          initialData: 0,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              print("Error!");
+            }
+            if (snapshot.hasData) {
+              return Center(
+                child: Text(
+                  snapshot.data.toString(),
+                  style: TextStyle(fontSize: 96),
+                ),
+              );
+            } else {
+              return Center();
+            }
+          },
         ),
       ),
     );
@@ -106,17 +110,17 @@ class _StreamHomePageState extends State<StreamHomePage> {
     }
   }
 
-  void addRandomNumber() {
-    Random random = Random();
-    int myNum = random.nextInt(10);
-    if (!numberStreamController!.isClosed) {
-      numberStream!.addNumberToSink(myNum);
-    } else {
-      setState(() {
-        lastNumber = -1;
-      });
-    }
-  }
+  // void addRandomNumber() {
+  //   Random random = Random();
+  //   int myNum = random.nextInt(10);
+  //   if (!numberStreamController!.isClosed) {
+  //     numberStream!.addNumberToSink(myNum);
+  //   } else {
+  //     setState(() {
+  //       lastNumber = -1;
+  //     });
+  //   }
+  // }
 
   void stopStream() {
     numberStreamController!.close();
