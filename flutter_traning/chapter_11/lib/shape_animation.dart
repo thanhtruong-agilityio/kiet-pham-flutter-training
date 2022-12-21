@@ -37,6 +37,11 @@ class _ShapeAnimationState extends State<ShapeAnimation>
       curve: Curves.easeInOut,
     );
 
+    controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat(reverse: true);
+
     animation!.addListener(() {
       moveBall();
     });
@@ -47,15 +52,6 @@ class _ShapeAnimationState extends State<ShapeAnimation>
     return Scaffold(
       appBar: AppBar(
         title: Text("Animation Controller"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              controller!.reset();
-              controller!.forward();
-            },
-            icon: Icon(Icons.run_circle),
-          )
-        ],
       ),
       body: SafeArea(
         child: LayoutBuilder(
@@ -64,7 +60,15 @@ class _ShapeAnimationState extends State<ShapeAnimation>
             maxTop = constraints.maxHeight - ballSize;
             return Stack(
               children: [
-                Positioned(left: posLeft, top: posTop, child: Ball()),
+                AnimatedBuilder(
+                  animation: controller!,
+                  child: Positioned(left: posLeft, top: posTop, child: Ball()),
+                  builder: (BuildContext context, Widget? child) {
+                    moveBall();
+                    return Positioned(
+                        child: Ball(), left: posLeft, top: posTop);
+                  },
+                ),
               ],
             );
           },
@@ -74,10 +78,8 @@ class _ShapeAnimationState extends State<ShapeAnimation>
   }
 
   void moveBall() {
-    setState(() {
-      posLeft = animation!.value * maxLeft;
-      posTop = animation!.value * maxTop;
-    });
+    posLeft = animation!.value * maxLeft;
+    posTop = animation!.value * maxTop;
   }
 }
 
