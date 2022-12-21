@@ -11,9 +11,13 @@ class _ShapeAnimationState extends State<ShapeAnimation>
     with SingleTickerProviderStateMixin {
   double posTop = 0;
   double posLeft = 0;
-  Animation<double>? animationTop;
-  Animation<double>? animationLeft;
+  // Animation<double>? animationTop;
+  // Animation<double>? animationLeft;
   AnimationController? controller;
+  double maxTop = 0;
+  double maxLeft = 0;
+  Animation<double>? animation;
+  final int ballSize = 100;
 
   @override
   void initState() {
@@ -22,11 +26,20 @@ class _ShapeAnimationState extends State<ShapeAnimation>
       vsync: this,
     );
 
-    animationLeft = Tween<double>(begin: 0, end: 200).animate(controller!);
-    animationTop = Tween<double>(begin: 0, end: 400).animate(controller!)
-      ..addListener(() {
-        moveBall();
-      });
+    // animationLeft = Tween<double>(begin: 0, end: 200).animate(controller!);
+    // animationTop = Tween<double>(begin: 0, end: 400).animate(controller!)
+    //   ..addListener(() {
+    //     moveBall();
+    //   });
+
+    animation = CurvedAnimation(
+      parent: controller!,
+      curve: Curves.easeInOut,
+    );
+
+    animation!.addListener(() {
+      moveBall();
+    });
   }
 
   @override
@@ -44,18 +57,26 @@ class _ShapeAnimationState extends State<ShapeAnimation>
           )
         ],
       ),
-      body: Stack(
-        children: [
-          Positioned(left: posLeft, top: posTop, child: Ball()),
-        ],
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            maxLeft = constraints.maxWidth - ballSize;
+            maxTop = constraints.maxHeight - ballSize;
+            return Stack(
+              children: [
+                Positioned(left: posLeft, top: posTop, child: Ball()),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 
   void moveBall() {
     setState(() {
-      posLeft = animationLeft!.value;
-      posTop = animationTop!.value;
+      posLeft = animation!.value * maxLeft;
+      posTop = animation!.value * maxTop;
     });
   }
 }
