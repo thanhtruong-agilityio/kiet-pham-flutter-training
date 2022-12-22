@@ -1,4 +1,5 @@
 import 'package:chapter_11/animatedlist.dart';
+import 'package:chapter_11/dismissible.dart';
 import 'package:chapter_11/listscreen.dart';
 import 'package:chapter_11/shape_animation.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AnimatedListScreen(),
+      home: DismissibleScreen(),
     );
   }
 }
