@@ -8,6 +8,7 @@ class BookListScreen extends StatefulWidget {
 }
 
 class _BookListScreenState extends State<BookListScreen> {
+  List<Color> bgColors = [];
   List<Book> books = [];
   bool? isLargeScreen;
 
@@ -19,6 +20,12 @@ class _BookListScreenState extends State<BookListScreen> {
       setState(() {
         books = value;
       });
+    });
+    helper.getFlutterBooks().then((List<Book> value) {
+      int i;
+      for (i = 0; i < value.length; i++) {
+        bgColors.add(Colors.white);
+      }
     });
   }
 
@@ -38,18 +45,32 @@ class _BookListScreenState extends State<BookListScreen> {
         children: List.generate(
           books.length,
           (index) {
-            return ListTile(
-              title: Text(books[index].title),
-              subtitle: Text(books[index].authors),
-              leading: CircleAvatar(
-                backgroundImage: (books[index].thumbnail) == ""
-                    ? null
-                    : NetworkImage(books[index].thumbnail!),
+            return GestureDetector(
+              child: Container(
+                color: bgColors.isNotEmpty ? bgColors[index] : Colors.white,
+                child: ListTile(
+                  title: Text(books[index].title),
+                  subtitle: Text(books[index].authors),
+                  leading: CircleAvatar(
+                    backgroundImage: (books[index].thumbnail) == ""
+                        ? null
+                        : NetworkImage(books[index].thumbnail!),
+                  ),
+                ),
               ),
+              onTap: () => setColor(Colors.lightBlue, index),
+              onSecondaryTap: () => setColor(Colors.white, index),
+              onLongPress: () => setColor(Colors.white, index),
             );
           },
         ),
       ),
     );
+  }
+
+  void setColor(Color color, int index) {
+    setState(() {
+      bgColors[index] = color;
+    });
   }
 }
