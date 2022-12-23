@@ -12,7 +12,8 @@ class HttpHelper {
     'maxResults': '40',
   };
 
-  Future<List<Book>> getFlutterBooks() async {
+  Future<List<Book>> getFlutterBooks(String query) async {
+    Map<String, dynamic> params = {"q": query, "maxResults": "40"};
     Uri uri = Uri.https(authority, path, params);
     Response result = await http.get(uri);
     if (result.statusCode == 200) {
