@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#FF7D0D</color>
+    <color name="onPrimaryColor">#FFFFFF</color>
+    <color name="secondaryColor">#888888</color>
+    <color name="onSecondaryColor">#FFFFFF</color>
+    <color name="errorColor">#FF0000</color>
+    <color name="onErrorColor">#FFFFFF</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="onBackgroundColor">#000000</color>
+    <color name="surfaceColor">#F8F8F8</color>
+    <color name="onSurfaceColor">#000000</color>
+
+
+    <color name="titleOfTextfieldColor">#666666</color>
+    <color name="textColor">#000000</color>
+    <color name="sliderColor">#C4C4C4</color>
+    <color name="tagColor">#CCCCCC</color>
+    <color name="checkboxColor">#FEEBDC</color>
+    <color name="iconsColor">#AAAAAA</color>
+    
+</resources>
