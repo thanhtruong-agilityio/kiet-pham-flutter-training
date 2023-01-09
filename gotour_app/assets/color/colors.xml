@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <color name="primaryColor">#FF7D0D</color>
+ <color name="primaryLightColor">#FEEBDC</color>
+ <color name="SecondaryColor">#888888</color>
+ <color name="titleOfTextfieldColor">#666666</color>
+ <color name="sliderColor">#C4C4C4</color>
+ <color name="greyLightColor">#CCCCCC</color>
+ <color name="blackColor">#000000</color>
+ <color name="whiteColor">#FFFFFF</color>
+</resources>
