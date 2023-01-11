@@ -8,6 +8,12 @@
             "program": "lib/main-device-preview.dart"
         },
         {
+            "name": "Widgetbook",
+            "request": "launch",
+            "type": "dart",
+            "program": "widgetbook/main.dart"
+        },
+        {
             "name": "Gotour App",
             "request": "launch",
             "type": "dart",
