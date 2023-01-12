@@ -1,7 +1,7 @@
 # GoTour App
 GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services  .
 <p align="center">
-  <img width="460" height="200" src="assets/icons/Logo.svg">
+  <img width="460" height="200" src="assets/icons/logo.svg">
 </p>
 
 - [GoTour App](#gotour-app)
