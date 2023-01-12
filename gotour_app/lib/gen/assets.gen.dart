@@ -120,6 +120,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/Kyoto.png
   AssetGenImage get kyoto => const AssetGenImage('assets/images/Kyoto.png');
 
+  /// File path: assets/images/OnboardingFirst.png
+  AssetGenImage get onboardingFirst =>
+      const AssetGenImage('assets/images/OnboardingFirst.png');
+
+  /// File path: assets/images/OnboardingLast.png
+  AssetGenImage get onboardingLast =>
+      const AssetGenImage('assets/images/OnboardingLast.png');
+
+  /// File path: assets/images/OnboardingSecond.png
+  AssetGenImage get onboardingSecond =>
+      const AssetGenImage('assets/images/OnboardingSecond.png');
+
   /// File path: assets/images/PhraNang.png
   AssetGenImage get phraNang =>
       const AssetGenImage('assets/images/PhraNang.png');
@@ -135,18 +147,6 @@ class $AssetsImagesGen {
   AssetGenImage get tibidabo =>
       const AssetGenImage('assets/images/Tibidabo.png');
 
-  /// File path: assets/images/onboardingFirst.png
-  AssetGenImage get onboardingFirst =>
-      const AssetGenImage('assets/images/onboardingFirst.png');
-
-  /// File path: assets/images/onboardingLast.png
-  AssetGenImage get onboardingLast =>
-      const AssetGenImage('assets/images/onboardingLast.png');
-
-  /// File path: assets/images/onboardingSecond.png
-  AssetGenImage get onboardingSecond =>
-      const AssetGenImage('assets/images/onboardingSecond.png');
-
   /// List of all assets
   List<AssetGenImage> get values => [
         canyon,
@@ -154,13 +154,13 @@ class $AssetsImagesGen {
         doiPui,
         krabi,
         kyoto,
+        onboardingFirst,
+        onboardingLast,
+        onboardingSecond,
         phraNang,
         splashScreen,
         tambon,
-        tibidabo,
-        onboardingFirst,
-        onboardingLast,
-        onboardingSecond
+        tibidabo
       ];
 }
 
