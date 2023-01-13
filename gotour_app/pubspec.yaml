@@ -42,14 +42,12 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-    - family: Gilroy-Bold
+    - family: Gilroy
       fonts:
         - asset: assets/fonts/Gilroy-Bold.ttf
           style: normal
           weight: 700
 
-    - family: Gilroy-Medium
-      fonts: 
         - asset: assets/fonts/Gilroy-Medium.ttf
           style: normal
           weight: 400
