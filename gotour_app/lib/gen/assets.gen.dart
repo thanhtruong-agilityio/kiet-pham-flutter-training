@@ -30,6 +30,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bookMark.svg
   String get bookMark => 'assets/icons/bookMark.svg';
 
+  /// File path: assets/icons/brand.svg
+  String get brand => 'assets/icons/brand.svg';
+
   /// File path: assets/icons/car.svg
   String get car => 'assets/icons/car.svg';
 
@@ -44,9 +47,6 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/location.svg
   String get location => 'assets/icons/location.svg';
-
-  /// File path: assets/icons/logo.svg
-  String get logo => 'assets/icons/logo.svg';
 
   /// File path: assets/icons/menu.svg
   String get menu => 'assets/icons/menu.svg';
@@ -83,12 +83,12 @@ class $AssetsIconsGen {
         bell,
         boat,
         bookMark,
+        brand,
         car,
         cloud,
         google,
         left,
         location,
-        logo,
         menu,
         message,
         more,
