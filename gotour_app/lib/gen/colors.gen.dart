@@ -16,6 +16,9 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color backgroundColor = Color(0xFFFFFFFF);
 
+  /// Color: #EEEEEE
+  static const Color borderRadiusColor = Color(0xFFEEEEEE);
+
   /// Color: #FEEBDC
   static const Color checkboxColor = Color(0xFFFEEBDC);
 

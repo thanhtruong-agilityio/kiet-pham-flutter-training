@@ -18,5 +18,6 @@
     <color name="tagColor">#CCCCCC</color>
     <color name="checkboxColor">#FEEBDC</color>
     <color name="iconsColor">#AAAAAA</color>
+    <color name="borderRadiusColor">#EEEEEE</color>
     
 </resources>
