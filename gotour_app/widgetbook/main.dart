@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:gotour_app/theme/theme.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -41,7 +42,7 @@ class WidgetbookHotReload extends StatelessWidget {
         ),
       ],
       themes: [
-        WidgetbookTheme(name: 'Light', data: ThemeData.light()),
+        WidgetbookTheme(name: 'Light', data: GTTheme.lightTheme),
         WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
       ],
     );
