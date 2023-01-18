@@ -9,7 +9,7 @@ class WidgetbookHotReload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook(
+    return Widgetbook.material(
       devices: const [
         // iOS
         Apple.iPhone8,
