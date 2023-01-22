@@ -49,6 +49,12 @@ class ColorName {
   /// Color: #888888
   static const Color secondaryColor = Color(0xFF888888);
 
+  /// Color: #FFD1AA
+  static const Color shadowBtnLoginGoogleColor = Color(0xFFFFD1AA);
+
+  /// Color: #FFD1AA
+  static const Color shadowBtnPrimaryColor = Color(0xFFFFD1AA);
+
   /// Color: #C4C4C4
   static const Color sliderColor = Color(0xFFC4C4C4);
 

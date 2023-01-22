@@ -19,5 +19,7 @@
     <color name="checkboxColor">#FEEBDC</color>
     <color name="iconsColor">#AAAAAA</color>
     <color name="borderRadiusColor">#EEEEEE</color>
+    <color name="shadowBtnPrimaryColor">#FFD1AA</color>
+    <color name="shadowBtnLoginGoogleColor">#FFD1AA</color>
     
 </resources>
