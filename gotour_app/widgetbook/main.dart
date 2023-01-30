@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:gotour_app/theme/theme.dart';
+import 'package:gotour_app/widgets/bottom-navigation-bar.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -38,7 +39,17 @@ class WidgetbookHotReload extends StatelessWidget {
       categories: [
         WidgetbookCategory(
           name: 'Widgets',
-          widgets: [],
+          widgets: [
+            WidgetbookComponent(
+              name: 'Navigation Bar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Bottom Navigation Bar',
+                  builder: (context) => GTBottomNavigationBar(),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
       themes: [
