@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:gotour_app/gen/assets.gen.dart';
+import 'package:gotour_app/gen/colors.gen.dart';
 import 'package:gotour_app/theme/theme.dart';
 import 'package:gotour_app/widgets/bottom-navigation-bar.dart';
+import 'package:gotour_app/widgets/icon-button.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -40,6 +43,156 @@ class WidgetbookHotReload extends StatelessWidget {
         WidgetbookCategory(
           name: 'Widgets',
           widgets: [
+            WidgetbookComponent(
+              name: 'Button',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Forward Button Onboarding',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.left,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    paddingRight: 2,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Next Button Onboarding',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.right,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    paddingLeft: 2,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Search Button',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.search,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Sun Button - Activated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.sun,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Sun Button - UnActivated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.sun,
+                    iconColor: ColorName.iconsColor,
+                    btnColor: ColorName.surfaceColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Air Button - Activated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.air,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Air Button - UnActivated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.air,
+                    iconColor: ColorName.iconsColor,
+                    btnColor: ColorName.surfaceColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Boat Button - Activated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.boat,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Boat Button - UnActivated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.boat,
+                    iconColor: ColorName.iconsColor,
+                    btnColor: ColorName.surfaceColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Car Button - Activated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.car,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Car Button - UnActivated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.car,
+                    iconColor: ColorName.iconsColor,
+                    btnColor: ColorName.surfaceColor,
+                    iconWidth: 20,
+                    iconHeight: 20,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Moto Button - Activated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.moto,
+                    iconColor: ColorName.backgroundColor,
+                    btnColor: ColorName.primaryColor,
+                    iconWidth: 30,
+                    iconHeight: 15,
+                    press: () {},
+                  ),
+                ),
+                WidgetbookUseCase(
+                  name: 'Moto Button - UnActivated',
+                  builder: (context) => GTIconBtn(
+                    icon: Assets.icons.moto,
+                    iconColor: ColorName.iconsColor,
+                    btnColor: ColorName.surfaceColor,
+                    iconWidth: 30,
+                    iconHeight: 15,
+                    press: () {},
+                  ),
+                ),
+              ],
+            ),
             WidgetbookComponent(
               name: 'Navigation Bar',
               useCases: [
