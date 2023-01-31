@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
 
-class GTIconBtn extends StatelessWidget {
+class GTIconBtn extends StatefulWidget {
   const GTIconBtn({
     super.key,
     required this.icon,
@@ -23,6 +23,11 @@ class GTIconBtn extends StatelessWidget {
   final Function press;
 
   @override
+  State<GTIconBtn> createState() => _GTIconBtnState();
+}
+
+class _GTIconBtnState extends State<GTIconBtn> {
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
@@ -31,18 +36,21 @@ class GTIconBtn extends StatelessWidget {
         elevation: 0,
         hoverElevation: 0,
         highlightElevation: 0,
-        backgroundColor: btnColor,
+        backgroundColor: widget.btnColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
-        onPressed: press as Function(),
+        onPressed: widget.press as Function(),
         child: Padding(
-          padding: EdgeInsets.only(right: paddingRight, left: paddingLeft),
+          padding: EdgeInsets.only(
+            right: widget.paddingRight,
+            left: widget.paddingLeft,
+          ),
           child: SvgPicture.asset(
-            icon,
-            color: iconColor,
-            width: iconWidth,
-            height: iconHeight,
+            widget.icon,
+            color: widget.iconColor,
+            width: widget.iconWidth,
+            height: widget.iconHeight,
           ),
         ),
       ),
