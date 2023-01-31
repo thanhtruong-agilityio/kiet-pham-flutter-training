@@ -12,10 +12,12 @@ class GTElevatedButton extends StatelessWidget {
     required this.activateShadowColor,
     this.icon,
     required this.text,
+    required this.press,
   });
   final Color? shadowColor;
   final String? icon;
   final Text text;
+  final Function press;
   bool activeIcon, activateShadowColor;
 
   @override
@@ -39,7 +41,7 @@ class GTElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
           ),
         ),
-        onPressed: () {},
+        onPressed: press as Function(),
         child: activeIcon == true
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
