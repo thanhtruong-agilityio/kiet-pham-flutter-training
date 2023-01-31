@@ -51,6 +51,7 @@ class GTDetailTours extends StatelessWidget {
               .bodyMedium!
               .copyWith(color: ColorName.backgroundColor),
         ),
+        press: () {},
       ),
     );
   }
