@@ -6,11 +6,13 @@ class GTTextButton extends StatelessWidget {
   const GTTextButton({
     super.key,
     required this.press,
-    required this.title,
+    required this.text,
+    required this.color,
   });
 
   final Function press;
-  final String title;
+  final Text text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,7 @@ class GTTextButton extends StatelessWidget {
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
       onTap: press as Function(),
-      child: Text(
-        title,
-        style: Theme.of(context)
-            .textTheme
-            .bodyLarge!
-            .copyWith(color: ColorName.primaryColor),
-      ),
+      child: text,
     );
   }
 }
