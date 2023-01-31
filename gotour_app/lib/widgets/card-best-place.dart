@@ -145,6 +145,7 @@ class GTCardBestPlace extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       activateShadowColor: false,
+                      press: () {},
                     ),
                   )
                 ],
