@@ -7,28 +7,31 @@ import '../gen/colors.gen.dart';
 class GTElevatedButton extends StatelessWidget {
   GTElevatedButton({
     super.key,
-    required this.shadowColor,
+    this.shadowColor,
     this.activeIcon = false,
+    required this.activateShadowColor,
     this.icon,
     required this.text,
   });
-  final Color shadowColor;
+  final Color? shadowColor;
   final String? icon;
-  final String text;
-  bool activeIcon;
+  final Text text;
+  bool activeIcon, activateShadowColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            blurRadius: 11,
-            offset: Offset(0, 5),
-          ),
-        ],
+        boxShadow: activateShadowColor == true
+            ? [
+                BoxShadow(
+                  color: shadowColor!,
+                  blurRadius: 11,
+                  offset: Offset(0, 5),
+                ),
+              ]
+            : null,
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -49,23 +52,11 @@ class GTElevatedButton extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                    text,
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: ColorName.backgroundColor,
-                          fontWeight: FontWeight.w400,
-                        ),
-                  ),
+                  text,
                 ],
               )
             : Center(
-                child: Text(
-                  text,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: ColorName.backgroundColor,
-                        fontWeight: FontWeight.w400,
-                      ),
-                ),
+                child: text,
               ),
       ),
     );
