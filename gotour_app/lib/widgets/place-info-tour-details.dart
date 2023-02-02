@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gotour_app/widgets/title-with-location.dart';
 
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
@@ -7,7 +8,7 @@ import 'GTTitle.dart';
 import 'card-image-with-bookmark.dart';
 import 'elevated-button.dart';
 
-class GTPlaceInfoTourDetails extends StatefulWidget {
+class GTPlaceInfoTourDetails extends StatelessWidget {
   const GTPlaceInfoTourDetails({
     super.key,
     required this.namePlace,
@@ -15,25 +16,21 @@ class GTPlaceInfoTourDetails extends StatefulWidget {
     required this.price,
     required this.size,
     required this.weather,
-    required this.press,
+    required this.pressCard,
+    required this.pressBtn,
   });
 
   final String namePlace, location, price, weather;
   final Size size;
-  final Function press;
+  final Function pressCard, pressBtn;
 
-  @override
-  State<GTPlaceInfoTourDetails> createState() => _GTPlaceInfoTourDetailsState();
-}
-
-class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListCardPlaceinfo(
-          size: widget.size,
-          press: widget.press as Function(),
+          size: size,
+          press: pressCard as Function(),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,11 +40,10 @@ class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Title(context),
-                const SizedBox(
-                  height: 10,
+                GTTitleWithLocation(
+                  namePlace: namePlace,
+                  location: location,
                 ),
-                LocationDetails(context),
                 const SizedBox(height: 24),
                 Button(context),
               ],
@@ -65,13 +61,13 @@ class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
       child: GTElevatedButton(
         activateShadowColor: false,
         text: Text(
-          '\$${widget.price}',
+          '\$$price',
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
               .copyWith(color: ColorName.backgroundColor),
         ),
-        press: () {},
+        press: pressBtn,
       ),
     );
   }
@@ -89,7 +85,7 @@ class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
           width: 10,
         ),
         Text(
-          widget.location,
+          location,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: ColorName.iconsColor,
               ),
@@ -100,7 +96,7 @@ class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
 
   Text Title(BuildContext context) {
     return Text(
-      widget.namePlace,
+      namePlace,
       style: Theme.of(context).textTheme.titleSmall,
     );
   }
@@ -111,7 +107,7 @@ class _GTPlaceInfoTourDetailsState extends State<GTPlaceInfoTourDetails> {
         SvgPicture.asset(Assets.icons.cloud),
         SizedBox(width: 7),
         Text(
-          '${widget.weather}°C',
+          '$weather°C',
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
