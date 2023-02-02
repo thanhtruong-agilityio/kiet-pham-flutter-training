@@ -14,7 +14,7 @@ class GTTitle extends StatelessWidget {
       height: 22,
       child: Text(
         title,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.titleMedium,
       ),
     );
   }

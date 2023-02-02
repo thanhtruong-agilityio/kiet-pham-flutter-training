@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/gen/colors.gen.dart';
-import 'package:gotour_app/widgets/GTTitle.dart';
+import 'package:gotour_app/widgets/title.dart';
 import 'package:gotour_app/widgets/text-button.dart';
 
 class GTTitleAndSeeAllBtn extends StatelessWidget {

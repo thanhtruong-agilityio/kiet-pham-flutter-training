@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../gen/colors.gen.dart';
-import 'GTTitle.dart';
+import 'title.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({super.key});

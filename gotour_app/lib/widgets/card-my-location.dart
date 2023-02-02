@@ -4,7 +4,7 @@ import 'package:gotour_app/widgets/title-and-button.dart';
 
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
-import 'GTTitle.dart';
+import 'title.dart';
 
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({

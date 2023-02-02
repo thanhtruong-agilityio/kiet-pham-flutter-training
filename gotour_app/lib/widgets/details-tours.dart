@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
-import 'GTTitle.dart';
+import 'title.dart';
 import 'elevated-button.dart';
 
 class GTDetailTours extends StatelessWidget {

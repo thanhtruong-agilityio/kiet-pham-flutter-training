@@ -4,7 +4,7 @@ import 'package:gotour_app/widgets/title-with-location.dart';
 
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
-import 'GTTitle.dart';
+import 'title.dart';
 import 'card-image-with-bookmark.dart';
 import 'elevated-button.dart';
 

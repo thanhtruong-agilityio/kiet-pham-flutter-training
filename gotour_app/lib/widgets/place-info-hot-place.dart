@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/gen/colors.gen.dart';
 import 'package:gotour_app/widgets/place-info-tour-details.dart';
 
-import 'GTTitle.dart';
+import 'title.dart';
 import 'card-image-with-bookmark.dart';
 import 'elevated-button.dart';
 import 'tag.dart';
