@@ -22,36 +22,34 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: SizedBox(
-          height: 44,
-          width: double.infinity,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Material(
-              color: ColorName.surfaceColor,
-              borderRadius: BorderRadius.circular(10),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Wrap(
-                  alignment: WrapAlignment.spaceAround,
-                  children: List.generate(
-                    data.length,
-                    (index) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      child: SvgPicture.asset(
-                        data[index],
-                        height: 20,
-                        width: 20,
-                        color: index == selectedIndex
-                            ? ColorName.primaryColor
-                            : null,
-                      ),
+    return SafeArea(
+      child: SizedBox(
+        height: 44,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: Material(
+            color: ColorName.surfaceColor,
+            borderRadius: BorderRadius.circular(10),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Wrap(
+                alignment: WrapAlignment.spaceAround,
+                children: List.generate(
+                  data.length,
+                  (index) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: SvgPicture.asset(
+                      data[index],
+                      height: 20,
+                      width: 20,
+                      color: index == selectedIndex
+                          ? ColorName.primaryColor
+                          : null,
                     ),
                   ),
                 ),
