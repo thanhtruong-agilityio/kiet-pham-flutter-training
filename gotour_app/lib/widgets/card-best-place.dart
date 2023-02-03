@@ -7,54 +7,74 @@ import '../gen/colors.gen.dart';
 import 'elevated-button.dart';
 import 'text-button.dart';
 
-class GTBestPlace extends StatelessWidget {
+class PlaceInfo {
+  final String image, location, placeName, price;
+  const PlaceInfo(this.image, this.location, this.placeName, this.price);
+}
+
+class GTBestPlace extends StatefulWidget {
   const GTBestPlace({
     super.key,
-    required this.image,
-    required this.location,
-    required this.placeName,
-    required this.price,
     required this.pressCard,
-    required this.pressButton,
+    required this.pressBtn,
+    required this.pressBtnPrice,
   });
 
-  final String image, location, placeName, price;
-  final Function pressCard, pressButton;
+  // final String image, location, placeName, price;
+  final Function pressCard, pressBtn, pressBtnPrice;
 
   @override
+  State<GTBestPlace> createState() => _GTBestPlaceState();
+}
+
+class _GTBestPlaceState extends State<GTBestPlace> {
+  @override
   Widget build(BuildContext context) {
+    List<PlaceInfo> data = [
+      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+          'Bien Thanh Khe', '4 000'),
+      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+          'Bien Thanh Khe', '3 000'),
+      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+          'Bien Thanh Khe', '2 000'),
+      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+          'Bien Thanh Khe', '1 000'),
+    ];
+
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Column(
-        children: [
-          GTTitleAndSeeAllBtn(title: 'BestPlace', press: pressButton),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                GTCardBestPlace(
-                  size: size,
-                  image: image,
-                  location: location,
-                  placeName: placeName,
-                  price: price,
-                  press: pressCard,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(right: 20),
+          margin: const EdgeInsets.only(bottom: 14),
+          child:
+              GTTitleAndSeeAllBtn(title: 'BestPlace', press: widget.pressBtn),
+        ),
+        Row(
+          children: [
+            SizedBox(
+              height: 180,
+              width: size.width,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: data.length,
+                itemBuilder: (context, index) => Container(
+                  margin: const EdgeInsets.only(right: 20),
+                  child: GTCardBestPlace(
+                    image: data[index].image,
+                    placeName: data[index].placeName,
+                    location: data[index].location,
+                    price: data[index].price,
+                    pressCard: widget.pressCard,
+                    pressBtnPrice: widget.pressBtnPrice,
+                  ),
                 ),
-                const SizedBox(width: 20),
-                GTCardBestPlace(
-                  size: size,
-                  image: image,
-                  location: location,
-                  placeName: placeName,
-                  price: price,
-                  press: pressCard as Function,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
@@ -62,29 +82,24 @@ class GTBestPlace extends StatelessWidget {
 class GTCardBestPlace extends StatelessWidget {
   const GTCardBestPlace({
     Key? key,
-    required this.size,
-    required this.press,
     required this.image,
     required this.placeName,
     required this.location,
     required this.price,
+    required this.pressCard,
+    required this.pressBtnPrice,
   }) : super(key: key);
 
-  final Size size;
-  final Function press;
+  final Function pressCard, pressBtnPrice;
   final String image, placeName, location, price;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: press as Function(),
+      onTap: pressCard as Function(),
       child: Container(
-        margin: const EdgeInsets.only(
-          left: 5,
-          top: 14,
-        ),
-        width: size.width * 0.75,
-        height: 180,
+        width: size.width * 0.85,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
@@ -145,7 +160,7 @@ class GTCardBestPlace extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       activateShadowColor: false,
-                      press: () {},
+                      press: pressBtnPrice,
                     ),
                   )
                 ],
