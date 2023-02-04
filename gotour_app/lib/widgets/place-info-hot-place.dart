@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/gen/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/widgets/place-info-tour-details.dart';
 
 import 'title.dart';

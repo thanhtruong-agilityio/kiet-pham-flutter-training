@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../gen/assets.gen.dart';
-import '../gen/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTBottomNavigationBar extends StatefulWidget {
   const GTBottomNavigationBar({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/widgets/title-and-button.dart';
 
-import '../gen/assets.gen.dart';
-import '../gen/colors.gen.dart';
 import 'elevated-button.dart';
 import 'text-button.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:gotour_app/gen/assets.gen.dart';
-import 'package:gotour_app/gen/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/theme/theme.dart';
 import 'package:gotour_app/widgets/bottom-navigation-bar.dart';
 import 'package:gotour_app/widgets/icon-button.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../gen/colors.gen.dart';
 import 'title.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../gen/assets.gen.dart';
-import '../gen/colors.gen.dart';
-
 class GTIconBtn extends StatefulWidget {
   const GTIconBtn({
     super.key,

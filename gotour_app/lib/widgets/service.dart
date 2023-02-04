@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/widgets/icon-button.dart';
-
-import '../gen/assets.gen.dart';
-import '../gen/colors.gen.dart';
 
 class GTService extends StatefulWidget {
   const GTService({super.key});

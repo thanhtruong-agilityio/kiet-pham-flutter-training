@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../gen/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTTextField extends StatefulWidget {
   const GTTextField({
