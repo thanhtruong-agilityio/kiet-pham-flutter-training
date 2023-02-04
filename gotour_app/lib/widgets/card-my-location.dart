@@ -6,21 +6,44 @@ import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
 import 'title.dart';
 
+class LocationInfo {
+  final String image, location, placeName, description;
+  const LocationInfo(
+      this.image, this.location, this.placeName, this.description);
+}
+
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
     super.key,
-    required this.image,
-    required this.location,
-    required this.namePlace,
-    required this.description,
     required this.press,
   });
 
-  final String image, location, namePlace, description;
   final Function press;
 
   @override
   Widget build(BuildContext context) {
+    List<LocationInfo> data = [
+      LocationInfo(
+          'assets/images/Tibidabo.png',
+          'Da Nang, Viet Nam',
+          'Bien Thanh Khe',
+          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+      LocationInfo(
+          'assets/images/Tibidabo.png',
+          'Quang Nam, Viet Nam',
+          'Bien Thanh Khe',
+          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+      LocationInfo(
+          'assets/images/Tibidabo.png',
+          'Hue, Viet Nam',
+          'Bien Thanh Khe',
+          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+      LocationInfo(
+          'assets/images/Tibidabo.png',
+          'Hoi An, Viet Nam',
+          'Bien Thanh Khe',
+          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+    ];
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -34,43 +57,31 @@ class GTMyLocation extends StatelessWidget {
               Spacer(),
             ],
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                GTCardMyLocation(
+          SizedBox(
+            height: 180,
+            width: size.width,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: data.length,
+              itemBuilder: (context, index) => Container(
+                margin: const EdgeInsets.only(right: 20),
+                child: GTCardMyLocation(
                   press: press,
-                  image: image,
-                  location: location,
-                  namePlace: namePlace,
-                  description: description,
+                  image: data[index].image,
+                  namePlace: data[index].placeName,
+                  location: data[index].location,
+                  description: data[index].description,
                 ),
-                const SizedBox(width: 20),
-                GTCardMyLocation(
-                  press: press,
-                  image: image,
-                  location: location,
-                  namePlace: namePlace,
-                  description: description,
-                ),
-                SizedBox(width: 20),
-                GTCardMyLocation(
-                  press: press,
-                  image: image,
-                  location: location,
-                  namePlace: namePlace,
-                  description: description,
-                ),
-              ],
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 }
 
-class GTCardMyLocation extends StatelessWidget {
+class GTCardMyLocation extends StatefulWidget {
   const GTCardMyLocation({
     Key? key,
     required this.press,
@@ -84,10 +95,15 @@ class GTCardMyLocation extends StatelessWidget {
   final String image, namePlace, location, description;
 
   @override
+  State<GTCardMyLocation> createState() => _GTCardMyLocationState();
+}
+
+class _GTCardMyLocationState extends State<GTCardMyLocation> {
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: press as Function(),
+      onTap: widget.press as Function(),
       child: Container(
         margin: const EdgeInsets.only(
           left: 5,
@@ -118,7 +134,7 @@ class GTCardMyLocation extends StatelessWidget {
                             Row(
                               children: [
                                 imagePlace(),
-                                SizedBox(width: 11),
+                                const SizedBox(width: 11),
                                 nameAndLocation(context),
                               ],
                             )
@@ -128,11 +144,11 @@ class GTCardMyLocation extends StatelessWidget {
                       iconBookMark()
                     ],
                   ),
-                  SizedBox(height: 11),
+                  const SizedBox(height: 11),
                   Container(
-                    padding: EdgeInsets.only(right: 39),
+                    padding: const EdgeInsets.only(right: 39),
                     child: Text(
-                      description,
+                      widget.description,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -148,10 +164,15 @@ class GTCardMyLocation extends StatelessWidget {
     );
   }
 
-  SvgPicture iconBookMark() {
-    return SvgPicture.asset(
-      Assets.icons.bookMark,
-      color: ColorName.primaryColor,
+  GestureDetector iconBookMark() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {});
+      },
+      child: SvgPicture.asset(
+        Assets.icons.bookMark,
+        color: ColorName.primaryColor,
+      ),
     );
   }
 
@@ -161,7 +182,7 @@ class GTCardMyLocation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          namePlace,
+          widget.namePlace,
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(
@@ -179,7 +200,7 @@ class GTCardMyLocation extends StatelessWidget {
               width: 10,
             ),
             Text(
-              location,
+              widget.location,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: ColorName.iconsColor,
                   ),
@@ -199,7 +220,7 @@ class GTCardMyLocation extends StatelessWidget {
         color: ColorName.primaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(image),
+          image: AssetImage(widget.image),
         ),
       ),
     );
