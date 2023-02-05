@@ -4,7 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/widgets/title-and-button.dart';
 
-import 'title.dart';
+import 'text.dart';
+import 'title-with-location.dart';
 
 class LocationInfo {
   final String image, location, placeName, description;
@@ -24,22 +25,22 @@ class GTMyLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     List<LocationInfo> data = [
       LocationInfo(
-          'assets/images/Tibidabo.png',
+          'assets/images/tibidabo.png',
           'Da Nang, Viet Nam',
           'Bien Thanh Khe',
           "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
       LocationInfo(
-          'assets/images/Tibidabo.png',
+          'assets/images/tibidabo.png',
           'Quang Nam, Viet Nam',
           'Bien Thanh Khe',
           "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
       LocationInfo(
-          'assets/images/Tibidabo.png',
+          'assets/images/tibidabo.png',
           'Hue, Viet Nam',
           'Bien Thanh Khe',
           "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
       LocationInfo(
-          'assets/images/Tibidabo.png',
+          'assets/images/tibidabo.png',
           'Hoi An, Viet Nam',
           'Bien Thanh Khe',
           "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
@@ -52,8 +53,8 @@ class GTMyLocation extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              GTTitle(title: 'My Location'),
+            children: [
+              GTText.SubTitle(context, 'My Location'),
               Spacer(),
             ],
           ),
@@ -135,7 +136,11 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                               children: [
                                 imagePlace(),
                                 const SizedBox(width: 11),
-                                nameAndLocation(context),
+                                GTTitleWithLocation(
+                                  placeName: widget.namePlace,
+                                  location: widget.location,
+                                  colorIcon: ColorName.primaryColor,
+                                ),
                               ],
                             )
                           ],
@@ -147,13 +152,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                   const SizedBox(height: 11),
                   Container(
                     padding: const EdgeInsets.only(right: 39),
-                    child: Text(
-                      widget.description,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: ColorName.iconsColor),
-                    ),
+                    child: GTText.PlaceDescription(context, widget.description),
                   )
                 ],
               ),
@@ -173,41 +172,6 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
         Assets.icons.bookMark,
         color: ColorName.primaryColor,
       ),
-    );
-  }
-
-  Column nameAndLocation(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.namePlace,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Row(
-          children: [
-            SvgPicture.asset(
-              Assets.icons.location,
-              color: ColorName.primaryColor,
-              width: 10,
-              height: 12,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              widget.location,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: ColorName.iconsColor,
-                  ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 
