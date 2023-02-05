@@ -4,8 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/widgets/title-and-button.dart';
 
-import 'elevated-button.dart';
-import 'text-button.dart';
+import 'button.dart';
+import 'title-with-location.dart';
 
 class PlaceInfo {
   final String image, location, placeName, price;
@@ -32,7 +32,7 @@ class _GTBestPlaceState extends State<GTBestPlace> {
   Widget build(BuildContext context) {
     List<PlaceInfo> data = [
       PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
-          'Bien Thanh Khe', '4 000'),
+          'Bien Thanh Khe', '3 000'),
       PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
           'Bien Thanh Khe', '3 000'),
       PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
@@ -119,47 +119,21 @@ class GTCardBestPlace extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        placeName,
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: ColorName.onSecondaryColor,
-                            ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            Assets.icons.location,
-                            color: ColorName.onSecondaryColor,
-                            width: 10,
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            location,
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      color: ColorName.onSecondaryColor,
-                                    ),
-                          ),
-                        ],
+                      GTTitleWithLocation(
+                        placeName: placeName,
+                        location: location,
+                        colorIcon: ColorName.backgroundColor,
+                        colorLocation: ColorName.backgroundColor,
+                        colorName: ColorName.backgroundColor,
                       ),
                     ],
                   ),
                   const Spacer(),
                   SizedBox(
                     height: 25,
-                    child: GTElevatedButton(
-                      text: Text(
-                        '\$$price',
-                        style: TextStyle(fontSize: 11),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      activateShadowColor: false,
+                    child: GTElevatedButton.Price(
+                      context,
+                      title: '\$$price',
                       press: pressBtnPrice,
                     ),
                   )
