@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
+import 'text.dart';
+
 class GTTag extends StatelessWidget {
   const GTTag({super.key, required this.text});
   final String text;
@@ -14,10 +16,7 @@ class GTTag extends StatelessWidget {
         color: ColorName.tagColor,
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.bodySmall,
-      ),
+      child: GTText.NameTag(context, text),
     );
   }
 }
