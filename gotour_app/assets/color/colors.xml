@@ -20,6 +20,7 @@
     <color name="iconsColor">#AAAAAA</color>
     <color name="borderRadiusColor">#EEEEEE</color>
     <color name="shadowBtnPrimaryColor">#FFD1AA</color>
-    <color name="shadowBtnLoginGoogleColor">#FFD1AA</color>
+    <color name="shadowBtnLoginGoogleColor">#0000000d</color>
+    <color name="onTag">#333333</color>
     
 </resources>
