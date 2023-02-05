@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/widgets/title.dart';
-import 'package:gotour_app/widgets/text-button.dart';
+import 'package:gotour_app/widgets/button.dart';
+
+import 'text.dart';
 
 class GTTitleAndSeeAllBtn extends StatelessWidget {
   const GTTitleAndSeeAllBtn({
@@ -16,18 +17,14 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GTTitle(
-          title: title,
-        ),
-        Spacer(),
+        GTText.SubTitle(context, title),
+        const Spacer(),
         GTTextButton(
           press: press as Function(),
           color: ColorName.tagColor,
-          text: Text(
-            'See all',
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-          ),
+          text: GTText.SeeAllButton(context, 'See All'),
         )
       ],
     );
