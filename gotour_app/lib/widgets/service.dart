@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/widgets/icon-button.dart';
+
+import 'button.dart';
+import 'text.dart';
 
 class GTService extends StatefulWidget {
   const GTService({super.key});
@@ -32,10 +34,7 @@ class _GTServiceState extends State<GTService> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  'Service',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                GTText.SubTitle(context, 'Services'),
                 const SizedBox(
                   height: 14,
                 ),
@@ -51,7 +50,7 @@ class _GTServiceState extends State<GTService> {
                               selectedIndex = index;
                             });
                           },
-                          child: GTIconBtn(
+                          child: GTButtonIcon(
                             icon: icons[index],
                             iconColor: index == selectedIndex
                                 ? ColorName.backgroundColor
