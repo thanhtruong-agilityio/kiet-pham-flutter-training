@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'title.dart';
+import 'text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({super.key});
@@ -11,8 +11,8 @@ class GTGridViewHotPlace extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: const [
-            GTTitle(title: 'Hot Place'),
+          children: [
+            GTText.SubTitle(context, 'Hot Place'),
           ],
         ),
         const SizedBox(
