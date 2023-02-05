@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
+import 'package:gotour_app/core/resources/assets_generated/fonts.gen.dart';
+import 'text.dart';
+
 class GTTextField extends StatefulWidget {
   const GTTextField({
     super.key,
@@ -36,18 +39,9 @@ class _GTTextFieldState extends State<GTTextField> {
         horizontal: 20,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            // mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                widget.title,
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: ColorName.titleOfTextfieldColor,
-                    ),
-              ),
-            ],
-          ),
+          GTText.TitleTextField(context, widget.title),
           const SizedBox(
             height: 5,
           ),
@@ -55,7 +49,7 @@ class _GTTextFieldState extends State<GTTextField> {
             style: Theme.of(context)
                 .textTheme
                 .labelSmall!
-                .copyWith(fontWeight: FontWeight.w400, height: 1.7),
+                .copyWith(fontFamily: FontFamily.gilroyMedium, height: 1.214),
             cursorColor: ColorName.textColor,
             obscureText: _passWis,
             decoration: InputDecoration(
@@ -100,11 +94,12 @@ class _GTTextFieldState extends State<GTTextField> {
               ),
               hintText: widget.hintText,
               hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    fontWeight: FontWeight.w400,
+                    fontFamily: FontFamily.gilroyMedium,
+                    height: 1.214,
                     color: ColorName.iconsColor,
                   ),
             ),
-            onChanged: widget.press as Function(String),
+            // onChanged: widget.press as Function(String),
           ),
         ],
       ),
