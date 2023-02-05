@@ -18,18 +18,10 @@ ColorScheme _lightColorScheme = const ColorScheme(
 
 /// Reference to the application theme.
 class GTTheme {
-  static FontWeight fontWeightBold = FontWeight.w700;
-  static FontWeight fontWeightMedium = FontWeight.w400;
-
-  static TextStyle _defaultTextStyle({
-    required double fontSize,
-    required FontWeight? fontWeight,
-  }) {
+  static TextStyle _defaultTextStyle() {
     return TextStyle(
-      fontFamily: FontFamily.gilroy,
       fontStyle: FontStyle.normal,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
+      fontWeight: FontWeight.w400,
       color: ColorName.textColor,
     );
   }
@@ -37,19 +29,7 @@ class GTTheme {
   /// Light theme and its settings.
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    colorScheme: ColorScheme(
-      brightness: Brightness.light,
-      primary: _lightColorScheme.primary,
-      onPrimary: _lightColorScheme.onPrimary,
-      secondary: _lightColorScheme.secondary,
-      onSecondary: _lightColorScheme.onSecondary,
-      error: _lightColorScheme.error,
-      onError: _lightColorScheme.onError,
-      background: _lightColorScheme.background,
-      onBackground: _lightColorScheme.onBackground,
-      surface: _lightColorScheme.surface,
-      onSurface: _lightColorScheme.onSurface,
-    ),
+    colorScheme: _lightColorScheme,
     appBarTheme: AppBarTheme(
       color: _lightColorScheme.background,
       elevation: 0,
@@ -57,61 +37,50 @@ class GTTheme {
     ),
     scaffoldBackgroundColor: _lightColorScheme.background,
     primaryColor: _lightColorScheme.primary,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStatePropertyAll<Color>(_lightColorScheme.primary),
-        textStyle: MaterialStatePropertyAll<TextStyle>(
-          _defaultTextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    ),
+    textButtonTheme: TextButtonThemeData(style: ButtonStyle()),
     cardTheme: CardTheme(
       color: _lightColorScheme.surface,
     ),
     textTheme: TextTheme(
-      displayMedium: _defaultTextStyle(
+      displayMedium: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 42,
-        fontWeight: fontWeightBold,
       ),
-      displaySmall: _defaultTextStyle(
+      displaySmall: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 30,
-        fontWeight: fontWeightBold,
       ),
-      titleLarge: _defaultTextStyle(
+      titleLarge: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 26,
-        fontWeight: fontWeightBold,
       ),
-      titleMedium: _defaultTextStyle(
+      titleMedium: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 18,
-        fontWeight: fontWeightBold,
       ),
-      titleSmall: _defaultTextStyle(
+      titleSmall: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 16,
-        fontWeight: fontWeightBold,
       ),
-      labelMedium: _defaultTextStyle(
+      labelMedium: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyMedium,
         fontSize: 16,
-        fontWeight: fontWeightMedium,
       ),
-      labelSmall: _defaultTextStyle(
+      labelSmall: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
         fontSize: 14,
-        fontWeight: fontWeightBold,
       ),
-      bodyLarge: _defaultTextStyle(
+      bodyLarge: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyMedium,
         fontSize: 13,
-        fontWeight: fontWeightMedium,
       ),
-      bodyMedium: _defaultTextStyle(
+      bodyMedium: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyMedium,
         fontSize: 11,
-        fontWeight: fontWeightMedium,
       ),
-      bodySmall: _defaultTextStyle(
+      bodySmall: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyMedium,
         fontSize: 10,
-        fontWeight: fontWeightMedium,
       ),
     ),
   );
