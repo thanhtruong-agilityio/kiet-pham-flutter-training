@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_app/widgets/text.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
-import '../core/resources/assets_generated/colors.gen.dart';
+import '../resources/assets_generated/colors.gen.dart';
 
 class GTButtonIcon extends StatelessWidget {
   const GTButtonIcon({

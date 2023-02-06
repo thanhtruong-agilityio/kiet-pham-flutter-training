@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/widgets/button.dart';
+import 'package:gotour_app/core/widgets/button.dart';
 
 import 'text.dart';
 
