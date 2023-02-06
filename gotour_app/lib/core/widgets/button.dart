@@ -5,6 +5,84 @@ import 'package:gotour_app/core/widgets/text.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
+class GTButton extends StatelessWidget {
+  const GTButton({
+    Key? key,
+    this.child,
+    required this.press,
+  }) : super(key: key);
+
+  final Widget? child;
+  final Function press;
+
+  const factory GTButton.icon({
+    required Function press,
+    required String icon,
+    Color? iconColor,
+    Color? btnColor,
+    double? iconWidth,
+    double? iconHeight,
+    double? paddingRight,
+    double? paddingLeft,
+  }) = _GTButtonIcon;
+
+  // const factory GTButton.text() = ButtonText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: child,
+    );
+  }
+}
+
+class _GTButtonIcon extends GTButton {
+  const _GTButtonIcon({
+    required super.press,
+    required this.icon,
+    this.iconColor,
+    this.btnColor,
+    this.iconWidth = 20,
+    this.iconHeight = 20,
+    this.paddingRight = 0,
+    this.paddingLeft = 0,
+  });
+
+  final String icon;
+  final Color? iconColor, btnColor;
+  final double? iconWidth, iconHeight, paddingRight, paddingLeft;
+
+  @override
+  Widget build(Object context) {
+    return SizedBox(
+      height: 40,
+      width: 40,
+      child: FloatingActionButton(
+        elevation: 0,
+        hoverElevation: 0,
+        highlightElevation: 0,
+        backgroundColor: btnColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(7),
+        ),
+        onPressed: press as Function(),
+        child: Padding(
+          padding: EdgeInsets.only(
+            right: paddingRight!,
+            left: paddingLeft!,
+          ),
+          child: SvgPicture.asset(
+            icon,
+            color: iconColor,
+            width: iconWidth,
+            height: iconHeight,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class GTButtonIcon extends StatelessWidget {
   const GTButtonIcon({
     super.key,
