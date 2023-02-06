@@ -69,7 +69,7 @@ class GTMyLocation extends StatelessWidget {
                 child: GTCardMyLocation(
                   press: press,
                   image: data[index].image,
-                  namePlace: data[index].placeName,
+                  placeName: data[index].placeName,
                   location: data[index].location,
                   description: data[index].description,
                 ),
@@ -87,13 +87,13 @@ class GTCardMyLocation extends StatefulWidget {
     Key? key,
     required this.press,
     required this.image,
-    required this.namePlace,
+    required this.placeName,
     required this.location,
     required this.description,
   }) : super(key: key);
 
   final Function press;
-  final String image, namePlace, location, description;
+  final String image, placeName, location, description;
 
   @override
   State<GTCardMyLocation> createState() => _GTCardMyLocationState();
@@ -137,7 +137,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                                 imagePlace(),
                                 const SizedBox(width: 11),
                                 GTTitleWithLocation(
-                                  placeName: widget.namePlace,
+                                  placeName: widget.placeName,
                                   location: widget.location,
                                   colorIcon: ColorName.primaryColor,
                                 ),
