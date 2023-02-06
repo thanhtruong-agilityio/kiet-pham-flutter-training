@@ -16,8 +16,8 @@ class GTButton extends StatelessWidget {
   final Function press;
 
   const factory GTButton.icon({
-    required Function press,
     required String icon,
+    required Function press,
     Color? iconColor,
     Color? btnColor,
     double? iconWidth,
@@ -26,7 +26,31 @@ class GTButton extends StatelessWidget {
     double? paddingLeft,
   }) = _GTButtonIcon;
 
-  // const factory GTButton.text() = ButtonText;
+  const factory GTButton.text({
+    required String text,
+    required Function press,
+  }) = _GTButtonText;
+
+  const factory GTButton.textHighlight({
+    required String text,
+    required Function press,
+  }) = _GTButtonTextHighlight;
+
+  const factory GTButton.normal({
+    required String text,
+    required String icon,
+    required Function press,
+  }) = _GTElevatedButton;
+
+  const factory GTButton.highlight({
+    required String text,
+    required Function press,
+  }) = _GTElevatedButtonHighlight;
+
+  const factory GTButton.highlightNonShadow({
+    required String text,
+    required Function press,
+  }) = _GTElevatedButtonNonShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -83,66 +107,13 @@ class _GTButtonIcon extends GTButton {
   }
 }
 
-class GTButtonIcon extends StatelessWidget {
-  const GTButtonIcon({
-    super.key,
-    required this.icon,
-    required this.press,
-    this.iconColor,
-    this.btnColor,
-    this.iconWidth = 20,
-    this.iconHeight = 20,
-    this.paddingRight = 0,
-    this.paddingLeft = 0,
-  });
-
-  final String icon;
-  final Color? iconColor, btnColor;
-  final double? iconWidth, iconHeight, paddingRight, paddingLeft;
-  final Function press;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      width: 40,
-      child: FloatingActionButton(
-        elevation: 0,
-        hoverElevation: 0,
-        highlightElevation: 0,
-        backgroundColor: btnColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7),
-        ),
-        onPressed: press as Function(),
-        child: Padding(
-          padding: EdgeInsets.only(
-            right: paddingRight!,
-            left: paddingLeft!,
-          ),
-          child: SvgPicture.asset(
-            icon,
-            color: iconColor,
-            width: iconWidth,
-            height: iconHeight,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GTTextButton extends StatelessWidget {
-  const GTTextButton({
-    super.key,
-    required this.press,
+class _GTButtonText extends GTButton {
+  const _GTButtonText({
+    required super.press,
     required this.text,
-    required this.color,
   });
 
-  final Function press;
-  final Widget text;
-  final Color color;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -151,116 +122,160 @@ class GTTextButton extends StatelessWidget {
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
       onTap: press as Function(),
-      child: text,
+      child: GTText.bodyMedium(
+        context,
+        text,
+        color: ColorName.tagColor,
+      ),
     );
   }
 }
 
-class GTElevatedButton extends StatelessWidget {
-  GTElevatedButton({
-    super.key,
-    this.shadowColor,
-    this.activeIcon = false,
-    this.activateShadowColor,
-    this.icon,
+class _GTButtonTextHighlight extends GTButton {
+  const _GTButtonTextHighlight({
+    required super.press,
     required this.text,
-    required this.press,
-    this.colorButton,
   });
-  final Color? shadowColor, colorButton;
-  final String? icon;
-  final Widget text;
-  final Function press;
-  bool? activeIcon, activateShadowColor;
 
-  factory GTElevatedButton.normal(
-    BuildContext context, {
-    required String title,
-    required Function press,
-    required String icon,
-    bool? activateShadowColor,
-  }) {
-    return GTElevatedButton(
-      activateShadowColor: activateShadowColor,
-      colorButton: ColorName.backgroundColor,
-      shadowColor: ColorName.shadowBtnLoginGoogleColor,
-      activeIcon: true,
-      icon: icon,
-      text: GTText.titleSmall(context, title),
-      press: press,
-    );
-  }
+  final String text;
 
-  factory GTElevatedButton.highlight(
-    BuildContext context, {
-    required String title,
-    required Function press,
-  }) {
-    return GTElevatedButton(
-      activateShadowColor: true,
-      shadowColor: ColorName.shadowBtnPrimaryColor,
-      text: GTText.titleSmall(context, title),
-      press: press,
-    );
-  }
-
-  factory GTElevatedButton.highlightNonShadow(
-    BuildContext context, {
-    required String title,
-    required Function press,
-  }) {
-    return GTElevatedButton(
-      activateShadowColor: false,
-      text: GTText.bodyLarge(
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      hoverColor: ColorName.backgroundColor,
+      highlightColor: ColorName.backgroundColor,
+      splashColor: ColorName.backgroundColor,
+      onTap: press as Function(),
+      child: GTText.labelSmall(
         context,
-        title,
-        color: ColorName.backgroundColor,
+        text,
+        color: ColorName.primaryColor,
       ),
-      press: press,
     );
   }
+}
+
+class _GTElevatedButton extends GTButton {
+  const _GTElevatedButton({
+    required super.press,
+    required this.text,
+    required this.icon,
+  });
+
+  final String text;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        boxShadow: activateShadowColor == true
-            ? [
-                BoxShadow(
-                  color: shadowColor!,
-                  blurRadius: 11,
-                  offset: Offset(0, 5),
-                ),
-              ]
-            : null,
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: ColorName.shadowBtnLoginGoogleColor,
+            blurRadius: 11,
+            offset: Offset(0, 5),
+          ),
+        ],
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
           ),
-          backgroundColor: colorButton,
+          backgroundColor: ColorName.backgroundColor,
         ),
         onPressed: press as Function(),
-        child: activeIcon == true
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    icon!,
-                    height: 20,
-                    width: 26,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  text,
-                ],
-              )
-            : Center(
-                child: text,
-              ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              height: 20,
+              width: 26,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            GTText.titleSmall(context, text),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GTElevatedButtonHighlight extends GTButton {
+  const _GTElevatedButtonHighlight({
+    required super.press,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: ColorName.shadowBtnPrimaryColor,
+            blurRadius: 11,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7),
+          ),
+          backgroundColor: ColorName.primaryColor,
+        ),
+        onPressed: press as Function(),
+        child: Container(
+          alignment: Alignment.center,
+          child: GTText.titleSmall(
+            context,
+            text,
+            color: ColorName.onPrimaryColor,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GTElevatedButtonNonShadow extends GTButton {
+  const _GTElevatedButtonNonShadow({
+    required super.press,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7),
+          ),
+          backgroundColor: ColorName.primaryColor,
+        ),
+        onPressed: press as Function(),
+        child: Container(
+          alignment: Alignment.center,
+          child: GTText.bodyLarge(
+            context,
+            text,
+            color: ColorName.onPrimaryColor,
+          ),
+        ),
       ),
     );
   }

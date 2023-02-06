@@ -44,7 +44,7 @@ class _GTServiceState extends State<GTService> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
                         icons.length,
-                        (index) => GTButtonIcon(
+                        (index) => GTButton.icon(
                           icon: icons[index],
                           iconColor: index == selectedIndex
                               ? ColorName.backgroundColor

@@ -21,15 +21,9 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
       children: [
         GTText.TitleMedium(context, title),
         const Spacer(),
-        GTTextButton(
+        GTButton.text(
           press: press as Function(),
-          color: ColorName.tagColor,
-          text: GTText.bodyMedium(
-            context,
-            'See All',
-            height: 1.181,
-            color: ColorName.tagColor,
-          ),
+          text: 'See All',
         )
       ],
     );

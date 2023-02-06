@@ -64,15 +64,8 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             ),
             SizedBox(
               height: 25,
-              child: GTElevatedButton(
-                activateShadowColor: false,
-                text: Text(
-                  '\$${widget.price}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: ColorName.backgroundColor),
-                ),
+              child: GTButton.highlightNonShadow(
+                text: '\$${widget.price}',
                 press: widget.pressBtn,
               ),
             )
