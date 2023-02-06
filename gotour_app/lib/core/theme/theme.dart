@@ -45,42 +45,52 @@ class GTTheme {
       displayMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 42,
+        height: 1.261,
       ),
       displaySmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 30,
+        height: 1.266,
       ),
       titleLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 26,
+        height: 1.269,
       ),
       titleMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 18,
+        height: 1.222,
       ),
       titleSmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 16,
+        height: 1.25,
       ),
       labelMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 16,
+        height: 1.187,
       ),
       labelSmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 13,
+        height: 1.23,
       ),
       bodyLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 11,
+        height: 1.272,
       ),
       bodyMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 11,
+        height: 1.636,
       ),
       bodySmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 10,
+        height: 1.2,
       ),
     ),
   );

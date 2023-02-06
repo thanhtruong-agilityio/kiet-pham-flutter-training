@@ -19,14 +19,11 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.261,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .displayMedium!
-          .copyWith(height: height, color: color),
+      textStyle:
+          Theme.of(context).textTheme.displayMedium!.copyWith(color: color),
     );
   }
 
@@ -34,14 +31,11 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.266,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .displaySmall!
-          .copyWith(height: height, color: color),
+      textStyle:
+          Theme.of(context).textTheme.displaySmall!.copyWith(color: color),
     );
   }
 
@@ -49,14 +43,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.269,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .titleLarge!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
     );
   }
 
@@ -64,14 +54,11 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.222,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .titleMedium!
-          .copyWith(height: height, color: color),
+      textStyle:
+          Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
     );
   }
 
@@ -79,14 +66,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.25,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .titleSmall!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: color),
     );
   }
 
@@ -94,14 +77,11 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.187,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .labelMedium!
-          .copyWith(height: height, color: color),
+      textStyle:
+          Theme.of(context).textTheme.labelMedium!.copyWith(color: color),
     );
   }
 
@@ -109,14 +89,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.23,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .labelSmall!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: color),
     );
   }
 
@@ -124,14 +100,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.272,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .bodyLarge!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: color),
     );
   }
 
@@ -139,14 +111,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.636,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .bodyMedium!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
     );
   }
 
@@ -154,14 +122,10 @@ class GTText extends StatelessWidget {
     BuildContext context,
     String text, {
     Color? color,
-    double height = 1.2,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context)
-          .textTheme
-          .bodySmall!
-          .copyWith(height: height, color: color),
+      textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
     );
   }
 
