@@ -19,12 +19,17 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GTText.SubTitle(context, title),
+        GTText.TitleMedium(context, title),
         const Spacer(),
         GTTextButton(
           press: press as Function(),
           color: ColorName.tagColor,
-          text: GTText.SeeAllButton(context, 'See All'),
+          text: GTText.bodyMedium(
+            context,
+            'See All',
+            height: 1.181,
+            color: ColorName.tagColor,
+          ),
         )
       ],
     );

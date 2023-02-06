@@ -49,7 +49,7 @@ class _GTBestPlaceState extends State<GTBestPlace> {
           padding: const EdgeInsets.only(right: 20),
           margin: const EdgeInsets.only(bottom: 14),
           child:
-              GTTitleAndSeeAllBtn(title: 'BestPlace', press: widget.pressBtn),
+              GTTitleAndSeeAllBtn(title: 'Best Place', press: widget.pressBtn),
         ),
         Row(
           children: [

@@ -41,7 +41,11 @@ class _GTTextFieldState extends State<GTTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GTText.TitleTextField(context, widget.title),
+          GTText.labelMedium(
+            context,
+            widget.title,
+            color: ColorName.titleOfTextfieldColor,
+          ),
           const SizedBox(
             height: 5,
           ),

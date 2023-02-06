@@ -151,7 +151,7 @@ class GTElevatedButton extends StatelessWidget {
       shadowColor: ColorName.shadowBtnLoginGoogleColor,
       activeIcon: true,
       icon: icon,
-      text: GTText.TitleSmall(context, title),
+      text: GTText.titleSmall(context, title),
       press: press,
     );
   }
@@ -164,7 +164,7 @@ class GTElevatedButton extends StatelessWidget {
     return GTElevatedButton(
       activateShadowColor: true,
       shadowColor: ColorName.shadowBtnPrimaryColor,
-      text: GTText.TitleSmall(context, title),
+      text: GTText.titleSmall(context, title),
       press: press,
     );
   }
@@ -176,7 +176,11 @@ class GTElevatedButton extends StatelessWidget {
   }) {
     return GTElevatedButton(
       activateShadowColor: false,
-      text: GTText.BodyMedium(context, title),
+      text: GTText.bodyLarge(
+        context,
+        title,
+        color: ColorName.backgroundColor,
+      ),
       press: press,
     );
   }

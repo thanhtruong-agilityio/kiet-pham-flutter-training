@@ -12,7 +12,7 @@ class GTGridViewHotPlace extends StatelessWidget {
       children: [
         Row(
           children: [
-            GTText.SubTitle(context, 'Hot Place'),
+            GTText.TitleMedium(context, 'Hot Place'),
           ],
         ),
         const SizedBox(

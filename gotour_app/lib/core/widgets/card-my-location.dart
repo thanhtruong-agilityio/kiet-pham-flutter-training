@@ -54,7 +54,7 @@ class GTMyLocation extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              GTText.SubTitle(context, 'My Location'),
+              GTText.TitleMedium(context, 'My Location'),
               Spacer(),
             ],
           ),
@@ -152,7 +152,11 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                   const SizedBox(height: 11),
                   Container(
                     padding: const EdgeInsets.only(right: 39),
-                    child: GTText.PlaceDescription(context, widget.description),
+                    child: GTText.bodyMedium(
+                      context,
+                      widget.description,
+                      color: ColorName.iconsColor,
+                    ),
                   )
                 ],
               ),

@@ -21,7 +21,7 @@ class GTTitleWithLocation extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GTText.PlaceName(
+        GTText.titleSmall(
           context,
           placeName,
           color: colorName,
@@ -40,7 +40,7 @@ class GTTitleWithLocation extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            GTText.PlaceLocation(
+            GTText.labelSmall(
               context,
               location,
               color: colorLocation,

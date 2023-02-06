@@ -67,12 +67,12 @@ class GTTheme {
         fontSize: 16,
       ),
       labelSmall: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
-        fontSize: 14,
-      ),
-      bodyLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 13,
+      ),
+      bodyLarge: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyBold,
+        fontSize: 11,
       ),
       bodyMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,

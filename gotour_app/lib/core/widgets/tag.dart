@@ -16,7 +16,11 @@ class GTTag extends StatelessWidget {
         color: ColorName.tagColor,
         borderRadius: BorderRadius.circular(5),
       ),
-      child: GTText.NameTag(context, text),
+      child: GTText.bodySmall(
+        context,
+        text,
+        color: ColorName.onTag,
+      ),
     );
   }
 }

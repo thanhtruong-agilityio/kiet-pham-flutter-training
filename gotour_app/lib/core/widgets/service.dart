@@ -34,7 +34,7 @@ class _GTServiceState extends State<GTService> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GTText.SubTitle(context, 'Services'),
+                GTText.TitleMedium(context, 'Services'),
                 const SizedBox(
                   height: 14,
                 ),
