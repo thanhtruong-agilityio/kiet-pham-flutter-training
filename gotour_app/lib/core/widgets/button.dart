@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
-import '../resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTButtonIcon extends StatelessWidget {
   const GTButtonIcon({
@@ -22,50 +22,6 @@ class GTButtonIcon extends StatelessWidget {
   final Color? iconColor, btnColor;
   final double? iconWidth, iconHeight, paddingRight, paddingLeft;
   final Function press;
-
-  factory GTButtonIcon.IsActive({
-    required final String icon,
-    final Color iconColor = ColorName.onPrimaryColor,
-    final Color btnColor = ColorName.primaryColor,
-    required final Function press,
-    final double iconWidth = 20,
-    final double iconHeight = 20,
-    final double paddingRight = 0,
-    final double paddingLeft = 0,
-  }) {
-    return GTButtonIcon(
-      icon: icon,
-      press: press,
-      iconColor: iconColor,
-      btnColor: btnColor,
-      iconHeight: iconHeight,
-      iconWidth: iconWidth,
-      paddingLeft: paddingLeft,
-      paddingRight: paddingRight,
-    );
-  }
-
-  factory GTButtonIcon.NonActive({
-    required final String icon,
-    required final Function press,
-    final Color iconColor = ColorName.iconsColor,
-    final Color btnColor = ColorName.surfaceColor,
-    final double iconWidth = 20,
-    final double iconHeight = 20,
-    final double paddingRight = 0,
-    final double paddingLeft = 0,
-  }) {
-    return GTButtonIcon(
-      icon: icon,
-      press: press,
-      iconColor: iconColor,
-      btnColor: btnColor,
-      iconHeight: iconHeight,
-      iconWidth: iconWidth,
-      paddingLeft: paddingLeft,
-      paddingRight: paddingRight,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +83,7 @@ class GTElevatedButton extends StatelessWidget {
     super.key,
     this.shadowColor,
     this.activeIcon = false,
-    required this.activateShadowColor,
+    this.activateShadowColor,
     this.icon,
     required this.text,
     required this.press,
@@ -137,16 +93,17 @@ class GTElevatedButton extends StatelessWidget {
   final String? icon;
   final Widget text;
   final Function press;
-  bool activeIcon, activateShadowColor;
+  bool? activeIcon, activateShadowColor;
 
-  factory GTElevatedButton.Normal(
+  factory GTElevatedButton.normal(
     BuildContext context, {
     required String title,
     required Function press,
     required String icon,
+    bool? activateShadowColor,
   }) {
     return GTElevatedButton(
-      activateShadowColor: true,
+      activateShadowColor: activateShadowColor,
       colorButton: ColorName.backgroundColor,
       shadowColor: ColorName.shadowBtnLoginGoogleColor,
       activeIcon: true,
@@ -156,7 +113,7 @@ class GTElevatedButton extends StatelessWidget {
     );
   }
 
-  factory GTElevatedButton.Highlight(
+  factory GTElevatedButton.highlight(
     BuildContext context, {
     required String title,
     required Function press,
@@ -169,7 +126,7 @@ class GTElevatedButton extends StatelessWidget {
     );
   }
 
-  factory GTElevatedButton.Price(
+  factory GTElevatedButton.highlightNonShadow(
     BuildContext context, {
     required String title,
     required Function press,

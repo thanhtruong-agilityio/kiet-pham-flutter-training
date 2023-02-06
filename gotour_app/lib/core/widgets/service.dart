@@ -44,31 +44,25 @@ class _GTServiceState extends State<GTService> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
                         icons.length,
-                        (index) => GestureDetector(
-                          onTap: () {
+                        (index) => GTButtonIcon(
+                          icon: icons[index],
+                          iconColor: index == selectedIndex
+                              ? ColorName.backgroundColor
+                              : ColorName.iconsColor,
+                          btnColor: index == selectedIndex
+                              ? ColorName.primaryColor
+                              : ColorName.surfaceColor,
+                          iconWidth: index == 4 ? 30 : 20,
+                          iconHeight: index == 4 ? 15 : 20,
+                          press: () {
                             setState(() {
                               selectedIndex = index;
                             });
                           },
-                          child: GTButtonIcon(
-                            icon: icons[index],
-                            iconColor: index == selectedIndex
-                                ? ColorName.backgroundColor
-                                : ColorName.iconsColor,
-                            btnColor: index == selectedIndex
-                                ? ColorName.primaryColor
-                                : ColorName.surfaceColor,
-                            iconWidth: index == 4 ? 30 : 20,
-                            iconHeight: index == 4 ? 15 : 20,
-                            press: () {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                            },
-                          ),
+                          // ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

@@ -131,7 +131,7 @@ class GTCardBestPlace extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     height: 25,
-                    child: GTElevatedButton.Price(
+                    child: GTElevatedButton.highlightNonShadow(
                       context,
                       title: '\$$price',
                       press: pressBtnPrice,
