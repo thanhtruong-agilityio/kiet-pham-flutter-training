@@ -16,13 +16,20 @@ ColorScheme _lightColorScheme = const ColorScheme(
   onSurface: ColorName.onSurfaceColor,
 );
 
+double height({
+  required int lineHeight,
+  required int fontSize,
+}) {
+  return lineHeight / fontSize;
+}
+
 /// Reference to the application theme.
 class GTTheme {
   static TextStyle _defaultTextStyle() {
     return TextStyle(
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.w400,
-      color: ColorName.textColor,
+      color: _lightColorScheme.onBackground,
     );
   }
 
@@ -45,52 +52,52 @@ class GTTheme {
       displayMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 42,
-        height: 1.261,
+        height: height(lineHeight: 53, fontSize: 42),
       ),
       displaySmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 30,
-        height: 1.266,
+        height: height(lineHeight: 38, fontSize: 30),
       ),
       titleLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 26,
-        height: 1.269,
+        height: height(lineHeight: 33, fontSize: 26),
       ),
       titleMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 18,
-        height: 1.222,
+        height: height(lineHeight: 22, fontSize: 18),
       ),
       titleSmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 16,
-        height: 1.25,
+        height: height(lineHeight: 20, fontSize: 16),
       ),
       labelMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 16,
-        height: 1.187,
+        height: height(lineHeight: 19, fontSize: 16),
       ),
       labelSmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 13,
-        height: 1.23,
+        height: height(lineHeight: 16, fontSize: 13),
       ),
       bodyLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyBold,
         fontSize: 11,
-        height: 1.272,
+        height: height(lineHeight: 14, fontSize: 11),
       ),
       bodyMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 11,
-        height: 1.636,
+        height: height(lineHeight: 14, fontSize: 11),
       ),
       bodySmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 10,
-        height: 1.2,
+        height: height(lineHeight: 12, fontSize: 10),
       ),
     ),
   );
