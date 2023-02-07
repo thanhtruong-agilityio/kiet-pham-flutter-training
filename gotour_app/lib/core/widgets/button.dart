@@ -56,7 +56,7 @@ class _GTButtonIcon extends GTButton {
   const _GTButtonIcon({
     required super.onPress,
     required this.icon,
-    this.iconColor = ColorName.onPrimaryColor,
+    this.iconColor,
     this.btnColor = ColorName.primaryColor,
   });
 
