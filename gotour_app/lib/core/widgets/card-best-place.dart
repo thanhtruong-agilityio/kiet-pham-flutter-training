@@ -48,8 +48,8 @@ class _GTBestPlaceState extends State<GTBestPlace> {
         Container(
           padding: const EdgeInsets.only(right: 20),
           margin: const EdgeInsets.only(bottom: 14),
-          child:
-              GTTitleAndSeeAllBtn(title: 'Best Place', press: widget.pressBtn),
+          child: GTTitleAndSeeAllBtn(
+              title: 'Best Place', onPress: widget.pressBtn),
         ),
         Row(
           children: [
@@ -131,9 +131,9 @@ class GTCardBestPlace extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     height: 25,
-                    child: GTButton.highlightNonShadow(
+                    child: GTButton.highlight(
                       text: '\$$price',
-                      press: pressBtnPrice,
+                      onPress: pressBtnPrice,
                     ),
                   )
                 ],

@@ -52,9 +52,7 @@ class _GTServiceState extends State<GTService> {
                           btnColor: index == selectedIndex
                               ? ColorName.primaryColor
                               : ColorName.surfaceColor,
-                          iconWidth: index == 4 ? 30 : 20,
-                          iconHeight: index == 4 ? 15 : 20,
-                          press: () {
+                          onPress: () {
                             setState(() {
                               selectedIndex = index;
                             });

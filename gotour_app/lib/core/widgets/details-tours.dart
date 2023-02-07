@@ -40,9 +40,9 @@ class GTDetailTours extends StatelessWidget {
   SizedBox button(BuildContext context) {
     return SizedBox(
       height: 25,
-      child: GTButton.highlightNonShadow(
+      child: GTButton.highlight(
         text: '\$3 000',
-        press: () {},
+        onPress: () {},
       ),
     );
   }

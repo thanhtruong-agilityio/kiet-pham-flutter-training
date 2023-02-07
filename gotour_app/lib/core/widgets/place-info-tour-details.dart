@@ -15,13 +15,13 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
     required this.price,
     required this.size,
     required this.weather,
-    required this.pressCard,
-    required this.pressBtn,
+    required this.onPressCard,
+    required this.onPressBtn,
   });
 
   final String namePlace, location, price, weather;
   final Size size;
-  final Function pressCard, pressBtn;
+  final Function onPressCard, onPressBtn;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
       children: [
         ListCardPlaceinfo(
           size: size,
-          press: pressCard as Function(),
+          onPress: onPressCard as Function(),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,9 +57,9 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
   SizedBox Button(BuildContext context) {
     return SizedBox(
       height: 25,
-      child: GTButton.highlightNonShadow(
+      child: GTButton.highlight(
         text: '\$3 000',
-        press: pressBtn,
+        onPress: onPressBtn,
       ),
     );
   }
@@ -114,11 +114,11 @@ class ListCardPlaceinfo extends StatefulWidget {
   const ListCardPlaceinfo({
     Key? key,
     required this.size,
-    required this.press,
+    required this.onPress,
   }) : super(key: key);
 
   final Size size;
-  final Function press;
+  final Function onPress;
 
   @override
   State<ListCardPlaceinfo> createState() => _ListCardPlaceinfoState();
@@ -163,7 +163,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
             itemBuilder: (context, index) => GTCardImageWithBookmark(
               size: size,
               images: images[index],
-              press: widget.press as Function(),
+              press: widget.onPress as Function(),
             ),
           ),
         ),

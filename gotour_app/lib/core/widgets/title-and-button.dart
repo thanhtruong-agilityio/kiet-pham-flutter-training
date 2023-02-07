@@ -8,11 +8,11 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
   const GTTitleAndSeeAllBtn({
     Key? key,
     required this.title,
-    this.press,
+    this.onPress,
   }) : super(key: key);
 
   final String title;
-  final Function? press;
+  final Function? onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
         GTText.TitleMedium(context, title),
         const Spacer(),
         GTButton.text(
-          press: press as Function(),
+          onPress: onPress as Function(),
           text: 'See All',
         )
       ],

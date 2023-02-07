@@ -64,9 +64,9 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             ),
             SizedBox(
               height: 25,
-              child: GTButton.highlightNonShadow(
+              child: GTButton.highlight(
                 text: '\$${widget.price}',
-                press: widget.pressBtn,
+                onPress: widget.pressBtn,
               ),
             )
           ],
