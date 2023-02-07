@@ -60,6 +60,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/moto.svg
   String get moto => 'assets/icons/moto.svg';
 
+  /// File path: assets/icons/notification.svg
+  String get notification => 'assets/icons/notification.svg';
+
   /// File path: assets/icons/options.svg
   String get options => 'assets/icons/options.svg';
 
@@ -93,6 +96,7 @@ class $AssetsIconsGen {
         message,
         more,
         moto,
+        notification,
         options,
         person,
         right,
@@ -103,6 +107,9 @@ class $AssetsIconsGen {
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/author.png
+  AssetGenImage get author => const AssetGenImage('assets/images/author.png');
 
   /// File path: assets/images/canyon.png
   AssetGenImage get canyon => const AssetGenImage('assets/images/canyon.png');
@@ -149,6 +156,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        author,
         canyon,
         chumphon,
         doipui,
