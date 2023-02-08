@@ -36,6 +36,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/car.svg
   String get car => 'assets/icons/car.svg';
 
+  /// File path: assets/icons/checkmark.svg
+  String get checkmark => 'assets/icons/checkmark.svg';
+
   /// File path: assets/icons/cloud.svg
   String get cloud => 'assets/icons/cloud.svg';
 
@@ -88,6 +91,7 @@ class $AssetsIconsGen {
         bookMark,
         brand,
         car,
+        checkmark,
         cloud,
         google,
         left,
