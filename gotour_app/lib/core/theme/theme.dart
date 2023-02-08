@@ -45,6 +45,35 @@ class GTTheme {
     scaffoldBackgroundColor: _lightColorScheme.background,
     primaryColor: _lightColorScheme.primary,
     textButtonTheme: TextButtonThemeData(style: ButtonStyle()),
+    inputDecorationTheme: InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: ColorName.borderRadiusColor,
+        ),
+        borderRadius: BorderRadius.circular(7),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: ColorName.borderRadiusColor,
+        ),
+        borderRadius: BorderRadius.circular(7),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: ColorName.errorColor,
+        ),
+        borderRadius: BorderRadius.circular(7),
+      ),
+      hintStyle: TextStyle(
+        fontFamily: FontFamily.gilroyMedium,
+        fontSize: 14,
+        color: ColorName.iconsColor,
+        height: height(lineHeight: 17, fontSize: 14),
+      ),
+    ),
     cardTheme: CardTheme(
       color: _lightColorScheme.surface,
     ),
@@ -74,10 +103,15 @@ class GTTheme {
         fontSize: 16,
         height: height(lineHeight: 20, fontSize: 16),
       ),
-      labelMedium: _defaultTextStyle().copyWith(
+      labelLarge: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 16,
         height: height(lineHeight: 19, fontSize: 16),
+      ),
+      labelMedium: _defaultTextStyle().copyWith(
+        fontFamily: FontFamily.gilroyMedium,
+        fontSize: 14,
+        height: height(lineHeight: 17, fontSize: 14),
       ),
       labelSmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,

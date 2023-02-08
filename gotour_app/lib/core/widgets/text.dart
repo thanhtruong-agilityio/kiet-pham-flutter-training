@@ -73,6 +73,17 @@ class GTText extends StatelessWidget {
     );
   }
 
+  factory GTText.labelLarge(
+    BuildContext context,
+    String text, {
+    Color? color,
+  }) {
+    return GTText(
+      text: text,
+      textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: color),
+    );
+  }
+
   factory GTText.labelMedium(
     BuildContext context,
     String text, {
