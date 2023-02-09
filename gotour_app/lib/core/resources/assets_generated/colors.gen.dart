@@ -28,6 +28,9 @@ class ColorName {
   /// Color: #AAAAAA
   static const Color iconsColor = Color(0xFFAAAAAA);
 
+  /// Color: #DDDDDD
+  static const Color indicatorOnboarding = Color(0xFFDDDDDD);
+
   /// Color: #000000
   static const Color onBackgroundColor = Color(0xFF000000);
 
