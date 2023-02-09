@@ -131,6 +131,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/kyoto.png
   AssetGenImage get kyoto => const AssetGenImage('assets/images/kyoto.png');
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/onboardingfirst.png
   AssetGenImage get onboardingfirst =>
       const AssetGenImage('assets/images/onboardingfirst.png');
@@ -166,6 +169,7 @@ class $AssetsImagesGen {
         doipui,
         krabi,
         kyoto,
+        logo,
         onboardingfirst,
         onboardinglast,
         onboardingsecond,
