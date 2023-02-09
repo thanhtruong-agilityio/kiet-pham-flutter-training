@@ -8,14 +8,12 @@ class GTTextField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.title,
-    required this.hideText,
-    required this.press,
+    this.hideText = false,
   });
 
   final String title;
   final bool hideText;
   final String hintText;
-  final Function press;
 
   @override
   State<GTTextField> createState() => _GTTextFieldState();
@@ -65,11 +63,11 @@ class _GTTextFieldState extends State<GTTextField> {
                         },
                         child: _passWis
                             ? const Icon(
-                                Icons.visibility_off,
+                                Icons.visibility_off_outlined,
                                 color: ColorName.textColor,
                               )
                             : const Icon(
-                                Icons.visibility,
+                                Icons.visibility_outlined,
                                 color: ColorName.textColor,
                               ),
                       )
