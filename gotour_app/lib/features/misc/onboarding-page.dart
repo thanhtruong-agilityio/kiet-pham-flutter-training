@@ -68,7 +68,6 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                         curve: Curves.ease,
                       );
                     },
-                    heroTag: 'btnPrevious',
                   ),
                   Row(
                     children: List.generate(
@@ -90,7 +89,6 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                             duration: const Duration(milliseconds: 700),
                             curve: Curves.ease,
                           ),
-                    heroTag: 'btnNext',
                     // onPress: () => context.go('/homepage')
                   ),
                 ],

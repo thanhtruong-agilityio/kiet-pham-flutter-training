@@ -5,6 +5,8 @@ import 'package:gotour_app/core/widgets/text.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
+import '../resources/assets_generated/assets.gen.dart';
+
 class GTButton extends StatelessWidget {
   const GTButton({
     Key? key,
@@ -18,7 +20,6 @@ class GTButton extends StatelessWidget {
   const factory GTButton.icon({
     required String icon,
     required Function onPress,
-    String? heroTag,
     Color? iconColor,
     Color? btnColor,
   }) = _GTButtonIcon;
@@ -67,28 +68,20 @@ class _GTButtonIcon extends GTButton {
   final String? heroTag;
 
   @override
-  Widget build(Object context) {
-    return SizedBox(
-      height: 40,
-      width: 40,
-      child: FloatingActionButton(
-        heroTag: heroTag,
-        elevation: 0,
-        hoverElevation: 0,
-        highlightElevation: 0,
-        backgroundColor: btnColor,
-        shape: RoundedRectangleBorder(
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPress as Function(),
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7),
+          color: btnColor,
         ),
-        onPressed: onPress as Function(),
-        child: SizedBox(
-          height: 20,
-          width: 30,
-          child: SvgPicture.asset(
-            icon,
-            color: iconColor,
-            fit: BoxFit.contain,
-          ),
+        child: SvgPicture.asset(
+          icon,
+          fit: BoxFit.scaleDown,
+          color: iconColor,
         ),
       ),
     );
