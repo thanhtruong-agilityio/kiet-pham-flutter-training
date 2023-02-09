@@ -43,11 +43,20 @@ class ColorName {
   /// Color: #000000
   static const Color onSurfaceColor = Color(0xFF000000);
 
+  /// Color: #333333
+  static const Color onTag = Color(0xFF333333);
+
   /// Color: #FF7D0D
   static const Color primaryColor = Color(0xFFFF7D0D);
 
   /// Color: #888888
   static const Color secondaryColor = Color(0xFF888888);
+
+  /// Color: #0000000d
+  static const Color shadowBtnLoginGoogleColor = Color(0x0000000D);
+
+  /// Color: #FFD1AA
+  static const Color shadowBtnPrimaryColor = Color(0xFFFFD1AA);
 
   /// Color: #C4C4C4
   static const Color sliderColor = Color(0xFFC4C4C4);

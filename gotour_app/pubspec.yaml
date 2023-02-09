@@ -10,14 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  cupertino_icons: 1.0.2
   flutter_svg: 1.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  very_good_analysis: ^3.1.0
+  very_good_analysis: 3.1.0
 
   # This package contains a recommended set of lints for Flutter apps, packages, and plugins to encourage good coding practices.
   flutter_lints: 2.0.0
@@ -42,17 +42,21 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-    - family: Gilroy
+    - family: Gilroy-Bold
       fonts:
         - asset: assets/fonts/Gilroy-Bold.ttf
           style: normal
           weight: 700
 
+    - family: Gilroy-Medium
+      fonts:
         - asset: assets/fonts/Gilroy-Medium.ttf
           style: normal
           weight: 400
 
+# Config gen assets
 flutter_gen:
+    output: lib/core/resources/assets_generated/ #Optional (default: lib/gen)
     colors:
       inputs:
         - assets/color/colors.xml

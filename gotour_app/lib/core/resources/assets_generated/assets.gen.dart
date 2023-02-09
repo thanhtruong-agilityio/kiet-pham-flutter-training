@@ -36,6 +36,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/car.svg
   String get car => 'assets/icons/car.svg';
 
+  /// File path: assets/icons/checkmark.svg
+  String get checkmark => 'assets/icons/checkmark.svg';
+
   /// File path: assets/icons/cloud.svg
   String get cloud => 'assets/icons/cloud.svg';
 
@@ -59,6 +62,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/moto.svg
   String get moto => 'assets/icons/moto.svg';
+
+  /// File path: assets/icons/notification.svg
+  String get notification => 'assets/icons/notification.svg';
 
   /// File path: assets/icons/options.svg
   String get options => 'assets/icons/options.svg';
@@ -85,6 +91,7 @@ class $AssetsIconsGen {
         bookMark,
         brand,
         car,
+        checkmark,
         cloud,
         google,
         left,
@@ -93,6 +100,7 @@ class $AssetsIconsGen {
         message,
         more,
         moto,
+        notification,
         options,
         person,
         right,
@@ -104,61 +112,65 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/Canyon.png
-  AssetGenImage get canyon => const AssetGenImage('assets/images/Canyon.png');
+  /// File path: assets/images/author.png
+  AssetGenImage get author => const AssetGenImage('assets/images/author.png');
 
-  /// File path: assets/images/ChumPhon.png
-  AssetGenImage get chumPhon =>
-      const AssetGenImage('assets/images/ChumPhon.png');
+  /// File path: assets/images/canyon.png
+  AssetGenImage get canyon => const AssetGenImage('assets/images/canyon.png');
 
-  /// File path: assets/images/DoiPui.png
-  AssetGenImage get doiPui => const AssetGenImage('assets/images/DoiPui.png');
+  /// File path: assets/images/chumphon.png
+  AssetGenImage get chumphon =>
+      const AssetGenImage('assets/images/chumphon.png');
 
-  /// File path: assets/images/Krabi.png
-  AssetGenImage get krabi => const AssetGenImage('assets/images/Krabi.png');
+  /// File path: assets/images/doipui.png
+  AssetGenImage get doipui => const AssetGenImage('assets/images/doipui.png');
 
-  /// File path: assets/images/Kyoto.png
-  AssetGenImage get kyoto => const AssetGenImage('assets/images/Kyoto.png');
+  /// File path: assets/images/krabi.png
+  AssetGenImage get krabi => const AssetGenImage('assets/images/krabi.png');
 
-  /// File path: assets/images/OnboardingFirst.png
-  AssetGenImage get onboardingFirst =>
-      const AssetGenImage('assets/images/OnboardingFirst.png');
+  /// File path: assets/images/kyoto.png
+  AssetGenImage get kyoto => const AssetGenImage('assets/images/kyoto.png');
 
-  /// File path: assets/images/OnboardingLast.png
-  AssetGenImage get onboardingLast =>
-      const AssetGenImage('assets/images/OnboardingLast.png');
+  /// File path: assets/images/onboardingfirst.png
+  AssetGenImage get onboardingfirst =>
+      const AssetGenImage('assets/images/onboardingfirst.png');
 
-  /// File path: assets/images/OnboardingSecond.png
-  AssetGenImage get onboardingSecond =>
-      const AssetGenImage('assets/images/OnboardingSecond.png');
+  /// File path: assets/images/onboardinglast.png
+  AssetGenImage get onboardinglast =>
+      const AssetGenImage('assets/images/onboardinglast.png');
 
-  /// File path: assets/images/PhraNang.png
-  AssetGenImage get phraNang =>
-      const AssetGenImage('assets/images/PhraNang.png');
+  /// File path: assets/images/onboardingsecond.png
+  AssetGenImage get onboardingsecond =>
+      const AssetGenImage('assets/images/onboardingsecond.png');
 
-  /// File path: assets/images/SplashScreen.png
-  AssetGenImage get splashScreen =>
-      const AssetGenImage('assets/images/SplashScreen.png');
+  /// File path: assets/images/phranang.png
+  AssetGenImage get phranang =>
+      const AssetGenImage('assets/images/phranang.png');
 
-  /// File path: assets/images/Tambon.png
-  AssetGenImage get tambon => const AssetGenImage('assets/images/Tambon.png');
+  /// File path: assets/images/splashscreen.png
+  AssetGenImage get splashscreen =>
+      const AssetGenImage('assets/images/splashscreen.png');
 
-  /// File path: assets/images/Tibidabo.png
+  /// File path: assets/images/tambon.png
+  AssetGenImage get tambon => const AssetGenImage('assets/images/tambon.png');
+
+  /// File path: assets/images/tibidabo.png
   AssetGenImage get tibidabo =>
-      const AssetGenImage('assets/images/Tibidabo.png');
+      const AssetGenImage('assets/images/tibidabo.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        author,
         canyon,
-        chumPhon,
-        doiPui,
+        chumphon,
+        doipui,
         krabi,
         kyoto,
-        onboardingFirst,
-        onboardingLast,
-        onboardingSecond,
-        phraNang,
-        splashScreen,
+        onboardingfirst,
+        onboardinglast,
+        onboardingsecond,
+        phranang,
+        splashscreen,
         tambon,
         tibidabo
       ];
