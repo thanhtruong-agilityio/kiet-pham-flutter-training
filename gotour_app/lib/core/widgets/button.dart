@@ -18,6 +18,7 @@ class GTButton extends StatelessWidget {
   const factory GTButton.icon({
     required String icon,
     required Function onPress,
+    String? heroTag,
     Color? iconColor,
     Color? btnColor,
   }) = _GTButtonIcon;
@@ -54,14 +55,16 @@ class GTButton extends StatelessWidget {
 
 class _GTButtonIcon extends GTButton {
   const _GTButtonIcon({
-    required super.onPress,
     required this.icon,
+    required super.onPress,
+    this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
   });
 
   final String icon;
   final Color? iconColor, btnColor;
+  final String? heroTag;
 
   @override
   Widget build(Object context) {
@@ -69,6 +72,7 @@ class _GTButtonIcon extends GTButton {
       height: 40,
       width: 40,
       child: FloatingActionButton(
+        heroTag: heroTag,
         elevation: 0,
         hoverElevation: 0,
         highlightElevation: 0,
