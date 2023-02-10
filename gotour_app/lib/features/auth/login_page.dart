@@ -57,16 +57,17 @@ class GTLoginPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.highlight(
               text: 'Log In',
-              onPress: () => context.go('/home-page'),
+              onPress: () => context.go('/main-page'),
             ),
           ),
-          const Spacer(),
-          GTText.labelLarge(
-            context,
-            'Or',
-            color: ColorName.iconsColor,
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            child: GTText.labelLarge(
+              context,
+              'Or',
+              color: ColorName.iconsColor,
+            ),
           ),
-          const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.normal(
@@ -78,7 +79,7 @@ class GTLoginPage extends StatelessWidget {
           const Spacer(),
           GTButton.textHighlight(
             text: 'Sign Up Here',
-            onPress: () {},
+            onPress: () => context.go('/sign-up-page'),
           ),
           const Spacer(
             flex: 2,

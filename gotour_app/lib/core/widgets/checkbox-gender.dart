@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../resources/assets_generated/assets.gen.dart';
 import '../resources/assets_generated/colors.gen.dart';
@@ -20,7 +19,6 @@ class GTCheckboxGender extends StatefulWidget {
 }
 
 class _GTCheckboxGenderState extends State<GTCheckboxGender> {
-  // bool selectedCheckbox = true;
   int selectedIndex = 0;
   List<String> gender = [
     'Male',
@@ -32,7 +30,7 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
     return Wrap(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(
             gender.length,
             (index) => SizedBox(
@@ -42,41 +40,15 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
                   text: gender[index],
                   onTap: widget.onTap as Function(),
                   child: index == selectedIndex
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: InkWell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: SvgPicture.asset(
-                                Assets.icons.checkmark,
-                              ),
-                            ),
-                          ),
+                      ? GTCheckboxSelected(
+                          onPress: () {},
                         )
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                selectedIndex = index;
-                              });
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 7,
-                                vertical: 7,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                  color: ColorName.borderRadiusColor,
-                                  width: 1.5,
-                                ),
-                              ),
-                            ),
-                          ),
+                      : GTCheckboxUnSelected(
+                          onPress: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
                         ),
                 ),
               ),
@@ -84,6 +56,63 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
           ),
         )
       ],
+    );
+  }
+}
+
+class GTCheckboxUnSelected extends StatelessWidget {
+  const GTCheckboxUnSelected({
+    Key? key,
+    required this.onPress,
+  }) : super(key: key);
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: InkWell(
+        onTap: onPress as Function(),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 7,
+            vertical: 7,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+              color: ColorName.borderRadiusColor,
+              width: 1.5,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class GTCheckboxSelected extends StatelessWidget {
+  const GTCheckboxSelected({
+    Key? key,
+    required this.onPress,
+  }) : super(key: key);
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: InkWell(
+        onTap: onPress as Function(),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: SvgPicture.asset(
+            Assets.icons.checkmark,
+          ),
+        ),
+      ),
     );
   }
 }
