@@ -40,12 +40,14 @@ class GTLoginPage extends StatelessWidget {
           const GTTextField(
             hintText: 'email@example.com',
             title: 'Email',
+            activateLabel: true,
           ),
           const Spacer(),
           const GTTextField(
             hintText: 'Password',
             title: 'Password',
             hideText: true,
+            activateLabel: true,
           ),
           const Spacer(),
           GTButton.textHighlight(

@@ -31,13 +31,13 @@ class _GTBestPlaceState extends State<GTBestPlace> {
   @override
   Widget build(BuildContext context) {
     List<PlaceInfo> data = [
-      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
           'Bien Thanh Khe', '3 000'),
-      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
           'Bien Thanh Khe', '3 000'),
-      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
           'Bien Thanh Khe', '2 000'),
-      PlaceInfo('assets/images/Tibidabo.png', 'Da Nang, Viet Nam',
+      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
           'Bien Thanh Khe', '1 000'),
     ];
 
@@ -48,8 +48,13 @@ class _GTBestPlaceState extends State<GTBestPlace> {
         Container(
           padding: const EdgeInsets.only(right: 20),
           margin: const EdgeInsets.only(bottom: 14),
-          child: GTTitleAndSeeAllBtn(
-              title: 'Best Place', onPress: widget.pressBtn),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: GTTitleAndSeeAllBtn(
+              title: 'Best Place',
+              onPress: widget.pressBtn,
+            ),
+          ),
         ),
         Row(
           children: [
@@ -57,6 +62,7 @@ class _GTBestPlaceState extends State<GTBestPlace> {
               height: 180,
               width: size.width,
               child: ListView.builder(
+                padding: EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
                 itemCount: data.length,
                 itemBuilder: (context, index) => Container(
