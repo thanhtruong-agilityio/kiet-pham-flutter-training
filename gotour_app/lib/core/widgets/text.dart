@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTText extends StatelessWidget {
   const GTText({

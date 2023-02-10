@@ -126,7 +126,7 @@ class GTTheme {
       bodyMedium: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 11,
-        height: height(lineHeight: 14, fontSize: 11),
+        height: height(lineHeight: 17, fontSize: 11),
       ),
       bodySmall: _defaultTextStyle().copyWith(
         fontFamily: FontFamily.gilroyMedium,

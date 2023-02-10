@@ -4,8 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/title-and-button.dart';
 
-import 'button.dart';
-import 'title-with-location.dart';
+import 'package:gotour_app/core/widgets/button.dart';
+import 'package:gotour_app/core/widgets/title-with-location.dart';
 
 class PlaceInfo {
   final String image, location, placeName, price;
@@ -105,7 +105,7 @@ class GTCardBestPlace extends StatelessWidget {
     return GestureDetector(
       onTap: pressCard as Function(),
       child: Container(
-        width: size.width * 0.85,
+        width: size.width * 0.8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(

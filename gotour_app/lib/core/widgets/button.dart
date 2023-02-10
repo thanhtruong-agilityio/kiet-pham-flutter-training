@@ -5,8 +5,6 @@ import 'package:gotour_app/core/widgets/text.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
-import '../resources/assets_generated/assets.gen.dart';
-
 class GTButton extends StatelessWidget {
   const GTButton({
     Key? key,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../resources/assets_generated/assets.gen.dart';
-import '../resources/assets_generated/colors.gen.dart';
-import 'button.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/button.dart';
 
 class GTAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GTAppBar({

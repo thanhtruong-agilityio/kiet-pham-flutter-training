@@ -5,7 +5,7 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/title-with-location.dart';
 
-import 'card-image-with-bookmark.dart';
+import 'package:gotour_app/core/widgets/card-image-with-bookmark.dart';
 
 class GTPlaceInfoTourDetails extends StatelessWidget {
   const GTPlaceInfoTourDetails({

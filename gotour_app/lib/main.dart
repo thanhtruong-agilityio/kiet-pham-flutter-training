@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 
-import 'core/theme/theme.dart';
-import 'core/widgets/text.dart';
-import 'features/auth/login_page.dart';
-import 'features/auth/sign_up.dart';
-import 'features/hot-place/hot_place_page.dart';
-import 'features/main/main_page.dart';
-import 'features/misc/onboarding-page.dart';
-import 'features/tour-details/tour_details_page.dart';
+import 'package:gotour_app/core/theme/theme.dart';
+import 'package:gotour_app/core/widgets/text.dart';
+import 'package:gotour_app/features/auth/login_page.dart';
+import 'package:gotour_app/features/auth/sign_up.dart';
+import 'package:gotour_app/features/hot-place/hot_place_page.dart';
+import 'package:gotour_app/features/main/main_page.dart';
+import 'package:gotour_app/features/misc/onboarding-page.dart';
+import 'package:gotour_app/features/tour-details/tour_details_page.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

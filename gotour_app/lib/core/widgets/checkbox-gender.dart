@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../resources/assets_generated/assets.gen.dart';
-import '../resources/assets_generated/colors.gen.dart';
-import 'text.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTCheckboxGender extends StatefulWidget {
   const GTCheckboxGender({

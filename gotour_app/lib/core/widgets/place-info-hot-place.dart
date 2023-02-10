@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 
-import 'card-image-with-bookmark.dart';
-import 'tag.dart';
-import 'title-with-location.dart';
+import 'package:gotour_app/core/widgets/card-image-with-bookmark.dart';
+import 'package:gotour_app/core/widgets/tag.dart';
+import 'package:gotour_app/core/widgets/title-with-location.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {
   const GTPlaceInfoHotPlace({
@@ -47,7 +47,10 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GTTitleWithLocation(
-                    placeName: widget.placeName, location: widget.location),
+                  placeName: widget.placeName,
+                  location: widget.location,
+                  colorLocation: ColorName.iconsColor,
+                ),
                 const SizedBox(
                   height: 15,
                 ),
