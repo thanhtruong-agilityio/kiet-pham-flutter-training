@@ -13,42 +13,45 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
     required this.namePlace,
     required this.location,
     required this.price,
-    required this.size,
     required this.weather,
     required this.onPressCard,
     required this.onPressBtn,
   });
 
   final String namePlace, location, price, weather;
-  final Size size;
   final Function onPressCard, onPressBtn;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         ListCardPlaceinfo(
           size: size,
           onPress: onPressCard as Function(),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GTTitleWithLocation(
-                  placeName: namePlace,
-                  location: location,
-                ),
-                const SizedBox(height: 24),
-                Button(context),
-              ],
-            ),
-            Weather(context)
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 28),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GTTitleWithLocation(
+                    placeName: namePlace,
+                    location: location,
+                    colorLocation: ColorName.iconsColor,
+                  ),
+                  const SizedBox(height: 24),
+                  Button(context),
+                ],
+              ),
+              Weather(context)
+            ],
+          ),
         ),
       ],
     );
@@ -128,22 +131,11 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   int _selectedIndex = 0;
   PageController _pageController = PageController();
   List<String> images = [
-    'assets/images/Tibidabo.png',
-    'assets/images/Tibidabo.png',
-    'assets/images/Tibidabo.png',
-    'assets/images/ChumPhon.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
-    'assets/images/Kyoto.png',
+    Assets.images.tibidabo.path,
+    Assets.images.krabi.path,
+    Assets.images.doipui.path,
+    Assets.images.canyon.path,
+    Assets.images.phranang.path,
   ];
   @override
   Widget build(BuildContext context) {
@@ -160,10 +152,13 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
               });
             },
             itemCount: images.length,
-            itemBuilder: (context, index) => GTCardImageWithBookmark(
-              size: size,
-              images: images[index],
-              press: widget.onPress as Function(),
+            itemBuilder: (context, index) => Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: GTCardImageWithBookmark(
+                size: size,
+                images: images[index],
+                press: widget.onPress as Function(),
+              ),
             ),
           ),
         ),
@@ -190,13 +185,15 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   }
 
   Widget buildIndicator(bool isActivate, Size size) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2.5),
-      height: isActivate ? 3 : 5,
-      width: isActivate ? 20 : 5,
-      decoration: BoxDecoration(
-        color: ColorName.sliderColor,
-        borderRadius: BorderRadius.circular(5),
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 2.5),
+        height: isActivate ? 3 : 5,
+        width: isActivate ? 20 : 5,
+        decoration: BoxDecoration(
+          color: ColorName.sliderColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
       ),
     );
   }
