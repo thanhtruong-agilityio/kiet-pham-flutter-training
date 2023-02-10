@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'core/theme/theme.dart';
 import 'core/widgets/text.dart';
 import 'features/auth/login_page.dart';
+import 'features/auth/sign_up.dart';
 import 'features/misc/onboarding-page.dart';
 
 void main() {
@@ -32,6 +33,10 @@ final GoRouter _router = GoRouter(
       path: '/login-page',
       builder: (context, state) => GTLoginPage(),
     ),
+    GoRoute(
+      path: '/sign-up-page',
+      builder: (context, state) => GTSignUpPage(),
+    )
   ],
 );
 
