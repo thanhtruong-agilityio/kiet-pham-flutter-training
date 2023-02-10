@@ -41,6 +41,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
           const GTTextField(
             hintText: 'email@example.com',
             title: 'Email',
+            activateLabel: true,
           ),
           const Spacer(),
           Padding(
@@ -54,12 +55,14 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
             hideText: true,
             hintText: 'Password',
             title: 'Password',
+            activateLabel: true,
           ),
           const Spacer(),
           const GTTextField(
             hideText: true,
             hintText: 'Password',
             title: 'Confirm Password',
+            activateLabel: true,
           ),
           Spacer(),
           Padding(

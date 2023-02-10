@@ -6,6 +6,7 @@ import 'core/theme/theme.dart';
 import 'core/widgets/text.dart';
 import 'features/auth/login_page.dart';
 import 'features/auth/sign_up.dart';
+import 'features/main/main_page.dart';
 import 'features/misc/onboarding-page.dart';
 
 void main() {
@@ -36,6 +37,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/sign-up-page',
       builder: (context, state) => GTSignUpPage(),
+    ),
+    GoRoute(
+      path: '/main-page',
+      builder: (context, state) => GTMainPage(),
     )
   ],
 );
@@ -55,6 +60,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerDelegate: _router.routerDelegate,
         routeInformationParser: _router.routeInformationParser,
         theme: GTTheme.lightTheme,

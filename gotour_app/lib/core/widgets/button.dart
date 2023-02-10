@@ -194,7 +194,7 @@ class _GTElevatedButtonHighlight extends GTButton {
   _GTElevatedButtonHighlight({
     required super.onPress,
     required this.text,
-    this.activateShadow = true,
+    this.activateShadow = false,
   });
 
   final String text;
@@ -225,11 +225,17 @@ class _GTElevatedButtonHighlight extends GTButton {
         onPressed: onPress as Function(),
         child: Container(
           alignment: Alignment.center,
-          child: GTText.titleSmall(
-            context,
-            text,
-            color: ColorName.onPrimaryColor,
-          ),
+          child: activateShadow == true
+              ? GTText.titleSmall(
+                  context,
+                  text,
+                  color: ColorName.onPrimaryColor,
+                )
+              : GTText.bodyLarge(
+                  context,
+                  text,
+                  color: ColorName.backgroundColor,
+                ),
         ),
       ),
     );

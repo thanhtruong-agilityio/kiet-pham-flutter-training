@@ -46,38 +46,39 @@ class GTMyLocation extends StatelessWidget {
           "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
     ];
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              GTText.TitleMedium(context, 'My Location'),
-              Spacer(),
-            ],
-          ),
-          SizedBox(
-            height: 180,
-            width: size.width,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: data.length,
-              itemBuilder: (context, index) => Container(
-                margin: const EdgeInsets.only(right: 20),
-                child: GTCardMyLocation(
-                  press: press,
-                  image: data[index].image,
-                  placeName: data[index].placeName,
-                  location: data[index].location,
-                  description: data[index].description,
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: GTText.TitleMedium(context, 'My Location'),
+            ),
+            Spacer(),
+          ],
+        ),
+        SizedBox(
+          height: 180,
+          width: size.width,
+          child: ListView.builder(
+            padding: EdgeInsets.only(left: 20),
+            scrollDirection: Axis.horizontal,
+            itemCount: data.length,
+            itemBuilder: (context, index) => Container(
+              margin: const EdgeInsets.only(right: 20),
+              child: GTCardMyLocation(
+                press: press,
+                image: data[index].image,
+                placeName: data[index].placeName,
+                location: data[index].location,
+                description: data[index].description,
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

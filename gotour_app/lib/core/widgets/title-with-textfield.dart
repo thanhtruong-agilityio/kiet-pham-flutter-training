@@ -7,12 +7,13 @@ class GTTextField extends StatefulWidget {
   const GTTextField({
     super.key,
     required this.hintText,
-    required this.title,
+    this.title,
+    this.activateLabel = false,
     this.hideText = false,
   });
 
-  final String title;
-  final bool hideText;
+  final String? title;
+  final bool hideText, activateLabel;
   final String hintText;
 
   @override
@@ -37,11 +38,14 @@ class _GTTextFieldState extends State<GTTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GTText.labelLarge(
-            context,
-            widget.title,
-            color: ColorName.titleOfTextfieldColor,
-          ),
+          if (widget.activateLabel == true)
+            GTText.labelLarge(
+              context,
+              widget.title!,
+              color: ColorName.titleOfTextfieldColor,
+            )
+          else
+            const SizedBox(),
           const SizedBox(
             height: 5,
           ),

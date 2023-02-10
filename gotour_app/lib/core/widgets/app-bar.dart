@@ -51,10 +51,13 @@ class _GTAppBarWithAvatar extends GTAppBar {
     return SafeArea(
       child: Row(
         children: [
-          GTButton.icon(
-            icon: Assets.icons.menu,
-            btnColor: ColorName.backgroundColor,
-            onPress: onPressLeading,
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: GTButton.icon(
+              icon: Assets.icons.menu,
+              btnColor: ColorName.backgroundColor,
+              onPress: onPressLeading,
+            ),
           ),
           const Spacer(),
           InkWell(
@@ -88,10 +91,13 @@ class _GTAppBarInPage extends GTAppBar {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      leading: GTButton.icon(
-        icon: Assets.icons.back,
-        btnColor: ColorName.backgroundColor,
-        onPress: onPressLeading,
+      leading: Padding(
+        padding: EdgeInsets.only(left: 10),
+        child: GTButton.icon(
+          icon: Assets.icons.back,
+          btnColor: ColorName.backgroundColor,
+          onPress: onPressLeading,
+        ),
       ),
       actions: [
         GTButton.icon(
