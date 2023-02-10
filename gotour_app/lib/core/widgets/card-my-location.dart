@@ -4,8 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/title-and-button.dart';
 
-import 'text.dart';
-import 'title-with-location.dart';
+import 'package:gotour_app/core/widgets/text.dart';
+import 'package:gotour_app/core/widgets/title-with-location.dart';
 
 class LocationInfo {
   final String image, location, placeName, description;

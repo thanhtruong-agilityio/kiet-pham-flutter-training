@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 
-import 'text.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTTitleAndSeeAllBtn extends StatelessWidget {
   const GTTitleAndSeeAllBtn({

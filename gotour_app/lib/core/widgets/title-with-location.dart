@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'text.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTTitleWithLocation extends StatelessWidget {
   const GTTitleWithLocation({

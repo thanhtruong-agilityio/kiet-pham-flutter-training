@@ -4,11 +4,11 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/resources/assets_generated/assets.gen.dart';
-import '../../core/resources/assets_generated/colors.gen.dart';
-import '../../core/widgets/button.dart';
-import '../../core/widgets/text.dart';
-import '../../core/widgets/title-with-textfield.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/button.dart';
+import 'package:gotour_app/core/widgets/text.dart';
+import 'package:gotour_app/core/widgets/title-with-textfield.dart';
 
 class GTLoginPage extends StatelessWidget {
   const GTLoginPage({super.key});

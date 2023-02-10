@@ -37,26 +37,23 @@ class GTMainPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: SizedBox(
-                height: 60,
-                child: Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Expanded(
-                        child: GTTextField(hintText: 'Find your location...'),
+              padding: const EdgeInsets.only(top: 30, right: 20),
+              child: Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      child: GTTextField(hintText: 'Find your location...'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5),
+                      child: GTButton.icon(
+                        icon: Assets.icons.search,
+                        iconColor: ColorName.backgroundColor,
+                        onPress: () {},
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 5),
-                        child: GTButton.icon(
-                          icon: Assets.icons.search,
-                          iconColor: ColorName.backgroundColor,
-                          onPress: () {},
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

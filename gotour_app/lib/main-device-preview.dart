@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 
-import 'core/resources/assets_generated/colors.gen.dart';
-import 'core/theme/theme.dart';
-import 'core/widgets/card-best-place.dart';
-import 'core/widgets/text.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/theme/theme.dart';
+import 'package:gotour_app/core/widgets/card-best-place.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 void main() => runApp(
       DevicePreview(
