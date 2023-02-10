@@ -8,6 +8,7 @@ import 'features/auth/login_page.dart';
 import 'features/auth/sign_up.dart';
 import 'features/main/main_page.dart';
 import 'features/misc/onboarding-page.dart';
+import 'features/tour-details/tour_details_page.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,11 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/main-page',
       builder: (context, state) => GTMainPage(),
-    )
+    ),
+    GoRoute(
+      path: '/tour-details',
+      builder: (context, state) => GTTourDetails(),
+    ),
   ],
 );
 
