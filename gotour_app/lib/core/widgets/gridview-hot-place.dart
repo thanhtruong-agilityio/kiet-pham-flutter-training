@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'text.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({super.key});
@@ -12,7 +13,10 @@ class GTGridViewHotPlace extends StatelessWidget {
       children: [
         Row(
           children: [
-            GTText.TitleMedium(context, 'Hot Place'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GTText.TitleMedium(context, 'Hot Place'),
+            ),
           ],
         ),
         const SizedBox(
@@ -34,33 +38,36 @@ class BuildGridview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> dataImages = [
-      'assets/images/Kyoto.png',
-      'assets/images/ChumPhon.png',
-      'assets/images/Tibidabo.png',
-      'assets/images/Krabi.png',
-      'assets/images/PhraNang.png',
-      'assets/images/DoiPui.png',
+      Assets.images.kyoto.path,
+      Assets.images.chumphon.path,
+      Assets.images.tibidabo.path,
+      Assets.images.krabi.path,
+      Assets.images.phranang.path,
+      Assets.images.doipui.path,
     ];
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-      ),
-      itemCount: dataImages.length,
-      itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          print('tap item: $index');
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            // color: ColorName.primaryColor,
-            image: DecorationImage(
-              image: AssetImage(
-                dataImages[index],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+        itemCount: dataImages.length,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            print('tap item: $index');
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              // color: ColorName.primaryColor,
+              image: DecorationImage(
+                image: AssetImage(
+                  dataImages[index],
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),
