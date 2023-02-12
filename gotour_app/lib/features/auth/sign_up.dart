@@ -95,6 +95,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.highlight(
+              activateShadow: true,
               text: 'Sign Up',
               onPress: () => context.go('/main-page'),
             ),
