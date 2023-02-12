@@ -49,30 +49,30 @@ class _GTAppBarWithAvatar extends GTAppBar {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: GTButton.icon(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            GTButton.icon(
               icon: Assets.icons.menu,
               btnColor: ColorName.backgroundColor,
               onPress: onPressLeading,
             ),
-          ),
-          const Spacer(),
-          InkWell(
-            onTap: onPressAvatar as Function(),
-            child: Container(
-              height: 48,
-              width: 48,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(avatar),
+            const Spacer(),
+            InkWell(
+              onTap: onPressAvatar as Function(),
+              child: Container(
+                height: 48,
+                width: 48,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(avatar),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
