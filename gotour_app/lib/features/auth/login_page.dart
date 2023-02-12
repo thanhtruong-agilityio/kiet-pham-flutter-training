@@ -58,6 +58,7 @@ class GTLoginPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.highlight(
+              activateShadow: true,
               text: 'Log In',
               onPress: () => context.go('/main-page'),
             ),

@@ -33,41 +33,39 @@ class GTMainPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20, top: 47),
               child: GTText.titleLarge(
                 context,
-                'Get Ready For \n The Travel Trip!',
+                'Get Ready For\nThe Travel Trip!',
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30, right: 20),
-              child: Container(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Expanded(
-                      child: GTTextField(hintText: 'Find your location...'),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    child: GTTextField(hintText: 'Find your location...'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: GTButton.icon(
+                      icon: Assets.icons.search,
+                      iconColor: ColorName.backgroundColor,
+                      onPress: () {},
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: GTButton.icon(
-                        icon: Assets.icons.search,
-                        iconColor: ColorName.backgroundColor,
-                        onPress: () {},
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 27),
               child: GTMyLocation(
-                press: () => context.go('/tour-details'),
+                press: () => GoRouter.of(context).pushNamed('tour-details'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 27),
               child: GTBestPlace(
-                pressCard: () => context.go('/tour-details'),
-                pressBtn: () => context.go('/hot-place'),
+                pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
+                pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),
                 pressBtnPrice: () {},
               ),
             ),

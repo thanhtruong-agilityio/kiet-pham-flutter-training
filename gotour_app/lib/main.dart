@@ -41,14 +41,16 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => GTSignUpPage(),
     ),
     GoRoute(
-      path: '/main-page',
-      builder: (context, state) => GTMainPage(),
-    ),
+        name: 'main',
+        path: '/main-page',
+        builder: (context, state) => GTMainPage()),
     GoRoute(
+      name: 'tour-details',
       path: '/tour-details',
       builder: (context, state) => GTTourDetails(),
     ),
     GoRoute(
+      name: 'hot-place',
       path: '/hot-place',
       builder: (context, state) => GTHotPlace(),
     ),
