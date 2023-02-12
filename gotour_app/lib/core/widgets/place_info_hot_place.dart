@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 
-import 'package:gotour_app/core/widgets/card-image-with-bookmark.dart';
+import 'package:gotour_app/core/widgets/card_image_with_bookmark.dart';
 import 'package:gotour_app/core/widgets/tag.dart';
-import 'package:gotour_app/core/widgets/title-with-location.dart';
+import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {
   const GTPlaceInfoHotPlace({
@@ -16,8 +16,12 @@ class GTPlaceInfoHotPlace extends StatefulWidget {
     required this.pressCard,
     required this.pressBtn,
   });
-  final Function pressCard, pressBtn;
-  final String image, placeName, location, price;
+  final VoidCallback pressCard;
+  final VoidCallback pressBtn;
+  final String image;
+  final String placeName;
+  final String location;
+  final String price;
 
   @override
   State<GTPlaceInfoHotPlace> createState() => _GTPlaceInfoHotPlaceState();
@@ -28,7 +32,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -58,7 +62,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                   children: List.generate(
                     dataTags.length,
                     (index) => Container(
-                      margin: EdgeInsets.only(right: 12),
+                      margin: const EdgeInsets.only(right: 12),
                       child: GTTag(text: dataTags[index]),
                     ),
                   ),

@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTTitleAndSeeAllBtn extends StatelessWidget {
   const GTTitleAndSeeAllBtn({
-    Key? key,
+    super.key,
     required this.title,
     this.onPress,
-  }) : super(key: key);
+  });
 
   final String title;
-  final Function? onPress;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GTText.TitleMedium(context, title),
+        GTText.titleMedium(context, title),
         const Spacer(),
         GTButton.text(
-          onPress: onPress as Function(),
+          onPress: onPress!,
           text: 'See All',
         )
       ],

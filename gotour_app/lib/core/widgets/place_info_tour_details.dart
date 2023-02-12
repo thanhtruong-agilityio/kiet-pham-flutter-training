@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/title-with-location.dart';
-
-import 'package:gotour_app/core/widgets/card-image-with-bookmark.dart';
+import 'package:gotour_app/core/widgets/card_image_with_bookmark.dart';
+import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class GTPlaceInfoTourDetails extends StatelessWidget {
   const GTPlaceInfoTourDetails({
@@ -13,22 +12,26 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
     required this.namePlace,
     required this.location,
     required this.price,
-    required this.weather,
+    required this.temperature,
     required this.onPressCard,
     required this.onPressBtn,
   });
 
-  final String namePlace, location, price, weather;
-  final Function onPressCard, onPressBtn;
+  final String namePlace;
+  final String location;
+  final String price;
+  final String temperature;
+  final VoidCallback onPressCard;
+  final VoidCallback onPressBtn;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       children: [
         ListCardPlaceinfo(
           size: size,
-          onPress: onPressCard as Function(),
+          onPress: onPressCard,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, top: 28),
@@ -46,10 +49,10 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                     colorLocation: ColorName.iconsColor,
                   ),
                   const SizedBox(height: 24),
-                  Button(context),
+                  button(context),
                 ],
               ),
-              Weather(context)
+              weather(context)
             ],
           ),
         ),
@@ -57,52 +60,23 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
     );
   }
 
-  SizedBox Button(BuildContext context) {
+  SizedBox button(BuildContext context) {
     return SizedBox(
       height: 25,
       child: GTButton.highlight(
-        text: '\$3 000',
+        text: '\$$price',
         onPress: onPressBtn,
       ),
     );
   }
 
-  Row LocationDetails(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          Assets.icons.location,
-          color: ColorName.primaryColor,
-          width: 10,
-          height: 12,
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          location,
-          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: ColorName.iconsColor,
-              ),
-        ),
-      ],
-    );
-  }
-
-  Text Title(BuildContext context) {
-    return Text(
-      namePlace,
-      style: Theme.of(context).textTheme.titleSmall,
-    );
-  }
-
-  Row Weather(BuildContext context) {
+  Row weather(BuildContext context) {
     return Row(
       children: [
         SvgPicture.asset(Assets.icons.cloud),
-        SizedBox(width: 7),
+        const SizedBox(width: 7),
         Text(
-          '$weather°C',
+          '$temperature°C',
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
@@ -115,13 +89,13 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
 
 class ListCardPlaceinfo extends StatefulWidget {
   const ListCardPlaceinfo({
-    Key? key,
+    super.key,
     required this.size,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   final Size size;
-  final Function onPress;
+  final VoidCallback onPress;
 
   @override
   State<ListCardPlaceinfo> createState() => _ListCardPlaceinfoState();
@@ -129,7 +103,7 @@ class ListCardPlaceinfo extends StatefulWidget {
 
 class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   int _selectedIndex = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
   List<String> images = [
     Assets.images.tibidabo.path,
     Assets.images.krabi.path,
@@ -139,7 +113,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   ];
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       children: [
         SizedBox(
@@ -153,20 +127,19 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
             },
             itemCount: images.length,
             itemBuilder: (context, index) => Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: GTCardImageWithBookmark(
                 size: size,
                 images: images[index],
-                press: widget.onPress as Function(),
+                press: widget.onPress,
               ),
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 15),
+          margin: const EdgeInsets.only(top: 15),
           height: 5,
           child: Align(
-            alignment: Alignment.center,
             child: SizedBox(
               width: 25.0 + (images.length - 1) * 10,
               child: ListView.builder(

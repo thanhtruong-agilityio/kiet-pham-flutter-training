@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/core/widgets/title-and-button.dart';
-
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/title-with-location.dart';
+import 'package:gotour_app/core/widgets/title_and_button.dart';
+import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class PlaceInfo {
-  final String image, location, placeName, price;
   const PlaceInfo(this.image, this.location, this.placeName, this.price);
+  final String image;
+  final String location;
+  final String placeName;
+  final String price;
 }
 
 class GTBestPlace extends StatefulWidget {
@@ -21,7 +22,9 @@ class GTBestPlace extends StatefulWidget {
   });
 
   // final String image, location, placeName, price;
-  final Function pressCard, pressBtn, pressBtnPrice;
+  final VoidCallback pressCard;
+  final VoidCallback pressBtn;
+  final VoidCallback pressBtnPrice;
 
   @override
   State<GTBestPlace> createState() => _GTBestPlaceState();
@@ -30,18 +33,34 @@ class GTBestPlace extends StatefulWidget {
 class _GTBestPlaceState extends State<GTBestPlace> {
   @override
   Widget build(BuildContext context) {
-    List<PlaceInfo> data = [
-      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
-          'Bien Thanh Khe', '3 000'),
-      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
-          'Bien Thanh Khe', '3 000'),
-      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
-          'Bien Thanh Khe', '2 000'),
-      PlaceInfo(Assets.images.tibidabo.path, 'Da Nang, Viet Nam',
-          'Bien Thanh Khe', '1 000'),
+    final data = <PlaceInfo>[
+      PlaceInfo(
+        Assets.images.tibidabo.path,
+        'Da Nang, Viet Nam',
+        'Bien Thanh Khe',
+        '3 000',
+      ),
+      PlaceInfo(
+        Assets.images.tibidabo.path,
+        'Da Nang, Viet Nam',
+        'Bien Thanh Khe',
+        '3 000',
+      ),
+      PlaceInfo(
+        Assets.images.tibidabo.path,
+        'Da Nang, Viet Nam',
+        'Bien Thanh Khe',
+        '2 000',
+      ),
+      PlaceInfo(
+        Assets.images.tibidabo.path,
+        'Da Nang, Viet Nam',
+        'Bien Thanh Khe',
+        '1 000',
+      ),
     ];
 
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -62,7 +81,7 @@ class _GTBestPlaceState extends State<GTBestPlace> {
               height: 180,
               width: size.width,
               child: ListView.builder(
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
                 itemCount: data.length,
                 itemBuilder: (context, index) => Container(
@@ -87,23 +106,27 @@ class _GTBestPlaceState extends State<GTBestPlace> {
 
 class GTCardBestPlace extends StatelessWidget {
   const GTCardBestPlace({
-    Key? key,
+    super.key,
     required this.image,
     required this.placeName,
     required this.location,
     required this.price,
     required this.pressCard,
     required this.pressBtnPrice,
-  }) : super(key: key);
+  });
 
-  final Function pressCard, pressBtnPrice;
-  final String image, placeName, location, price;
+  final VoidCallback pressCard;
+  final VoidCallback pressBtnPrice;
+  final String image;
+  final String placeName;
+  final String location;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: pressCard as Function(),
+      onTap: pressCard,
       child: Container(
         width: size.width * 0.8,
         decoration: BoxDecoration(

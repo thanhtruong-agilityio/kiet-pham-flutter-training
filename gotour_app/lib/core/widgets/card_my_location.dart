@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/core/widgets/title-and-button.dart';
-
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title-with-location.dart';
+import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class LocationInfo {
-  final String image, location, placeName, description;
   const LocationInfo(
-      this.image, this.location, this.placeName, this.description);
+    this.image,
+    this.location,
+    this.placeName,
+    this.description,
+  );
+  final String image;
+  final String location;
+  final String placeName;
+  final String description;
 }
 
 class GTMyLocation extends StatelessWidget {
@@ -19,51 +24,54 @@ class GTMyLocation extends StatelessWidget {
     required this.press,
   });
 
-  final Function press;
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
-    List<LocationInfo> data = [
+    final data = <LocationInfo>[
       LocationInfo(
-          'assets/images/tibidabo.png',
-          'Da Nang, Viet Nam',
-          'Bien Thanh Khe',
-          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+        Assets.images.tibidabo.path,
+        'Da Nang, Viet Nam',
+        'Bien Thanh Khe',
+        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+      ),
       LocationInfo(
-          'assets/images/tibidabo.png',
-          'Quang Nam, Viet Nam',
-          'Bien Thanh Khe',
-          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+        Assets.images.tibidabo.path,
+        'Quang Nam, Viet Nam',
+        'Bien Thanh Khe',
+        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+      ),
       LocationInfo(
-          'assets/images/tibidabo.png',
-          'Hue, Viet Nam',
-          'Bien Thanh Khe',
-          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+        Assets.images.tibidabo.path,
+        'Hue, Viet Nam',
+        'Bien Thanh Khe',
+        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+      ),
       LocationInfo(
-          'assets/images/tibidabo.png',
-          'Hoi An, Viet Nam',
-          'Bien Thanh Khe',
-          "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel."),
+        Assets.images.tibidabo.path,
+        'Hoi An, Viet Nam',
+        'Bien Thanh Khe',
+        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+      ),
     ];
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: GTText.TitleMedium(context, 'My Location'),
+              child: GTText.titleMedium(context, 'My Location'),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         SizedBox(
           height: 180,
           width: size.width,
           child: ListView.builder(
-            padding: EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 20),
             scrollDirection: Axis.horizontal,
             itemCount: data.length,
             itemBuilder: (context, index) => Container(
@@ -85,16 +93,19 @@ class GTMyLocation extends StatelessWidget {
 
 class GTCardMyLocation extends StatefulWidget {
   const GTCardMyLocation({
-    Key? key,
+    super.key,
     required this.press,
     required this.image,
     required this.placeName,
     required this.location,
     required this.description,
-  }) : super(key: key);
+  });
 
-  final Function press;
-  final String image, placeName, location, description;
+  final VoidCallback press;
+  final String image;
+  final String placeName;
+  final String location;
+  final String description;
 
   @override
   State<GTCardMyLocation> createState() => _GTCardMyLocationState();
@@ -103,9 +114,9 @@ class GTCardMyLocation extends StatefulWidget {
 class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: widget.press as Function(),
+      onTap: widget.press,
       child: Container(
         margin: const EdgeInsets.only(
           left: 5,

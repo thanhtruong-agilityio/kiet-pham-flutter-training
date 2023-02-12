@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/widgets/app-bar.dart';
-import 'package:gotour_app/core/widgets/place-info-hot-place.dart';
+import 'package:gotour_app/core/widgets/app_bar.dart';
+import 'package:gotour_app/core/widgets/gridview_hot_place.dart';
+import 'package:gotour_app/core/widgets/place_info_hot_place.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
-
-import 'package:gotour_app/core/widgets/gridview-hot-place.dart';
 
 class GTHotPlace extends StatelessWidget {
   const GTHotPlace({super.key});
@@ -36,7 +32,7 @@ class GTHotPlace extends StatelessWidget {
                 pressBtn: () {},
               ),
             ),
-            Expanded(child: GTGridViewHotPlace())
+            const Expanded(child: GTGridViewHotPlace())
           ],
         ),
       ),

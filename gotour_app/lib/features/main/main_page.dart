@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/core/widgets/app-bar.dart';
+import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/card-best-place.dart';
-import 'package:gotour_app/core/widgets/card-my-location.dart';
+import 'package:gotour_app/core/widgets/card_best_place.dart';
+import 'package:gotour_app/core/widgets/card_my_location.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title-with-textfield.dart';
+import 'package:gotour_app/core/widgets/title_with_textfield.dart';
 
 class GTMainPage extends StatelessWidget {
   const GTMainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return GTScaffold(
       appBar: GTAppBar.inMain(
         avatar: Assets.images.author.path,
@@ -45,7 +42,7 @@ class GTMainPage extends StatelessWidget {
                     child: GTTextField(hintText: 'Find your location...'),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 5),
                     child: GTButton.icon(
                       icon: Assets.icons.search,
                       iconColor: ColorName.backgroundColor,

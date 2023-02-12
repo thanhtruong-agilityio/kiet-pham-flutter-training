@@ -10,7 +10,7 @@ class GTTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
       height: 20,
       decoration: BoxDecoration(
         color: ColorName.tagColor,

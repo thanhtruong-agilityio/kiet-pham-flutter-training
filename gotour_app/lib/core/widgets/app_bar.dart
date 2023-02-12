@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
@@ -12,20 +11,20 @@ class GTAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.onPressLeading,
   });
 
-  final String? title;
-  final Function onPressLeading;
+  const factory GTAppBar.inPage({
+    required VoidCallback onPressLeading,
+    required VoidCallback onPressNotification,
+    required VoidCallback onPressMore,
+  }) = _GTAppBarInPage;
 
   const factory GTAppBar.inMain({
     required String avatar,
-    required Function onPressLeading,
-    required Function onPressAvatar,
+    required VoidCallback onPressLeading,
+    required VoidCallback onPressAvatar,
   }) = _GTAppBarWithAvatar;
 
-  const factory GTAppBar.inPage({
-    required Function onPressLeading,
-    required Function onPressNotification,
-    required Function onPressMore,
-  }) = _GTAppBarInPage;
+  final String? title;
+  final VoidCallback onPressLeading;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class GTAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size(double.infinity, 45);
+  Size get preferredSize => const Size(double.infinity, 45);
 }
 
 class _GTAppBarWithAvatar extends GTAppBar {
@@ -44,7 +43,7 @@ class _GTAppBarWithAvatar extends GTAppBar {
   });
 
   final String avatar;
-  final Function onPressAvatar;
+  final VoidCallback onPressAvatar;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class _GTAppBarWithAvatar extends GTAppBar {
             ),
             const Spacer(),
             InkWell(
-              onTap: onPressAvatar as Function(),
+              onTap: onPressAvatar,
               child: Container(
                 height: 48,
                 width: 48,
@@ -85,14 +84,15 @@ class _GTAppBarInPage extends GTAppBar {
     required this.onPressMore,
   });
 
-  final Function onPressNotification, onPressMore;
+  final VoidCallback onPressNotification;
+  final VoidCallback onPressMore;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
       leading: Padding(
-        padding: EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 10),
         child: GTButton.icon(
           icon: Assets.icons.back,
           btnColor: ColorName.backgroundColor,

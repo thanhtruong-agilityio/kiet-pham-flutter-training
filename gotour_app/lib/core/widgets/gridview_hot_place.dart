@@ -15,7 +15,7 @@ class GTGridViewHotPlace extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GTText.TitleMedium(context, 'Hot Place'),
+              child: GTText.titleMedium(context, 'Hot Place'),
             ),
           ],
         ),
@@ -32,12 +32,12 @@ class GTGridViewHotPlace extends StatelessWidget {
 
 class BuildGridview extends StatelessWidget {
   const BuildGridview({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    List<String> dataImages = [
+    final dataImages = <String>[
       Assets.images.kyoto.path,
       Assets.images.chumphon.path,
       Assets.images.tibidabo.path,
@@ -46,7 +46,7 @@ class BuildGridview extends StatelessWidget {
       Assets.images.doipui.path,
     ];
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
@@ -55,9 +55,7 @@ class BuildGridview extends StatelessWidget {
         ),
         itemCount: dataImages.length,
         itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            print('tap item: $index');
-          },
+          onTap: () {},
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),

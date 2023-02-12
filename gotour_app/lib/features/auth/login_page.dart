@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title-with-textfield.dart';
+import 'package:gotour_app/core/widgets/title_with_textfield.dart';
 
 class GTLoginPage extends StatelessWidget {
   const GTLoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
@@ -33,7 +31,7 @@ class GTLoginPage extends StatelessWidget {
           const Spacer(
             flex: 2,
           ),
-          GTText.displaySmall(context, 'Login'),
+          GTText.displaySmall(context, S.of(context).loginTitle),
           const Spacer(
             flex: 2,
           ),
