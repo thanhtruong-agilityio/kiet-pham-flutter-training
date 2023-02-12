@@ -37,13 +37,13 @@ class GTTitleWithLocation extends StatelessWidget {
               width: 10,
               height: 12,
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            GTText.labelMedium(
-              context,
-              location,
-              color: colorLocation,
+            Padding(
+              padding: const EdgeInsets.only(left: 9),
+              child: GTText.labelMedium(
+                context,
+                location,
+                color: colorLocation,
+              ),
             ),
           ],
         ),
