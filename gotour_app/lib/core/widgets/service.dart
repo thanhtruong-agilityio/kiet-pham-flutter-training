@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
@@ -34,7 +33,7 @@ class _GTServiceState extends State<GTService> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GTText.TitleMedium(context, 'Services'),
+                GTText.titleMedium(context, 'Services'),
                 const SizedBox(
                   height: 14,
                 ),

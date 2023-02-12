@@ -5,16 +5,19 @@ import 'package:gotour_app/core/widgets/text.dart';
 
 class GTTitleWithLocation extends StatelessWidget {
   const GTTitleWithLocation({
-    Key? key,
+    super.key,
     required this.placeName,
     required this.location,
     this.colorIcon,
     this.colorName,
     this.colorLocation,
-  }) : super(key: key);
+  });
 
-  final String placeName, location;
-  final Color? colorIcon, colorName, colorLocation;
+  final String placeName;
+  final String location;
+  final Color? colorIcon;
+  final Color? colorName;
+  final Color? colorLocation;
 
   @override
   Widget build(BuildContext context) {

@@ -26,7 +26,7 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
         height: 44,
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Material(
             color: ColorName.surfaceColor,
             borderRadius: BorderRadius.circular(10),

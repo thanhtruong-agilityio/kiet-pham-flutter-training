@@ -9,9 +9,14 @@ class GTDetailTours extends StatelessWidget {
     super.key,
     required this.namePlace,
     required this.location,
+    required this.price,
+    required this.temperature,
   });
 
-  final String namePlace, location;
+  final String namePlace;
+  final String location;
+  final String price;
+  final String temperature;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,7 @@ class GTDetailTours extends StatelessWidget {
     return SizedBox(
       height: 25,
       child: GTButton.highlight(
-        text: '\$3 000',
+        text: '\$$price',
         onPress: () {},
       ),
     );
@@ -80,9 +85,9 @@ class GTDetailTours extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(Assets.icons.cloud),
-        SizedBox(width: 7),
+        const SizedBox(width: 7),
         Text(
-          '30°C',
+          '$temperature°C',
           style: Theme.of(context)
               .textTheme
               .bodyMedium!

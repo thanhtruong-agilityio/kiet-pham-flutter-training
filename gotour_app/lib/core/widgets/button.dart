@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_app/core/widgets/text.dart';
-
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTButton extends StatelessWidget {
   const GTButton({
-    Key? key,
+    super.key,
     this.child,
     required this.onPress,
-  }) : super(key: key);
+  });
 
-  final Widget? child;
-  final Function onPress;
-
-  const factory GTButton.icon({
-    required String icon,
-    required Function onPress,
-    Color? iconColor,
-    Color? btnColor,
-  }) = _GTButtonIcon;
-
-  const factory GTButton.text({
+  const factory GTButton.highlight({
     required String text,
-    required Function onPress,
-  }) = _GTButtonText;
-
-  const factory GTButton.textHighlight({
-    required String text,
-    required Function onPress,
-  }) = _GTButtonTextHighlight;
+    required VoidCallback onPress,
+    bool? activateShadow,
+  }) = _GTElevatedButtonHighlight;
 
   const factory GTButton.normal({
     required String text,
     required String icon,
-    required Function onPress,
+    required VoidCallback onPress,
   }) = _GTElevatedButton;
 
-  factory GTButton.highlight({
+  const factory GTButton.textHighlight({
     required String text,
-    required Function onPress,
-    bool? activateShadow,
-  }) = _GTElevatedButtonHighlight;
+    required VoidCallback onPress,
+  }) = _GTButtonTextHighlight;
+
+  const factory GTButton.text({
+    required String text,
+    required VoidCallback onPress,
+  }) = _GTButtonText;
+
+  const factory GTButton.icon({
+    required String icon,
+    required VoidCallback onPress,
+    Color? iconColor,
+    Color? btnColor,
+  }) = _GTButtonIcon;
+
+  final Widget? child;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +55,15 @@ class _GTButtonIcon extends GTButton {
   const _GTButtonIcon({
     required this.icon,
     required super.onPress,
-    this.heroTag,
+    // this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
   });
 
   final String icon;
-  final Color? iconColor, btnColor;
-  final String? heroTag;
+  final Color? iconColor;
+  final Color? btnColor;
+  // final String? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class _GTButtonIcon extends GTButton {
       width: 40,
       height: 40,
       child: FloatingActionButton(
-        heroTag: heroTag,
+        // heroTag: heroTag,
         elevation: 0,
         // hoverElevation: 0,
         highlightElevation: 0,
@@ -79,7 +79,7 @@ class _GTButtonIcon extends GTButton {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
-        onPressed: onPress as Function(),
+        onPressed: onPress,
         child: SizedBox(
           height: 20,
           width: 30,
@@ -107,7 +107,7 @@ class _GTButtonText extends GTButton {
       hoverColor: ColorName.backgroundColor,
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
-      onTap: onPress as Function(),
+      onTap: onPress,
       child: GTText.bodyMedium(
         context,
         text,
@@ -131,7 +131,7 @@ class _GTButtonTextHighlight extends GTButton {
       hoverColor: ColorName.backgroundColor,
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
-      onTap: onPress as Function(),
+      onTap: onPress,
       child: GTText.labelSmall(
         context,
         text,
@@ -172,7 +172,7 @@ class _GTElevatedButton extends GTButton {
           ),
           backgroundColor: ColorName.backgroundColor,
         ),
-        onPressed: onPress as Function(),
+        onPressed: onPress,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -196,7 +196,7 @@ class _GTElevatedButton extends GTButton {
 }
 
 class _GTElevatedButtonHighlight extends GTButton {
-  _GTElevatedButtonHighlight({
+  const _GTElevatedButtonHighlight({
     required super.onPress,
     required this.text,
     this.activateShadow = false,
@@ -228,7 +228,7 @@ class _GTElevatedButtonHighlight extends GTButton {
           ),
           backgroundColor: ColorName.primaryColor,
         ),
-        onPressed: onPress as Function(),
+        onPressed: onPress,
         child: Container(
           alignment: Alignment.center,
           child: activateShadow == true

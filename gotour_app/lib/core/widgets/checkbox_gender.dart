@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -26,7 +24,7 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
   ];
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Wrap(
       children: [
         Row(
@@ -38,7 +36,7 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
               child: Expanded(
                 child: GTCheckbox(
                   text: gender[index],
-                  onTap: widget.onTap as Function(),
+                  onTap: widget.onTap,
                   child: index == selectedIndex
                       ? GTCheckboxSelected(
                           onPress: () {},
@@ -62,17 +60,17 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
 
 class GTCheckboxUnSelected extends StatelessWidget {
   const GTCheckboxUnSelected({
-    Key? key,
+    super.key,
     required this.onPress,
-  }) : super(key: key);
-  final Function onPress;
+  });
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
-        onTap: onPress as Function(),
+        onTap: onPress,
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 7,
@@ -93,17 +91,17 @@ class GTCheckboxUnSelected extends StatelessWidget {
 
 class GTCheckboxSelected extends StatelessWidget {
   const GTCheckboxSelected({
-    Key? key,
+    super.key,
     required this.onPress,
-  }) : super(key: key);
-  final Function onPress;
+  });
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
-        onTap: onPress as Function(),
+        onTap: onPress,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -119,12 +117,12 @@ class GTCheckboxSelected extends StatelessWidget {
 
 class GTCheckbox extends StatefulWidget {
   const GTCheckbox({
-    Key? key,
+    super.key,
     required this.text,
     this.selected = true,
     required this.child,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final String text;
   final bool? selected;

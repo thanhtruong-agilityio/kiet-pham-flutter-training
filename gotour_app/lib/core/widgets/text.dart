@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTText extends StatelessWidget {
   const GTText({
@@ -10,75 +7,47 @@ class GTText extends StatelessWidget {
     this.textStyle,
   });
 
-  final String? text;
-  final TextStyle? textStyle;
-
-  factory GTText.displayMedium(
+  factory GTText.bodySmall(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle:
-          Theme.of(context).textTheme.displayMedium!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
     );
   }
 
-  factory GTText.displaySmall(
+  factory GTText.bodyMedium(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle:
-          Theme.of(context).textTheme.displaySmall!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
     );
   }
 
-  factory GTText.titleLarge(
+  factory GTText.bodyLarge(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: color),
     );
   }
 
-  factory GTText.TitleMedium(
+  factory GTText.labelSmall(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle:
-          Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
-    );
-  }
-
-  factory GTText.titleSmall(
-    BuildContext context,
-    String text, {
-    Color? color,
-  }) {
-    return GTText(
-      text: text,
-      textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: color),
-    );
-  }
-
-  factory GTText.labelLarge(
-    BuildContext context,
-    String text, {
-    Color? color,
-  }) {
-    return GTText(
-      text: text,
-      textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: color),
     );
   }
 
@@ -94,49 +63,77 @@ class GTText extends StatelessWidget {
     );
   }
 
-  factory GTText.labelSmall(
+  factory GTText.labelLarge(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: color),
     );
   }
 
-  factory GTText.bodyLarge(
+  factory GTText.titleSmall(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: color),
     );
   }
 
-  factory GTText.bodyMedium(
+  factory GTText.titleMedium(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
+      textStyle:
+          Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
     );
   }
 
-  factory GTText.bodySmall(
+  factory GTText.titleLarge(
     BuildContext context,
     String text, {
     Color? color,
   }) {
     return GTText(
       text: text,
-      textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
+      textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
     );
   }
+
+  factory GTText.displaySmall(
+    BuildContext context,
+    String text, {
+    Color? color,
+  }) {
+    return GTText(
+      text: text,
+      textStyle:
+          Theme.of(context).textTheme.displaySmall!.copyWith(color: color),
+    );
+  }
+
+  factory GTText.displayMedium(
+    BuildContext context,
+    String text, {
+    Color? color,
+  }) {
+    return GTText(
+      text: text,
+      textStyle:
+          Theme.of(context).textTheme.displayMedium!.copyWith(color: color),
+    );
+  }
+
+  final String? text;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {

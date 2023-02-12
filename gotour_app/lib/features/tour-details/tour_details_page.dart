@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
-
-import 'package:gotour_app/core/widgets/app-bar.dart';
+import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/app_bar.dart';
+import 'package:gotour_app/core/widgets/place_info_tour_details.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
-
-import '../../core/resources/assets_generated/colors.gen.dart';
-import '../../core/widgets/place-info-tour-details.dart';
-import '../../core/widgets/service.dart';
-import '../../core/widgets/text.dart';
+import 'package:gotour_app/core/widgets/service.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTTourDetails extends StatelessWidget {
   const GTTourDetails({super.key});
@@ -30,14 +26,14 @@ class GTTourDetails extends StatelessWidget {
               child: GTPlaceInfoTourDetails(
                 namePlace: 'Capital of Thailand',
                 location: 'Bangkok, Thailand',
-                price: '\$3 000',
-                weather: '30°C',
+                price: '3 000',
+                temperature: '30°C',
                 onPressCard: () {},
                 onPressBtn: () {},
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(top: 26, left: 20, right: 20),
+              padding: EdgeInsets.only(top: 26, left: 20, right: 20),
               child: GTService(),
             ),
             Padding(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'package:gotour_app/core/widgets/bottom-navigation-bar.dart';
+import 'package:gotour_app/core/widgets/bottom_navigation_bar.dart';
 
 class GTScaffold extends StatelessWidget {
   const GTScaffold({
@@ -19,7 +17,7 @@ class GTScaffold extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: SafeArea(child: body),
-      bottomNavigationBar: SafeArea(child: GTBottomNavigationBar()),
+      bottomNavigationBar: const SafeArea(child: GTBottomNavigationBar()),
     );
   }
 }

@@ -13,7 +13,8 @@ class GTTextField extends StatefulWidget {
   });
 
   final String? title;
-  final bool hideText, activateLabel;
+  final bool hideText;
+  final bool activateLabel;
   final String hintText;
 
   @override

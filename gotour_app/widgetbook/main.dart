@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/theme/theme.dart';
-import 'package:gotour_app/core/widgets/bottom-navigation-bar.dart';
+import 'package:gotour_app/core/widgets/bottom_navigation_bar.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -197,7 +193,7 @@ class WidgetbookHotReload extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: 'Bottom Navigation Bar',
-                  builder: (context) => GTBottomNavigationBar(),
+                  builder: (context) => const GTBottomNavigationBar(),
                 ),
               ],
             ),
@@ -214,6 +210,6 @@ class WidgetbookHotReload extends StatelessWidget {
 
 void main() {
   runApp(
-    WidgetbookHotReload(),
+    const WidgetbookHotReload(),
   );
 }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:gotour_app/core/widgets/text.dart';
-
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/widgets/text.dart';
 
 class GTOnboardingScreen extends StatefulWidget {
   const GTOnboardingScreen({super.key});
@@ -32,14 +30,13 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: PageView.builder(
-                itemCount: data_boards.length,
+                itemCount: dataBoards.length,
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
@@ -47,9 +44,9 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   });
                 },
                 itemBuilder: (context, index) => OnboardingContent(
-                  image: data_boards[index].image,
-                  title: data_boards[index].title,
-                  description: data_boards[index].description,
+                  image: dataBoards[index].image,
+                  title: dataBoards[index].title,
+                  description: dataBoards[index].description,
                 ),
               ),
             ),
@@ -71,7 +68,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   ),
                   Row(
                     children: List.generate(
-                      data_boards.length,
+                      dataBoards.length,
                       (index) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: DotIndicator(
@@ -83,13 +80,12 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   GTButton.icon(
                     icon: Assets.icons.right,
                     iconColor: ColorName.backgroundColor,
-                    onPress: () => _pageIndex == data_boards.length - 1
+                    onPress: () => _pageIndex == dataBoards.length - 1
                         ? context.go('/login-page')
                         : _pageController.nextPage(
                             duration: const Duration(milliseconds: 700),
                             curve: Curves.ease,
                           ),
-                    // onPress: () => context.go('/homepage')
                   ),
                 ],
               ),
@@ -103,9 +99,9 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
 
 class DotIndicator extends StatelessWidget {
   const DotIndicator({
-    Key? key,
+    super.key,
     this.isActivate = false,
-  }) : super(key: key);
+  });
   final bool isActivate;
 
   @override
@@ -124,15 +120,17 @@ class DotIndicator extends StatelessWidget {
 }
 
 class Onboard {
-  final String image, title, description;
   Onboard({
     required this.image,
     required this.title,
     required this.description,
   });
+  final String image;
+  final String title;
+  final String description;
 }
 
-final List<Onboard> data_boards = [
+final List<Onboard> dataBoards = <Onboard>[
   Onboard(
     image: Assets.images.onboardingfirst.path,
     title: 'Explore',
@@ -152,31 +150,33 @@ final List<Onboard> data_boards = [
 
 class OnboardingContent extends StatelessWidget {
   const OnboardingContent({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
-  final String image, title, description;
+  final String image;
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(image),
-        Spacer(),
+        const Spacer(),
         Padding(
-          padding: EdgeInsets.only(left: 18),
+          padding: const EdgeInsets.only(left: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   GTText.displayMedium(context, title),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
               SizedBox(
@@ -190,7 +190,7 @@ class OnboardingContent extends StatelessWidget {
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
       ],
     );
   }

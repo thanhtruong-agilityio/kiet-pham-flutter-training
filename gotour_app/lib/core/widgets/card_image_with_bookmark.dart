@@ -5,20 +5,20 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 class GTCardImageWithBookmark extends StatelessWidget {
   const GTCardImageWithBookmark({
-    Key? key,
+    super.key,
     required this.size,
     required this.images,
     required this.press,
-  }) : super(key: key);
+  });
 
   final Size size;
   final String images;
-  final Function press;
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press as Function(),
+      onTap: press,
       child: Stack(
         children: [
           Container(

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title-with-textfield.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/checkbox-gender.dart';
+import 'package:gotour_app/core/widgets/checkbox_gender.dart';
+import 'package:gotour_app/core/widgets/text.dart';
+import 'package:gotour_app/core/widgets/title_with_textfield.dart';
 
 class GTSignUpPage extends StatefulWidget {
   const GTSignUpPage({super.key});
@@ -20,7 +17,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
   bool agreeTerms = false;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
@@ -64,9 +61,9 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
             title: 'Confirm Password',
             activateLabel: true,
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               children: [
                 SizedBox(
