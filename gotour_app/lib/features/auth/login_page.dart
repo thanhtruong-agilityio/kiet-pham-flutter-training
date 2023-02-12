@@ -35,21 +35,21 @@ class GTLoginPage extends StatelessWidget {
           const Spacer(
             flex: 2,
           ),
-          const GTTextField(
+          GTTextField(
             hintText: 'email@example.com',
-            title: 'Email',
+            title: S.of(context).textFieldEmail,
             activateLabel: true,
           ),
           const Spacer(),
-          const GTTextField(
-            hintText: 'Password',
-            title: 'Password',
+          GTTextField(
+            hintText: S.of(context).textFieldPassword,
+            title: S.of(context).textFieldPassword,
             hideText: true,
             activateLabel: true,
           ),
           const Spacer(),
           GTButton.textHighlight(
-            text: 'Forgot Password?',
+            text: S.of(context).loginPageButtonForgotPassword,
             onPress: () {},
           ),
           const Spacer(),
@@ -57,7 +57,7 @@ class GTLoginPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.highlight(
               activateShadow: true,
-              text: 'Log In',
+              text: S.of(context).loginPageTitle,
               onPress: () => context.go('/main-page'),
             ),
           ),
@@ -72,14 +72,14 @@ class GTLoginPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.normal(
-              text: 'Log In With Google',
+              text: S.of(context).loginPageButtonLoginGG,
               icon: Assets.icons.google,
               onPress: () {},
             ),
           ),
           const Spacer(),
           GTButton.textHighlight(
-            text: 'Sign Up Here',
+            text: S.of(context).loginPageButtonSignUpHere,
             onPress: () => context.go('/sign-up-page'),
           ),
           const Spacer(

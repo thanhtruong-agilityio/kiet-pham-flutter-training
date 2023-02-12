@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -33,7 +34,10 @@ class _GTServiceState extends State<GTService> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GTText.titleMedium(context, 'Services'),
+                GTText.titleMedium(
+                  context,
+                  S.of(context).tourDetailsPageService,
+                ),
                 const SizedBox(
                   height: 14,
                 ),

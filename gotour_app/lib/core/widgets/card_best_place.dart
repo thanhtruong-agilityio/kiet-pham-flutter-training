@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/title_and_button.dart';
 import 'package:gotour_app/core/widgets/title_with_location.dart';
@@ -70,7 +71,7 @@ class _GTBestPlaceState extends State<GTBestPlace> {
           child: Padding(
             padding: const EdgeInsets.only(left: 20),
             child: GTTitleAndSeeAllBtn(
-              title: 'Best Place',
+              title: S.of(context).mainPageBestPlace,
               onPress: widget.pressBtn,
             ),
           ),

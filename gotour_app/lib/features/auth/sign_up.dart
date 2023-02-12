@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/checkbox_gender.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -31,13 +32,13 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
             ),
           ),
           const Spacer(),
-          GTText.displaySmall(context, 'Sign Up'),
+          GTText.displaySmall(context, S.of(context).signUpTitle),
           const Spacer(
             flex: 5,
           ),
-          const GTTextField(
+          GTTextField(
             hintText: 'email@example.com',
-            title: 'Email',
+            title: S.of(context).textFieldEmail,
             activateLabel: true,
           ),
           const Spacer(),
@@ -48,17 +49,17 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
             ),
           ),
           const Spacer(),
-          const GTTextField(
+          GTTextField(
             hideText: true,
-            hintText: 'Password',
-            title: 'Password',
+            hintText: S.of(context).textFieldPassword,
+            title: S.of(context).textFieldPassword,
             activateLabel: true,
           ),
           const Spacer(),
-          const GTTextField(
+          GTTextField(
             hideText: true,
-            hintText: 'Password',
-            title: 'Confirm Password',
+            hintText: S.of(context).textFieldPassword,
+            title: S.of(context).signUpPageConfirmPassword,
             activateLabel: true,
           ),
           const Spacer(),
@@ -83,8 +84,11 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
                           },
                         ),
                 ),
-                GTText.labelSmall(context, 'I agree and accept the '),
-                GTButton.textHighlight(text: 'terms ot use.', onPress: () {}),
+                GTText.labelSmall(context, S.of(context).signUpPageTextTerms),
+                GTButton.textHighlight(
+                  text: S.of(context).signUpPageTextButtonTerms,
+                  onPress: () {},
+                ),
               ],
             ),
           ),
@@ -93,7 +97,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GTButton.highlight(
               activateShadow: true,
-              text: 'Sign Up',
+              text: S.of(context).signUpTitle,
               onPress: () => context.go('/main-page'),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTCheckboxGender extends StatefulWidget {
@@ -18,12 +19,13 @@ class GTCheckboxGender extends StatefulWidget {
 
 class _GTCheckboxGenderState extends State<GTCheckboxGender> {
   int selectedIndex = 0;
-  List<String> gender = [
-    'Male',
-    'Female',
-  ];
+
   @override
   Widget build(BuildContext context) {
+    final gender = <String>[
+      S.of(context).signUpPageGenderMale,
+      S.of(context).signUpPageGenderFemale,
+    ];
     final size = MediaQuery.of(context).size;
     return Wrap(
       children: [
@@ -33,22 +35,24 @@ class _GTCheckboxGenderState extends State<GTCheckboxGender> {
             gender.length,
             (index) => SizedBox(
               width: size.width * 0.4,
-              child: Expanded(
-                child: GTCheckbox(
-                  text: gender[index],
-                  onTap: widget.onTap,
-                  child: index == selectedIndex
-                      ? GTCheckboxSelected(
-                          onPress: () {},
-                        )
-                      : GTCheckboxUnSelected(
-                          onPress: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                        ),
-                ),
+              child: GTCheckbox(
+                text: gender[index],
+                onTap: widget.onTap,
+                child: index == selectedIndex
+                    ? GTCheckboxSelected(
+                        onPress: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                      )
+                    : GTCheckboxUnSelected(
+                        onPress: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                      ),
               ),
             ),
           ),

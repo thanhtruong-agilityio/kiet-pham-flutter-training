@@ -1,0 +1,38 @@
+{
+    "loginTitle": "Log In",
+    "signUpTitle": "Sign Up",
+    "textFieldEmail": "Email",
+    "textFieldPassword": "Password",
+    
+    "onboardingPageFistTitle": "Explore",
+    "onboardingPageSecondTitle": "Easy Peasy",
+    "onboardingPagelastTitle": "Enjoy Tour",
+    "onboardingPageFirstDescription": "Explore your favourite destination around the world.",
+    "onboardingPageSecondDescription": "Make your travel experince very easy & peasy.",
+    "onboardingPageLastDescription": "Enjoy your favourite destination with your love one.",
+
+
+    "loginPageTitle": "Log In",
+    "loginPageButtonLoginGG": "Login With Google",
+    "loginPageButtonForgotPassword": "Forgot Password?",
+    "loginPageButtonSignUpHere": "Sign Up Here",
+
+    
+    "signUpPageTitle": "Sign Up",
+    "signUpPageGenderMale": "Male",
+    "signUpPageGenderFemale": "Female",
+    "signUpPageConfirmPassword": "Confirm Password",
+    "signUpPageTextTerms": "I agree and accept the ",
+    "signUpPageTextButtonTerms": "terms ot use.",
+
+
+    "mainPageTitle": "Get Ready For\nThe Travel Trip!",
+    "mainPageMyLocation": "My Location",
+    "mainPageBestPlace": "Best Place",
+    "mainPageHintTextSearchButton": "Find your location...",
+    "mainPageTextButton": "See All",
+
+    "tourDetailsPageService": "Service",
+
+    "hotPlacePage": "Hot Place"
+}

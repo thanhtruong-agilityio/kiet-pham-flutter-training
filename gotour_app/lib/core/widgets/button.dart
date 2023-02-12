@@ -14,7 +14,7 @@ class GTButton extends StatelessWidget {
   const factory GTButton.highlight({
     required String text,
     required VoidCallback onPress,
-    bool? activateShadow,
+    bool activateShadow,
   }) = _GTElevatedButtonHighlight;
 
   const factory GTButton.normal({
@@ -38,6 +38,7 @@ class GTButton extends StatelessWidget {
     required VoidCallback onPress,
     Color? iconColor,
     Color? btnColor,
+    Object? heroTag,
   }) = _GTButtonIcon;
 
   final Widget? child;
@@ -55,7 +56,7 @@ class _GTButtonIcon extends GTButton {
   const _GTButtonIcon({
     required this.icon,
     required super.onPress,
-    // this.heroTag,
+    this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
   });
@@ -63,7 +64,7 @@ class _GTButtonIcon extends GTButton {
   final String icon;
   final Color? iconColor;
   final Color? btnColor;
-  // final String? heroTag;
+  final Object? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +72,9 @@ class _GTButtonIcon extends GTButton {
       width: 40,
       height: 40,
       child: FloatingActionButton(
-        // heroTag: heroTag,
+        heroTag: heroTag,
         elevation: 0,
-        // hoverElevation: 0,
+        hoverElevation: 0,
         highlightElevation: 0,
         backgroundColor: btnColor,
         shape: RoundedRectangleBorder(
@@ -203,7 +204,7 @@ class _GTElevatedButtonHighlight extends GTButton {
   });
 
   final String text;
-  final bool? activateShadow;
+  final bool activateShadow;
 
   @override
   Widget build(BuildContext context) {
