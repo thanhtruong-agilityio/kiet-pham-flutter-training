@@ -67,19 +67,26 @@ class _GTButtonIcon extends GTButton {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPress as Function(),
-      child: Container(
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: FloatingActionButton(
+        heroTag: heroTag,
+        elevation: 0,
+        // hoverElevation: 0,
+        highlightElevation: 0,
+        backgroundColor: btnColor,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
-          color: btnColor,
         ),
-        child: SvgPicture.asset(
-          icon,
-          fit: BoxFit.scaleDown,
-          color: iconColor,
+        onPressed: onPress as Function(),
+        child: SizedBox(
+          height: 20,
+          width: 30,
+          child: SvgPicture.asset(
+            icon,
+            color: iconColor,
+          ),
         ),
       ),
     );
@@ -215,6 +222,7 @@ class _GTElevatedButtonHighlight extends GTButton {
           : null,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
           ),
