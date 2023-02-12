@@ -146,8 +146,8 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                 scrollDirection: Axis.horizontal,
                 itemCount: images.length,
                 itemBuilder: (context, index) => buildIndicator(
-                  index == _selectedIndex,
-                  size,
+                  isActivate: index == _selectedIndex,
+                  size: size,
                 ),
               ),
             ),
@@ -157,7 +157,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
     );
   }
 
-  Widget buildIndicator(bool isActivate, Size size) {
+  Widget buildIndicator({required bool isActivate, required Size size}) {
     return Center(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 2.5),

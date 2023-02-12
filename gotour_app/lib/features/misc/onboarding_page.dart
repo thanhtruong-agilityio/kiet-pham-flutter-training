@@ -99,9 +99,9 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
 
 class DotIndicator extends StatelessWidget {
   const DotIndicator({
-    super.key,
+    Key? key,
     this.isActivate = false,
-  });
+  }) : super(key: key);
   final bool isActivate;
 
   @override

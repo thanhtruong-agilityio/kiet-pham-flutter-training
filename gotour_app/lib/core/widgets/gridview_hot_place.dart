@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
@@ -15,7 +16,7 @@ class GTGridViewHotPlace extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GTText.titleMedium(context, 'Hot Place'),
+              child: GTText.titleMedium(context, S.of(context).hotPlacePage),
             ),
           ],
         ),
@@ -59,7 +60,6 @@ class BuildGridview extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              // color: ColorName.primaryColor,
               image: DecorationImage(
                 image: AssetImage(
                   dataImages[index],

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/card_best_place.dart';
@@ -30,7 +31,7 @@ class GTMainPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20, top: 47),
               child: GTText.titleLarge(
                 context,
-                'Get Ready For\nThe Travel Trip!',
+                S.of(context).mainPageTitle,
               ),
             ),
             Padding(
@@ -38,8 +39,10 @@ class GTMainPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Expanded(
-                    child: GTTextField(hintText: 'Find your location...'),
+                  Expanded(
+                    child: GTTextField(
+                      hintText: S.of(context).mainPageHintTextSearchButton,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 5),

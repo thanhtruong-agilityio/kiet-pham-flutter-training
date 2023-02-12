@@ -40,7 +40,7 @@ class GTTourDetails extends StatelessWidget {
               padding: const EdgeInsets.only(top: 26, left: 20, right: 20),
               child: GTText.bodyMedium(
                 context,
-                'Bangkok, Thailand’s capital, is a large city known for ornate shrines and vibrant street life. The boat-filled Chao Phraya River feeds its network of canals, flowing past the Rattanakosin royal district, home to opulent Grand Palace and its sacred Wat Phra Kaew Temple. earby is Wat Pho Temple with an enormous reclining Buddha and, on the opposite shore.',
+                '''Bangkok, Thailand's capital, is a large city known for ornate shrines and vibrant street life. The boat-filled Chao Phraya River feeds its network of canals, flowing past the Rattanakosin royal district, home to opulent Grand Palace and its sacred Wat Phra Kaew Temple. earby is Wat Pho Temple with an enormous reclining Buddha and, on the opposite shore.''',
                 color: ColorName.secondaryColor,
               ),
             )

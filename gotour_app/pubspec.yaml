@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: 1.0.2
   flutter_svg: 1.1.6
 
@@ -24,13 +26,10 @@ dev_dependencies:
 
   very_good_analysis: 3.1.0
 
-  # This package contains a recommended set of lints for Flutter apps, packages, and plugins to encourage good coding practices.
-  flutter_lints: 2.0.0
-
   # The Flutter code generator for your assets, fonts, colors
   flutter_gen: 5.0.3
-  build_runner:
-  flutter_gen_runner:
+  build_runner: null
+  flutter_gen_runner: null
 
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
@@ -38,7 +37,7 @@ dev_dependencies:
   # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
   # And share them easily with designers and clients.
   widgetbook: 2.4.1
-  
+
 flutter:
   uses-material-design: true
 
@@ -50,18 +49,22 @@ flutter:
     - family: Gilroy-Bold
       fonts:
         - asset: assets/fonts/Gilroy-Bold.ttf
-          style: normal
           weight: 700
 
     - family: Gilroy-Medium
       fonts:
         - asset: assets/fonts/Gilroy-Medium.ttf
-          style: normal
           weight: 400
 
 # Config gen assets
 flutter_gen:
-    output: lib/core/resources/assets_generated/ #Optional (default: lib/gen)
-    colors:
-      inputs:
-        - assets/color/colors.xml
+  output: lib/core/resources/assets_generated/ #Optional (default: lib/gen)
+  colors:
+    inputs:
+      - assets/color/colors.xml
+
+# Config i18n generation
+flutter_intl:
+  enabled: true
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/resources/l10n_generated

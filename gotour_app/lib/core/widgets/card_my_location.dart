@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/title_with_location.dart';
 
@@ -33,25 +34,33 @@ class GTMyLocation extends StatelessWidget {
         Assets.images.tibidabo.path,
         'Da Nang, Viet Nam',
         'Bien Thanh Khe',
-        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+        '''
+Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
+        ''',
       ),
       LocationInfo(
         Assets.images.tibidabo.path,
         'Quang Nam, Viet Nam',
         'Bien Thanh Khe',
-        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+        '''
+Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
+        ''',
       ),
       LocationInfo(
         Assets.images.tibidabo.path,
         'Hue, Viet Nam',
         'Bien Thanh Khe',
-        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+        '''
+Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
+        ''',
       ),
       LocationInfo(
         Assets.images.tibidabo.path,
         'Hoi An, Viet Nam',
         'Bien Thanh Khe',
-        "Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.",
+        '''
+Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
+        ''',
       ),
     ];
     final size = MediaQuery.of(context).size;
@@ -62,7 +71,10 @@ class GTMyLocation extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: GTText.titleMedium(context, 'My Location'),
+              child: GTText.titleMedium(
+                context,
+                S.of(context).mainPageMyLocation,
+              ),
             ),
             const Spacer(),
           ],
@@ -114,7 +126,7 @@ class GTCardMyLocation extends StatefulWidget {
 class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: widget.press,
       child: Container(
