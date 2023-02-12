@@ -23,16 +23,15 @@ double height({
   return lineHeight / fontSize;
 }
 
+TextStyle _defaultTextStyle = TextStyle(
+  fontFamily: FontFamily.gilroyBold,
+  fontStyle: FontStyle.normal,
+  fontWeight: FontWeight.w400,
+  color: _lightColorScheme.onBackground,
+);
+
 /// Reference to the application theme.
 class GTTheme {
-  static TextStyle _defaultTextStyle() {
-    return TextStyle(
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.w400,
-      color: _lightColorScheme.onBackground,
-    );
-  }
-
   /// Light theme and its settings.
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
@@ -44,7 +43,6 @@ class GTTheme {
     ),
     scaffoldBackgroundColor: _lightColorScheme.background,
     primaryColor: _lightColorScheme.primary,
-    textButtonTheme: TextButtonThemeData(style: ButtonStyle()),
     inputDecorationTheme: InputDecorationTheme(
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
@@ -78,57 +76,51 @@ class GTTheme {
       color: _lightColorScheme.surface,
     ),
     textTheme: TextTheme(
-      displayMedium: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      displayMedium: _defaultTextStyle.copyWith(
         fontSize: 42,
         height: height(lineHeight: 53, fontSize: 42),
       ),
-      displaySmall: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      displaySmall: _defaultTextStyle.copyWith(
         fontSize: 30,
         height: height(lineHeight: 38, fontSize: 30),
       ),
-      titleLarge: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      titleLarge: _defaultTextStyle.copyWith(
         fontSize: 26,
         height: height(lineHeight: 33, fontSize: 26),
       ),
-      titleMedium: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      titleMedium: _defaultTextStyle.copyWith(
         fontSize: 18,
         height: height(lineHeight: 22, fontSize: 18),
       ),
-      titleSmall: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      titleSmall: _defaultTextStyle.copyWith(
         fontSize: 16,
         height: height(lineHeight: 20, fontSize: 16),
       ),
-      labelLarge: _defaultTextStyle().copyWith(
+      labelLarge: _defaultTextStyle.copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 16,
         height: height(lineHeight: 19, fontSize: 16),
       ),
-      labelMedium: _defaultTextStyle().copyWith(
+      labelMedium: _defaultTextStyle.copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 14,
         height: height(lineHeight: 17, fontSize: 14),
       ),
-      labelSmall: _defaultTextStyle().copyWith(
+      labelSmall: _defaultTextStyle.copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 13,
         height: height(lineHeight: 16, fontSize: 13),
       ),
-      bodyLarge: _defaultTextStyle().copyWith(
-        fontFamily: FontFamily.gilroyBold,
+      bodyLarge: _defaultTextStyle.copyWith(
         fontSize: 11,
         height: height(lineHeight: 14, fontSize: 11),
       ),
-      bodyMedium: _defaultTextStyle().copyWith(
+      bodyMedium: _defaultTextStyle.copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 11,
         height: height(lineHeight: 17, fontSize: 11),
       ),
-      bodySmall: _defaultTextStyle().copyWith(
+      bodySmall: _defaultTextStyle.copyWith(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 10,
         height: height(lineHeight: 12, fontSize: 10),
