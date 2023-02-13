@@ -209,7 +209,7 @@ class _GTElevatedButtonHighlight extends GTButton {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      // padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: activateShadow == true
           ? const BoxDecoration(
               boxShadow: [

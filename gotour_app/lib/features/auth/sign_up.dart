@@ -20,91 +20,80 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          const Spacer(),
-          Container(
-            height: size.width / 2,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: Assets.images.logo.provider(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              Container(
+                height: size.width / 2,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: Assets.images.logo.provider(),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 20),
+              GTText.displaySmall(context, S.of(context).signUpTitle),
+              const SizedBox(height: 80),
+              GTTextField(
+                hintText: 'email@example.com',
+                title: S.of(context).textFieldEmail,
+                activateLabel: true,
+              ),
+              const SizedBox(height: 20),
+              GTGender(onTap: () {}),
+              const SizedBox(height: 20),
+              GTTextField(
+                hintText: S.of(context).textFieldPassword,
+                title: S.of(context).textFieldPassword,
+                hideText: true,
+                activateLabel: true,
+              ),
+              const SizedBox(height: 20),
+              GTTextField(
+                hintText: S.of(context).signUpPageConfirmPassword,
+                title: S.of(context).signUpPageConfirmPassword,
+                hideText: true,
+                activateLabel: true,
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  SizedBox(
+                    child: agreeTerms == false
+                        ? GTCheckboxUnSelected(
+                            onPress: () {
+                              setState(() {
+                                agreeTerms = !agreeTerms;
+                              });
+                            },
+                          )
+                        : GTCheckboxSelected(
+                            onPress: () {
+                              setState(() {
+                                agreeTerms = !agreeTerms;
+                              });
+                            },
+                          ),
+                  ),
+                  GTText.labelSmall(context, S.of(context).signUpPageTextTerms),
+                  GTButton.textHighlight(
+                    text: S.of(context).signUpPageTextButtonTerms,
+                    onPress: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              GTButton.highlight(
+                text: S.of(context).signUpTitle,
+                activateShadow: true,
+                onPress: () {},
+              ),
+            ],
           ),
-          const Spacer(),
-          GTText.displaySmall(context, S.of(context).signUpTitle),
-          const Spacer(
-            flex: 5,
-          ),
-          GTTextField(
-            hintText: 'email@example.com',
-            title: S.of(context).textFieldEmail,
-            activateLabel: true,
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GTGender(
-              onTap: () {},
-            ),
-          ),
-          const Spacer(),
-          GTTextField(
-            hideText: true,
-            hintText: S.of(context).textFieldPassword,
-            title: S.of(context).textFieldPassword,
-            activateLabel: true,
-          ),
-          const Spacer(),
-          GTTextField(
-            hideText: true,
-            hintText: S.of(context).textFieldPassword,
-            title: S.of(context).signUpPageConfirmPassword,
-            activateLabel: true,
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              children: [
-                SizedBox(
-                  child: agreeTerms == false
-                      ? GTCheckboxUnSelected(
-                          onPress: () {
-                            setState(() {
-                              agreeTerms = !agreeTerms;
-                            });
-                          },
-                        )
-                      : GTCheckboxSelected(
-                          onPress: () {
-                            setState(() {
-                              agreeTerms = !agreeTerms;
-                            });
-                          },
-                        ),
-                ),
-                GTText.labelSmall(context, S.of(context).signUpPageTextTerms),
-                GTButton.textHighlight(
-                  text: S.of(context).signUpPageTextButtonTerms,
-                  onPress: () {},
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: GTButton.highlight(
-              activateShadow: true,
-              text: S.of(context).signUpTitle,
-              onPress: () => context.go('/main-page'),
-            ),
-          ),
-          const Spacer(
-            flex: 2,
-          ),
-        ],
+        ),
       ),
     );
   }
