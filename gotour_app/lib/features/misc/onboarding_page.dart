@@ -35,6 +35,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
         child: Column(
           children: [
             Expanded(
+              flex: 14,
               child: PageView.builder(
                 itemCount: dataBoards.length,
                 controller: _pageController,
@@ -50,44 +51,47 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                 ),
               ),
             ),
-            Container(
-              // padding: const EdgeInsets.symmetric(horizontal: 20),
-              margin: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GTButton.icon(
-                    icon: Assets.icons.left,
-                    iconColor: ColorName.backgroundColor,
-                    onPress: () {
-                      _pageController.previousPage(
-                        duration: const Duration(milliseconds: 600),
-                        curve: Curves.ease,
-                      );
-                    },
-                  ),
-                  Row(
-                    children: List.generate(
-                      dataBoards.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: DotIndicator(
-                          isActivate: index == _pageIndex,
+            Expanded(
+              child: Container(
+                // padding: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GTButton.icon(
+                      icon: Assets.icons.left,
+                      iconColor: ColorName.backgroundColor,
+                      onPress: () {
+                        _pageController.previousPage(
+                          duration: const Duration(milliseconds: 600),
+                          curve: Curves.ease,
+                        );
+                      },
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(
+                        dataBoards.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: DotIndicator(
+                            isActivate: index == _pageIndex,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  GTButton.icon(
-                    icon: Assets.icons.right,
-                    iconColor: ColorName.backgroundColor,
-                    onPress: () => _pageIndex == dataBoards.length - 1
-                        ? context.go('/login-page')
-                        : _pageController.nextPage(
-                            duration: const Duration(milliseconds: 700),
-                            curve: Curves.ease,
-                          ),
-                  ),
-                ],
+                    GTButton.icon(
+                      icon: Assets.icons.right,
+                      iconColor: ColorName.backgroundColor,
+                      onPress: () => _pageIndex == dataBoards.length - 1
+                          ? context.go('/login-page')
+                          : _pageController.nextPage(
+                              duration: const Duration(milliseconds: 700),
+                              curve: Curves.ease,
+                            ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -167,7 +171,11 @@ class OnboardingContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(image),
+        Image.asset(
+          image,
+          width: size.width,
+          fit: BoxFit.cover,
+        ),
         const Spacer(),
         Padding(
           padding: const EdgeInsets.only(left: 18),
