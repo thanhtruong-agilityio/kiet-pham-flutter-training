@@ -89,7 +89,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
               GTButton.highlight(
                 text: S.of(context).signUpTitle,
                 activateShadow: true,
-                onPress: () {},
+                onPress: () => context.go('/main-page'),
               ),
             ],
           ),

@@ -2,7 +2,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/theme/theme.dart';
-import 'package:gotour_app/core/widgets/card_best_place.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -64,11 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
-            ),
-            GTBestPlace(
-              pressCard: () {},
-              pressBtn: () {},
-              pressBtnPrice: () {},
             ),
           ],
         ),
