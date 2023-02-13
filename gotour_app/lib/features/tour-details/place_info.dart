@@ -159,7 +159,8 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
 
   Widget buildIndicator({required bool isActivate, required Size size}) {
     return Center(
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         margin: const EdgeInsets.symmetric(horizontal: 2.5),
         height: isActivate ? 3 : 5,
         width: isActivate ? 20 : 5,
