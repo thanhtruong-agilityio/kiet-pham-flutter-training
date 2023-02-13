@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class LocationInfo {
   const LocationInfo(

@@ -24,7 +24,8 @@ class _GTServiceState extends State<GTService> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       height: 76,
       child: Row(
         children: [

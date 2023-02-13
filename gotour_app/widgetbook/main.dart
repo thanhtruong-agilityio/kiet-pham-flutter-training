@@ -4,8 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/theme/theme.dart';
 import 'package:gotour_app/core/widgets/bottom_navigation_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/service.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
+import 'package:gotour_app/features/tour-details/service.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {

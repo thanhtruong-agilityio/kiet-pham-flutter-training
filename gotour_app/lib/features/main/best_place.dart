@@ -3,8 +3,8 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
+import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/title_and_button.dart';
-import 'package:gotour_app/core/widgets/title_with_location.dart';
 
 class PlaceInfo {
   const PlaceInfo(this.image, this.location, this.placeName, this.price);
