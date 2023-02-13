@@ -5,8 +5,8 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
-class GTCheckboxGender extends StatefulWidget {
-  const GTCheckboxGender({
+class GTGender extends StatefulWidget {
+  const GTGender({
     super.key,
     required this.onTap,
   });
@@ -14,10 +14,10 @@ class GTCheckboxGender extends StatefulWidget {
   final Function onTap;
 
   @override
-  State<GTCheckboxGender> createState() => _GTCheckboxGenderState();
+  State<GTGender> createState() => _GTGenderState();
 }
 
-class _GTCheckboxGenderState extends State<GTCheckboxGender> {
+class _GTGenderState extends State<GTGender> {
   int selectedIndex = 0;
 
   @override
