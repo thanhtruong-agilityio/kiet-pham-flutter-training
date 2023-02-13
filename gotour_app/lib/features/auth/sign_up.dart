@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/checkbox_gender.dart';
+import 'package:gotour_app/core/widgets/gender.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 
@@ -44,7 +44,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GTCheckboxGender(
+            child: GTGender(
               onTap: () {},
             ),
           ),
