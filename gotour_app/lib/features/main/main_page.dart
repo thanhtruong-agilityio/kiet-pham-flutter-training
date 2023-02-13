@@ -10,7 +10,7 @@ import 'package:gotour_app/core/widgets/card_best_place.dart';
 import 'package:gotour_app/core/widgets/card_my_location.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title_with_textfield.dart';
+import 'package:gotour_app/core/widgets/textfield.dart';
 
 class GTMainPage extends StatelessWidget {
   const GTMainPage({super.key});

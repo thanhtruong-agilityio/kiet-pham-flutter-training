@@ -6,7 +6,7 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title_with_textfield.dart';
+import 'package:gotour_app/core/widgets/textfield.dart';
 
 class GTLoginPage extends StatelessWidget {
   const GTLoginPage({super.key});
