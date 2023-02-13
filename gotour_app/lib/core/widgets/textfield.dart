@@ -48,7 +48,7 @@ class _GTTextFieldState extends State<GTTextField> {
         ),
         SizedBox(
           height: 40,
-          child: TextField(
+          child: TextFormField(
             textAlignVertical: TextAlignVertical.bottom,
             style: Theme.of(context).textTheme.labelMedium,
             cursorColor: ColorName.textColor,

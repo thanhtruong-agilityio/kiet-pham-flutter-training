@@ -20,78 +20,84 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              Container(
-                height: size.width / 2,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: Assets.images.logo.provider(),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                const SizedBox(height: 40),
+                Container(
+                  height: size.width / 2,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: Assets.images.logo.provider(),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              GTText.displaySmall(context, S.of(context).signUpTitle),
-              const SizedBox(height: 80),
-              GTTextField(
-                hintText: 'email@example.com',
-                title: S.of(context).textFieldEmail,
-                activateLabel: true,
-              ),
-              const SizedBox(height: 20),
-              GTGender(onTap: () {}),
-              const SizedBox(height: 20),
-              GTTextField(
-                hintText: S.of(context).textFieldPassword,
-                title: S.of(context).textFieldPassword,
-                hideText: true,
-                activateLabel: true,
-              ),
-              const SizedBox(height: 20),
-              GTTextField(
-                hintText: S.of(context).signUpPageConfirmPassword,
-                title: S.of(context).signUpPageConfirmPassword,
-                hideText: true,
-                activateLabel: true,
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  SizedBox(
-                    child: agreeTerms == false
-                        ? GTCheckboxUnSelected(
-                            onPress: () {
-                              setState(() {
-                                agreeTerms = !agreeTerms;
-                              });
-                            },
-                          )
-                        : GTCheckboxSelected(
-                            onPress: () {
-                              setState(() {
-                                agreeTerms = !agreeTerms;
-                              });
-                            },
-                          ),
-                  ),
-                  GTText.labelSmall(context, S.of(context).signUpPageTextTerms),
-                  GTButton.textHighlight(
-                    text: S.of(context).signUpPageTextButtonTerms,
-                    onPress: () {},
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              GTButton.highlight(
-                text: S.of(context).signUpTitle,
-                activateShadow: true,
-                onPress: () => context.go('/main-page'),
-              ),
-            ],
+                const SizedBox(height: 20),
+                GTText.displaySmall(context, S.of(context).signUpTitle),
+                const SizedBox(height: 80),
+                GTTextField(
+                  hintText: 'email@example.com',
+                  title: S.of(context).textFieldEmail,
+                  activateLabel: true,
+                ),
+                const SizedBox(height: 20),
+                GTGender(onTap: () {}),
+                const SizedBox(height: 20),
+                GTTextField(
+                  hintText: S.of(context).textFieldPassword,
+                  title: S.of(context).textFieldPassword,
+                  hideText: true,
+                  activateLabel: true,
+                ),
+                const SizedBox(height: 20),
+                GTTextField(
+                  hintText: S.of(context).signUpPageConfirmPassword,
+                  title: S.of(context).signUpPageConfirmPassword,
+                  hideText: true,
+                  activateLabel: true,
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    SizedBox(
+                      child: agreeTerms == false
+                          ? GTCheckboxUnSelected(
+                              onPress: () {
+                                setState(() {
+                                  agreeTerms = !agreeTerms;
+                                });
+                              },
+                            )
+                          : GTCheckboxSelected(
+                              onPress: () {
+                                setState(() {
+                                  agreeTerms = !agreeTerms;
+                                });
+                              },
+                            ),
+                    ),
+                    GTText.labelSmall(
+                        context, S.of(context).signUpPageTextTerms),
+                    GTButton.textHighlight(
+                      text: S.of(context).signUpPageTextButtonTerms,
+                      onPress: () {},
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                GTButton.highlight(
+                  text: S.of(context).signUpTitle,
+                  activateShadow: true,
+                  onPress: () => context.go('/main-page'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

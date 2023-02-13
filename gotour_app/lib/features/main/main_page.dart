@@ -22,53 +22,58 @@ class GTMainPage extends StatelessWidget {
         onPressLeading: () {},
         onPressAvatar: () {},
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            // Title
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GTText.titleLarge(
-                context,
-                S.of(context).mainPageTitle,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              // Title
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GTText.titleLarge(
+                  context,
+                  S.of(context).mainPageTitle,
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-            // Search Box
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: GTTextField(
-                      hintText: S.of(context).mainPageHintTextSearchButton,
+              const SizedBox(height: 30),
+              // Search Box
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: GTTextField(
+                        hintText: S.of(context).mainPageHintTextSearchButton,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  GTButton.icon(
-                    icon: Assets.icons.search,
-                    iconColor: ColorName.backgroundColor,
-                    onPress: () {},
-                  ),
-                ],
+                    const SizedBox(width: 20),
+                    GTButton.icon(
+                      icon: Assets.icons.search,
+                      iconColor: ColorName.backgroundColor,
+                      onPress: () {},
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            // My Location
-            GTMyLocation(
-              press: () => GoRouter.of(context).pushNamed('tour-details'),
-            ),
-            const SizedBox(height: 20),
-            // Best Place
-            GTBestPlace(
-              pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
-              pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),
-              pressBtnPrice: () {},
-            ),
-          ],
+              const SizedBox(height: 20),
+              // My Location
+              GTMyLocation(
+                press: () => GoRouter.of(context).pushNamed('tour-details'),
+              ),
+              const SizedBox(height: 20),
+              // Best Place
+              GTBestPlace(
+                pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
+                pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),
+                pressBtnPrice: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
