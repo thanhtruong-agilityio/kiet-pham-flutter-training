@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/card_image_with_bookmark.dart';
 import 'package:gotour_app/core/widgets/location.dart';
+import 'package:gotour_app/core/widgets/place_image.dart';
 
 class GTPlaceInfoTourDetails extends StatelessWidget {
   const GTPlaceInfoTourDetails({

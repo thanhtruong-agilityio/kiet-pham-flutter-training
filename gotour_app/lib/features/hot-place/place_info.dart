@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
-import 'package:gotour_app/core/widgets/card_image_with_bookmark.dart';
 import 'package:gotour_app/core/widgets/location.dart';
+import 'package:gotour_app/core/widgets/place_image.dart';
 import 'package:gotour_app/core/widgets/tag.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {

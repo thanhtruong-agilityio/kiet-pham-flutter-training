@@ -14,10 +14,7 @@ class GTGridViewHotPlace extends StatelessWidget {
       children: [
         Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GTText.titleMedium(context, S.of(context).hotPlacePage),
-            ),
+            GTText.titleMedium(context, S.of(context).hotPlacePage),
           ],
         ),
         const SizedBox(
@@ -46,26 +43,23 @@ class BuildGridview extends StatelessWidget {
       Assets.images.phranang.path,
       Assets.images.doipui.path,
     ];
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-        ),
-        itemCount: dataImages.length,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {},
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image: AssetImage(
-                  dataImages[index],
-                ),
-                fit: BoxFit.cover,
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+      ),
+      itemCount: dataImages.length,
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+              image: AssetImage(
+                dataImages[index],
               ),
+              fit: BoxFit.cover,
             ),
           ),
         ),
