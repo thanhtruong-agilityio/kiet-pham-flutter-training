@@ -22,12 +22,12 @@ class GTTextField extends StatefulWidget {
 }
 
 class _GTTextFieldState extends State<GTTextField> {
-  bool _passWis = false;
+  bool _obscureText = false;
 
   @override
   void initState() {
     super.initState();
-    _passWis = widget.hideText;
+    _obscureText = widget.hideText;
   }
 
   @override
@@ -54,19 +54,18 @@ class _GTTextFieldState extends State<GTTextField> {
             height: 40,
             child: TextField(
               textAlignVertical: TextAlignVertical.bottom,
-              // textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelMedium,
               cursorColor: ColorName.textColor,
-              obscureText: _passWis,
+              obscureText: _obscureText,
               decoration: InputDecoration(
                 suffixIcon: widget.hideText
                     ? GestureDetector(
                         onTap: () {
                           setState(() {
-                            _passWis = !_passWis;
+                            _obscureText = !_obscureText;
                           });
                         },
-                        child: _passWis
+                        child: _obscureText
                             ? const Icon(
                                 Icons.visibility_off_outlined,
                                 color: ColorName.textColor,

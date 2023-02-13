@@ -5,7 +5,7 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/checkbox_gender.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title_with_textfield.dart';
+import 'package:gotour_app/core/widgets/textfield.dart';
 
 class GTSignUpPage extends StatefulWidget {
   const GTSignUpPage({super.key});
