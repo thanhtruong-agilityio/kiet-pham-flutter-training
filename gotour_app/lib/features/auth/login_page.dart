@@ -15,77 +15,69 @@ class GTLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          const Spacer(
-            flex: 4,
-          ),
-          Container(
-            height: size.width / 2,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: Assets.images.logo.provider(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 120),
+            Container(
+              height: size.width / 2,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: Assets.images.logo.provider(),
+                ),
               ),
             ),
-          ),
-          const Spacer(
-            flex: 2,
-          ),
-          GTText.displaySmall(context, S.of(context).loginTitle),
-          const Spacer(
-            flex: 2,
-          ),
-          GTTextField(
-            hintText: 'email@example.com',
-            title: S.of(context).textFieldEmail,
-            activateLabel: true,
-          ),
-          const Spacer(),
-          GTTextField(
-            hintText: S.of(context).textFieldPassword,
-            title: S.of(context).textFieldPassword,
-            hideText: true,
-            activateLabel: true,
-          ),
-          const Spacer(),
-          GTButton.textHighlight(
-            text: S.of(context).loginPageButtonForgotPassword,
-            onPress: () {},
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: GTButton.highlight(
-              activateShadow: true,
-              text: S.of(context).loginPageTitle,
-              onPress: () => context.go('/main-page'),
+            const SizedBox(height: 20),
+            GTText.displaySmall(context, S.of(context).loginTitle),
+            const SizedBox(height: 30),
+            GTTextField(
+              hintText: 'email@example.com',
+              title: S.of(context).textFieldEmail,
+              activateLabel: true,
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: GTText.labelLarge(
+            const SizedBox(height: 20),
+            GTTextField(
+              hintText: S.of(context).textFieldPassword,
+              title: S.of(context).textFieldPassword,
+              hideText: true,
+              activateLabel: true,
+            ),
+            const SizedBox(height: 28),
+            GTButton.textHighlight(
+              text: S.of(context).loginPageButtonForgotPassword,
+              onPress: () {},
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: GTButton.highlight(
+                activateShadow: true,
+                text: S.of(context).loginPageTitle,
+                onPress: () => context.go('/main-page'),
+              ),
+            ),
+            const SizedBox(height: 10),
+            GTText.labelLarge(
               context,
               'Or',
               color: ColorName.iconsColor,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: GTButton.normal(
-              text: S.of(context).loginPageButtonLoginGG,
-              icon: Assets.icons.google,
-              onPress: () {},
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: GTButton.normal(
+                text: S.of(context).loginPageButtonLoginGG,
+                icon: Assets.icons.google,
+                onPress: () {},
+              ),
             ),
-          ),
-          const Spacer(),
-          GTButton.textHighlight(
-            text: S.of(context).loginPageButtonSignUpHere,
-            onPress: () => context.go('/sign-up-page'),
-          ),
-          const Spacer(
-            flex: 2,
-          ),
-        ],
+            const SizedBox(height: 10),
+            GTButton.textHighlight(
+              text: S.of(context).loginPageButtonSignUpHere,
+              onPress: () => context.go('/sign-up-page'),
+            ),
+          ],
+        ),
       ),
     );
   }
