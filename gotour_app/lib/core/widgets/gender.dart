@@ -77,8 +77,8 @@ class GTCheckboxUnSelected extends StatelessWidget {
         onTap: onPress,
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 7,
-            vertical: 7,
+            horizontal: 7.5,
+            vertical: 7.5,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
