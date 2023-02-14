@@ -149,7 +149,7 @@ class GTCardBestPlace extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GTTitleWithLocation(
+                      GTLocation(
                         placeName: placeName,
                         location: location,
                         colorIcon: ColorName.backgroundColor,

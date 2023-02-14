@@ -86,7 +86,9 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
                               ),
                       ),
                       GTText.labelSmall(
-                          context, S.of(context).signUpPageTextTerms),
+                        context,
+                        S.of(context).signUpPageTextTerms,
+                      ),
                       GTButton.textHighlight(
                         text: S.of(context).signUpPageTextButtonTerms,
                         onPress: () {},

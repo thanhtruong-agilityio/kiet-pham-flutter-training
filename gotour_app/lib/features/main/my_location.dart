@@ -160,7 +160,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                               children: [
                                 imagePlace(),
                                 const SizedBox(width: 11),
-                                GTTitleWithLocation(
+                                GTLocation(
                                   placeName: widget.placeName,
                                   location: widget.location,
                                   colorIcon: ColorName.primaryColor,

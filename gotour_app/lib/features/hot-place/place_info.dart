@@ -49,10 +49,11 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GTTitleWithLocation(
+                GTLocation(
                   placeName: widget.placeName,
                   location: widget.location,
                   colorLocation: ColorName.iconsColor,
+                  colorIcon: ColorName.primaryColor,
                 ),
                 const SizedBox(
                   height: 15,

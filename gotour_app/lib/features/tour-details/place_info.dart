@@ -43,10 +43,11 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GTTitleWithLocation(
+                  GTLocation(
                     placeName: namePlace,
                     location: location,
                     colorLocation: ColorName.iconsColor,
+                    colorIcon: ColorName.primaryColor,
                   ),
                   const SizedBox(height: 24),
                   button(context),

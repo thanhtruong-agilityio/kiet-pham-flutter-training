@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
-class GTTitleWithLocation extends StatelessWidget {
-  const GTTitleWithLocation({
+class GTLocation extends StatelessWidget {
+  const GTLocation({
     super.key,
     required this.placeName,
     required this.location,
