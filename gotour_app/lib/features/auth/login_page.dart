@@ -35,7 +35,10 @@ class GTLoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  GTText.displaySmall(context, S.of(context).loginTitle),
+                  GTText.displaySmall(
+                    context,
+                    text: S.of(context).loginTitle,
+                  ),
                   const SizedBox(height: 30),
                   GTTextField(
                     hintText: 'email@example.com',
@@ -46,7 +49,7 @@ class GTLoginPage extends StatelessWidget {
                   GTTextField(
                     hintText: S.of(context).textFieldPassword,
                     title: S.of(context).textFieldPassword,
-                    hideText: true,
+                    obscureText: true,
                     activateLabel: true,
                   ),
                   const SizedBox(height: 28),
@@ -63,7 +66,7 @@ class GTLoginPage extends StatelessWidget {
                   const SizedBox(height: 10),
                   GTText.labelLarge(
                     context,
-                    'Or',
+                    text: 'Or',
                     color: ColorName.iconsColor,
                   ),
                   const SizedBox(height: 10),

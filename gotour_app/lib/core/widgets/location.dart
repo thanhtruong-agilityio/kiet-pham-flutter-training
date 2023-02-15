@@ -26,7 +26,7 @@ class GTLocation extends StatelessWidget {
       children: [
         GTText.titleSmall(
           context,
-          placeName,
+          text: placeName,
           color: colorName,
         ),
         const SizedBox(
@@ -44,7 +44,7 @@ class GTLocation extends StatelessWidget {
               padding: const EdgeInsets.only(left: 9),
               child: GTText.labelMedium(
                 context,
-                location,
+                text: location,
                 color: colorLocation,
               ),
             ),

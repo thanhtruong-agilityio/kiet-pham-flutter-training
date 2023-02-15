@@ -8,8 +8,8 @@ class GTText extends StatelessWidget {
   });
 
   factory GTText.bodySmall(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -19,8 +19,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.bodyMedium(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -30,8 +30,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.bodyLarge(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -41,8 +41,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.labelSmall(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -52,8 +52,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.labelMedium(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -64,8 +64,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.labelLarge(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -75,8 +75,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.titleSmall(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -86,8 +86,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.titleMedium(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -98,8 +98,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.titleLarge(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -109,8 +109,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.displaySmall(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(
@@ -121,8 +121,8 @@ class GTText extends StatelessWidget {
   }
 
   factory GTText.displayMedium(
-    BuildContext context,
-    String text, {
+    BuildContext context, {
+    required String text,
     Color? color,
   }) {
     return GTText(

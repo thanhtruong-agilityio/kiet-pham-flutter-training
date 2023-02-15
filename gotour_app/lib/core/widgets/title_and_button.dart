@@ -17,7 +17,10 @@ class GTTitleAndSeeAllBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GTText.titleMedium(context, title),
+        GTText.titleMedium(
+          context,
+          text: title,
+        ),
         const Spacer(),
         GTButton.text(
           onPress: onPress!,

@@ -36,7 +36,7 @@ class GTMainPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GTText.titleLarge(
                   context,
-                  S.of(context).mainPageTitle,
+                  text: S.of(context).mainPageTitle,
                 ),
               ),
               const SizedBox(height: 30),

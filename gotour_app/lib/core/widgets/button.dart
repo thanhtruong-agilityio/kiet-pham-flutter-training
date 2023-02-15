@@ -111,7 +111,7 @@ class _GTButtonText extends GTButton {
       onTap: onPress,
       child: GTText.bodyMedium(
         context,
-        text,
+        text: text,
         color: ColorName.tagColor,
       ),
     );
@@ -135,7 +135,7 @@ class _GTButtonTextHighlight extends GTButton {
       onTap: onPress,
       child: GTText.labelSmall(
         context,
-        text,
+        text: text,
         color: ColorName.primaryColor,
       ),
     );
@@ -155,7 +155,6 @@ class _GTElevatedButton extends GTButton {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -188,7 +187,10 @@ class _GTElevatedButton extends GTButton {
             const SizedBox(
               width: 5,
             ),
-            GTText.titleSmall(context, text),
+            GTText.titleSmall(
+              context,
+              text: text,
+            ),
           ],
         ),
       ),
@@ -209,7 +211,6 @@ class _GTElevatedButtonHighlight extends GTButton {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: activateShadow == true
           ? const BoxDecoration(
               boxShadow: [
@@ -235,12 +236,12 @@ class _GTElevatedButtonHighlight extends GTButton {
           child: activateShadow == true
               ? GTText.titleSmall(
                   context,
-                  text,
+                  text: text,
                   color: ColorName.onPrimaryColor,
                 )
               : GTText.bodyLarge(
                   context,
-                  text,
+                  text: text,
                   color: ColorName.backgroundColor,
                 ),
         ),

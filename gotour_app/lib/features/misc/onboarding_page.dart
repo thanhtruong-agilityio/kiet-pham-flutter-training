@@ -184,7 +184,7 @@ class OnboardingContent extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  GTText.displayMedium(context, title),
+                  GTText.displayMedium(context, text: title),
                   const Spacer(),
                 ],
               ),
@@ -192,7 +192,7 @@ class OnboardingContent extends StatelessWidget {
                 width: size.width * 2 / 3,
                 child: GTText.labelLarge(
                   context,
-                  description,
+                  text: description,
                   color: ColorName.iconsColor,
                 ),
               ),

@@ -42,7 +42,10 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
                     ),
                   ),
                   // const SizedBox(height: 20),
-                  GTText.displaySmall(context, S.of(context).signUpTitle),
+                  GTText.displaySmall(
+                    context,
+                    text: S.of(context).signUpTitle,
+                  ),
                   const SizedBox(height: 20),
                   GTTextField(
                     hintText: 'email@example.com',
@@ -55,14 +58,14 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
                   GTTextField(
                     hintText: S.of(context).textFieldPassword,
                     title: S.of(context).textFieldPassword,
-                    hideText: true,
+                    obscureText: true,
                     activateLabel: true,
                   ),
                   const SizedBox(height: 20),
                   GTTextField(
                     hintText: S.of(context).signUpPageConfirmPassword,
                     title: S.of(context).signUpPageConfirmPassword,
-                    hideText: true,
+                    obscureText: true,
                     activateLabel: true,
                   ),
                   const SizedBox(height: 20),
@@ -87,7 +90,7 @@ class _GTSignUpPageState extends State<GTSignUpPage> {
                       ),
                       GTText.labelSmall(
                         context,
-                        S.of(context).signUpPageTextTerms,
+                        text: S.of(context).signUpPageTextTerms,
                       ),
                       GTButton.textHighlight(
                         text: S.of(context).signUpPageTextButtonTerms,

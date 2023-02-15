@@ -18,7 +18,7 @@ class GTTag extends StatelessWidget {
       ),
       child: GTText.bodySmall(
         context,
-        text,
+        text: text,
         color: ColorName.onTag,
       ),
     );

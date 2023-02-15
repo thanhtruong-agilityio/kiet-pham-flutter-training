@@ -37,7 +37,7 @@ class _GTServiceState extends State<GTService> {
               children: [
                 GTText.titleMedium(
                   context,
-                  S.of(context).tourDetailsPageService,
+                  text: S.of(context).tourDetailsPageService,
                 ),
                 const SizedBox(
                   height: 14,

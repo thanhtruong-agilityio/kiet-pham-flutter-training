@@ -9,11 +9,11 @@ class GTTextField extends StatefulWidget {
     required this.hintText,
     this.title,
     this.activateLabel = false,
-    this.hideText = false,
+    this.obscureText = false,
   });
 
   final String? title;
-  final bool hideText;
+  final bool obscureText;
   final bool activateLabel;
   final String hintText;
 
@@ -27,7 +27,7 @@ class _GTTextFieldState extends State<GTTextField> {
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.hideText;
+    _obscureText = widget.obscureText;
   }
 
   @override
@@ -38,7 +38,7 @@ class _GTTextFieldState extends State<GTTextField> {
         if (widget.activateLabel == true)
           GTText.labelLarge(
             context,
-            widget.title!,
+            text: widget.title!,
             color: ColorName.titleOfTextfieldColor,
           )
         else
@@ -54,7 +54,7 @@ class _GTTextFieldState extends State<GTTextField> {
             cursorColor: ColorName.textColor,
             obscureText: _obscureText,
             decoration: InputDecoration(
-              suffixIcon: widget.hideText
+              suffixIcon: widget.obscureText
                   ? GestureDetector(
                       onTap: () {
                         setState(() {

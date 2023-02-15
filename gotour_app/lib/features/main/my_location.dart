@@ -73,7 +73,7 @@ Portugal there's so much more to discover. Read about the Azores' new wave of ec
               padding: const EdgeInsets.only(left: 20),
               child: GTText.titleMedium(
                 context,
-                S.of(context).mainPageMyLocation,
+                text: S.of(context).mainPageMyLocation,
               ),
             ),
             const Spacer(),
@@ -178,7 +178,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                     padding: const EdgeInsets.only(right: 39),
                     child: GTText.bodyMedium(
                       context,
-                      widget.description,
+                      text: widget.description,
                       color: ColorName.iconsColor,
                     ),
                   )
