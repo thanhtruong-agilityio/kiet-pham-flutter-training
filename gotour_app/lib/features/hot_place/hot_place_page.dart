@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
-import 'package:gotour_app/features/hot-place/hot_place.dart';
-import 'package:gotour_app/features/hot-place/place_info.dart';
+import 'package:gotour_app/features/hot_place/hot_place.dart';
+import 'package:gotour_app/features/hot_place/place_info.dart';
 
 class GTHotPlace extends StatelessWidget {
   const GTHotPlace({super.key});

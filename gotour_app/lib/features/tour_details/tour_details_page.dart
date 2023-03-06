@@ -4,8 +4,8 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/features/tour-details/place_info.dart';
-import 'package:gotour_app/features/tour-details/service.dart';
+import 'package:gotour_app/features/tour_details/place_info.dart';
+import 'package:gotour_app/features/tour_details/service.dart';
 
 class GTTourDetails extends StatelessWidget {
   const GTTourDetails({super.key});

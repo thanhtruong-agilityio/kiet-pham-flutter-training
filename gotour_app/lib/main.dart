@@ -7,10 +7,10 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/theme/theme.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
 import 'package:gotour_app/features/auth/sign_up.dart';
-import 'package:gotour_app/features/hot-place/hot_place_page.dart';
+import 'package:gotour_app/features/hot_place/hot_place_page.dart';
 import 'package:gotour_app/features/main/main_page.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
-import 'package:gotour_app/features/tour-details/tour_details_page.dart';
+import 'package:gotour_app/features/tour_details/tour_details_page.dart';
 
 void main() {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
