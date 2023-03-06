@@ -10,12 +10,20 @@ class GTTextField extends StatefulWidget {
     this.title,
     this.activateLabel = false,
     this.obscureText = false,
+    this.keyboardType,
+    this.autovalidateMode,
+    this.validator,
+    this.controller,
   });
 
   final String? title;
   final bool obscureText;
   final bool activateLabel;
   final String hintText;
+  final TextInputType? keyboardType;
+  final AutovalidateMode? autovalidateMode;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   State<GTTextField> createState() => _GTTextFieldState();
@@ -49,10 +57,14 @@ class _GTTextFieldState extends State<GTTextField> {
         SizedBox(
           height: 40,
           child: TextFormField(
+            controller: widget.controller,
+            keyboardType: widget.keyboardType,
+            autovalidateMode: widget.autovalidateMode,
             textAlignVertical: TextAlignVertical.bottom,
             style: Theme.of(context).textTheme.labelMedium,
             cursorColor: ColorName.textColor,
             obscureText: _obscureText,
+            validator: widget.validator,
             decoration: InputDecoration(
               suffixIcon: widget.obscureText
                   ? GestureDetector(

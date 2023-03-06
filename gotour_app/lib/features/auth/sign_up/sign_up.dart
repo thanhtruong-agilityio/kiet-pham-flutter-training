@@ -7,14 +7,23 @@ import 'package:gotour_app/core/widgets/gender.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 
-class GTSignUpPage extends StatefulWidget {
+class GTSignUpPage extends StatelessWidget {
   const GTSignUpPage({super.key});
 
   @override
-  State<GTSignUpPage> createState() => _GTSignUpPageState();
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
 
-class _GTSignUpPageState extends State<GTSignUpPage> {
+class _GTSignUpPage extends StatefulWidget {
+  const _GTSignUpPage({super.key});
+
+  @override
+  State<_GTSignUpPage> createState() => _GTSignUpPageState();
+}
+
+class _GTSignUpPageState extends State<_GTSignUpPage> {
   bool agreeTerms = false;
   @override
   Widget build(BuildContext context) {
