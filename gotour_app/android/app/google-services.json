@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "202132298198",
+    "project_id": "loginfirebase-c9b0b",
+    "storage_bucket": "loginfirebase-c9b0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202132298198:android:df5855eb7eb299e80aac77",
+        "android_client_info": {
+          "package_name": "com.example.gotour_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202132298198-a79ovpucl491kkifp84fincc63oh0hr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-vK6sMZsrJ343axK3OQ_S3yUe6HqhyO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202132298198-a79ovpucl491kkifp84fincc63oh0hr4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "202132298198-g7kbin5ppdu091ki71lh4ho7kr7799qq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginFirebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -20,6 +20,18 @@ dependencies:
   #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
   go_router: 3.1.1
 
+  # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
+  firebase_auth: 4.2.9
+
+  # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
+  firebase_core: 2.7.0
+
+  # A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
+  equatable: 2.0.5
+
+  # Flutter plugin for Google Sign-In, a secure authentication system for signing in with a Google account on Android and iOS.
+  google_sign_in: 6.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
