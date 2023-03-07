@@ -92,7 +92,7 @@ class _GTAppBarInPage extends GTAppBar {
     return AppBar(
       centerTitle: true,
       leading: Padding(
-        padding: const EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(right: 10),
         child: GTButton.icon(
           icon: Assets.icons.back,
           btnColor: ColorName.backgroundColor,
