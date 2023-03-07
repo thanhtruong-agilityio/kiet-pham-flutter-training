@@ -133,7 +133,7 @@ class _GTButtonTextHighlight extends GTButton {
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
       onTap: onPress,
-      child: GTText.labelSmall(
+      child: GTText.labelMedium(
         context,
         text: text,
         color: ColorName.primaryColor,
