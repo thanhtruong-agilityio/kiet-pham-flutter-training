@@ -44,6 +44,12 @@ class GTTheme {
     scaffoldBackgroundColor: _lightColorScheme.background,
     primaryColor: _lightColorScheme.primary,
     inputDecorationTheme: InputDecorationTheme(
+      focusedErrorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 1.5,
+          color: ColorName.errorColor,
+        ),
+      ),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           width: 1.5,
