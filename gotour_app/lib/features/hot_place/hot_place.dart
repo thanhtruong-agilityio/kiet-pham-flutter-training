@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
+import 'package:go_router/go_router.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({super.key});
@@ -51,7 +52,9 @@ class BuildGridview extends StatelessWidget {
       ),
       itemCount: dataImages.length,
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          context.goNamed('tour-details');
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

@@ -14,7 +14,7 @@ class GTTourDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return GTScaffold(
       appBar: GTAppBar.inPage(
-        onPressLeading: () => context.go('/main-page'),
+        onPressLeading: () => Navigator.pop(context),
         onPressNotification: () {},
         onPressMore: () {},
       ),

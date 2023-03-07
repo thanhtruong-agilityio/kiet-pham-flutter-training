@@ -10,7 +10,6 @@ import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
-import 'package:gotour_app/features/main/main_page.dart';
 
 class GTLoginPage extends StatelessWidget {
   const GTLoginPage({super.key});
@@ -44,8 +43,12 @@ class _GTLoginPage extends StatelessWidget {
       builder: (context, state) {
         if (state is Loading) {
           // Showing the loading indicator while the user is signing in
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
           );
         }
         if (state is UnAuthenticated) {
