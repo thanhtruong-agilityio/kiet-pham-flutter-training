@@ -1,5 +1,6 @@
 // import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 
@@ -23,6 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
       await authRepository.signIn(email: event.email, password: event.password);
       emit(Authenticated());
@@ -36,6 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
       await authRepository.signUp(email: event.email, password: event.password);
       emit(Authenticated());
@@ -49,6 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     GoogleSignInRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
       await authRepository.signInWithGoogle();
       emit(Authenticated());

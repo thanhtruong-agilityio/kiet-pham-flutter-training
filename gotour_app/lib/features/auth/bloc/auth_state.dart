@@ -1,5 +1,6 @@
 part of 'auth_bloc.dart';
 
+@immutable
 abstract class AuthState extends Equatable {}
 
 class Loading extends AuthState {
