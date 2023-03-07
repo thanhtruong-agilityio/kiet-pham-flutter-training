@@ -54,16 +54,18 @@ final GoRouter _router = GoRouter(
       name: 'main',
       path: '/main-page',
       builder: (context, state) => const GTMainPage(),
-    ),
-    GoRoute(
-      name: 'tour-details',
-      path: '/tour-details',
-      builder: (context, state) => const GTTourDetails(),
-    ),
-    GoRoute(
-      name: 'hot-place',
-      path: '/hot-place',
-      builder: (context, state) => const GTHotPlace(),
+      routes: [
+        GoRoute(
+          name: 'tour-details',
+          path: 'tour-details',
+          builder: (context, state) => const GTTourDetails(),
+        ),
+        GoRoute(
+          name: 'hot-place',
+          path: 'hot-place',
+          builder: (context, state) => const GTHotPlace(),
+        ),
+      ],
     ),
   ],
 );
