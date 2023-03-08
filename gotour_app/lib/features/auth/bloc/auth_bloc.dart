@@ -33,8 +33,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      emit(Loading());
       await authRepository.signIn(email: event.email, password: event.password);
       emit(Authenticated());
     } on Exception catch (e) {
@@ -47,8 +47,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      emit(Loading());
       await authRepository.signUp(email: event.email, password: event.password);
       emit(Authenticated());
     } on Exception catch (e) {
@@ -61,8 +61,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     GoogleSignInRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      emit(Loading());
       await authRepository.signInWithGoogle();
       emit(Authenticated());
     } on Exception catch (e) {
@@ -75,8 +75,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignOutRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
-    await authRepository.signOut();
-    emit(UnAuthenticated());
+    // emit(Loading());
+    try {
+      emit(Loading());
+      await authRepository.signOut();
+      emit(UnAuthenticated());
+    } on Exception catch (e) {
+      emit(AuthError(e.toString()));
+      emit(Authenticated());
+    }
   }
 }
