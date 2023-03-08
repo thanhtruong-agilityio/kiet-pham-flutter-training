@@ -25,7 +25,13 @@ class GTLoginPage extends StatelessWidget {
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error)),
+            SnackBar(
+              content: GTText.labelLarge(
+                context,
+                text: state.error,
+                color: Theme.of(context).colorScheme.error,
+              ),
+            ),
           );
         }
       },
