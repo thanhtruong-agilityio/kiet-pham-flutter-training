@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/widgets/alert_dialog.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
@@ -40,7 +40,20 @@ class _GTMainPage extends StatelessWidget {
         avatar: Assets.images.author.path,
         onPressLeading: () {},
         onPressAvatar: () {
-          context.read<AuthBloc>().add(SignOutRequested());
+          showDialog<Function>(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => GTAlertDialog(
+              onPressCancel: () {
+                Navigator.of(context).pop();
+              },
+              onPressYes: () {
+                context.read<AuthBloc>().add(SignOutRequested());
+              },
+              title: 'Log Out',
+              content: 'Do you want to log out',
+            ),
+          );
         },
       ),
       body: GestureDetector(
