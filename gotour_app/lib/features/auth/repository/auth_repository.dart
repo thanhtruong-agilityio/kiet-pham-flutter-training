@@ -1,41 +1,64 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gotour_app/features/auth/models/user.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 
-  Future<void> signUp({required String email, required String password}) async {
+  UserEntity _mapFirebaseUser(User? user) {
+    if (user == null) {
+      return UserEntity.empty();
+    }
+
+    var splittedName = ['Name ', 'LastName'];
+    if (user.displayName != null) {
+      splittedName = user.displayName!.split(' ');
+    }
+
+    final map = <String, String>{
+      'id': user.uid,
+      'firstName': splittedName.first,
+      'lastName': splittedName.last,
+      'email': user.email ?? '',
+      'imageUrl': user.photoURL ?? '',
+      // 'age': '',
+      'gender': '',
+      // 'phoneNumber': '',
+      // 'address': '',
+    };
+    return UserEntity.fromJson(map);
+  }
+
+  Future<UserEntity> signUp({
+    required String email,
+    required String password,
+  }) async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      final userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return _mapFirebaseUser(userCredential.user);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        throw Exception('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        throw Exception('The account already exists for that email.');
-      }
-    } on Exception catch (e) {
-      throw Exception(e.toString());
+      throw Exception(_determineError(e));
     }
   }
 
-  Future<void> signIn({
+  Future<UserEntity> signIn({
     required String email,
     required String password,
   }) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      return _mapFirebaseUser(_firebaseAuth.currentUser);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw Exception('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        throw Exception('Wrong password provided for that user.');
-      }
+      throw Exception(_determineError(e));
     }
   }
 
-  Future<void> signInWithGoogle() async {
+  Future<UserEntity> signInWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
 
@@ -46,47 +69,50 @@ class AuthRepository {
         idToken: googleAuth?.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } on Exception catch (e) {
-      throw Exception(e.toString());
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      return _mapFirebaseUser(userCredential.user);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(_determineError(e));
     }
   }
 
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
-    } on Exception catch (e) {
-      // throw Exception(e.toString());
-      throw Exception(e);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(_determineError(e));
     }
   }
 
-  AuthError _determineError(FirebaseAuthException exception) {
-    switch (exception.code) {
+  Object _determineError(FirebaseAuthException e) {
+    switch (e.code) {
       case 'invalid-email':
-        return AuthError.invalidEmail;
+        return AuthError.invalidEmail.value;
       case 'user-disabled':
-        return AuthError.userDisabled;
+        return AuthError.userDisabled.value;
       case 'user-not-found':
-        return AuthError.userNotFound;
+        return AuthError.userNotFound.value;
       case 'wrong-password':
-        return AuthError.wrongPassword;
+        return AuthError.wrongPassword.value;
       case 'email-already-in-use':
-        return AuthError.emailAlreadyInUse;
+        return AuthError.emailAlreadyInUse.value;
       case 'account-exists-with-different-credential':
-        return AuthError.emailAlreadyInUse;
+        return AuthError.accountExistsWithDifferentCredential.value;
       case 'invalid-credential':
-        return AuthError.invalidCredential;
+        return AuthError.invalidCredential.value;
       case 'operation-not-allowed':
-        return AuthError.operationNotAllowed;
+        return AuthError.operationNotAllowed.value;
       case 'weak-password':
-        return AuthError.weakPassword;
+        return AuthError.weakPassword.value;
       case 'ERROR_MISSING_GOOGLE_AUTH_TOKEN':
-        return AuthError.missingGoogleAuthToken;
+        return AuthError.missingGoogleAuthToken.value;
+      case 'sign_in_canceled':
+        return AuthError.signInCanceled.value;
       case 'network-request-failed':
-        return AuthError.networkError;
+        return AuthError.networkError.value;
       default:
-        return AuthError.error;
+        return AuthError.error.value;
     }
   }
 }
@@ -98,9 +124,44 @@ enum AuthError {
   wrongPassword,
   emailAlreadyInUse,
   invalidCredential,
+  accountExistsWithDifferentCredential,
   operationNotAllowed,
-  weakPassword,
-  networkError,
   missingGoogleAuthToken,
+  signInCanceled,
+  networkError,
+  weakPassword,
   error,
+}
+
+extension AuthErrorExtension on AuthError {
+  String get value {
+    switch (this) {
+      case AuthError.invalidEmail:
+        return 'The email address is badly formatted.';
+      case AuthError.userDisabled:
+        return 'The user account has been disabled by an administrator.';
+      case AuthError.userNotFound:
+        return 'There is no user record corresponding to this identifier.';
+      case AuthError.wrongPassword:
+        return 'The password is invalid.';
+      case AuthError.emailAlreadyInUse:
+        return 'The email address is already in use by another account.';
+      case AuthError.accountExistsWithDifferentCredential:
+        return '''An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address''';
+      case AuthError.invalidCredential:
+        return '''An account already exists with the same email address but different sign-in credentials.''';
+      case AuthError.operationNotAllowed:
+        return '''The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.''';
+      case AuthError.weakPassword:
+        return 'The password provided is too weak.';
+      case AuthError.missingGoogleAuthToken:
+        return 'Missing Google Auth Token';
+      case AuthError.signInCanceled:
+        return 'The sign-in process has been canceled.';
+      case AuthError.networkError:
+        return '''A network error (such as timeout, interrupted connection or unreachable host) has occurred.''';
+      case AuthError.error:
+        return 'An unknown error';
+    }
+  }
 }
