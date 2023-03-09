@@ -56,10 +56,7 @@ class _GTLoginPage extends StatelessWidget {
             ),
           );
         }
-        if (state is UnAuthenticated) {
-          return const _GTSignUpView();
-        }
-        return Container();
+        return const _GTSignUpView();
       },
     );
   }
@@ -117,11 +114,11 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       context,
                       text: S.of(context).signUpTitle,
                     ),
-                    const SizedBox(height: 20),
                     GTTextField(
                       controller: _emailController,
                       hintText: 'email@example.com',
                       title: S.of(context).textFieldEmail,
+                      keyboardType: TextInputType.emailAddress,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (email) {
@@ -225,7 +222,12 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                         }
                       },
                     ),
-                    // const SizedBox(height: 20),
+                    const SizedBox(height: 10),
+                    GTButton.textHighlight(
+                      text: 'Already have an account?',
+                      onPress: () => context.go('/login-page'),
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),

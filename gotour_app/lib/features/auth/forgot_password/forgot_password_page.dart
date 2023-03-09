@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -11,16 +9,26 @@ import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
 
-class GTLoginPage extends StatelessWidget {
-  const GTLoginPage({super.key});
+class GTForgotPasswordPage extends StatelessWidget {
+  const GTForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is Authenticated) {
+        if (state is SubmitForgotPassword) {
           // Navigating to the dashboard screen if the user is authenticated
-          context.go('/main-page');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: GTText.labelLarge(
+                context,
+                text:
+                    '''We have sent you a password reset email. Please check your email''',
+                color: Theme.of(context).colorScheme.background,
+              ),
+            ),
+          );
+          context.go('/login-page');
         }
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
@@ -35,13 +43,13 @@ class GTLoginPage extends StatelessWidget {
           );
         }
       },
-      child: const _GTLoginPage(),
+      child: const _GTForgotPasswordPage(),
     );
   }
 }
 
-class _GTLoginPage extends StatelessWidget {
-  const _GTLoginPage();
+class _GTForgotPasswordPage extends StatelessWidget {
+  const _GTForgotPasswordPage();
 
   @override
   Widget build(BuildContext context) {
@@ -57,29 +65,27 @@ class _GTLoginPage extends StatelessWidget {
             ),
           );
         }
-        return const _GTLoginView();
+        return const _GTForgotPasswordView();
       },
     );
   }
 }
 
-class _GTLoginView extends StatefulWidget {
-  const _GTLoginView();
+class _GTForgotPasswordView extends StatefulWidget {
+  const _GTForgotPasswordView();
 
   @override
-  State<_GTLoginView> createState() => _GTLoginViewState();
+  State<_GTForgotPasswordView> createState() => __GTForgotPasswordViewState();
 }
 
-class _GTLoginViewState extends State<_GTLoginView> {
+class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
     super.dispose();
+    _emailController.dispose();
   }
 
   @override
@@ -110,7 +116,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     const SizedBox(height: 20),
                     GTText.displaySmall(
                       context,
-                      text: S.of(context).loginTitle,
+                      text: S.of(context).forgotPasswordPageTitle,
                     ),
                     const SizedBox(height: 30),
                     GTTextField(
@@ -127,61 +133,23 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    GTTextField(
-                      controller: _passwordController,
-                      hintText: S.of(context).textFieldPassword,
-                      title: S.of(context).textFieldPassword,
-                      obscureText: true,
-                      activateLabel: true,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (password) {
-                        return !AuthValidator.isValidPassword(password!)
-                            ? 'Enter a valid email'
-                            : null;
-                      },
-                    ),
-                    const SizedBox(height: 28),
-                    GTButton.textHighlight(
-                      text: S.of(context).loginPageButtonForgotPassword,
-                      onPress: () => context.go('/forgot-password-page'),
-                    ),
-                    const SizedBox(height: 10),
                     GTButton.highlight(
                       activateShadow: true,
-                      text: S.of(context).loginPageTitle,
+                      text: S.of(context).forgotPasswordPageButtonSubmit,
                       onPress: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
-                            SignInRequested(
-                              _emailController.text,
-                              _passwordController.text,
-                            ),
+                            ForgotPasswordRequested(_emailController.text),
                           );
                         }
                       },
                     ),
-                    const SizedBox(height: 10),
-                    GTText.labelLarge(
-                      context,
-                      text: 'Or',
-                      color: ColorName.iconsColor,
-                    ),
-                    const SizedBox(height: 10),
-                    GTButton.normal(
-                      text: S.of(context).loginPageButtonLoginGG,
-                      icon: Assets.icons.google,
-                      onPress: () {
-                        BlocProvider.of<AuthBloc>(context).add(
-                          GoogleSignInRequested(),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    GTButton.textHighlight(
-                      text: S.of(context).loginPageButtonSignUpHere,
-                      onPress: () => context.go('/sign-up-page'),
-                    ),
                     const SizedBox(height: 20),
+                    GTButton.textHighlight(
+                      text:
+                          S.of(context).forgotPasswordPageButtonBackToLoginPage,
+                      onPress: () => context.go('/login-page'),
+                    ),
                   ],
                 ),
               ),
