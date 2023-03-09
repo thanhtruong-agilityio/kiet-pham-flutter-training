@@ -22,6 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "forgotPasswordPageButtonBackToLoginPage":
+            MessageLookupByLibrary.simpleMessage("Back to Login Page."),
+        "forgotPasswordPageButtonSubmit":
+            MessageLookupByLibrary.simpleMessage("Submit"),
+        "forgotPasswordPageTitle":
+            MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "hotPlacePage": MessageLookupByLibrary.simpleMessage("Hot Place"),
         "loginPageButtonForgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),

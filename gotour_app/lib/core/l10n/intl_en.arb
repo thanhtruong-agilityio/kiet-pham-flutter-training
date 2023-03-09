@@ -25,6 +25,10 @@
     "signUpPageTextTerms": "I agree and accept the ",
     "signUpPageTextButtonTerms": "terms ot use.",
 
+    "forgotPasswordPageTitle": "Forgot Password",
+    "forgotPasswordPageButtonSubmit": "Submit",
+    "forgotPasswordPageButtonBackToLoginPage": "Back to Login Page.",
+
 
     "mainPageTitle": "Get Ready For\nThe Travel Trip!",
     "mainPageMyLocation": "My Location",

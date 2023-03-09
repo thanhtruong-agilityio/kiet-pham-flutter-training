@@ -250,6 +250,36 @@ class S {
     );
   }
 
+  /// `Forgot Password`
+  String get forgotPasswordPageTitle {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPasswordPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get forgotPasswordPageButtonSubmit {
+    return Intl.message(
+      'Submit',
+      name: 'forgotPasswordPageButtonSubmit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Login Page.`
+  String get forgotPasswordPageButtonBackToLoginPage {
+    return Intl.message(
+      'Back to Login Page.',
+      name: 'forgotPasswordPageButtonBackToLoginPage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Get Ready For\nThe Travel Trip!`
   String get mainPageTitle {
     return Intl.message(
