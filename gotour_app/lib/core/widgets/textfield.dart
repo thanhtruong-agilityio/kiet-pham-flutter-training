@@ -65,6 +65,9 @@ class _GTTextFieldState extends State<GTTextField> {
             cursorColor: ColorName.textColor,
             obscureText: _obscureText,
             validator: widget.validator,
+            onEditingComplete: () {
+              FocusScope.of(context).nextFocus();
+            },
             decoration: InputDecoration(
               suffixIcon: widget.obscureText
                   ? GestureDetector(
