@@ -25,6 +25,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     // the SignOutRequested Event to the AuthBloc to handle it and
     // emit the UnAuthenticated State
     on<SignOutRequested>(_handleSignOutRequested);
+    // When User Presses the Forgot Password Button, we will send
+    // the ForgotPasswordRequested Event to the AuthBloc to handle it and
+    // emit the UnAuthenticated State
+    on<ForgotPasswordRequested>(_handleForgotPasswordRequested);
   }
 
   final AuthRepository authRepository;
@@ -33,8 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
-      emit(Loading());
       await authRepository.signIn(email: event.email, password: event.password);
       emit(Authenticated());
     } on Exception catch (e) {
@@ -47,8 +51,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
-      emit(Loading());
       await authRepository.signUp(email: event.email, password: event.password);
       emit(Authenticated());
     } on Exception catch (e) {
@@ -61,8 +65,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     GoogleSignInRequested event,
     Emitter<AuthState> emit,
   ) async {
+    emit(Loading());
     try {
-      emit(Loading());
       await authRepository.signInWithGoogle();
       emit(Authenticated());
     } on Exception catch (e) {
@@ -75,14 +79,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignOutRequested event,
     Emitter<AuthState> emit,
   ) async {
-    // emit(Loading());
+    emit(Loading());
     try {
-      emit(Loading());
       await authRepository.signOut();
       emit(UnAuthenticated());
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
       emit(Authenticated());
+    }
+  }
+
+  Future<void> _handleForgotPasswordRequested(
+    ForgotPasswordRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(Loading());
+    try {
+      await authRepository.forgotPassword(email: event.email);
+      emit(SubmitForgotPassword());
+    } on Exception catch (e) {
+      emit(AuthError(e.toString()));
+      emit(ErrorForgotPassword());
     }
   }
 }

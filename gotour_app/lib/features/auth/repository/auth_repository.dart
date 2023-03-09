@@ -34,8 +34,7 @@ class AuthRepository {
     required String password,
   }) async {
     try {
-      final userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -50,8 +49,8 @@ class AuthRepository {
     required String password,
   }) async {
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return _mapFirebaseUser(_firebaseAuth.currentUser);
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
@@ -70,16 +69,28 @@ class AuthRepository {
       );
 
       final userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+          await _firebaseAuth.signInWithCredential(credential);
       return _mapFirebaseUser(userCredential.user);
     } on FirebaseAuthException catch (e) {
-      throw Exception(_determineError(e));
+      throw Exception(e);
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
+    } on FirebaseAuthException catch (e) {
+      throw Exception(_determineError(e));
+    }
+  }
+
+  Future<void> forgotPassword({
+    required String email,
+  }) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
     }
