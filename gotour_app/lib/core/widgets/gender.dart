@@ -148,7 +148,7 @@ class _GTCheckboxState extends State<GTCheckbox> {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
             child: GTText.labelMedium(
               context,
               text: widget.text,
