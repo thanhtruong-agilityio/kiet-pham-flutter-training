@@ -52,6 +52,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
               ),
             ),
             Expanded(
+              flex: 2,
               child: Container(
                 // padding: const EdgeInsets.symmetric(horizontal: 20),
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -174,7 +175,8 @@ class OnboardingContent extends StatelessWidget {
         Image.asset(
           image,
           width: size.width,
-          fit: BoxFit.cover,
+          height: size.height * 2 / 3,
+          fit: BoxFit.fill,
         ),
         const Spacer(),
         Padding(
