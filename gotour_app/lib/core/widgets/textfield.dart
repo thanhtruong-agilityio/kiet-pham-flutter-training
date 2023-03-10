@@ -48,19 +48,17 @@ class _GTTextFieldState extends State<GTTextField> {
             context,
             text: widget.title!,
             color: ColorName.titleOfTextfieldColor,
-          )
-        else
-          const SizedBox(),
+          ),
         const SizedBox(
           height: 5,
         ),
         SizedBox(
-          height: 40,
+          height: 70,
           child: TextFormField(
             controller: widget.controller,
             keyboardType: widget.keyboardType,
             autovalidateMode: widget.autovalidateMode,
-            textAlignVertical: TextAlignVertical.bottom,
+            // textAlignVertical: TextAlignVertical.bottom,
             style: Theme.of(context).textTheme.labelMedium,
             cursorColor: ColorName.textColor,
             obscureText: _obscureText,
@@ -69,6 +67,7 @@ class _GTTextFieldState extends State<GTTextField> {
               FocusScope.of(context).nextFocus();
             },
             decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
               suffixIcon: widget.obscureText
                   ? GestureDetector(
                       onTap: () {
