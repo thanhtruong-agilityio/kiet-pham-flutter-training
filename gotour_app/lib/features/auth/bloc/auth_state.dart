@@ -38,3 +38,8 @@ class SubmitForgotPassword extends AuthState {
   @override
   List<Object?> get props => [];
 }
+
+class UnVerifyEmail extends AuthState {
+  @override
+  List<Object?> get props => [];
+}

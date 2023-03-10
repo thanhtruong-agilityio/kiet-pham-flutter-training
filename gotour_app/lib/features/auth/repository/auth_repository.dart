@@ -38,6 +38,7 @@ class AuthRepository {
         email: email,
         password: password,
       );
+      await _firebaseAuth.currentUser!.sendEmailVerification();
       return _mapFirebaseUser(userCredential.user);
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
@@ -50,7 +51,9 @@ class AuthRepository {
   }) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       return _mapFirebaseUser(_firebaseAuth.currentUser);
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));

@@ -24,6 +24,9 @@ class GTMainPage extends StatelessWidget {
         if (state is UnAuthenticated) {
           context.go('/login-page');
         }
+        if (state is UnVerifyEmail) {
+          context.go('/login-page');
+        }
       },
       child: const _GTMainPage(),
     );
@@ -78,7 +81,7 @@ class _GTMainPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: GTTextField(
@@ -86,10 +89,13 @@ class _GTMainPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 20),
-                    GTButton.icon(
-                      icon: Assets.icons.search,
-                      iconColor: ColorName.backgroundColor,
-                      onPress: () {},
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: GTButton.icon(
+                        icon: Assets.icons.search,
+                        iconColor: ColorName.backgroundColor,
+                        onPress: () {},
+                      ),
                     ),
                   ],
                 ),

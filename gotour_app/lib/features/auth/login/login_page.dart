@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/widgets/alert_dialog.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
@@ -21,6 +22,21 @@ class GTLoginPage extends StatelessWidget {
         if (state is Authenticated) {
           // Navigating to the dashboard screen if the user is authenticated
           context.go('/main-page');
+        }
+        if (state is UnVerifyEmail) {
+          showDialog<String>(
+            context: context,
+            builder: (context) => GTAlertDialog(
+              onPressCancel: () {
+                Navigator.of(context).pop();
+              },
+              onPressYes: () {
+                Navigator.of(context).pop();
+              },
+              title: 'verify email',
+              content: 'check your email',
+            ),
+          );
         }
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
@@ -107,12 +123,11 @@ class _GTLoginViewState extends State<_GTLoginView> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
                     GTText.displaySmall(
                       context,
                       text: S.of(context).loginTitle,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     GTTextField(
                       controller: _emailController,
                       hintText: 'email@example.com',
@@ -126,7 +141,6 @@ class _GTLoginViewState extends State<_GTLoginView> {
                             : null;
                       },
                     ),
-                    const SizedBox(height: 20),
                     GTTextField(
                       controller: _passwordController,
                       hintText: S.of(context).textFieldPassword,
@@ -136,11 +150,10 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (password) {
                         return !AuthValidator.isValidPassword(password!)
-                            ? 'Enter a valid email'
+                            ? 'Password must be more than 6 characters'
                             : null;
                       },
                     ),
-                    const SizedBox(height: 28),
                     GTButton.textHighlight(
                       text: S.of(context).loginPageButtonForgotPassword,
                       onPress: () => context.go('/forgot-password-page'),

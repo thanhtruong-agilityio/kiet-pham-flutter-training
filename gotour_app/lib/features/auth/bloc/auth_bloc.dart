@@ -1,5 +1,6 @@
 // import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
@@ -40,7 +41,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
     try {
       await authRepository.signIn(email: event.email, password: event.password);
-      emit(Authenticated());
+      final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
+      if (isVerifyEmail == true) {
+        emit(Authenticated());
+      } else {
+        emit(UnVerifyEmail());
+      }
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
       emit(UnAuthenticated());
@@ -54,7 +60,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
     try {
       await authRepository.signUp(email: event.email, password: event.password);
-      emit(Authenticated());
+      final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
+      if (isVerifyEmail == true) {
+        emit(Authenticated());
+      } else {
+        emit(UnVerifyEmail());
+      }
     } on Exception catch (e) {
       emit(AuthError(e.toString()));
       emit(UnAuthenticated());

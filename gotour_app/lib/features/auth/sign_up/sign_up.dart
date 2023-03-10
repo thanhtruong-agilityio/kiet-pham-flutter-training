@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/widgets/alert_dialog.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/gender.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -20,6 +21,21 @@ class GTSignUpPage extends StatelessWidget {
         if (state is Authenticated) {
           // Navigating to the dashboard screen if the user is authenticated
           context.go('/main-page');
+        }
+        if (state is UnVerifyEmail) {
+          showDialog<String>(
+            context: context,
+            builder: (context) => GTAlertDialog(
+              onPressCancel: () {
+                Navigator.of(context).pop();
+              },
+              onPressYes: () {
+                context.go('/login-page');
+              },
+              title: 'verify email',
+              content: 'check your email',
+            ),
+          );
         }
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
@@ -94,141 +110,128 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
           FocusScope.of(context).unfocus();
         },
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Container(
-                      height: size.width / 2,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: Assets.images.logo.provider(),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: size.width / 3,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: Assets.images.logo.provider(),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
-                    ),
-                    // const SizedBox(height: 20),
-                    GTText.displaySmall(
-                      context,
-                      text: S.of(context).signUpTitle,
-                    ),
-                    GTTextField(
-                      controller: _emailController,
-                      hintText: 'email@example.com',
-                      title: S.of(context).textFieldEmail,
-                      keyboardType: TextInputType.emailAddress,
-                      activateLabel: true,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (email) {
-                        return !AuthValidator.isValidEmail(email!)
-                            ? 'Enter a valid email'
-                            : null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    GTGender(onTap: () {}),
-                    const SizedBox(height: 20),
-                    GTTextField(
-                      controller: _passwordController,
-                      hintText: S.of(context).textFieldPassword,
-                      title: S.of(context).textFieldPassword,
-                      obscureText: true,
-                      activateLabel: true,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (password) {
-                        return !AuthValidator.isValidPassword(password!)
-                            ? 'Enter a valid email'
-                            : null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    GTTextField(
-                      controller: _passwordConfirmController,
-                      hintText: S.of(context).signUpPageConfirmPassword,
-                      title: S.of(context).signUpPageConfirmPassword,
-                      obscureText: true,
-                      activateLabel: true,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (passwordConfirm) {
-                        return !AuthValidator.isValidPasswordConfirm(
-                          _passwordController.text,
-                          passwordConfirm!,
-                        )
-                            ? 'Enter a valid email'
-                            : null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        // Checkbox(
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(5),
-                        //   ),
-                        //   side: const BorderSide(
-                        //     color: Colors.red,
-                        //   ),
-                        //   value: agreeTerms,
-                        //   activeColor: Colors.grey,
-                        //   checkColor: Theme.of(context).colorScheme.primary,
-                        //   onChanged: (value) {
-                        //     setState(() {
-                        //       agreeTerms = value!;
-                        //     });
-                        //   },
-                        // ),
-                        SizedBox(
-                          child: agreeTerms == false
-                              ? GTCheckboxUnSelected(
-                                  onPress: () {
-                                    setState(() {
-                                      agreeTerms = !agreeTerms;
-                                    });
-                                  },
-                                )
-                              : GTCheckboxSelected(
-                                  onPress: () {
-                                    setState(() {
-                                      agreeTerms = !agreeTerms;
-                                    });
-                                  },
-                                ),
-                        ),
-                        GTText.labelMedium(
-                          context,
-                          text: S.of(context).signUpPageTextTerms,
-                        ),
-                        GTButton.textHighlight(
-                          text: S.of(context).signUpPageTextButtonTerms,
-                          onPress: () {},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    GTButton.highlight(
-                      text: S.of(context).signUpTitle,
-                      activateShadow: true,
-                      onPress: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            SignUpRequested(
-                              _emailController.text,
-                              _passwordController.text,
-                              _passwordConfirmController.text,
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    GTButton.textHighlight(
-                      text: 'Already have an account?',
-                      onPress: () => context.go('/login-page'),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 20),
+                      GTText.displaySmall(
+                        context,
+                        text: S.of(context).signUpTitle,
+                      ),
+                      GTTextField(
+                        controller: _emailController,
+                        hintText: 'email@example.com',
+                        title: S.of(context).textFieldEmail,
+                        keyboardType: TextInputType.emailAddress,
+                        activateLabel: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (email) {
+                          return !AuthValidator.isValidEmail(email!)
+                              ? 'Enter a valid email'
+                              : null;
+                        },
+                      ),
+                      // const SizedBox(height: 20),
+                      GTGender(onTap: () {}),
+                      const SizedBox(height: 20),
+                      GTTextField(
+                        controller: _passwordController,
+                        hintText: S.of(context).textFieldPassword,
+                        title: S.of(context).textFieldPassword,
+                        obscureText: true,
+                        activateLabel: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (password) {
+                          return !AuthValidator.isValidPassword(password!)
+                              ? 'Password must be more than 6 characters'
+                              : null;
+                        },
+                      ),
+                      GTTextField(
+                        controller: _passwordConfirmController,
+                        hintText: S.of(context).signUpPageConfirmPassword,
+                        title: S.of(context).signUpPageConfirmPassword,
+                        obscureText: true,
+                        activateLabel: true,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (passwordConfirm) {
+                          return !AuthValidator.isValidPasswordConfirm(
+                            _passwordController.text,
+                            passwordConfirm!,
+                          )
+                              ? 'Confirm password must be same as password'
+                              : null;
+                        },
+                      ),
+                      // const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          SizedBox(
+                            child: agreeTerms == false
+                                ? GTCheckboxUnSelected(
+                                    onPress: () {
+                                      setState(() {
+                                        agreeTerms = !agreeTerms;
+                                      });
+                                    },
+                                  )
+                                : GTCheckboxSelected(
+                                    onPress: () {
+                                      setState(() {
+                                        agreeTerms = !agreeTerms;
+                                      });
+                                    },
+                                  ),
+                          ),
+                          GTText.labelMedium(
+                            context,
+                            text: S.of(context).signUpPageTextTerms,
+                          ),
+                          GTButton.textHighlight(
+                            text: S.of(context).signUpPageTextButtonTerms,
+                            onPress: () {},
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      GTButton.highlight(
+                        text: S.of(context).signUpTitle,
+                        activateShadow: true,
+                        onPress: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<AuthBloc>(context).add(
+                              SignUpRequested(
+                                _emailController.text,
+                                _passwordController.text,
+                                _passwordConfirmController.text,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      GTButton.textHighlight(
+                        text: 'Already have an account?',
+                        onPress: () => context.go('/login-page'),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ),

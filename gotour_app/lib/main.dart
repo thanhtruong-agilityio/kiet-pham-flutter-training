@@ -9,6 +9,7 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 
 import 'package:gotour_app/core/theme/theme.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
+import 'package:gotour_app/features/auth/forgot_password/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login/login_page.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 import 'package:gotour_app/features/auth/sign_up/sign_up.dart';
@@ -44,7 +45,8 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData &&
+              FirebaseAuth.instance.currentUser!.emailVerified == true) {
             return const GTMainPage();
           }
           return const GTOnboardingScreen();
@@ -54,6 +56,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/login-page',
       builder: (context, state) => const GTLoginPage(),
+    ),
+    GoRoute(
+      path: '/forgot-password-page',
+      builder: (context, state) => const GTForgotPasswordPage(),
     ),
     GoRoute(
       path: '/sign-up-page',
@@ -84,10 +90,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2)).then(
-      (value) => {
-        FlutterNativeSplash.remove(),
-      },
+    Future.delayed(
+      const Duration(seconds: 2),
+      FlutterNativeSplash.remove,
     );
   }
 
