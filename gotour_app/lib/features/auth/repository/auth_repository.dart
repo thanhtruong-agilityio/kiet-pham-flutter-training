@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/features/auth/models/user.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseFirestore = FirebaseFirestore.instance.collection('users');
 
-  UserEntity _mapFirebaseUser(User? user) {
+  Object _mapFirebaseUser(User? user) {
     if (user == null) {
       return UserEntity.empty();
     }
@@ -15,21 +17,21 @@ class AuthRepository {
       splittedName = user.displayName!.split(' ');
     }
 
-    final map = <String, String>{
+    final map = <String, dynamic>{
       'id': user.uid,
       'firstName': splittedName.first,
       'lastName': splittedName.last,
       'email': user.email ?? '',
       'imageUrl': user.photoURL ?? '',
-      // 'age': '',
+      'age': '',
       'gender': '',
-      // 'phoneNumber': '',
-      // 'address': '',
+      'phoneNumber': '',
+      'address': '',
     };
-    return UserEntity.fromJson(map);
+    return map;
   }
 
-  Future<UserEntity> signUp({
+  Future<void> signUp({
     required String email,
     required String password,
   }) async {
@@ -38,14 +40,15 @@ class AuthRepository {
         email: email,
         password: password,
       );
+      await _firebaseFirestore
+          .add(_mapFirebaseUser(userCredential.user) as Map<String, dynamic>);
       await _firebaseAuth.currentUser!.sendEmailVerification();
-      return _mapFirebaseUser(userCredential.user);
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
     }
   }
 
-  Future<UserEntity> signIn({
+  Future<void> signIn({
     required String email,
     required String password,
   }) async {
@@ -54,13 +57,13 @@ class AuthRepository {
         email: email,
         password: password,
       );
-      return _mapFirebaseUser(_firebaseAuth.currentUser);
+      // await _firebaseFirestore.get();
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
     }
   }
 
-  Future<UserEntity> signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
 
@@ -71,9 +74,7 @@ class AuthRepository {
         idToken: googleAuth?.idToken,
       );
 
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(credential);
-      return _mapFirebaseUser(userCredential.user);
+      await _firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw Exception(e);
     } on Exception catch (e) {
