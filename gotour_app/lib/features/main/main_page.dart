@@ -12,6 +12,7 @@ import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/main/best_place.dart';
+import 'package:gotour_app/features/main/bloc/main_bloc.dart';
 import 'package:gotour_app/features/main/my_location.dart';
 
 class GTMainPage extends StatelessWidget {
@@ -35,6 +36,32 @@ class GTMainPage extends StatelessWidget {
 
 class _GTMainPage extends StatelessWidget {
   const _GTMainPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MainBloc, MainState>(
+      builder: (context, state) {
+        if (state is MainInitialState) {
+          Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          );
+        }
+        if (state is MainLoadedState) {
+          return const _GTMainView();
+        }
+        return Container();
+      },
+    );
+  }
+}
+
+class _GTMainView extends StatelessWidget {
+  const _GTMainView();
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +134,7 @@ class _GTMainPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // Best Place
+              // Text(data.length.toString()),
               GTBestPlace(
                 pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
                 pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),
