@@ -42,16 +42,30 @@ class _GTMainPage extends StatelessWidget {
     return BlocBuilder<MainBloc, MainState>(
       builder: (context, state) {
         if (state is MainInitialState) {
-          Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
+          // Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
+          // Future.delayed(const Duration(seconds: 1), () {
+          //   context.read<MainBloc>().add(MainRequested());
+          // });
+          // return Scaffold(
+          //   body: Center(
+          //     child: CircularProgressIndicator(
+          //       color: Theme.of(context).colorScheme.primary,
+          //     ),
+          //   ),
+          // );
           return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
+              child: GTButton.textHighlight(
+                text: 'load',
+                onPress: () {
+                  context.read<MainBloc>().add(MainRequested());
+                },
               ),
             ),
           );
         }
         if (state is MainLoadedState) {
+          // Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
           return const _GTMainView();
         }
         return Container();

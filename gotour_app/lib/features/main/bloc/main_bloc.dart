@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gotour_app/features/main/models/model_hot_place.dart';
 import 'package:gotour_app/features/main/models/model_my_location.dart';
@@ -22,10 +25,19 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   ) async {
     try {
       final listBestPlace = await mainRepository.fetchDataHotPlace();
+      final idUser = FirebaseAuth.instance.currentUser!.uid;
+      final idTours =
+          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
+
+      final listIdTour = idTours.map((idTour) => idTour.idTour).toList();
+
+      final listMyLocation =
+          await mainRepository.getDataFromDocuments(documentIds: listIdTour);
+
       emit(
         MainLoadedState(
           listBestPlace: listBestPlace,
-          listMyLocation: [],
+          listMyLocation: listMyLocation,
         ),
       );
     } on Exception catch (e) {
