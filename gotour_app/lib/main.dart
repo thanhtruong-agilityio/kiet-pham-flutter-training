@@ -14,9 +14,7 @@ import 'package:gotour_app/features/auth/login/login_page.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 import 'package:gotour_app/features/auth/sign_up/sign_up.dart';
 import 'package:gotour_app/features/hot_place/hot_place_page.dart';
-import 'package:gotour_app/features/main/bloc/main_bloc.dart';
 import 'package:gotour_app/features/main/main_page.dart';
-import 'package:gotour_app/features/main/repository/main_repository.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
 import 'package:gotour_app/features/tour_details/tour_details_page.dart';
 import 'package:gotour_app/firebase_options.dart';
@@ -101,28 +99,12 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => AuthRepository(),
+    return RepositoryProvider(
+      create: (context) => AuthRepository(),
+      child: BlocProvider(
+        create: (context) => AuthBloc(
+          authRepository: RepositoryProvider.of<AuthRepository>(context),
         ),
-        RepositoryProvider(
-          create: (context) => MainRepository(),
-        ),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => AuthBloc(
-              authRepository: RepositoryProvider.of<AuthRepository>(context),
-            ),
-          ),
-          BlocProvider(
-            create: (context) => MainBloc(
-              mainRepository: RepositoryProvider.of<MainRepository>(context),
-            ),
-          ),
-        ],
         child: MaterialApp.router(
           locale: const Locale('en', 'US'),
           localizationsDelegates: const [

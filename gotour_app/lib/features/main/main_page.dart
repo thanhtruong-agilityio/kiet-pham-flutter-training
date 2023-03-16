@@ -11,9 +11,8 @@ import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
-import 'package:gotour_app/features/main/best_place.dart';
-import 'package:gotour_app/features/main/bloc/main_bloc.dart';
-import 'package:gotour_app/features/main/my_location.dart';
+import 'package:gotour_app/features/main/best_place/view/best_place.dart';
+import 'package:gotour_app/features/main/my_location/view/my_location.dart';
 
 class GTMainPage extends StatelessWidget {
   const GTMainPage({super.key});
@@ -29,47 +28,7 @@ class GTMainPage extends StatelessWidget {
           context.go('/login-page');
         }
       },
-      child: const _GTMainPage(),
-    );
-  }
-}
-
-class _GTMainPage extends StatelessWidget {
-  const _GTMainPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MainBloc, MainState>(
-      builder: (context, state) {
-        if (state is MainInitialState) {
-          // Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
-          // Future.delayed(const Duration(seconds: 1), () {
-          //   context.read<MainBloc>().add(MainRequested());
-          // });
-          // return Scaffold(
-          //   body: Center(
-          //     child: CircularProgressIndicator(
-          //       color: Theme.of(context).colorScheme.primary,
-          //     ),
-          //   ),
-          // );
-          return Scaffold(
-            body: Center(
-              child: GTButton.textHighlight(
-                text: 'load',
-                onPress: () {
-                  context.read<MainBloc>().add(MainRequested());
-                },
-              ),
-            ),
-          );
-        }
-        if (state is MainLoadedState) {
-          // Future.microtask(() => context.read<MainBloc>().add(MainRequested()));
-          return const _GTMainView();
-        }
-        return Container();
-      },
+      child: const _GTMainView(),
     );
   }
 }
