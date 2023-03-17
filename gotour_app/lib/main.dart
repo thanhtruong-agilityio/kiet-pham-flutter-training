@@ -118,6 +118,7 @@ class _MyAppState extends State<MyApp> {
           routerDelegate: _router.routerDelegate,
           routeInformationParser: _router.routeInformationParser,
           theme: GTTheme.lightTheme,
+          darkTheme: GTTheme.darkTheme,
         ),
       ),
     );
