@@ -1,5 +1,5 @@
 name: gotour_app
-description: A new Flutter project.
+description: GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -49,8 +49,8 @@ dev_dependencies:
 
   # The Flutter code generator for your assets, fonts, colors
   flutter_gen: 5.0.3
-  build_runner: null
-  flutter_gen_runner: null
+  build_runner: 2.3.3
+  flutter_gen_runner: 5.0.3
 
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
