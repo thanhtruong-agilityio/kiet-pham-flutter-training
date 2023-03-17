@@ -119,6 +119,7 @@ class _MyAppState extends State<MyApp> {
           routeInformationParser: _router.routeInformationParser,
           theme: GTTheme.lightTheme,
           darkTheme: GTTheme.darkTheme,
+          useInheritedMediaQuery: true,
         ),
       ),
     );
