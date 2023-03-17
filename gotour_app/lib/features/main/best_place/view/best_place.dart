@@ -5,7 +5,7 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title_and_button.dart';
+import 'package:gotour_app/core/widgets/title.dart';
 import 'package:gotour_app/features/main/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/main/best_place/model/model_best_place.dart';
 import 'package:gotour_app/features/main/best_place/repository/best_place_repository.dart';
@@ -41,7 +41,7 @@ class GTBestPlace extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 14),
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: GTTitleAndSeeAllBtn(
+                child: GTTitle(
                   title: S.of(context).mainPageBestPlace,
                   onPress: pressBtn,
                 ),

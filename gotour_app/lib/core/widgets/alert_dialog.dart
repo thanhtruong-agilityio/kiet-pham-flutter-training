@@ -5,14 +5,14 @@ import 'package:gotour_app/core/widgets/text.dart';
 class GTAlertDialog extends StatelessWidget {
   const GTAlertDialog({
     super.key,
-    required this.onPressCancel,
-    required this.onPressYes,
+    required this.onCancel,
+    required this.onOk,
     required this.title,
     required this.content,
   });
 
-  final VoidCallback onPressCancel;
-  final VoidCallback onPressYes;
+  final VoidCallback onCancel;
+  final VoidCallback onOk;
   final String title;
   final String content;
 
@@ -23,14 +23,14 @@ class GTAlertDialog extends StatelessWidget {
       content: GTText.labelMedium(context, text: content),
       actions: [
         CupertinoDialogAction(
-          onPressed: onPressCancel,
+          onPressed: onCancel,
           child: GTText.labelMedium(
             context,
             text: 'Cancel',
           ),
         ),
         CupertinoDialogAction(
-          onPressed: onPressYes,
+          onPressed: onOk,
           child: GTText.labelMedium(
             context,
             text: 'Yes',

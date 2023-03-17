@@ -47,10 +47,10 @@ class _GTMainView extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             builder: (context) => GTAlertDialog(
-              onPressCancel: () {
+              onCancel: () {
                 Navigator.of(context).pop();
               },
-              onPressYes: () {
+              onOk: () {
                 context.read<AuthBloc>().add(SignOutRequested());
               },
               title: 'Log Out',
