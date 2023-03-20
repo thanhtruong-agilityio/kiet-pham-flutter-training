@@ -209,10 +209,10 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      GTButton.highlight(
+                      GTElevatedHighlightButton(
                         text: S.of(context).signUpTitle,
                         activateShadow: true,
-                        onPress: () {
+                        onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             BlocProvider.of<AuthBloc>(context).add(
                               SignUpRequested(

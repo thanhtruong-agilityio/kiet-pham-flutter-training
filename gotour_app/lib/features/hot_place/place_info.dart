@@ -71,9 +71,9 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             ),
             SizedBox(
               height: 25,
-              child: GTButton.highlight(
+              child: GTElevatedHighlightButton(
                 text: '\$${widget.price}',
-                onPress: widget.pressBtn,
+                onPressed: widget.pressBtn,
               ),
             )
           ],

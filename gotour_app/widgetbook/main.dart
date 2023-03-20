@@ -143,7 +143,7 @@ GTButton.highlight(
 ''',
                           ),
                           const SizedBox(height: 10),
-                          GTButton.highlight(
+                          GTElevatedHighlightButton(
                             text: context.knobs.text(
                               label: 'Text',
                               initialValue: 'Sign Up',
@@ -152,7 +152,7 @@ GTButton.highlight(
                               label: 'activateShadow',
                               initialValue: true,
                             ),
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                           const SizedBox(height: 40),
                           const CodeView(

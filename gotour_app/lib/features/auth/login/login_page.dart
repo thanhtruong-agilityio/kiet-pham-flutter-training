@@ -159,10 +159,10 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       onPressed: () => context.go('/forgot-password-page'),
                     ),
                     const SizedBox(height: 10),
-                    GTButton.highlight(
+                    GTElevatedHighlightButton(
                       activateShadow: true,
                       text: S.of(context).loginPageTitle,
-                      onPress: () {
+                      onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
                             SignInRequested(

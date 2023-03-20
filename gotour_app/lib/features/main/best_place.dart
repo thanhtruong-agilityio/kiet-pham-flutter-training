@@ -150,9 +150,9 @@ class GTCardBestPlace extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     height: 25,
-                    child: GTButton.highlight(
+                    child: GTElevatedHighlightButton(
                       text: '\$$price',
-                      onPress: pressBtnPrice,
+                      onPressed: pressBtnPrice,
                     ),
                   )
                 ],

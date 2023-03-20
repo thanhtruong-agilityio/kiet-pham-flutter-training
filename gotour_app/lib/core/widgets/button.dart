@@ -4,30 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
-class GTButton extends StatelessWidget {
-  const GTButton({
-    super.key,
-    this.child,
-    required this.onPress,
-  });
-
-  const factory GTButton.highlight({
-    required String text,
-    required VoidCallback onPress,
-    bool activateShadow,
-  }) = _GTElevatedButtonHighlight;
-
-  final Widget? child;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: child,
-    );
-  }
-}
-
 class GTIconButton extends StatelessWidget {
   const GTIconButton({
     super.key,
@@ -182,15 +158,17 @@ class GTElevatedButton extends StatelessWidget {
   }
 }
 
-class _GTElevatedButtonHighlight extends GTButton {
-  const _GTElevatedButtonHighlight({
-    required super.onPress,
+class GTElevatedHighlightButton extends StatelessWidget {
+  const GTElevatedHighlightButton({
+    super.key,
     required this.text,
     this.activateShadow = false,
+    required this.onPressed,
   });
 
   final String text;
   final bool activateShadow;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +192,7 @@ class _GTElevatedButtonHighlight extends GTButton {
           ),
           backgroundColor: ColorName.primaryColor,
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: Container(
           alignment: Alignment.center,
           child: activateShadow == true

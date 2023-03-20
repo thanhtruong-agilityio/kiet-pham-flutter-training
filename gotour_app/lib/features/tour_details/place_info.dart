@@ -64,9 +64,9 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
   SizedBox button(BuildContext context) {
     return SizedBox(
       height: 25,
-      child: GTButton.highlight(
+      child: GTElevatedHighlightButton(
         text: '\$$price',
-        onPress: onPressBtn,
+        onPressed: onPressBtn,
       ),
     );
   }
