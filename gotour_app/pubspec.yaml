@@ -17,9 +17,6 @@ dependencies:
 
   flutter_native_splash: 2.2.17
 
-  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
-  go_router: 3.1.1
-
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
   firebase_auth: 4.2.9
 
@@ -58,6 +55,11 @@ dev_dependencies:
   # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
   # And share them easily with designers and clients.
   widgetbook: 2.4.1
+
+dependency_overrides:
+  
+  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
+  go_router: 6.2.0
 
 flutter:
   uses-material-design: true
