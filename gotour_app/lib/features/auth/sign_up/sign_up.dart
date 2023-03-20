@@ -146,8 +146,8 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                               : null;
                         },
                       ),
-                      // const SizedBox(height: 20),
-                      GTGender(onTap: () {}),
+                      const SizedBox(height: 5),
+                      const GTGender(),
                       const SizedBox(height: 20),
                       GTTextField(
                         controller: _passwordController,
@@ -181,22 +181,16 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       // const SizedBox(height: 20),
                       Row(
                         children: [
-                          SizedBox(
-                            child: agreeTerms == false
-                                ? GTCheckboxUnSelected(
-                                    onPress: () {
-                                      setState(() {
-                                        agreeTerms = !agreeTerms;
-                                      });
-                                    },
-                                  )
-                                : GTCheckboxSelected(
-                                    onPress: () {
-                                      setState(() {
-                                        agreeTerms = !agreeTerms;
-                                      });
-                                    },
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: GTCheckBox(
+                              isChecked: agreeTerms,
+                              onPressed: (value) {
+                                setState(() {
+                                  value = !agreeTerms;
+                                });
+                              },
+                            ),
                           ),
                           GTText.labelMedium(
                             context,
