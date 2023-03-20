@@ -1,5 +1,5 @@
 name: gotour_app
-description: A new Flutter project.
+description: GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -16,9 +16,6 @@ dependencies:
   flutter_svg: 1.1.6
 
   flutter_native_splash: 2.2.17
-
-  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
-  go_router: 3.1.1
 
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
   firebase_auth: 4.2.9
@@ -49,8 +46,8 @@ dev_dependencies:
 
   # The Flutter code generator for your assets, fonts, colors
   flutter_gen: 5.0.3
-  build_runner: null
-  flutter_gen_runner: null
+  build_runner: 2.3.3
+  flutter_gen_runner: 5.0.3
 
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
@@ -58,6 +55,11 @@ dev_dependencies:
   # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
   # And share them easily with designers and clients.
   widgetbook: 2.4.1
+
+dependency_overrides:
+  
+  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
+  go_router: 6.2.0
 
 flutter:
   uses-material-design: true

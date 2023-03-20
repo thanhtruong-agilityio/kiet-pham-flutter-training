@@ -11,8 +11,8 @@ import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
-import 'package:gotour_app/features/main/best_place.dart';
-import 'package:gotour_app/features/main/my_location.dart';
+import 'package:gotour_app/features/main/best_place/view/best_place.dart';
+import 'package:gotour_app/features/main/my_location/view/my_location.dart';
 
 class GTMainPage extends StatelessWidget {
   const GTMainPage({super.key});
@@ -28,13 +28,13 @@ class GTMainPage extends StatelessWidget {
           context.go('/login-page');
         }
       },
-      child: const _GTMainPage(),
+      child: const _GTMainView(),
     );
   }
 }
 
-class _GTMainPage extends StatelessWidget {
-  const _GTMainPage();
+class _GTMainView extends StatelessWidget {
+  const _GTMainView();
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +47,10 @@ class _GTMainPage extends StatelessWidget {
             barrierDismissible: false,
             context: context,
             builder: (context) => GTAlertDialog(
-              onPressCancel: () {
+              onCancel: () {
                 Navigator.of(context).pop();
               },
-              onPressYes: () {
+              onOk: () {
                 context.read<AuthBloc>().add(SignOutRequested());
               },
               title: 'Log Out',
@@ -107,6 +107,7 @@ class _GTMainPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // Best Place
+              // Text(data.length.toString()),
               GTBestPlace(
                 pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
                 pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),

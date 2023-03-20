@@ -135,7 +135,7 @@ class GTTheme {
   );
 
   /// Dark theme and its settings.
-  ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
   );
 }

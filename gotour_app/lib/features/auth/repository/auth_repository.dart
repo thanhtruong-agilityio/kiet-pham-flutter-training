@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/features/auth/models/user.dart';
 
@@ -7,11 +8,7 @@ class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseFirestore = FirebaseFirestore.instance.collection('users');
 
-  Object _mapFirebaseUser(User? user) {
-    if (user == null) {
-      return UserEntity.empty();
-    }
-
+  Object _mapFirebaseUser(User user) {
     var splittedName = ['Name ', 'LastName'];
     if (user.displayName != null) {
       splittedName = user.displayName!.split(' ');
@@ -40,8 +37,10 @@ class AuthRepository {
         email: email,
         password: password,
       );
+      final user = _firebaseAuth.currentUser;
       await _firebaseFirestore
-          .add(_mapFirebaseUser(userCredential.user) as Map<String, dynamic>);
+          .doc(user!.uid)
+          .set(_mapFirebaseUser(userCredential.user!) as Map<String, dynamic>);
       await _firebaseAuth.currentUser!.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));

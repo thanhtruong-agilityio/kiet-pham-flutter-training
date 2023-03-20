@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
+import 'package:gotour_app/features/main/my_location/bloc/my_location_bloc.dart';
+import 'package:gotour_app/features/main/my_location/model/model_my_location.dart';
+import 'package:gotour_app/features/main/my_location/repository/my_location_repository.dart';
 
 class LocationInfo {
   const LocationInfo(
@@ -29,76 +34,76 @@ class GTMyLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = <LocationInfo>[
-      LocationInfo(
-        Assets.images.tibidabo.path,
-        'Da Nang, Viet Nam',
-        'Bien Thanh Khe',
-        '''
-Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
-        ''',
-      ),
-      LocationInfo(
-        Assets.images.tibidabo.path,
-        'Quang Nam, Viet Nam',
-        'Bien Thanh Khe',
-        '''
-Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
-        ''',
-      ),
-      LocationInfo(
-        Assets.images.tibidabo.path,
-        'Hue, Viet Nam',
-        'Bien Thanh Khe',
-        '''
-Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
-        ''',
-      ),
-      LocationInfo(
-        Assets.images.tibidabo.path,
-        'Hoi An, Viet Nam',
-        'Bien Thanh Khe',
-        '''
-Portugal there's so much more to discover. Read about the Azores' new wave of eco-travel.
-        ''',
-      ),
-    ];
+    var data = <MyLocation>[];
     final size = MediaQuery.of(context).size;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+    return RepositoryProvider(
+      create: (context) => MyLocationRepository(),
+      child: BlocProvider(
+        create: (context) => MyLocationBloc(
+          repository: RepositoryProvider.of<MyLocationRepository>(context),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: GTText.titleMedium(
-                context,
-                text: S.of(context).mainPageMyLocation,
-              ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: GTText.titleMedium(
+                    context,
+                    text: S.of(context).mainPageMyLocation,
+                  ),
+                ),
+                const Spacer(),
+              ],
             ),
-            const Spacer(),
+            SizedBox(
+              height: 180,
+              width: size.width,
+              child: BlocBuilder<MyLocationBloc, MyLocationState>(
+                builder: (context, state) {
+                  if (state is MyLocationLoadingState) {
+                    context
+                        .read<MyLocationBloc>()
+                        .add(MyLocationRequestedEvent());
+                    return Center(
+                      child: GTText.bodyLarge(context, text: 'Loading'),
+                    );
+                  }
+                  if (state is MyLocationLoadedState) {
+                    data = state.listMyLocation;
+                    if (state.listMyLocation.isEmpty) {
+                      return Center(
+                        child: GTText.labelLarge(
+                          context,
+                          text: ' My Location is empty',
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      );
+                    }
+                    return ListView.builder(
+                      padding: const EdgeInsets.only(left: 20),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data.length,
+                      itemBuilder: (context, index) => Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        child: GTCardMyLocation(
+                          press: press,
+                          image: data[index].imageUrl,
+                          placeName: data[index].placeName,
+                          location: data[index].location,
+                          descriptions: data[index].descriptions,
+                        ),
+                      ),
+                    );
+                  }
+                  return Container();
+                },
+              ),
+            )
           ],
         ),
-        SizedBox(
-          height: 180,
-          width: size.width,
-          child: ListView.builder(
-            padding: const EdgeInsets.only(left: 20),
-            scrollDirection: Axis.horizontal,
-            itemCount: data.length,
-            itemBuilder: (context, index) => Container(
-              margin: const EdgeInsets.only(right: 20),
-              child: GTCardMyLocation(
-                press: press,
-                image: data[index].image,
-                placeName: data[index].placeName,
-                location: data[index].location,
-                description: data[index].description,
-              ),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
@@ -110,14 +115,14 @@ class GTCardMyLocation extends StatefulWidget {
     required this.image,
     required this.placeName,
     required this.location,
-    required this.description,
+    required this.descriptions,
   });
 
   final VoidCallback press;
   final String image;
   final String placeName;
   final String location;
-  final String description;
+  final String descriptions;
 
   @override
   State<GTCardMyLocation> createState() => _GTCardMyLocationState();
@@ -178,7 +183,8 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                     padding: const EdgeInsets.only(right: 39),
                     child: GTText.bodyMedium(
                       context,
-                      text: widget.description,
+                      text: widget.descriptions,
+                      maxLines: 3,
                       color: ColorName.iconsColor,
                     ),
                   )
@@ -212,7 +218,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
         color: ColorName.primaryColor,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(widget.image),
+          image: NetworkImage(widget.image),
         ),
       ),
     );

@@ -5,15 +5,18 @@ class GTText extends StatelessWidget {
     super.key,
     this.text,
     this.textStyle,
+    this.maxLines,
   });
 
   factory GTText.bodySmall(
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
     );
   }
@@ -22,9 +25,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color),
     );
   }
@@ -33,9 +38,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: color),
     );
   }
@@ -44,9 +51,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(color: color),
     );
   }
@@ -55,9 +64,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle:
           Theme.of(context).textTheme.labelMedium!.copyWith(color: color),
     );
@@ -67,9 +78,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(color: color),
     );
   }
@@ -78,9 +91,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(color: color),
     );
   }
@@ -89,9 +104,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle:
           Theme.of(context).textTheme.titleMedium!.copyWith(color: color),
     );
@@ -101,9 +118,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
     );
   }
@@ -112,9 +131,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle:
           Theme.of(context).textTheme.displaySmall!.copyWith(color: color),
     );
@@ -124,9 +145,11 @@ class GTText extends StatelessWidget {
     BuildContext context, {
     required String text,
     Color? color,
+    int? maxLines,
   }) {
     return GTText(
       text: text,
+      maxLines: maxLines,
       textStyle:
           Theme.of(context).textTheme.displayMedium!.copyWith(color: color),
     );
@@ -134,11 +157,13 @@ class GTText extends StatelessWidget {
 
   final String? text;
   final TextStyle? textStyle;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text!,
+      maxLines: maxLines,
       style: textStyle,
     );
   }

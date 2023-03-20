@@ -3,8 +3,8 @@ import 'package:gotour_app/core/widgets/button.dart';
 
 import 'package:gotour_app/core/widgets/text.dart';
 
-class GTTitleAndSeeAllBtn extends StatelessWidget {
-  const GTTitleAndSeeAllBtn({
+class GTTitle extends StatelessWidget {
+  const GTTitle({
     super.key,
     required this.title,
     this.onPress,
