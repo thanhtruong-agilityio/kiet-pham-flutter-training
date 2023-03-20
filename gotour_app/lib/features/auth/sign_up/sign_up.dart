@@ -202,9 +202,9 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                             context,
                             text: S.of(context).signUpPageTextTerms,
                           ),
-                          GTButton.textHighlight(
+                          GTTextHighlightButton(
                             text: S.of(context).signUpPageTextButtonTerms,
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                         ],
                       ),
@@ -225,9 +225,9 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                         },
                       ),
                       const SizedBox(height: 10),
-                      GTButton.textHighlight(
+                      GTTextHighlightButton(
                         text: 'Already have an account?',
-                        onPress: () => context.go('/login-page'),
+                        onPressed: () => context.go('/login-page'),
                       ),
                       const SizedBox(height: 20),
                     ],

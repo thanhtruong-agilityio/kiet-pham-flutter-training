@@ -145,10 +145,10 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    GTButton.textHighlight(
+                    GTTextHighlightButton(
                       text:
                           S.of(context).forgotPasswordPageButtonBackToLoginPage,
-                      onPress: () => context.go('/login-page'),
+                      onPressed: () => context.go('/login-page'),
                     ),
                   ],
                 ),

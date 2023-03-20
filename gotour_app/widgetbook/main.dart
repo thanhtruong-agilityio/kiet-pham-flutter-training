@@ -182,11 +182,11 @@ GTButton.text(
 ''',
                           ),
                           const SizedBox(height: 10),
-                          GTButton.textHighlight(
+                          GTTextHighlightButton(
                             text: context.knobs.text(
                               label: 'Text',
                             ),
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                         ],
                       ),
