@@ -125,11 +125,11 @@ GTButton.normal(
 ''',
                           ),
                           const SizedBox(height: 10),
-                          GTButton.normal(
+                          GTElevatedButton(
                             icon: context.knobs
                                 .options(label: 'Icon', options: icons),
                             text: context.knobs.text(label: 'Text'),
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                           const SizedBox(height: 40),
                           const CodeView(

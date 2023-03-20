@@ -17,12 +17,6 @@ class GTButton extends StatelessWidget {
     bool activateShadow,
   }) = _GTElevatedButtonHighlight;
 
-  const factory GTButton.normal({
-    required String text,
-    required String icon,
-    required VoidCallback onPress,
-  }) = _GTElevatedButton;
-
   final Widget? child;
   final VoidCallback onPress;
 
@@ -130,15 +124,17 @@ class GTTextHighlightButton extends StatelessWidget {
   }
 }
 
-class _GTElevatedButton extends GTButton {
-  const _GTElevatedButton({
-    required super.onPress,
+class GTElevatedButton extends StatelessWidget {
+  const GTElevatedButton({
+    super.key,
     required this.text,
     required this.icon,
+    required this.onPressed,
   });
 
   final String text;
   final String icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +156,7 @@ class _GTElevatedButton extends GTButton {
           ),
           backgroundColor: ColorName.backgroundColor,
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

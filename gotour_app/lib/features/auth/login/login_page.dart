@@ -180,10 +180,10 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       color: ColorName.iconsColor,
                     ),
                     const SizedBox(height: 10),
-                    GTButton.normal(
+                    GTElevatedButton(
                       text: S.of(context).loginPageButtonLoginGG,
                       icon: Assets.icons.google,
-                      onPress: () {
+                      onPressed: () {
                         BlocProvider.of<AuthBloc>(context).add(
                           GoogleSignInRequested(),
                         );
