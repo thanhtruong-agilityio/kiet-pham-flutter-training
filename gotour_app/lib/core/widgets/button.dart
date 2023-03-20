@@ -28,11 +28,6 @@ class GTButton extends StatelessWidget {
     required VoidCallback onPress,
   }) = _GTButtonTextHighlight;
 
-  const factory GTButton.text({
-    required String text,
-    required VoidCallback onPress,
-  }) = _GTButtonText;
-
   final Widget? child;
   final VoidCallback onPress;
 
@@ -88,13 +83,15 @@ class GTIconButton extends StatelessWidget {
   }
 }
 
-class _GTButtonText extends GTButton {
-  const _GTButtonText({
-    required super.onPress,
+class GTTextButton extends StatelessWidget {
+  const GTTextButton({
+    super.key,
     required this.text,
+    required this.onPressed,
   });
 
   final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +99,7 @@ class _GTButtonText extends GTButton {
       hoverColor: ColorName.backgroundColor,
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
-      onTap: onPress,
+      onTap: onPressed,
       child: GTText.bodyMedium(
         context,
         text: text,

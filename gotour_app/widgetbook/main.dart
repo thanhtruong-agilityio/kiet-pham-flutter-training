@@ -165,11 +165,11 @@ GTButton.text(
 ''',
                           ),
                           const SizedBox(height: 10),
-                          GTButton.text(
+                          GTTextButton(
                             text: context.knobs.text(
                               label: 'Text',
                             ),
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                           const SizedBox(height: 40),
                           const CodeView(
@@ -421,9 +421,9 @@ class _CodeViewState extends State<CodeView> {
             ),
             StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                return GTButton.text(
+                return GTTextButton(
                   text: _isVisible ? 'hide code' : 'show code',
-                  onPress: _toggleVisibility,
+                  onPressed: _toggleVisibility,
                 );
               },
             ),
@@ -452,9 +452,9 @@ class CopyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GTButton.text(
+    return GTTextButton(
       text: 'Copy',
-      onPress: () {
+      onPressed: () {
         Clipboard.setData(ClipboardData(text: text));
         const snackBar = SnackBar(content: Text('Copied to clipboard'));
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
