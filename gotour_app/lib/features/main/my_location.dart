@@ -7,22 +7,9 @@ import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/features/main/my_location/bloc/my_location_bloc.dart';
-import 'package:gotour_app/features/main/my_location/model/model_my_location.dart';
-import 'package:gotour_app/features/main/my_location/repository/my_location_repository.dart';
-
-class LocationInfo {
-  const LocationInfo(
-    this.image,
-    this.location,
-    this.placeName,
-    this.description,
-  );
-  final String image;
-  final String location;
-  final String placeName;
-  final String description;
-}
+import 'package:gotour_app/features/main/bloc/main_bloc.dart';
+import 'package:gotour_app/features/main/models/model_my_location.dart';
+import 'package:gotour_app/features/main/repository/main_repository.dart';
 
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
@@ -37,10 +24,10 @@ class GTMyLocation extends StatelessWidget {
     var data = <MyLocation>[];
     final size = MediaQuery.of(context).size;
     return RepositoryProvider(
-      create: (context) => MyLocationRepository(),
+      create: (context) => MainRepository(),
       child: BlocProvider(
-        create: (context) => MyLocationBloc(
-          repository: RepositoryProvider.of<MyLocationRepository>(context),
+        create: (context) => MainBloc(
+          mainRepository: RepositoryProvider.of<MainRepository>(context),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,12 +47,12 @@ class GTMyLocation extends StatelessWidget {
             SizedBox(
               height: 180,
               width: size.width,
-              child: BlocBuilder<MyLocationBloc, MyLocationState>(
+              child: BlocBuilder<MainBloc, MainState>(
                 builder: (context, state) {
+                  if (state is MainInitialState) {
+                    context.read<MainBloc>().add(MyLocationFetchDataEvent());
+                  }
                   if (state is MyLocationLoadingState) {
-                    context
-                        .read<MyLocationBloc>()
-                        .add(MyLocationRequestedEvent());
                     return Center(
                       child: GTText.bodyLarge(context, text: 'Loading'),
                     );
@@ -97,7 +84,9 @@ class GTMyLocation extends StatelessWidget {
                       ),
                     );
                   }
-                  return Container();
+                  return Center(
+                    child: GTText.bodyLarge(context, text: 'Fail'),
+                  );
                 },
               ),
             )

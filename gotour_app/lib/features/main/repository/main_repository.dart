@@ -1,11 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/main/my_location/model/model_id_tour.dart';
-import 'package:gotour_app/features/main/my_location/model/model_my_location.dart';
+import 'package:gotour_app/features/main/models/model_best_place.dart';
+import 'package:gotour_app/features/main/models/model_id_tour.dart';
+import 'package:gotour_app/features/main/models/model_my_location.dart';
 
-class MyLocationRepository {
+class MainRepository {
+  final _firebaseFirestoreBestPlace =
+      FirebaseFirestore.instance.collection('tour-details');
+
   final _firebaseFirestoreTourBookMarks =
       FirebaseFirestore.instance.collection('book-marks');
 
+  // Fetch Data Best Place from the firebase
+  Future<List<BestPlace>> fetchDataBestPlace() async {
+    final data = await _firebaseFirestoreBestPlace
+        .where('hotPlace', isEqualTo: true)
+        .get();
+    return (data.docs)
+        .map(
+          (tour) => BestPlace(
+            imageUrl: tour['imageUrl'] as String,
+            location: tour['location'] as String,
+            placeName: tour['placeName'] as String,
+            price: tour['price'] as String,
+          ),
+        )
+        .toList();
+  }
+
+  // Fetch List Tour from the firebase
   Future<List<IdTour>> fetchListTourBookmarkByUser({
     required String idUser,
   }) async {
@@ -17,6 +39,7 @@ class MyLocationRepository {
         .toList();
   }
 
+  // Fetch My Location Place from the firebase
   Future<List<MyLocation>> getDataFromDocuments({
     required List<String> documentIds,
   }) async {

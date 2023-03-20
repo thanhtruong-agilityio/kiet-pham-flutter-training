@@ -11,8 +11,8 @@ import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
-import 'package:gotour_app/features/main/best_place/view/best_place.dart';
-import 'package:gotour_app/features/main/my_location/view/my_location.dart';
+import 'package:gotour_app/features/main/best_place.dart';
+import 'package:gotour_app/features/main/my_location.dart';
 
 class GTMainPage extends StatelessWidget {
   const GTMainPage({super.key});

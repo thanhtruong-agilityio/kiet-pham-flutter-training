@@ -27,23 +27,3 @@ class MyLocation {
         'placeName': placeName,
       };
 }
-
-// class MyLocation {
-//   MyLocation({
-//     required this.idTour,
-//     required this.idUser,
-//   });
-
-//   factory MyLocation.fromJson(Map<String, dynamic> json) => MyLocation(
-//         idTour: json['idTour'] as String,
-//         idUser: json['idUser'] as String,
-//       );
-
-//   String idTour;
-//   String idUser;
-
-//   Map<String, dynamic> toJson() => {
-//         'idTour': idTour,
-//         'idUser': idUser,
-//       };
-// }
