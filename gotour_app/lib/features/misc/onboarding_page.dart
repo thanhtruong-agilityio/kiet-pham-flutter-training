@@ -59,7 +59,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GTButton.icon(
+                    GTIconButton(
                       icon: Assets.icons.left,
                       iconColor: ColorName.backgroundColor,
                       onPress: () {
@@ -81,7 +81,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                         ),
                       ),
                     ),
-                    GTButton.icon(
+                    GTIconButton(
                       icon: Assets.icons.right,
                       iconColor: ColorName.backgroundColor,
                       onPress: () => _pageIndex == dataBoards.length - 1

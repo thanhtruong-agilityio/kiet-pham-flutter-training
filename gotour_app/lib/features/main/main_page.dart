@@ -91,7 +91,7 @@ class _GTMainView extends StatelessWidget {
                     const SizedBox(width: 20),
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
-                      child: GTButton.icon(
+                      child: GTIconButton(
                         icon: Assets.icons.search,
                         iconColor: ColorName.backgroundColor,
                         onPress: () {},

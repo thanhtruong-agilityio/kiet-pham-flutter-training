@@ -105,7 +105,7 @@ GTButton.icon(
 ''',
                           ),
                           const SizedBox(height: 10),
-                          GTButton.icon(
+                          GTIconButton(
                             icon: context.knobs.options(
                               label: 'Icon',
                               options: icons,

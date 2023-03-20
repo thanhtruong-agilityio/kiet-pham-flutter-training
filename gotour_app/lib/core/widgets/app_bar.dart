@@ -52,7 +52,7 @@ class _GTAppBarWithAvatar extends GTAppBar {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            GTButton.icon(
+            GTIconButton(
               icon: Assets.icons.menu,
               btnColor: ColorName.backgroundColor,
               onPress: onPressLeading,
@@ -93,19 +93,19 @@ class _GTAppBarInPage extends GTAppBar {
       centerTitle: true,
       leading: Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: GTButton.icon(
+        child: GTIconButton(
           icon: Assets.icons.back,
           btnColor: ColorName.backgroundColor,
           onPress: onPressLeading,
         ),
       ),
       actions: [
-        GTButton.icon(
+        GTIconButton(
           icon: Assets.icons.notification,
           btnColor: ColorName.backgroundColor,
           onPress: onPressNotification,
         ),
-        GTButton.icon(
+        GTIconButton(
           icon: Assets.icons.more,
           btnColor: ColorName.backgroundColor,
           onPress: onPressMore,

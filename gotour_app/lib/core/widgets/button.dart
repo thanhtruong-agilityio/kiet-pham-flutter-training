@@ -33,14 +33,6 @@ class GTButton extends StatelessWidget {
     required VoidCallback onPress,
   }) = _GTButtonText;
 
-  const factory GTButton.icon({
-    required String icon,
-    required VoidCallback onPress,
-    Color? iconColor,
-    Color? btnColor,
-    Object? heroTag,
-  }) = _GTButtonIcon;
-
   final Widget? child;
   final VoidCallback onPress;
 
@@ -52,10 +44,11 @@ class GTButton extends StatelessWidget {
   }
 }
 
-class _GTButtonIcon extends GTButton {
-  const _GTButtonIcon({
+class GTIconButton extends StatelessWidget {
+  const GTIconButton({
+    super.key,
     required this.icon,
-    required super.onPress,
+    required this.onPress,
     this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
@@ -65,6 +58,7 @@ class _GTButtonIcon extends GTButton {
   final Color? iconColor;
   final Color? btnColor;
   final Object? heroTag;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
