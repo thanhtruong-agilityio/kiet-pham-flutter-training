@@ -4,7 +4,6 @@ import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
-import 'package:gotour_app/core/widgets/place_image.dart';
 
 class GTPlaceInfoTourDetails extends StatelessWidget {
   const GTPlaceInfoTourDetails({
@@ -31,7 +30,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
       children: [
         ListCardPlaceinfo(
           size: size,
-          onPress: onPressCard,
+          onPressed: onPressCard,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, top: 28),
@@ -47,7 +46,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                     placeName: namePlace,
                     location: location,
                     colorLocation: ColorName.iconsColor,
-                    colorIcon: ColorName.primaryColor,
+                    colorIcon: Theme.of(context).colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
                   button(context),
@@ -92,11 +91,11 @@ class ListCardPlaceinfo extends StatefulWidget {
   const ListCardPlaceinfo({
     super.key,
     required this.size,
-    required this.onPress,
+    required this.onPressed,
   });
 
   final Size size;
-  final VoidCallback onPress;
+  final VoidCallback onPressed;
 
   @override
   State<ListCardPlaceinfo> createState() => _ListCardPlaceinfoState();
@@ -129,11 +128,45 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
             itemCount: images.length,
             itemBuilder: (context, index) => Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: GTCardImageWithBookmark(
-                size: size,
-                images: images[index],
-                press: widget.onPress,
+              child: GestureDetector(
+                onTap: widget.onPressed,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: size.height * 1 / 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(images[index]),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                SvgPicture.asset(
+                                  Assets.icons.bookMark,
+                                  color: ColorName.backgroundColor,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              // child: GTCardImageWithBookmark(
+              //   size: size,
+              //   images: images[index],
+              //   press: widget.onPress,
+              // ),
             ),
           ),
         ),
