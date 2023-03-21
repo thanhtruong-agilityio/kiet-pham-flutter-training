@@ -8,7 +8,7 @@ class GTIconButton extends StatelessWidget {
   const GTIconButton({
     super.key,
     required this.icon,
-    required this.onPress,
+    required this.onPressed,
     this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
@@ -18,7 +18,7 @@ class GTIconButton extends StatelessWidget {
   final Color? iconColor;
   final Color? btnColor;
   final Object? heroTag;
-  final VoidCallback onPress;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class GTIconButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: SizedBox(
           height: 20,
           width: 30,

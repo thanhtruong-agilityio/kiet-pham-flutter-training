@@ -94,7 +94,7 @@ class _GTMainView extends StatelessWidget {
                       child: GTIconButton(
                         icon: Assets.icons.search,
                         iconColor: ColorName.backgroundColor,
-                        onPress: () {},
+                        onPressed: () {},
                       ),
                     ),
                   ],
