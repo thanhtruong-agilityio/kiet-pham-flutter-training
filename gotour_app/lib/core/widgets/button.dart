@@ -10,10 +10,12 @@ class GTIconButton extends StatelessWidget {
     required this.onPressed,
     this.iconColor,
     this.btnColor,
+    this.heroTag,
   });
 
   final String icon;
   final Color? iconColor;
+  final Object? heroTag;
   final Color? btnColor;
   final VoidCallback onPressed;
 
@@ -24,7 +26,7 @@ class GTIconButton extends StatelessWidget {
       width: 40,
       height: 40,
       child: FloatingActionButton(
-        heroTag: '',
+        heroTag: heroTag,
         elevation: 0,
         hoverElevation: 0,
         highlightElevation: 0,

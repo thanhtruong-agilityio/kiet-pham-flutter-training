@@ -18,4 +18,5 @@
     <color name="onSecondaryContainerColor">#CCCCCC</color>
     <color name="outlineVariantColor">#0000000d</color>
     <color name="outlineColor">#333333</color>
+    <color name="secondaryContainerColor">#17E364</color>
 </resources>

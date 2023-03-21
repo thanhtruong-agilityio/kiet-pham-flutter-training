@@ -22,6 +22,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   onSecondaryContainer: ColorName.onSecondaryContainerColor,
   outlineVariant: ColorName.outlineVariantColor,
   outline: ColorName.outlineColor,
+  secondaryContainer: ColorName.secondaryContainerColor,
 );
 
 double height({
@@ -85,6 +86,11 @@ class GTTheme {
         color: _lightColorScheme.tertiary,
         height: height(lineHeight: 17, fontSize: 14),
       ),
+    ),
+    snackBarTheme: const SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
     ),
     cardTheme: CardTheme(
       color: _lightColorScheme.surface,

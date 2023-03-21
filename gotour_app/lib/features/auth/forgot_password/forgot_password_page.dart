@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/shared/snack_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/textfield.dart';
@@ -14,32 +15,25 @@ class GTForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SubmitForgotPassword) {
           // Navigating to the dashboard screen if the user is authenticated
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: GTText.labelLarge(
-                context,
-                text:
-                    '''We have sent you a password reset email. Please check your email''',
-                color: Theme.of(context).colorScheme.background,
-              ),
-            ),
+          GTSnackBar.show(
+            context,
+            message:
+                '''We have sent you a password reset email. Please check your email''',
+            backgroundColor: colorScheme.secondaryContainer,
           );
           context.go('/login-page');
         }
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: GTText.labelLarge(
-                context,
-                text: state.error,
-                color: Theme.of(context).colorScheme.error,
-              ),
-            ),
+          GTSnackBar.show(
+            context,
+            message: state.error,
+            backgroundColor: colorScheme.error,
           );
         }
       },
