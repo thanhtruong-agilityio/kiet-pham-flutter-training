@@ -16,6 +16,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   onSurface: ColorName.onSurfaceColor,
   onSurfaceVariant: ColorName.onSurfaceVariant,
   tertiary: ColorName.tertiaryColor,
+  surfaceTint: ColorName.surfaceTintColor,
 );
 
 double height({

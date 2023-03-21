@@ -64,6 +64,9 @@ class ColorName {
   /// Color: #F8F8F8
   static const Color surfaceColor = Color(0xFFF8F8F8);
 
+  /// Color: #666666
+  static const Color surfaceTintColor = Color(0xFF666666);
+
   /// Color: #CCCCCC
   static const Color tagColor = Color(0xFFCCCCCC);
 
@@ -72,7 +75,4 @@ class ColorName {
 
   /// Color: #000000
   static const Color textColor = Color(0xFF000000);
-
-  /// Color: #666666
-  static const Color titleOfTextfieldColor = Color(0xFF666666);
 }

@@ -40,6 +40,7 @@ class _GTTextFieldState extends State<GTTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,7 +48,7 @@ class _GTTextFieldState extends State<GTTextField> {
           GTText.labelLarge(
             context,
             text: widget.title!,
-            color: ColorName.titleOfTextfieldColor,
+            color: colorScheme.surfaceTint,
           ),
         const SizedBox(
           height: 5,
