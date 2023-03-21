@@ -18,6 +18,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   tertiary: ColorName.tertiaryColor,
   surfaceTint: ColorName.surfaceTintColor,
   inversePrimary: ColorName.inversePrimaryColor,
+  tertiaryContainer: ColorName.tertiaryContainerColor,
 );
 
 double height({

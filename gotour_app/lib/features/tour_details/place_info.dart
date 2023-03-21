@@ -200,7 +200,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
         height: isActivate ? 3 : 5,
         width: isActivate ? 20 : 5,
         decoration: BoxDecoration(
-          color: ColorName.sliderColor,
+          color: Theme.of(context).colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.circular(5),
         ),
       ),
