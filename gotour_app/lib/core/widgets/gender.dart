@@ -6,157 +6,238 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTGender extends StatefulWidget {
-  const GTGender({
-    super.key,
-    required this.onTap,
-  });
-
-  final Function onTap;
+  const GTGender({super.key});
 
   @override
   State<GTGender> createState() => _GTGenderState();
 }
 
 class _GTGenderState extends State<GTGender> {
-  int selectedIndex = 0;
+  int _selectedValue = 0;
 
   @override
   Widget build(BuildContext context) {
-    final gender = <String>[
-      S.of(context).signUpPageGenderMale,
-      S.of(context).signUpPageGenderFemale,
-    ];
-    final size = MediaQuery.of(context).size;
-    return Wrap(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(
-            gender.length,
-            (index) => SizedBox(
-              width: size.width * 0.4,
-              child: GTCheckbox(
-                text: gender[index],
-                onTap: widget.onTap,
-                child: index == selectedIndex
-                    ? GTCheckboxSelected(
-                        onPress: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      )
-                    : GTCheckboxUnSelected(
-                        onPress: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Expanded(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              border:
+                  Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+            ),
+            child: ListTile(
+              dense: true,
+              trailing: SizedBox(
+                height: 18,
+                width: 18,
+                child: GTCheckBox(
+                  isChecked: _selectedValue == 0,
+                  onPressed: (value) {
+                    setState(() {
+                      _selectedValue = (value ? 0 : null)!;
+                    });
+                  },
+                ),
               ),
+              title: GTText.labelMedium(
+                context,
+                text: S.of(context).signUpPageGenderMale,
+              ),
+              onTap: () {
+                setState(() {
+                  _selectedValue = 0;
+                });
+              },
+              selected: _selectedValue == 0,
             ),
           ),
-        )
+        ),
+        const SizedBox(width: 40),
+        Expanded(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              border:
+                  Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+            ),
+            child: ListTile(
+              dense: true,
+              trailing: SizedBox(
+                height: 18,
+                width: 18,
+                child: GTCheckBox(
+                  isChecked: _selectedValue == 1,
+                  onPressed: (value) {
+                    setState(() {
+                      _selectedValue = (value ? 1 : null)!;
+                    });
+                  },
+                ),
+              ),
+              title: GTText.labelMedium(
+                context,
+                text: S.of(context).signUpPageGenderFemale,
+              ),
+              onTap: () {
+                setState(() {
+                  _selectedValue = 1;
+                });
+              },
+              selected: _selectedValue == 1,
+            ),
+          ),
+        ),
       ],
     );
   }
 }
 
-class GTCheckboxUnSelected extends StatelessWidget {
-  const GTCheckboxUnSelected({
+// class GTGender extends StatefulWidget {
+//   const GTGender({
+//     super.key,
+//     required this.male,
+//     required this.female,
+//   });
+
+//   final bool male;
+//   final bool female;
+
+//   @override
+//   State<GTGender> createState() => _GTGenderState();
+// }
+
+// class _GTGenderState extends State<GTGender> {
+//   bool _male = true;
+//   bool _female = false;
+
+//   void _toggleMale() {
+//     setState(() {
+//       _male = true;
+//       _female = false;
+//     });
+//   }
+
+//   void _toggleFemale() {
+//     setState(() {
+//       _male = false;
+//       _female = true;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Expanded(
+//           child: DecoratedBox(
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(7),
+//               border:
+//                   Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+//             ),
+//             child: Row(
+//               children: [
+//                 Padding(
+//                   padding:
+//                       const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+//                   child: GTText.labelMedium(
+//                     context,
+//                     text: S.of(context).signUpPageGenderMale,
+//                   ),
+//                 ),
+//                 const Spacer(),
+//                 Padding(
+//                   padding: const EdgeInsets.only(right: 15),
+//                   child: GTCheckBox(
+//                     isChecked: _male,
+//                     onPressed: _toggleMale,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         const SizedBox(width: 40),
+//         Expanded(
+//           child: DecoratedBox(
+//             decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(7),
+//               border:
+//                   Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+//             ),
+//             child: Row(
+//               children: [
+//                 Padding(
+//                   padding:
+//                       const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+//                   child: GTText.labelMedium(
+//                     context,
+//                     text: S.of(context).signUpPageGenderFemale,
+//                   ),
+//                 ),
+//                 const Spacer(),
+//                 Padding(
+//                   padding: const EdgeInsets.only(right: 15),
+//                   child: GTCheckBox(
+//                     isChecked: _female,
+//                     onPressed: _toggleFemale,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+class GTCheckBox extends StatefulWidget {
+  const GTCheckBox({
     super.key,
-    required this.onPress,
+    required this.isChecked,
+    required this.onPressed,
   });
-  final VoidCallback onPress;
+
+  final bool isChecked;
+  final void Function(bool)? onPressed;
 
   @override
+  State<GTCheckBox> createState() => _GTCheckBoxState();
+}
+
+class _GTCheckBoxState extends State<GTCheckBox> {
+  bool _isChecked = false;
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15),
-      child: InkWell(
-        onTap: onPress,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 7.5,
-            vertical: 7.5,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-              color: ColorName.borderRadiusColor,
-              width: 1.5,
-            ),
-          ),
+    _isChecked = widget.isChecked;
+    return InkWell(
+      // onTap: widget.onPressed,
+      onHighlightChanged: widget.onPressed,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.fastLinearToSlowEaseIn,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
         ),
-      ),
-    );
-  }
-}
-
-class GTCheckboxSelected extends StatelessWidget {
-  const GTCheckboxSelected({
-    super.key,
-    required this.onPress,
-  });
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15),
-      child: InkWell(
-        onTap: onPress,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: SvgPicture.asset(
-            Assets.icons.checkmark,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GTCheckbox extends StatefulWidget {
-  const GTCheckbox({
-    super.key,
-    required this.text,
-    this.selected = true,
-    required this.child,
-    required this.onTap,
-  });
-
-  final String text;
-  final bool? selected;
-  final Function onTap;
-  final Widget child;
-
-  @override
-  State<GTCheckbox> createState() => _GTCheckboxState();
-}
-
-class _GTCheckboxState extends State<GTCheckbox> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
-        border: Border.all(color: ColorName.borderRadiusColor, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-            child: GTText.labelMedium(
-              context,
-              text: widget.text,
-            ),
-          ),
-          const Spacer(),
-          Container(child: widget.child),
-        ],
+        child: _isChecked
+            ? SvgPicture.asset(Assets.icons.checkmark)
+            : Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 7.5,
+                  vertical: 7.5,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: ColorName.borderRadiusColor,
+                    width: 1.5,
+                  ),
+                ),
+              ),
       ),
     );
   }

@@ -4,58 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
-class GTButton extends StatelessWidget {
-  const GTButton({
+class GTIconButton extends StatelessWidget {
+  const GTIconButton({
     super.key,
-    this.child,
-    required this.onPress,
-  });
-
-  const factory GTButton.highlight({
-    required String text,
-    required VoidCallback onPress,
-    bool activateShadow,
-  }) = _GTElevatedButtonHighlight;
-
-  const factory GTButton.normal({
-    required String text,
-    required String icon,
-    required VoidCallback onPress,
-  }) = _GTElevatedButton;
-
-  const factory GTButton.textHighlight({
-    required String text,
-    required VoidCallback onPress,
-  }) = _GTButtonTextHighlight;
-
-  const factory GTButton.text({
-    required String text,
-    required VoidCallback onPress,
-  }) = _GTButtonText;
-
-  const factory GTButton.icon({
-    required String icon,
-    required VoidCallback onPress,
-    Color? iconColor,
-    Color? btnColor,
-    Object? heroTag,
-  }) = _GTButtonIcon;
-
-  final Widget? child;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: child,
-    );
-  }
-}
-
-class _GTButtonIcon extends GTButton {
-  const _GTButtonIcon({
     required this.icon,
-    required super.onPress,
+    required this.onPressed,
     this.heroTag,
     this.iconColor,
     this.btnColor = ColorName.primaryColor,
@@ -65,6 +18,7 @@ class _GTButtonIcon extends GTButton {
   final Color? iconColor;
   final Color? btnColor;
   final Object? heroTag;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +34,7 @@ class _GTButtonIcon extends GTButton {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: SizedBox(
           height: 20,
           width: 30,
@@ -94,13 +48,15 @@ class _GTButtonIcon extends GTButton {
   }
 }
 
-class _GTButtonText extends GTButton {
-  const _GTButtonText({
-    required super.onPress,
+class GTTextButton extends StatelessWidget {
+  const GTTextButton({
+    super.key,
     required this.text,
+    required this.onPressed,
   });
 
   final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +64,7 @@ class _GTButtonText extends GTButton {
       hoverColor: ColorName.backgroundColor,
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
-      onTap: onPress,
+      onTap: onPressed,
       child: GTText.bodyMedium(
         context,
         text: text,
@@ -118,13 +74,15 @@ class _GTButtonText extends GTButton {
   }
 }
 
-class _GTButtonTextHighlight extends GTButton {
-  const _GTButtonTextHighlight({
-    required super.onPress,
+class GTTextHighlightButton extends StatelessWidget {
+  const GTTextHighlightButton({
+    super.key,
     required this.text,
+    required this.onPressed,
   });
 
   final String text;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +90,7 @@ class _GTButtonTextHighlight extends GTButton {
       hoverColor: ColorName.backgroundColor,
       highlightColor: ColorName.backgroundColor,
       splashColor: ColorName.backgroundColor,
-      onTap: onPress,
+      onTap: onPressed,
       child: GTText.labelMedium(
         context,
         text: text,
@@ -142,15 +100,17 @@ class _GTButtonTextHighlight extends GTButton {
   }
 }
 
-class _GTElevatedButton extends GTButton {
-  const _GTElevatedButton({
-    required super.onPress,
+class GTElevatedButton extends StatelessWidget {
+  const GTElevatedButton({
+    super.key,
     required this.text,
     required this.icon,
+    required this.onPressed,
   });
 
   final String text;
   final String icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +132,7 @@ class _GTElevatedButton extends GTButton {
           ),
           backgroundColor: ColorName.backgroundColor,
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -198,15 +158,17 @@ class _GTElevatedButton extends GTButton {
   }
 }
 
-class _GTElevatedButtonHighlight extends GTButton {
-  const _GTElevatedButtonHighlight({
-    required super.onPress,
+class GTElevatedHighlightButton extends StatelessWidget {
+  const GTElevatedHighlightButton({
+    super.key,
     required this.text,
     this.activateShadow = false,
+    required this.onPressed,
   });
 
   final String text;
   final bool activateShadow;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -230,7 +192,7 @@ class _GTElevatedButtonHighlight extends GTButton {
           ),
           backgroundColor: ColorName.primaryColor,
         ),
-        onPressed: onPress,
+        onPressed: onPressed,
         child: Container(
           alignment: Alignment.center,
           child: activateShadow == true

@@ -43,7 +43,7 @@ class GTBestPlace extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: GTTitle(
                   title: S.of(context).mainPageBestPlace,
-                  onPress: pressBtn,
+                  onPressed: pressBtn,
                 ),
               ),
             ),
@@ -150,9 +150,9 @@ class GTCardBestPlace extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     height: 25,
-                    child: GTButton.highlight(
+                    child: GTElevatedHighlightButton(
                       text: '\$$price',
-                      onPress: pressBtnPrice,
+                      onPressed: pressBtnPrice,
                     ),
                   )
                 ],

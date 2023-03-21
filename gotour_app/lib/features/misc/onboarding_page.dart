@@ -59,10 +59,10 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GTButton.icon(
+                    GTIconButton(
                       icon: Assets.icons.left,
                       iconColor: ColorName.backgroundColor,
-                      onPress: () {
+                      onPressed: () {
                         _pageController.previousPage(
                           duration: const Duration(milliseconds: 600),
                           curve: Curves.ease,
@@ -81,10 +81,10 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                         ),
                       ),
                     ),
-                    GTButton.icon(
+                    GTIconButton(
                       icon: Assets.icons.right,
                       iconColor: ColorName.backgroundColor,
-                      onPress: () => _pageIndex == dataBoards.length - 1
+                      onPressed: () => _pageIndex == dataBoards.length - 1
                           ? context.go('/login-page')
                           : _pageController.nextPage(
                               duration: const Duration(milliseconds: 700),

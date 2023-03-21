@@ -146,8 +146,8 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                               : null;
                         },
                       ),
-                      // const SizedBox(height: 20),
-                      GTGender(onTap: () {}),
+                      const SizedBox(height: 5),
+                      const GTGender(),
                       const SizedBox(height: 20),
                       GTTextField(
                         controller: _passwordController,
@@ -181,38 +181,32 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       // const SizedBox(height: 20),
                       Row(
                         children: [
-                          SizedBox(
-                            child: agreeTerms == false
-                                ? GTCheckboxUnSelected(
-                                    onPress: () {
-                                      setState(() {
-                                        agreeTerms = !agreeTerms;
-                                      });
-                                    },
-                                  )
-                                : GTCheckboxSelected(
-                                    onPress: () {
-                                      setState(() {
-                                        agreeTerms = !agreeTerms;
-                                      });
-                                    },
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: GTCheckBox(
+                              isChecked: agreeTerms,
+                              onPressed: (value) {
+                                setState(() {
+                                  value = !agreeTerms;
+                                });
+                              },
+                            ),
                           ),
                           GTText.labelMedium(
                             context,
                             text: S.of(context).signUpPageTextTerms,
                           ),
-                          GTButton.textHighlight(
+                          GTTextHighlightButton(
                             text: S.of(context).signUpPageTextButtonTerms,
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
-                      GTButton.highlight(
+                      GTElevatedHighlightButton(
                         text: S.of(context).signUpTitle,
                         activateShadow: true,
-                        onPress: () {
+                        onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             BlocProvider.of<AuthBloc>(context).add(
                               SignUpRequested(
@@ -225,9 +219,9 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                         },
                       ),
                       const SizedBox(height: 10),
-                      GTButton.textHighlight(
+                      GTTextHighlightButton(
                         text: 'Already have an account?',
-                        onPress: () => context.go('/login-page'),
+                        onPressed: () => context.go('/login-page'),
                       ),
                       const SizedBox(height: 20),
                     ],

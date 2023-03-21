@@ -48,7 +48,7 @@ class _GTServiceState extends State<GTService> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
                         icons.length,
-                        (index) => GTButton.icon(
+                        (index) => GTIconButton(
                           icon: icons[index],
                           iconColor: index == selectedIndex
                               ? ColorName.backgroundColor
@@ -56,7 +56,7 @@ class _GTServiceState extends State<GTService> {
                           btnColor: index == selectedIndex
                               ? ColorName.primaryColor
                               : ColorName.surfaceColor,
-                          onPress: () {
+                          onPressed: () {
                             setState(() {
                               selectedIndex = index;
                             });

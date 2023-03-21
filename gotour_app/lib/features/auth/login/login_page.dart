@@ -154,15 +154,15 @@ class _GTLoginViewState extends State<_GTLoginView> {
                             : null;
                       },
                     ),
-                    GTButton.textHighlight(
+                    GTTextHighlightButton(
                       text: S.of(context).loginPageButtonForgotPassword,
-                      onPress: () => context.go('/forgot-password-page'),
+                      onPressed: () => context.go('/forgot-password-page'),
                     ),
                     const SizedBox(height: 10),
-                    GTButton.highlight(
+                    GTElevatedHighlightButton(
                       activateShadow: true,
                       text: S.of(context).loginPageTitle,
-                      onPress: () {
+                      onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
                             SignInRequested(
@@ -180,19 +180,19 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       color: ColorName.iconsColor,
                     ),
                     const SizedBox(height: 10),
-                    GTButton.normal(
+                    GTElevatedButton(
                       text: S.of(context).loginPageButtonLoginGG,
                       icon: Assets.icons.google,
-                      onPress: () {
+                      onPressed: () {
                         BlocProvider.of<AuthBloc>(context).add(
                           GoogleSignInRequested(),
                         );
                       },
                     ),
                     const SizedBox(height: 10),
-                    GTButton.textHighlight(
+                    GTTextHighlightButton(
                       text: S.of(context).loginPageButtonSignUpHere,
-                      onPress: () => context.go('/sign-up-page'),
+                      onPressed: () => context.go('/sign-up-page'),
                     ),
                     const SizedBox(height: 20),
                   ],

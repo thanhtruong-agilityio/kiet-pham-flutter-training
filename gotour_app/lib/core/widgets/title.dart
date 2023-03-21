@@ -7,11 +7,11 @@ class GTTitle extends StatelessWidget {
   const GTTitle({
     super.key,
     required this.title,
-    this.onPress,
+    this.onPressed,
   });
 
   final String title;
-  final VoidCallback? onPress;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class GTTitle extends StatelessWidget {
           text: title,
         ),
         const Spacer(),
-        GTButton.text(
-          onPress: onPress!,
+        GTTextButton(
+          onPressed: onPressed!,
           text: 'See All',
         )
       ],

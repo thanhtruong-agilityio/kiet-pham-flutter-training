@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
-import 'package:gotour_app/core/widgets/place_image.dart';
 import 'package:gotour_app/core/widgets/tag.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {
@@ -35,10 +36,39 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GTCardImageWithBookmark(
-          size: size,
-          images: widget.image,
-          press: widget.pressCard,
+        GestureDetector(
+          onTap: widget.pressCard,
+          child: Stack(
+            children: [
+              Container(
+                height: size.height * 1 / 4,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                    image: AssetImage(widget.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          SvgPicture.asset(
+                            Assets.icons.bookMark,
+                            color: ColorName.backgroundColor,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(
           height: 28,
@@ -71,9 +101,9 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             ),
             SizedBox(
               height: 25,
-              child: GTButton.highlight(
+              child: GTElevatedHighlightButton(
                 text: '\$${widget.price}',
-                onPress: widget.pressBtn,
+                onPressed: widget.pressBtn,
               ),
             )
           ],

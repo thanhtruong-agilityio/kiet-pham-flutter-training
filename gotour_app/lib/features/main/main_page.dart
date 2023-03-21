@@ -39,25 +39,44 @@ class _GTMainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GTScaffold(
-      appBar: GTAppBar.inMain(
-        avatar: Assets.images.author.path,
-        onPressLeading: () {},
-        onPressAvatar: () {
-          showDialog<Function>(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) => GTAlertDialog(
-              onCancel: () {
-                Navigator.of(context).pop();
+      appBar: GTAppBar(
+        leading: GTIconButton(
+          icon: Assets.icons.menu,
+          btnColor: ColorName.backgroundColor,
+          onPressed: () {},
+        ),
+        actionButtons: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: InkWell(
+              onTap: () {
+                showDialog<Function>(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) => GTAlertDialog(
+                    onCancel: () {
+                      Navigator.of(context).pop();
+                    },
+                    onOk: () {
+                      context.read<AuthBloc>().add(SignOutRequested());
+                    },
+                    title: 'Log Out',
+                    content: 'Do you want to log out',
+                  ),
+                );
               },
-              onOk: () {
-                context.read<AuthBloc>().add(SignOutRequested());
-              },
-              title: 'Log Out',
-              content: 'Do you want to log out',
+              child: Container(
+                height: 48,
+                width: 48,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.images.author.path),
+                  ),
+                ),
+              ),
             ),
-          );
-        },
+          ),
+        ],
       ),
       body: GestureDetector(
         onTap: () {
@@ -91,10 +110,10 @@ class _GTMainView extends StatelessWidget {
                     const SizedBox(width: 20),
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
-                      child: GTButton.icon(
+                      child: GTIconButton(
                         icon: Assets.icons.search,
                         iconColor: ColorName.backgroundColor,
-                        onPress: () {},
+                        onPressed: () {},
                       ),
                     ),
                   ],

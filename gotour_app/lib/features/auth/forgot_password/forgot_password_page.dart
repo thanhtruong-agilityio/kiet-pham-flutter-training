@@ -133,10 +133,10 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    GTButton.highlight(
+                    GTElevatedHighlightButton(
                       activateShadow: true,
                       text: S.of(context).forgotPasswordPageButtonSubmit,
-                      onPress: () {
+                      onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
                             ForgotPasswordRequested(_emailController.text),
@@ -145,10 +145,10 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       },
                     ),
                     const SizedBox(height: 20),
-                    GTButton.textHighlight(
+                    GTTextHighlightButton(
                       text:
                           S.of(context).forgotPasswordPageButtonBackToLoginPage,
-                      onPress: () => context.go('/login-page'),
+                      onPressed: () => context.go('/login-page'),
                     ),
                   ],
                 ),
