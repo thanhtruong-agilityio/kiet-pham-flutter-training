@@ -37,6 +37,9 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color onSecondaryColor = Color(0xFFFFFFFF);
 
+  /// Color: #CCCCCC
+  static const Color onSecondaryContainerColor = Color(0xFFCCCCCC);
+
   /// Color: #000000
   static const Color onSurfaceColor = Color(0xFF000000);
 
@@ -60,9 +63,6 @@ class ColorName {
 
   /// Color: #666666
   static const Color surfaceTintColor = Color(0xFF666666);
-
-  /// Color: #CCCCCC
-  static const Color tagColor = Color(0xFFCCCCCC);
 
   /// Color: #AAAAAA
   static const Color tertiaryColor = Color(0xFFAAAAAA);

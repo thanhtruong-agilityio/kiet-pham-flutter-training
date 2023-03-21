@@ -68,7 +68,7 @@ class GTTextButton extends StatelessWidget {
       child: GTText.bodyMedium(
         context,
         text: text,
-        color: ColorName.tagColor,
+        color: colorScheme.onSecondaryContainer,
       ),
     );
   }

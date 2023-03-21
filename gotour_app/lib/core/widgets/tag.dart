@@ -13,7 +13,7 @@ class GTTag extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
       height: 20,
       decoration: BoxDecoration(
-        color: ColorName.tagColor,
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
         borderRadius: BorderRadius.circular(5),
       ),
       child: GTText.bodySmall(
