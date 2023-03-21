@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -133,7 +132,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
         height: 136,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: ColorName.surfaceColor,
+          color: colorScheme.surface,
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 15, right: 20),
@@ -158,7 +157,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                                 GTLocation(
                                   placeName: widget.placeName,
                                   location: widget.location,
-                                  colorIcon: ColorName.primaryColor,
+                                  colorIcon: colorScheme.primary,
                                 ),
                               ],
                             )

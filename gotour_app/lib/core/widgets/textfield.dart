@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 import 'package:gotour_app/core/widgets/text.dart';
 
@@ -61,7 +60,7 @@ class _GTTextFieldState extends State<GTTextField> {
             autovalidateMode: widget.autovalidateMode,
             // textAlignVertical: TextAlignVertical.bottom,
             style: Theme.of(context).textTheme.labelMedium,
-            cursorColor: ColorName.textColor,
+            cursorColor: colorScheme.onBackground,
             obscureText: _obscureText,
             validator: widget.validator,
             onEditingComplete: () {
@@ -77,13 +76,13 @@ class _GTTextFieldState extends State<GTTextField> {
                         });
                       },
                       child: _obscureText
-                          ? const Icon(
+                          ? Icon(
                               Icons.visibility_off_outlined,
-                              color: ColorName.textColor,
+                              color: colorScheme.onBackground,
                             )
-                          : const Icon(
+                          : Icon(
                               Icons.visibility_outlined,
-                              color: ColorName.textColor,
+                              color: colorScheme.onBackground,
                             ),
                     )
                   : null,

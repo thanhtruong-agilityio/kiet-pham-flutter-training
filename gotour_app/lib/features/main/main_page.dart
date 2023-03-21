@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/alert_dialog.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
@@ -38,11 +37,12 @@ class _GTMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
           icon: Assets.icons.menu,
-          btnColor: ColorName.backgroundColor,
+          btnColor: colorScheme.background,
           onPressed: () {},
         ),
         actionButtons: [
@@ -112,7 +112,7 @@ class _GTMainView extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8),
                       child: GTIconButton(
                         icon: Assets.icons.search,
-                        iconColor: ColorName.backgroundColor,
+                        iconColor: colorScheme.background,
                         onPressed: () {},
                       ),
                     ),

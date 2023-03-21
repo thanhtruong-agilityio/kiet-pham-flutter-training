@@ -18,9 +18,4 @@
     <color name="onSecondaryContainerColor">#CCCCCC</color>
     <color name="outlineVariantColor">#0000000d</color>
     <color name="outlineColor">#333333</color>
-
-
-    <color name="textColor">#000000</color>
-    <color name="indicatorOnboarding">#DDDDDD</color>
-    
 </resources>

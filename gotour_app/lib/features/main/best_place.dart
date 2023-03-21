@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
@@ -115,6 +114,7 @@ class GTCardBestPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: pressCard,
       child: Container(
@@ -141,9 +141,9 @@ class GTCardBestPlace extends StatelessWidget {
                       GTLocation(
                         placeName: placeName,
                         location: location,
-                        colorIcon: ColorName.backgroundColor,
-                        colorLocation: ColorName.backgroundColor,
-                        colorName: ColorName.backgroundColor,
+                        colorIcon: colorScheme.background,
+                        colorLocation: colorScheme.background,
+                        colorName: colorScheme.background,
                       ),
                     ],
                   ),

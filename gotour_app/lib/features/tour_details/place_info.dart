@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 
@@ -115,6 +114,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         SizedBox(
@@ -152,7 +152,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                               children: [
                                 SvgPicture.asset(
                                   Assets.icons.bookMark,
-                                  color: ColorName.backgroundColor,
+                                  color: colorScheme.background,
                                 ),
                               ],
                             ),
@@ -163,11 +163,6 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                   ],
                 ),
               ),
-              // child: GTCardImageWithBookmark(
-              //   size: size,
-              //   images: images[index],
-              //   press: widget.onPress,
-              // ),
             ),
           ),
         ),

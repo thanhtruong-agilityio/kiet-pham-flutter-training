@@ -19,9 +19,6 @@ class ColorName {
   /// Color: #FF0000
   static const Color errorColor = Color(0xFFFF0000);
 
-  /// Color: #DDDDDD
-  static const Color indicatorOnboarding = Color(0xFFDDDDDD);
-
   /// Color: #FFD1AA
   static const Color inversePrimaryColor = Color(0xFFFFD1AA);
 
@@ -69,7 +66,4 @@ class ColorName {
 
   /// Color: #C4C4C4
   static const Color tertiaryContainerColor = Color(0xFFC4C4C4);
-
-  /// Color: #000000
-  static const Color textColor = Color(0xFF000000);
 }

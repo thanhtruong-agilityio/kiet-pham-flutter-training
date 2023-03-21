@@ -19,6 +19,7 @@ class WidgetbookHotReload extends StatefulWidget {
 class _WidgetbookHotReloadState extends State<WidgetbookHotReload> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final icons = <Option<String>>[
       Option(
         label: 'back',
@@ -110,7 +111,7 @@ GTButton.icon(
                               label: 'Icon',
                               options: icons,
                             ),
-                            iconColor: ColorName.backgroundColor,
+                            iconColor: colorScheme.background,
                             onPressed: () {},
                           ),
                           const SizedBox(height: 40),

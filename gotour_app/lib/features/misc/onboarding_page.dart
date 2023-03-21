@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
@@ -30,6 +29,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -61,7 +61,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   children: [
                     GTIconButton(
                       icon: Assets.icons.left,
-                      iconColor: ColorName.backgroundColor,
+                      iconColor: colorScheme.background,
                       onPressed: () {
                         _pageController.previousPage(
                           duration: const Duration(milliseconds: 600),
@@ -83,7 +83,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                     ),
                     GTIconButton(
                       icon: Assets.icons.right,
-                      iconColor: ColorName.backgroundColor,
+                      iconColor: colorScheme.background,
                       onPressed: () => _pageIndex == dataBoards.length - 1
                           ? context.go('/login-page')
                           : _pageController.nextPage(
@@ -111,15 +111,14 @@ class DotIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: 8,
       width: 8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: isActivate == true
-            ? ColorName.primaryColor
-            : ColorName.indicatorOnboarding,
+        color: isActivate ? colorScheme.primary : colorScheme.tertiaryContainer,
       ),
     );
   }
