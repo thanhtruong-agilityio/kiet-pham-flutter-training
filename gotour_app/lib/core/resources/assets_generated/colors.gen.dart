@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +15,6 @@ class ColorName {
 
   /// Color: #FFFFFF
   static const Color backgroundColor = Color(0xFFFFFFFF);
-
-  /// Color: #EEEEEE
-  static const Color borderRadiusColor = Color(0xFFEEEEEE);
 
   /// Color: #FEEBDC
   static const Color checkboxColor = Color(0xFFFEEBDC);
@@ -45,6 +42,9 @@ class ColorName {
 
   /// Color: #000000
   static const Color onSurfaceColor = Color(0xFF000000);
+
+  /// Color: #EEEEEE
+  static const Color onSurfaceVariant = Color(0xFFEEEEEE);
 
   /// Color: #333333
   static const Color onTag = Color(0xFF333333);

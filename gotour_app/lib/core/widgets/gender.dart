@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
@@ -24,8 +23,10 @@ class _GTGenderState extends State<GTGender> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
-              border:
-                  Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                width: 1.5,
+              ),
             ),
             child: ListTile(
               dense: true,
@@ -59,8 +60,10 @@ class _GTGenderState extends State<GTGender> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
-              border:
-                  Border.all(color: ColorName.borderRadiusColor, width: 1.5),
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                width: 1.5,
+              ),
             ),
             child: ListTile(
               dense: true,
@@ -93,107 +96,6 @@ class _GTGenderState extends State<GTGender> {
     );
   }
 }
-
-// class GTGender extends StatefulWidget {
-//   const GTGender({
-//     super.key,
-//     required this.male,
-//     required this.female,
-//   });
-
-//   final bool male;
-//   final bool female;
-
-//   @override
-//   State<GTGender> createState() => _GTGenderState();
-// }
-
-// class _GTGenderState extends State<GTGender> {
-//   bool _male = true;
-//   bool _female = false;
-
-//   void _toggleMale() {
-//     setState(() {
-//       _male = true;
-//       _female = false;
-//     });
-//   }
-
-//   void _toggleFemale() {
-//     setState(() {
-//       _male = false;
-//       _female = true;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Expanded(
-//           child: DecoratedBox(
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(7),
-//               border:
-//                   Border.all(color: ColorName.borderRadiusColor, width: 1.5),
-//             ),
-//             child: Row(
-//               children: [
-//                 Padding(
-//                   padding:
-//                       const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-//                   child: GTText.labelMedium(
-//                     context,
-//                     text: S.of(context).signUpPageGenderMale,
-//                   ),
-//                 ),
-//                 const Spacer(),
-//                 Padding(
-//                   padding: const EdgeInsets.only(right: 15),
-//                   child: GTCheckBox(
-//                     isChecked: _male,
-//                     onPressed: _toggleMale,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//         const SizedBox(width: 40),
-//         Expanded(
-//           child: DecoratedBox(
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(7),
-//               border:
-//                   Border.all(color: ColorName.borderRadiusColor, width: 1.5),
-//             ),
-//             child: Row(
-//               children: [
-//                 Padding(
-//                   padding:
-//                       const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-//                   child: GTText.labelMedium(
-//                     context,
-//                     text: S.of(context).signUpPageGenderFemale,
-//                   ),
-//                 ),
-//                 const Spacer(),
-//                 Padding(
-//                   padding: const EdgeInsets.only(right: 15),
-//                   child: GTCheckBox(
-//                     isChecked: _female,
-//                     onPressed: _toggleFemale,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
 
 class GTCheckBox extends StatefulWidget {
   const GTCheckBox({
@@ -233,7 +135,7 @@ class _GTCheckBoxState extends State<GTCheckBox> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
-                    color: ColorName.borderRadiusColor,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     width: 1.5,
                   ),
                 ),

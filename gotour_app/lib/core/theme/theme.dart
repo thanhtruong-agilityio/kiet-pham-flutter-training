@@ -14,6 +14,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   onBackground: ColorName.onBackgroundColor,
   surface: ColorName.surfaceColor,
   onSurface: ColorName.onSurfaceColor,
+  onSurfaceVariant: ColorName.onSurfaceVariant,
 );
 
 double height({
@@ -44,30 +45,30 @@ class GTTheme {
     scaffoldBackgroundColor: _lightColorScheme.background,
     primaryColor: _lightColorScheme.primary,
     inputDecorationTheme: InputDecorationTheme(
-      focusedErrorBorder: const OutlineInputBorder(
+      focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           width: 1.5,
-          color: ColorName.errorColor,
+          color: _lightColorScheme.error,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           width: 1.5,
-          color: ColorName.borderRadiusColor,
+          color: _lightColorScheme.onSurfaceVariant,
         ),
         borderRadius: BorderRadius.circular(7),
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           width: 1.5,
-          color: ColorName.borderRadiusColor,
+          color: _lightColorScheme.onSurfaceVariant,
         ),
         borderRadius: BorderRadius.circular(7),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           width: 1.5,
-          color: ColorName.errorColor,
+          color: _lightColorScheme.error,
         ),
         borderRadius: BorderRadius.circular(7),
       ),
