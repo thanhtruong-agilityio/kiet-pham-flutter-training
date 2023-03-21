@@ -16,10 +16,10 @@
     <color name="inversePrimaryColor">#FFD1AA</color>
     <color name="tertiaryContainerColor">#C4C4C4</color>
     <color name="onSecondaryContainerColor">#CCCCCC</color>
+    <color name="outlineVariantColor">#0000000d</color>
 
 
     <color name="textColor">#000000</color>
-    <color name="shadowBtnLoginGoogleColor">#0000000d</color>
     <color name="onTag">#333333</color>
     <color name="indicatorOnboarding">#DDDDDD</color>
     

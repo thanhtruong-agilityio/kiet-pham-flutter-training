@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTIconButton extends StatelessWidget {
@@ -117,11 +116,11 @@ class GTElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: ColorName.shadowBtnLoginGoogleColor,
-            offset: Offset(1, 5),
+            color: colorScheme.outlineVariant,
+            offset: const Offset(1, 5),
             blurRadius: 15,
             spreadRadius: 3,
           ),

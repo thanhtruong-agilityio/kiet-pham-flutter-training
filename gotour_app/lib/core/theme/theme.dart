@@ -20,6 +20,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   inversePrimary: ColorName.inversePrimaryColor,
   tertiaryContainer: ColorName.tertiaryContainerColor,
   onSecondaryContainer: ColorName.onSecondaryContainerColor,
+  outlineVariant: ColorName.outlineVariantColor,
 );
 
 double height({
