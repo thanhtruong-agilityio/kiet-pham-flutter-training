@@ -111,7 +111,7 @@ GTButton.icon(
                               options: icons,
                             ),
                             iconColor: ColorName.backgroundColor,
-                            onPress: () {},
+                            onPressed: () {},
                           ),
                           const SizedBox(height: 40),
                           const CodeView(
