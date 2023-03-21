@@ -21,6 +21,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   tertiaryContainer: ColorName.tertiaryContainerColor,
   onSecondaryContainer: ColorName.onSecondaryContainerColor,
   outlineVariant: ColorName.outlineVariantColor,
+  outline: ColorName.outlineColor,
 );
 
 double height({

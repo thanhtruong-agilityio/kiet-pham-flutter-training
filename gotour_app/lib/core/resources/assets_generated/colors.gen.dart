@@ -47,7 +47,7 @@ class ColorName {
   static const Color onSurfaceVariant = Color(0xFFEEEEEE);
 
   /// Color: #333333
-  static const Color onTag = Color(0xFF333333);
+  static const Color outlineColor = Color(0xFF333333);
 
   /// Color: #0000000d
   static const Color outlineVariantColor = Color(0x0000000D);

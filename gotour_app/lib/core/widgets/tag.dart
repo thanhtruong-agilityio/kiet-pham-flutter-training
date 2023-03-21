@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 
 import 'package:gotour_app/core/widgets/text.dart';
 
@@ -9,17 +8,18 @@ class GTTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
       height: 20,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
+        color: colorScheme.onSecondaryContainer,
         borderRadius: BorderRadius.circular(5),
       ),
       child: GTText.bodySmall(
         context,
         text: text,
-        color: ColorName.onTag,
+        color: colorScheme.outline,
       ),
     );
   }
