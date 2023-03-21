@@ -25,6 +25,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -45,8 +46,8 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                   GTLocation(
                     placeName: namePlace,
                     location: location,
-                    colorLocation: ColorName.iconsColor,
-                    colorIcon: Theme.of(context).colorScheme.primary,
+                    colorLocation: colorScheme.tertiary,
+                    colorIcon: colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
                   button(context),
@@ -80,7 +81,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
-              .copyWith(color: ColorName.iconsColor),
+              .copyWith(color: Theme.of(context).colorScheme.tertiary),
         ),
       ],
     );

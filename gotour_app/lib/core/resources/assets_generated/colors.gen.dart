@@ -22,9 +22,6 @@ class ColorName {
   /// Color: #FF0000
   static const Color errorColor = Color(0xFFFF0000);
 
-  /// Color: #AAAAAA
-  static const Color iconsColor = Color(0xFFAAAAAA);
-
   /// Color: #DDDDDD
   static const Color indicatorOnboarding = Color(0xFFDDDDDD);
 
@@ -69,6 +66,9 @@ class ColorName {
 
   /// Color: #CCCCCC
   static const Color tagColor = Color(0xFFCCCCCC);
+
+  /// Color: #AAAAAA
+  static const Color tertiaryColor = Color(0xFFAAAAAA);
 
   /// Color: #000000
   static const Color textColor = Color(0xFF000000);

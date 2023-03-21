@@ -120,6 +120,7 @@ class GTCardMyLocation extends StatefulWidget {
 class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: widget.press,
@@ -174,7 +175,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                       context,
                       text: widget.descriptions,
                       maxLines: 3,
-                      color: ColorName.iconsColor,
+                      color: colorScheme.tertiary,
                     ),
                   )
                 ],
@@ -193,7 +194,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
       },
       child: SvgPicture.asset(
         Assets.icons.bookMark,
-        color: ColorName.primaryColor,
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }
@@ -204,7 +205,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
       width: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: ColorName.primaryColor,
+        color: Theme.of(context).colorScheme.primary,
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(widget.image),

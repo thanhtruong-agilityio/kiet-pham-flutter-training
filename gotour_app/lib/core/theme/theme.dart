@@ -15,6 +15,7 @@ ColorScheme _lightColorScheme = const ColorScheme(
   surface: ColorName.surfaceColor,
   onSurface: ColorName.onSurfaceColor,
   onSurfaceVariant: ColorName.onSurfaceVariant,
+  tertiary: ColorName.tertiaryColor,
 );
 
 double height({
@@ -75,7 +76,7 @@ class GTTheme {
       hintStyle: TextStyle(
         fontFamily: FontFamily.gilroyMedium,
         fontSize: 14,
-        color: ColorName.iconsColor,
+        color: _lightColorScheme.tertiary,
         height: height(lineHeight: 17, fontSize: 14),
       ),
     ),

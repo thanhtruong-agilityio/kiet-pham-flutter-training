@@ -168,6 +168,7 @@ class OnboardingContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +196,7 @@ class OnboardingContent extends StatelessWidget {
                 child: GTText.labelLarge(
                   context,
                   text: description,
-                  color: ColorName.iconsColor,
+                  color: colorScheme.tertiary,
                 ),
               ),
             ],

@@ -177,7 +177,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     GTText.labelLarge(
                       context,
                       text: 'Or',
-                      color: ColorName.iconsColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                     const SizedBox(height: 10),
                     GTElevatedButton(
