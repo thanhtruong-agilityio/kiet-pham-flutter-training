@@ -16,14 +16,14 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color backgroundColor = Color(0xFFFFFFFF);
 
-  /// Color: #FEEBDC
-  static const Color checkboxColor = Color(0xFFFEEBDC);
-
   /// Color: #FF0000
   static const Color errorColor = Color(0xFFFF0000);
 
   /// Color: #DDDDDD
   static const Color indicatorOnboarding = Color(0xFFDDDDDD);
+
+  /// Color: #FFD1AA
+  static const Color inversePrimaryColor = Color(0xFFFFD1AA);
 
   /// Color: #000000
   static const Color onBackgroundColor = Color(0xFF000000);
@@ -54,9 +54,6 @@ class ColorName {
 
   /// Color: #0000000d
   static const Color shadowBtnLoginGoogleColor = Color(0x0000000D);
-
-  /// Color: #FFD1AA
-  static const Color shadowBtnPrimaryColor = Color(0xFFFFD1AA);
 
   /// Color: #C4C4C4
   static const Color sliderColor = Color(0xFFC4C4C4);

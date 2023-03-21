@@ -13,13 +13,12 @@
     <color name="onSurfaceVariant">#EEEEEE</color>
     <color name="tertiaryColor">#AAAAAA</color>
     <color name="surfaceTintColor">#666666</color>
+    <color name="inversePrimaryColor">#FFD1AA</color>
 
 
     <color name="textColor">#000000</color>
     <color name="sliderColor">#C4C4C4</color>
     <color name="tagColor">#CCCCCC</color>
-    <color name="checkboxColor">#FEEBDC</color>
-    <color name="shadowBtnPrimaryColor">#FFD1AA</color>
     <color name="shadowBtnLoginGoogleColor">#0000000d</color>
     <color name="onTag">#333333</color>
     <color name="indicatorOnboarding">#DDDDDD</color>
