@@ -18,6 +18,7 @@ class MainRepository {
     return (data.docs)
         .map(
           (tour) => BestPlace(
+            id: tour['id'] as String,
             imageUrl: tour['imageUrl'] as String,
             location: tour['location'] as String,
             placeName: tour['placeName'] as String,
@@ -53,6 +54,7 @@ class MainRepository {
         final dataList = querySnapshot.docs
             .map<MyLocation>(
               (json) => MyLocation(
+                id: json['id'] as String,
                 descriptions: json['descriptions'] as String,
                 imageUrl: json['imageUrl'] as String,
                 location: json['location'] as String,
