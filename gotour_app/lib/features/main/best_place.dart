@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -12,14 +13,7 @@ import 'package:gotour_app/features/main/repository/main_repository.dart';
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
     super.key,
-    required this.pressCard,
-    required this.pressBtn,
-    required this.pressBtnPrice,
   });
-
-  final VoidCallback pressCard;
-  final VoidCallback pressBtn;
-  final VoidCallback pressBtnPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +36,7 @@ class GTBestPlace extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: GTTitle(
                   title: S.of(context).mainPageBestPlace,
-                  onPressed: pressBtn,
+                  onPressed: () => context.goNamed('hot-place'),
                 ),
               ),
             ),
@@ -74,8 +68,11 @@ class GTBestPlace extends StatelessWidget {
                               placeName: data[index].placeName,
                               location: data[index].location,
                               price: data[index].price,
-                              pressCard: pressCard,
-                              pressBtnPrice: pressBtnPrice,
+                              pressCard: () => context.goNamed(
+                                'tour-details',
+                                params: {'id': data[index].id},
+                              ),
+                              pressBtnPrice: () {},
                             ),
                           ),
                         );

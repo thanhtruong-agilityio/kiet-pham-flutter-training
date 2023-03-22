@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
@@ -13,10 +14,7 @@ import 'package:gotour_app/features/main/repository/main_repository.dart';
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
     super.key,
-    required this.press,
   });
-
-  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +72,10 @@ class GTMyLocation extends StatelessWidget {
                       itemBuilder: (context, index) => Container(
                         margin: const EdgeInsets.only(right: 20),
                         child: GTCardMyLocation(
-                          press: press,
+                          press: () => context.goNamed(
+                            'tour-details',
+                            params: {'id': data[index].id},
+                          ),
                           image: data[index].imageUrl,
                           placeName: data[index].placeName,
                           location: data[index].location,

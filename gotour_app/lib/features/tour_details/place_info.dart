@@ -49,38 +49,29 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                     colorIcon: colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
-                  button(context),
+                  SizedBox(
+                    height: 25,
+                    child: GTElevatedHighlightButton(
+                      text: '\$$price',
+                      onPressed: onPressBtn,
+                    ),
+                  ),
                 ],
               ),
-              weather(context)
+              Row(
+                children: [
+                  SvgPicture.asset(Assets.icons.cloud),
+                  const SizedBox(width: 7),
+                  Text(
+                    '$temperature°C',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                  ),
+                ],
+              ),
             ],
           ),
-        ),
-      ],
-    );
-  }
-
-  SizedBox button(BuildContext context) {
-    return SizedBox(
-      height: 25,
-      child: GTElevatedHighlightButton(
-        text: '\$$price',
-        onPressed: onPressBtn,
-      ),
-    );
-  }
-
-  Row weather(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(Assets.icons.cloud),
-        const SizedBox(width: 7),
-        Text(
-          '$temperature°C',
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(color: Theme.of(context).colorScheme.tertiary),
         ),
       ],
     );
