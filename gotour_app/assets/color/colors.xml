@@ -10,18 +10,13 @@
     <color name="onBackgroundColor">#000000</color>
     <color name="surfaceColor">#F8F8F8</color>
     <color name="onSurfaceColor">#000000</color>
-
-
-    <color name="titleOfTextfieldColor">#666666</color>
-    <color name="textColor">#000000</color>
-    <color name="sliderColor">#C4C4C4</color>
-    <color name="tagColor">#CCCCCC</color>
-    <color name="checkboxColor">#FEEBDC</color>
-    <color name="iconsColor">#AAAAAA</color>
-    <color name="borderRadiusColor">#EEEEEE</color>
-    <color name="shadowBtnPrimaryColor">#FFD1AA</color>
-    <color name="shadowBtnLoginGoogleColor">#0000000d</color>
-    <color name="onTag">#333333</color>
-    <color name="indicatorOnboarding">#DDDDDD</color>
-    
+    <color name="onSurfaceVariant">#EEEEEE</color>
+    <color name="tertiaryColor">#AAAAAA</color>
+    <color name="surfaceTintColor">#666666</color>
+    <color name="inversePrimaryColor">#FFD1AA</color>
+    <color name="tertiaryContainerColor">#C4C4C4</color>
+    <color name="onSecondaryContainerColor">#CCCCCC</color>
+    <color name="outlineVariantColor">#0000000d</color>
+    <color name="outlineColor">#333333</color>
+    <color name="secondaryContainerColor">#17E364</color>
 </resources>

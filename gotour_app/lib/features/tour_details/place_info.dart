@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 
@@ -25,6 +24,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -45,8 +45,8 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                   GTLocation(
                     placeName: namePlace,
                     location: location,
-                    colorLocation: ColorName.iconsColor,
-                    colorIcon: Theme.of(context).colorScheme.primary,
+                    colorLocation: colorScheme.tertiary,
+                    colorIcon: colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
                   button(context),
@@ -80,7 +80,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyMedium!
-              .copyWith(color: ColorName.iconsColor),
+              .copyWith(color: Theme.of(context).colorScheme.tertiary),
         ),
       ],
     );
@@ -114,6 +114,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         SizedBox(
@@ -151,7 +152,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                               children: [
                                 SvgPicture.asset(
                                   Assets.icons.bookMark,
-                                  color: ColorName.backgroundColor,
+                                  color: colorScheme.background,
                                 ),
                               ],
                             ),
@@ -162,11 +163,6 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                   ],
                 ),
               ),
-              // child: GTCardImageWithBookmark(
-              //   size: size,
-              //   images: images[index],
-              //   press: widget.onPress,
-              // ),
             ),
           ),
         ),
@@ -199,7 +195,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
         height: isActivate ? 3 : 5,
         width: isActivate ? 20 : 5,
         decoration: BoxDecoration(
-          color: ColorName.sliderColor,
+          color: Theme.of(context).colorScheme.tertiaryContainer,
           borderRadius: BorderRadius.circular(5),
         ),
       ),

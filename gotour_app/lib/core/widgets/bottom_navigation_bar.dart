@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_app/core/widgets/button.dart';
 
 class GTBottomNavigationBar extends StatefulWidget {
   const GTBottomNavigationBar({super.key});
@@ -21,36 +20,30 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
   ];
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SafeArea(
       child: SizedBox(
-        height: 44,
+        height: 40,
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Material(
-            color: ColorName.surfaceColor,
+            color: colorScheme.surface,
             borderRadius: BorderRadius.circular(10),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Wrap(
-                alignment: WrapAlignment.spaceAround,
-                children: List.generate(
-                  data.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    child: SvgPicture.asset(
-                      data[index],
-                      height: 20,
-                      width: 20,
-                      color: index == selectedIndex
-                          ? ColorName.primaryColor
-                          : null,
-                    ),
-                  ),
+            child: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              children: List.generate(
+                data.length,
+                (index) => GTIconButton(
+                  icon: data[index],
+                  btnColor: colorScheme.surface,
+                  iconColor:
+                      index == selectedIndex ? colorScheme.primary : null,
+                  onPressed: () {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
                 ),
               ),
             ),

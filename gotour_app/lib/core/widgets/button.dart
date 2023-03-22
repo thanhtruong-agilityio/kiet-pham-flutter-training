@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 
 class GTIconButton extends StatelessWidget {
@@ -9,19 +8,20 @@ class GTIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.onPressed,
-    this.heroTag,
     this.iconColor,
-    this.btnColor = ColorName.primaryColor,
+    this.btnColor,
+    this.heroTag,
   });
 
   final String icon;
   final Color? iconColor;
-  final Color? btnColor;
   final Object? heroTag;
+  final Color? btnColor;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: 40,
       height: 40,
@@ -30,7 +30,7 @@ class GTIconButton extends StatelessWidget {
         elevation: 0,
         hoverElevation: 0,
         highlightElevation: 0,
-        backgroundColor: btnColor,
+        backgroundColor: btnColor ?? colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
@@ -60,15 +60,16 @@ class GTTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      hoverColor: ColorName.backgroundColor,
-      highlightColor: ColorName.backgroundColor,
-      splashColor: ColorName.backgroundColor,
+      hoverColor: colorScheme.background,
+      highlightColor: colorScheme.background,
+      splashColor: colorScheme.background,
       onTap: onPressed,
       child: GTText.bodyMedium(
         context,
         text: text,
-        color: ColorName.tagColor,
+        color: colorScheme.onSecondaryContainer,
       ),
     );
   }
@@ -86,15 +87,16 @@ class GTTextHighlightButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
-      hoverColor: ColorName.backgroundColor,
-      highlightColor: ColorName.backgroundColor,
-      splashColor: ColorName.backgroundColor,
+      hoverColor: colorScheme.background,
+      highlightColor: colorScheme.background,
+      splashColor: colorScheme.background,
       onTap: onPressed,
       child: GTText.labelMedium(
         context,
         text: text,
-        color: ColorName.primaryColor,
+        color: colorScheme.primary,
       ),
     );
   }
@@ -114,12 +116,13 @@ class GTElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: ColorName.shadowBtnLoginGoogleColor,
-            offset: Offset(1, 5),
+            color: colorScheme.outlineVariant,
+            offset: const Offset(1, 5),
             blurRadius: 15,
             spreadRadius: 3,
           ),
@@ -130,7 +133,7 @@ class GTElevatedButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
           ),
-          backgroundColor: ColorName.backgroundColor,
+          backgroundColor: colorScheme.background,
         ),
         onPressed: onPressed,
         child: Row(
@@ -172,13 +175,14 @@ class GTElevatedHighlightButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       decoration: activateShadow == true
-          ? const BoxDecoration(
+          ? BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: ColorName.shadowBtnPrimaryColor,
-                  offset: Offset(0, 5),
+                  color: colorScheme.inversePrimary,
+                  offset: const Offset(0, 5),
                   blurRadius: 11,
                 ),
               ],
@@ -190,7 +194,7 @@ class GTElevatedHighlightButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
           ),
-          backgroundColor: ColorName.primaryColor,
+          backgroundColor: colorScheme.primary,
         ),
         onPressed: onPressed,
         child: Container(
@@ -199,12 +203,12 @@ class GTElevatedHighlightButton extends StatelessWidget {
               ? GTText.titleSmall(
                   context,
                   text: text,
-                  color: ColorName.onPrimaryColor,
+                  color: colorScheme.onPrimary,
                 )
               : GTText.bodyLarge(
                   context,
                   text: text,
-                  color: ColorName.backgroundColor,
+                  color: colorScheme.onPrimary,
                 ),
         ),
       ),

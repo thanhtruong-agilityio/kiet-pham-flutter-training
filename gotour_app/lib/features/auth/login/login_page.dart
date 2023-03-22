@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_app/core/shared/snack_bar.dart';
 import 'package:gotour_app/core/widgets/alert_dialog.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -40,14 +39,10 @@ class GTLoginPage extends StatelessWidget {
         }
         if (state is AuthError) {
           // Showing the error message if the user has entered invalid credentials
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: GTText.labelLarge(
-                context,
-                text: state.error,
-                color: Theme.of(context).colorScheme.error,
-              ),
-            ),
+          GTSnackBar.show(
+            context,
+            message: state.error,
+            backgroundColor: Theme.of(context).colorScheme.error,
           );
         }
       },
@@ -177,7 +172,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     GTText.labelLarge(
                       context,
                       text: 'Or',
-                      color: ColorName.iconsColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                     const SizedBox(height: 10),
                     GTElevatedButton(

@@ -24,6 +24,7 @@ class _GTServiceState extends State<GTService> {
   ];
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       height: 76,
@@ -51,11 +52,11 @@ class _GTServiceState extends State<GTService> {
                         (index) => GTIconButton(
                           icon: icons[index],
                           iconColor: index == selectedIndex
-                              ? ColorName.backgroundColor
-                              : ColorName.iconsColor,
+                              ? colorScheme.background
+                              : colorScheme.tertiary,
                           btnColor: index == selectedIndex
-                              ? ColorName.primaryColor
-                              : ColorName.surfaceColor,
+                              ? colorScheme.primary
+                              : colorScheme.surface,
                           onPressed: () {
                             setState(() {
                               selectedIndex = index;

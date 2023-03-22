@@ -14,30 +14,26 @@ class GTTourDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return GTScaffold(
-      // appBar: GTAppBar.inPage(
-      //   onPressLeading: () => Navigator.pop(context),
-      //   onPressNotification: () {},
-      //   onPressMore: () {},
-      // ),
       appBar: GTAppBar(
         leading: Padding(
           padding: const EdgeInsets.only(right: 10),
           child: GTIconButton(
             icon: Assets.icons.back,
-            btnColor: ColorName.backgroundColor,
+            btnColor: colorScheme.background,
             onPressed: () => GoRouter.of(context).pop(),
           ),
         ),
         actionButtons: [
           GTIconButton(
             icon: Assets.icons.notification,
-            btnColor: ColorName.backgroundColor,
+            btnColor: colorScheme.background,
             onPressed: () {},
           ),
           GTIconButton(
             icon: Assets.icons.more,
-            btnColor: ColorName.backgroundColor,
+            btnColor: colorScheme.background,
             onPressed: () {},
           ),
         ],
@@ -63,7 +59,7 @@ class GTTourDetails extends StatelessWidget {
                 context,
                 text:
                     '''Bangkok, Thailand's capital, is a large city known for ornate shrines and vibrant street life. The boat-filled Chao Phraya River feeds its network of canals, flowing past the Rattanakosin royal district, home to opulent Grand Palace and its sacred Wat Phra Kaew Temple. earby is Wat Pho Temple with an enormous reclining Buddha and, on the opposite shore.''',
-                color: ColorName.secondaryColor,
+                color: colorScheme.secondary,
               ),
             )
           ],

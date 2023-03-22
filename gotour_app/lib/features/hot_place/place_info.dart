@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/tag.dart';
@@ -32,6 +31,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +59,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                         children: [
                           SvgPicture.asset(
                             Assets.icons.bookMark,
-                            color: ColorName.backgroundColor,
+                            color: colorScheme.background,
                           ),
                         ],
                       ),
@@ -82,8 +82,8 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                 GTLocation(
                   placeName: widget.placeName,
                   location: widget.location,
-                  colorLocation: ColorName.iconsColor,
-                  colorIcon: ColorName.primaryColor,
+                  colorLocation: colorScheme.tertiary,
+                  colorIcon: colorScheme.primary,
                 ),
                 const SizedBox(
                   height: 15,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/assets_generated/colors.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
@@ -120,6 +119,7 @@ class GTCardMyLocation extends StatefulWidget {
 class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: widget.press,
@@ -132,7 +132,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
         height: 136,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: ColorName.surfaceColor,
+          color: colorScheme.surface,
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 15, right: 20),
@@ -157,7 +157,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                                 GTLocation(
                                   placeName: widget.placeName,
                                   location: widget.location,
-                                  colorIcon: ColorName.primaryColor,
+                                  colorIcon: colorScheme.primary,
                                 ),
                               ],
                             )
@@ -174,7 +174,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                       context,
                       text: widget.descriptions,
                       maxLines: 3,
-                      color: ColorName.iconsColor,
+                      color: colorScheme.tertiary,
                     ),
                   )
                 ],
@@ -193,7 +193,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
       },
       child: SvgPicture.asset(
         Assets.icons.bookMark,
-        color: ColorName.primaryColor,
+        color: Theme.of(context).colorScheme.primary,
       ),
     );
   }
@@ -204,7 +204,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
       width: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: ColorName.primaryColor,
+        color: Theme.of(context).colorScheme.primary,
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(widget.image),
