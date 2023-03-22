@@ -19,4 +19,17 @@ class TourDetailsRepository {
       weather: data['weather'] as String,
     );
   }
+
+  Future<List<String>> fetchListImage({
+    required String idTour,
+  }) async {
+    final documentSnapshot =
+        await _firebaseFirestoreTourDetails.doc(idTour).get();
+
+    final arrayImage = documentSnapshot.data()!['imageList'];
+    final imageList =
+        (arrayImage as List<dynamic>).map((e) => e.toString()).toList();
+
+    return imageList;
+  }
 }

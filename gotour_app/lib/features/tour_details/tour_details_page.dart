@@ -104,6 +104,7 @@ class _GTTourDetails extends StatelessWidget {
                         temperature: data.weather,
                         onPressCard: () {},
                         onPressBtn: () {},
+                        id: id!,
                       ),
                       const SizedBox(height: 26),
                       const GTService(),

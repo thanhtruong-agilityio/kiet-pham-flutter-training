@@ -12,6 +12,7 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   TourDetailsBloc({required this.tourDetailsRepository})
       : super(TourDetailsInitialState()) {
     on<TourDetailsFetchDataEvent>(_handleTourDetailsFetchDataEvent);
+    on<TourDetailsFetchImageListEvent>(_handleTourDetailsFetchImageListEvent);
   }
 
   final TourDetailsRepository tourDetailsRepository;
@@ -26,6 +27,20 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
         idTour: event.id,
       );
       emit(TourDetailsLoadedState(tourDetails: tourDetails));
+    } on Exception catch (e) {}
+  }
+
+  Future<void> _handleTourDetailsFetchImageListEvent(
+    TourDetailsFetchImageListEvent event,
+    Emitter<TourDetailsState> emit,
+  ) async {
+    try {
+      final imageList =
+          await tourDetailsRepository.fetchListImage(idTour: event.id);
+
+      final json = jsonEncode(imageList);
+      print(json);
+      emit(TourDetailsImageListLoadedState(imageList: imageList));
     } on Exception catch (e) {}
   }
 }

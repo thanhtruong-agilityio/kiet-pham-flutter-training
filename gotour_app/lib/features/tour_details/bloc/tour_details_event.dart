@@ -14,3 +14,9 @@ class TourDetailsFetchDataEvent extends TourDetailsEvent {
 
   final String id;
 }
+
+class TourDetailsFetchImageListEvent extends TourDetailsEvent {
+  const TourDetailsFetchImageListEvent({required this.id});
+
+  final String id;
+}

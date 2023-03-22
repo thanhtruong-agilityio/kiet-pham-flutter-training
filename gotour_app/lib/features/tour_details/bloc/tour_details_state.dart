@@ -15,7 +15,9 @@ class TourDetailsLoadingState extends TourDetailsState {
 }
 
 class TourDetailsLoadedState extends TourDetailsState {
-  const TourDetailsLoadedState({required this.tourDetails});
+  const TourDetailsLoadedState({
+    required this.tourDetails,
+  });
 
   final TourDetails tourDetails;
 
@@ -25,6 +27,26 @@ class TourDetailsLoadedState extends TourDetailsState {
 
 class TourDetailsErrorState extends TourDetailsState {
   const TourDetailsErrorState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [];
+}
+
+class TourDetailsImageListLoadedState extends TourDetailsState {
+  const TourDetailsImageListLoadedState({
+    required this.imageList,
+  });
+
+  final List<String> imageList;
+
+  @override
+  List<Object> get props => [imageList];
+}
+
+class TourDetailsImageListErrorState extends TourDetailsState {
+  const TourDetailsImageListErrorState({required this.error});
 
   final String error;
 
