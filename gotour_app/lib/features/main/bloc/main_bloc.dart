@@ -12,6 +12,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   MainBloc({required this.mainRepository}) : super(MainInitialState()) {
     on<MyLocationFetchDataEvent>(_handleMyLocationRequestedEvent);
     on<BestPlaceFetchDataEvent>(_handleBestPlaceRequestedEvent);
+    on<DeleteMyLocationEvent>(_handleDeleteMyLocationEvent);
   }
 
   final MainRepository mainRepository;
@@ -47,5 +48,23 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     } on Exception catch (e) {
       emit(BestPlaceErrorState(error: e.toString()));
     }
+  }
+
+  Future<void> _handleDeleteMyLocationEvent(
+    DeleteMyLocationEvent event,
+    Emitter<MainState> emit,
+  ) async {
+    try {
+      emit(DeleteMyLocationLoadingState());
+      final idUser = FirebaseAuth.instance.currentUser!.uid;
+      await mainRepository.deleteBookmark(idUser, event.idTour);
+      final idTours =
+          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
+      final listIdTour = idTours.map((idTour) => idTour.idTour).toList();
+
+      final listMyLocation =
+          await mainRepository.getDataFromDocuments(documentIds: listIdTour);
+      emit(DeleteMyLocationSuccessState(listMyLocation: listMyLocation));
+    } on Exception catch (e) {}
   }
 }

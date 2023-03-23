@@ -54,3 +54,26 @@ class MyLocationErrorState extends MainState {
   @override
   List<Object> get props => [];
 }
+
+class DeleteMyLocationLoadingState extends MainState {
+  @override
+  List<Object> get props => [];
+}
+
+class DeleteMyLocationSuccessState extends MainState {
+  const DeleteMyLocationSuccessState({
+    required this.listMyLocation,
+  });
+  final List<MyLocation> listMyLocation;
+  @override
+  List<Object> get props => [listMyLocation];
+}
+
+class DeleteMyLocationErrorState extends MainState {
+  const DeleteMyLocationErrorState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [];
+}
