@@ -43,8 +43,10 @@ final GoRouter router = GoRouter(
       routes: [
         GoRoute(
           name: 'tour-details',
-          path: 'tour-details',
-          builder: (context, state) => const GTTourDetails(),
+          path: 'tour-details/:id',
+          builder: (context, state) => GTTourDetails(
+            id: state.params['id'],
+          ),
         ),
         GoRoute(
           name: 'hot-place',

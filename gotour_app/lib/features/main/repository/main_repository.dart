@@ -18,6 +18,7 @@ class MainRepository {
     return (data.docs)
         .map(
           (tour) => BestPlace(
+            id: tour['id'] as String,
             imageUrl: tour['imageUrl'] as String,
             location: tour['location'] as String,
             placeName: tour['placeName'] as String,
@@ -53,6 +54,7 @@ class MainRepository {
         final dataList = querySnapshot.docs
             .map<MyLocation>(
               (json) => MyLocation(
+                id: json['id'] as String,
                 descriptions: json['descriptions'] as String,
                 imageUrl: json['imageUrl'] as String,
                 location: json['location'] as String,
@@ -64,5 +66,16 @@ class MainRepository {
       }
     }
     return [];
+  }
+
+  // Detele document when user click icon bookmark
+  Future<void> deleteBookmark(String userId, String tourId) async {
+    final snapshot = await _firebaseFirestoreTourBookMarks
+        .where('idUser', isEqualTo: userId)
+        .where('idTour', isEqualTo: tourId)
+        .get();
+    for (final document in snapshot.docs) {
+      await document.reference.delete();
+    }
   }
 }

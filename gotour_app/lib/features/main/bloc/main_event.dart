@@ -10,3 +10,9 @@ abstract class MainEvent extends Equatable {
 class BestPlaceFetchDataEvent extends MainEvent {}
 
 class MyLocationFetchDataEvent extends MainEvent {}
+
+class DeleteMyLocationEvent extends MainEvent {
+  const DeleteMyLocationEvent({required this.idTour});
+
+  final String idTour;
+}

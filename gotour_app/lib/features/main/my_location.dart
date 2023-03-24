@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
@@ -13,10 +14,7 @@ import 'package:gotour_app/features/main/repository/main_repository.dart';
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
     super.key,
-    required this.press,
   });
-
-  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -71,16 +69,78 @@ class GTMyLocation extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20),
                       scrollDirection: Axis.horizontal,
                       itemCount: data.length,
-                      itemBuilder: (context, index) => Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        child: GTCardMyLocation(
-                          press: press,
-                          image: data[index].imageUrl,
-                          placeName: data[index].placeName,
-                          location: data[index].location,
-                          descriptions: data[index].descriptions,
-                        ),
+                      itemBuilder: (context, index) {
+                        final idTour = data[index].id;
+                        return Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          child: GTCardMyLocation(
+                            press: () => context.goNamed(
+                              'tour-details',
+                              params: {'id': data[index].id},
+                            ),
+                            image: data[index].imageUrl,
+                            placeName: data[index].placeName,
+                            location: data[index].location,
+                            descriptions: data[index].descriptions,
+                            onBookMark: () {
+                              context.read<MainBloc>().add(
+                                    DeleteMyLocationEvent(
+                                      idTour: idTour,
+                                    ),
+                                  );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  if (state is DeleteMyLocationLoadingState) {
+                    return Center(
+                      child: GTText.labelLarge(
+                        context,
+                        text: 'Loading',
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
+                    );
+                  }
+                  if (state is DeleteMyLocationSuccessState) {
+                    data = state.listMyLocation;
+                    if (state.listMyLocation.isEmpty) {
+                      return Center(
+                        child: GTText.labelLarge(
+                          context,
+                          text: ' My Location is empty',
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      );
+                    }
+                    return ListView.builder(
+                      padding: const EdgeInsets.only(left: 20),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        final idTour = data[index].id;
+                        return Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          child: GTCardMyLocation(
+                            press: () => context.goNamed(
+                              'tour-details',
+                              params: {'id': data[index].id},
+                            ),
+                            image: data[index].imageUrl,
+                            placeName: data[index].placeName,
+                            location: data[index].location,
+                            descriptions: data[index].descriptions,
+                            onBookMark: () {
+                              context.read<MainBloc>().add(
+                                    DeleteMyLocationEvent(
+                                      idTour: idTour,
+                                    ),
+                                  );
+                            },
+                          ),
+                        );
+                      },
                     );
                   }
                   return Center(
@@ -104,6 +164,7 @@ class GTCardMyLocation extends StatefulWidget {
     required this.placeName,
     required this.location,
     required this.descriptions,
+    required this.onBookMark,
   });
 
   final VoidCallback press;
@@ -111,6 +172,7 @@ class GTCardMyLocation extends StatefulWidget {
   final String placeName;
   final String location;
   final String descriptions;
+  final VoidCallback onBookMark;
 
   @override
   State<GTCardMyLocation> createState() => _GTCardMyLocationState();
@@ -188,9 +250,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
 
   GestureDetector iconBookMark() {
     return GestureDetector(
-      onTap: () {
-        setState(() {});
-      },
+      onTap: widget.onBookMark,
       child: SvgPicture.asset(
         Assets.icons.bookMark,
         color: Theme.of(context).colorScheme.primary,

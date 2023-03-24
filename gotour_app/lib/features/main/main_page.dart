@@ -121,17 +121,11 @@ class _GTMainView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // My Location
-              GTMyLocation(
-                press: () => GoRouter.of(context).pushNamed('tour-details'),
-              ),
+              const GTMyLocation(),
               const SizedBox(height: 20),
               // Best Place
               // Text(data.length.toString()),
-              GTBestPlace(
-                pressCard: () => GoRouter.of(context).pushNamed('tour-details'),
-                pressBtn: () => GoRouter.of(context).pushNamed('hot-place'),
-                pressBtnPrice: () {},
-              ),
+              const GTBestPlace(),
             ],
           ),
         ),
