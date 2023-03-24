@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/main/models/model_best_place.dart';
-import 'package:gotour_app/features/main/models/model_id_tour.dart';
-import 'package:gotour_app/features/main/models/model_my_location.dart';
+import 'package:gotour_app/features/main/models/best_place.dart';
+import 'package:gotour_app/features/main/models/my_location.dart';
+import 'package:gotour_app/features/main/models/tour_id.dart';
 
 class MainRepository {
   final _firebaseFirestoreBestPlace =
@@ -29,14 +29,14 @@ class MainRepository {
   }
 
   // Fetch List Tour from the firebase
-  Future<List<IdTour>> fetchListTourBookmarkByUser({
+  Future<List<TourId>> fetchListTourBookmarkByUser({
     required String idUser,
   }) async {
     final data = await _firebaseFirestoreTourBookMarks
-        .where('idUser', isEqualTo: idUser)
+        .where('userId', isEqualTo: idUser)
         .get();
     return (data.docs)
-        .map((tour) => IdTour(idTour: tour['idTour'] as String))
+        .map((tour) => TourId(tourId: tour['tourId'] as String))
         .toList();
   }
 
@@ -71,8 +71,8 @@ class MainRepository {
   // Detele document when user click icon bookmark
   Future<void> deleteBookmark(String userId, String tourId) async {
     final snapshot = await _firebaseFirestoreTourBookMarks
-        .where('idUser', isEqualTo: userId)
-        .where('idTour', isEqualTo: tourId)
+        .where('userId', isEqualTo: userId)
+        .where('tourId', isEqualTo: tourId)
         .get();
     for (final document in snapshot.docs) {
       await document.reference.delete();

@@ -22,7 +22,7 @@ class TourDetailsFetchImageListEvent extends TourDetailsEvent {
 }
 
 class pressTheTourBookmarkButtonEvent extends TourDetailsEvent {
-  const pressTheTourBookmarkButtonEvent({required this.idTour});
+  const pressTheTourBookmarkButtonEvent({required this.tourId});
 
-  final String idTour;
+  final String tourId;
 }

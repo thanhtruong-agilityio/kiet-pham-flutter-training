@@ -175,7 +175,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                                   .read<TourDetailsBloc>()
                                                   .add(
                                                     pressTheTourBookmarkButtonEvent(
-                                                      idTour: widget.id,
+                                                      tourId: widget.id,
                                                     ),
                                                   );
                                             },

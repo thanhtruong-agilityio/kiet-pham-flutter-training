@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/features/main/models/model_best_place.dart';
-import 'package:gotour_app/features/main/models/model_my_location.dart';
+import 'package:gotour_app/features/main/models/best_place.dart';
+import 'package:gotour_app/features/main/models/my_location.dart';
 import 'package:gotour_app/features/main/repository/main_repository.dart';
 
 part 'main_event.dart';
@@ -24,13 +24,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     try {
       emit(MyLocationLoadingState());
       final idUser = FirebaseAuth.instance.currentUser!.uid;
-      final idTours =
+      final tourIds =
           await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
 
-      final listIdTour = idTours.map((idTour) => idTour.idTour).toList();
+      final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
 
       final listMyLocation =
-          await mainRepository.getDataFromDocuments(documentIds: listIdTour);
+          await mainRepository.getDataFromDocuments(documentIds: tourIdList);
       emit(MyLocationLoadedState(listMyLocation: listMyLocation));
     } on Exception catch (e) {
       emit(MyLocationErrorState(error: e.toString()));
@@ -57,13 +57,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     try {
       emit(DeleteMyLocationLoadingState());
       final idUser = FirebaseAuth.instance.currentUser!.uid;
-      await mainRepository.deleteBookmark(idUser, event.idTour);
-      final idTours =
+      await mainRepository.deleteBookmark(idUser, event.tourId);
+      final tourIds =
           await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
-      final listIdTour = idTours.map((idTour) => idTour.idTour).toList();
+      final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
 
       final listMyLocation =
-          await mainRepository.getDataFromDocuments(documentIds: listIdTour);
+          await mainRepository.getDataFromDocuments(documentIds: tourIdList);
       emit(DeleteMyLocationSuccessState(listMyLocation: listMyLocation));
     } on Exception catch (e) {}
   }

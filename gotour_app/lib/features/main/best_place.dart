@@ -7,7 +7,7 @@ import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/core/widgets/title.dart';
 import 'package:gotour_app/features/main/bloc/main_bloc.dart';
-import 'package:gotour_app/features/main/models/model_best_place.dart';
+import 'package:gotour_app/features/main/models/best_place.dart';
 import 'package:gotour_app/features/main/repository/main_repository.dart';
 
 class GTBestPlace extends StatelessWidget {
