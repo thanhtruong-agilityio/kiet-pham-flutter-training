@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gotour_app/features/tour_details/model/model_tour_details.dart';
+import 'package:gotour_app/features/tour_details/model/tour_details.dart';
 
 class TourDetailsRepository {
   final _firebaseFirestoreTourDetails =
@@ -10,9 +9,9 @@ class TourDetailsRepository {
       FirebaseFirestore.instance.collection('book-marks');
 
   Future<TourDetails> fetchDataTour({
-    required String idTour,
+    required String tourId,
   }) async {
-    final data = await _firebaseFirestoreTourDetails.doc(idTour).get();
+    final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
     return TourDetails(
       id: data['id'] as String,
       imageUrl: data['imageUrl'] as String,
@@ -25,10 +24,10 @@ class TourDetailsRepository {
   }
 
   Future<List<String>> fetchListImage({
-    required String idTour,
+    required String tourId,
   }) async {
     final documentSnapshot =
-        await _firebaseFirestoreTourDetails.doc(idTour).get();
+        await _firebaseFirestoreTourDetails.doc(tourId).get();
 
     final arrayImage = documentSnapshot.data()!['imageList'];
     final imageList =
@@ -38,12 +37,12 @@ class TourDetailsRepository {
   }
 
   Future<bool> tourHasBeenMarked({
-    required String idUser,
-    required String idTour,
+    required String userId,
+    required String tourId,
   }) async {
     final documentSnapshot = await _firebaseFirestoreBookMarks
-        .where('idUser', isEqualTo: idUser)
-        .where('idTour', isEqualTo: idTour)
+        .where('userId', isEqualTo: userId)
+        .where('tourId', isEqualTo: tourId)
         .get();
     if (documentSnapshot.docs.isEmpty) {
       return false;
@@ -54,21 +53,21 @@ class TourDetailsRepository {
 
   Future<void> handleBookmarkTour({
     required bool bookmark,
-    required String idUser,
-    required String idTour,
+    required String userId,
+    required String tourId,
   }) async {
     if (bookmark == true) {
       final snapshot = await _firebaseFirestoreBookMarks
-          .where('idUser', isEqualTo: idUser)
-          .where('idTour', isEqualTo: idTour)
+          .where('userId', isEqualTo: userId)
+          .where('tourId', isEqualTo: tourId)
           .get();
       for (final document in snapshot.docs) {
         await document.reference.delete();
       }
     } else {
       await _firebaseFirestoreBookMarks.add({
-        'idUser': idUser,
-        'idTour': idTour,
+        'userId': userId,
+        'tourId': tourId,
       });
     }
   }

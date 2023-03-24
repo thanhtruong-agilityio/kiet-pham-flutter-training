@@ -8,7 +8,7 @@ import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/text.dart';
 import 'package:gotour_app/features/main/bloc/main_bloc.dart';
-import 'package:gotour_app/features/main/models/model_my_location.dart';
+import 'package:gotour_app/features/main/models/my_location.dart';
 import 'package:gotour_app/features/main/repository/main_repository.dart';
 
 class GTMyLocation extends StatelessWidget {
@@ -70,7 +70,7 @@ class GTMyLocation extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: data.length,
                       itemBuilder: (context, index) {
-                        final idTour = data[index].id;
+                        final tourId = data[index].id;
                         return Container(
                           margin: const EdgeInsets.only(right: 20),
                           child: GTCardMyLocation(
@@ -85,7 +85,7 @@ class GTMyLocation extends StatelessWidget {
                             onBookMark: () {
                               context.read<MainBloc>().add(
                                     DeleteMyLocationEvent(
-                                      idTour: idTour,
+                                      tourId: tourId,
                                     ),
                                   );
                             },
@@ -119,7 +119,7 @@ class GTMyLocation extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: data.length,
                       itemBuilder: (context, index) {
-                        final idTour = data[index].id;
+                        final tourId = data[index].id;
                         return Container(
                           margin: const EdgeInsets.only(right: 20),
                           child: GTCardMyLocation(
@@ -134,7 +134,7 @@ class GTMyLocation extends StatelessWidget {
                             onBookMark: () {
                               context.read<MainBloc>().add(
                                     DeleteMyLocationEvent(
-                                      idTour: idTour,
+                                      tourId: tourId,
                                     ),
                                   );
                             },

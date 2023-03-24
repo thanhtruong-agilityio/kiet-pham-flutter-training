@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/features/tour_details/model/model_tour_details.dart';
+import 'package:gotour_app/features/tour_details/model/tour_details.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 
 part 'tour_details_event.dart';
@@ -26,7 +26,7 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
     try {
       emit(TourDetailsLoadingState());
       final tourDetails = await tourDetailsRepository.fetchDataTour(
-        idTour: event.id,
+        tourId: event.id,
       );
       emit(TourDetailsLoadedState(tourDetails: tourDetails));
     } on Exception catch (e) {}
@@ -38,11 +38,11 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   ) async {
     try {
       final imageList =
-          await tourDetailsRepository.fetchListImage(idTour: event.id);
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
+          await tourDetailsRepository.fetchListImage(tourId: event.id);
+      final userId = FirebaseAuth.instance.currentUser!.uid;
       final checkBookmark = await tourDetailsRepository.tourHasBeenMarked(
-        idUser: idUser,
-        idTour: event.id,
+        userId: userId,
+        tourId: event.id,
       );
 
       print(checkBookmark);
@@ -66,14 +66,14 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
       emit(BookMarkTheTourLoadingState());
       final idUser = FirebaseAuth.instance.currentUser!.uid;
       final checkBookmark = await tourDetailsRepository.tourHasBeenMarked(
-        idUser: idUser,
-        idTour: event.idTour,
+        userId: idUser,
+        tourId: event.tourId,
       );
 
       await tourDetailsRepository.handleBookmarkTour(
         bookmark: checkBookmark,
-        idTour: event.idTour,
-        idUser: idUser,
+        tourId: event.tourId,
+        userId: idUser,
       );
       emit(BookMarkTheTourSuccessState(bookmark: checkBookmark));
       // final json = jsonEncode(imageList);
