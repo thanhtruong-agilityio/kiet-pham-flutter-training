@@ -34,12 +34,19 @@ class TourDetailsErrorState extends TourDetailsState {
   List<Object> get props => [];
 }
 
+class TourDetailsImageListLoadingState extends TourDetailsState {
+  @override
+  List<Object> get props => [];
+}
+
 class TourDetailsImageListLoadedState extends TourDetailsState {
   const TourDetailsImageListLoadedState({
     required this.imageList,
+    required this.bookmark,
   });
 
   final List<String> imageList;
+  final bool bookmark;
 
   @override
   List<Object> get props => [imageList];
@@ -47,6 +54,31 @@ class TourDetailsImageListLoadedState extends TourDetailsState {
 
 class TourDetailsImageListErrorState extends TourDetailsState {
   const TourDetailsImageListErrorState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [];
+}
+
+class BookMarkTheTourLoadingState extends TourDetailsState {
+  @override
+  List<Object> get props => [];
+}
+
+class BookMarkTheTourSuccessState extends TourDetailsState {
+  const BookMarkTheTourSuccessState({
+    required this.bookmark,
+  });
+
+  final bool bookmark;
+
+  @override
+  List<Object> get props => [bookmark];
+}
+
+class BookMarkTheTourErrorState extends TourDetailsState {
+  const BookMarkTheTourErrorState({required this.error});
 
   final String error;
 

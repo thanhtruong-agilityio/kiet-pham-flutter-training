@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -130,6 +132,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
             }
             if (state is TourDetailsImageListLoadedState) {
               images = state.imageList;
+              final isBookmark = state.bookmark;
               return Column(
                 children: [
                   SizedBox(
@@ -166,9 +169,51 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                     children: [
                                       Stack(
                                         children: [
-                                          SvgPicture.asset(
-                                            Assets.icons.bookMark,
-                                            color: colorScheme.background,
+                                          InkWell(
+                                            onTap: () {
+                                              context
+                                                  .read<TourDetailsBloc>()
+                                                  .add(
+                                                    pressTheTourBookmarkButtonEvent(
+                                                      idTour: widget.id,
+                                                    ),
+                                                  );
+                                            },
+                                            child: BlocBuilder<TourDetailsBloc,
+                                                TourDetailsState>(
+                                              builder: (context, state) {
+                                                if (state
+                                                    is TourDetailsImageListLoadedState) {
+                                                  return SvgPicture.asset(
+                                                    Assets.icons.bookMark,
+                                                    color: state.bookmark
+                                                        ? colorScheme.primary
+                                                        : colorScheme
+                                                            .background,
+                                                  );
+                                                }
+                                                if (state
+                                                    is BookMarkTheTourLoadingState) {
+                                                  return CircularProgressIndicator(
+                                                    color: colorScheme.primary,
+                                                  );
+                                                }
+                                                if (state
+                                                    is BookMarkTheTourSuccessState) {
+                                                  return SvgPicture.asset(
+                                                    Assets.icons.bookMark,
+                                                    color: state.bookmark
+                                                        ? colorScheme.primary
+                                                        : colorScheme
+                                                            .background,
+                                                  );
+                                                }
+                                                return GTText.bodyLarge(
+                                                  context,
+                                                  text: 'failing',
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ],
                                       ),

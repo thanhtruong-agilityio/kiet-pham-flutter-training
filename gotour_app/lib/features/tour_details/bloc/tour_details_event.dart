@@ -20,3 +20,9 @@ class TourDetailsFetchImageListEvent extends TourDetailsEvent {
 
   final String id;
 }
+
+class pressTheTourBookmarkButtonEvent extends TourDetailsEvent {
+  const pressTheTourBookmarkButtonEvent({required this.idTour});
+
+  final String idTour;
+}
