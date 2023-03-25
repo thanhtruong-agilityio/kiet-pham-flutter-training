@@ -96,7 +96,6 @@ class _GTLoginViewState extends State<_GTLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -112,75 +111,78 @@ class _GTLoginViewState extends State<_GTLoginView> {
             context,
             text: S.of(context).loginTitle,
           ),
-          body: Column(
-            children: [
-              GTTextField(
-                controller: _emailController,
-                hintText: 'email@example.com',
-                title: S.of(context).textFieldEmail,
-                activateLabel: true,
-                keyboardType: TextInputType.emailAddress,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (email) {
-                  return !AuthValidator.isValidEmail(email!)
-                      ? 'Enter a valid email'
-                      : null;
-                },
-              ),
-              GTTextField(
-                controller: _passwordController,
-                hintText: S.of(context).textFieldPassword,
-                title: S.of(context).textFieldPassword,
-                obscureText: true,
-                activateLabel: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (password) {
-                  return !AuthValidator.isValidPassword(password!)
-                      ? 'Password must be more than 6 characters'
-                      : null;
-                },
-              ),
-              GTTextHighlightButton(
-                text: S.of(context).loginPageButtonForgotPassword,
-                onPressed: () => context.go('/forgot-password-page'),
-              ),
-              const SizedBox(height: 10),
-              GTElevatedHighlightButton(
-                activateShadow: true,
-                text: S.of(context).loginPageTitle,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+          body: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                GTTextField(
+                  controller: _emailController,
+                  hintText: 'email@example.com',
+                  title: S.of(context).textFieldEmail,
+                  activateLabel: true,
+                  keyboardType: TextInputType.emailAddress,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (email) {
+                    return !AuthValidator.isValidEmail(email!)
+                        ? 'Enter a valid email'
+                        : null;
+                  },
+                ),
+                GTTextField(
+                  controller: _passwordController,
+                  hintText: S.of(context).textFieldPassword,
+                  title: S.of(context).textFieldPassword,
+                  obscureText: true,
+                  activateLabel: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (password) {
+                    return !AuthValidator.isValidPassword(password!)
+                        ? 'Password must be more than 6 characters'
+                        : null;
+                  },
+                ),
+                GTTextHighlightButton(
+                  text: S.of(context).loginPageButtonForgotPassword,
+                  onPressed: () => context.go('/forgot-password-page'),
+                ),
+                const SizedBox(height: 10),
+                GTElevatedHighlightButton(
+                  activateShadow: true,
+                  text: S.of(context).loginPageTitle,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      BlocProvider.of<AuthBloc>(context).add(
+                        SignInRequested(
+                          _emailController.text,
+                          _passwordController.text,
+                        ),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(height: 10),
+                GTText.labelLarge(
+                  context,
+                  text: 'Or',
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(height: 10),
+                GTElevatedButton(
+                  text: S.of(context).loginPageButtonLoginGG,
+                  icon: Assets.icons.google,
+                  onPressed: () {
                     BlocProvider.of<AuthBloc>(context).add(
-                      SignInRequested(
-                        _emailController.text,
-                        _passwordController.text,
-                      ),
+                      GoogleSignInRequested(),
                     );
-                  }
-                },
-              ),
-              const SizedBox(height: 10),
-              GTText.labelLarge(
-                context,
-                text: 'Or',
-                color: Theme.of(context).colorScheme.tertiary,
-              ),
-              const SizedBox(height: 10),
-              GTElevatedButton(
-                text: S.of(context).loginPageButtonLoginGG,
-                icon: Assets.icons.google,
-                onPressed: () {
-                  BlocProvider.of<AuthBloc>(context).add(
-                    GoogleSignInRequested(),
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
-              GTTextHighlightButton(
-                text: S.of(context).loginPageButtonSignUpHere,
-                onPressed: () => context.go('/sign-up-page'),
-              ),
-            ],
+                  },
+                ),
+                const SizedBox(height: 10),
+                GTTextHighlightButton(
+                  text: S.of(context).loginPageButtonSignUpHere,
+                  onPressed: () => context.go('/sign-up-page'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

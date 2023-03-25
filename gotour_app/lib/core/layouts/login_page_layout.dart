@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class GTLoginLayout extends StatelessWidget {
@@ -15,34 +14,32 @@ class GTLoginLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 76),
-                child: Column(
-                  children: [
-                    logo,
-                    Padding(
-                      padding: const EdgeInsets.only(top: 72),
-                      child: title,
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 126),
+              child: Column(
+                children: [
+                  logo,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 72),
+                    child: title,
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 47,
-                  left: 20,
-                  right: 20,
-                  bottom: 38,
-                ),
-                child: body,
-              )
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 47,
+                left: 20,
+                right: 20,
+                bottom: 76,
+              ),
+              child: body,
+            )
+          ],
         ),
       ),
     );
