@@ -12,16 +12,16 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: 1.0.2
-  flutter_svg: 1.1.6
+  cupertino_icons: 1.0.5
+  flutter_svg: 2.0.4
 
-  flutter_native_splash: 2.2.17
+  flutter_native_splash: 2.2.19
 
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
-  firebase_auth: 4.2.9
+  firebase_auth: 4.3.0
 
   # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
-  firebase_core: 2.7.0
+  firebase_core: 2.8.0
 
   # A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
   equatable: 2.0.5
@@ -33,21 +33,21 @@ dependencies:
   flutter_bloc: 8.1.2
 
   # A powerful HTTP package for Dart/Flutter, which supports Global settings, Interceptors, FormData, Aborting and canceling a request, Files uploading and downloading, Requests timeout, Custom adapters, etc.
-  dio: 5.0.2
+  dio: 5.0.3
 
   # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization and offline support on Android and iOS.
-  cloud_firestore: 4.4.3
+  cloud_firestore: 4.4.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  very_good_analysis: 3.1.0
+  very_good_analysis: 4.0.0+1
 
   # The Flutter code generator for your assets, fonts, colors
-  flutter_gen: 5.0.3
+  flutter_gen: 5.2.0
   build_runner: 2.3.3
-  flutter_gen_runner: 5.0.3
+  flutter_gen_runner: 5.2.0
 
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
