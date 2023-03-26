@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:gotour_app/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_app/core/widgets/app_bar.dart';
 import 'package:gotour_app/core/widgets/button.dart';
 import 'package:gotour_app/core/widgets/image.dart';
-import 'package:gotour_app/core/widgets/location.dart';
 import 'package:gotour_app/core/widgets/scaffold.dart';
 import 'package:gotour_app/core/widgets/search.dart';
 import 'package:gotour_app/core/widgets/tag.dart';
 import 'package:gotour_app/core/widgets/text.dart';
-import 'package:gotour_app/core/widgets/title.dart';
-import 'package:gotour_app/features/hot_place/place_info.dart';
 
 class GTBestPlacePage extends StatelessWidget {
   const GTBestPlacePage({super.key});
@@ -21,20 +18,10 @@ class GTBestPlacePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return GTScaffold(
       appBar: GTAppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              height: 48,
-              width: 48,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(Assets.images.author.path),
-                ),
-              ),
-            ),
-          ),
+        leading: GTIconButton(
+          icon: Assets.icons.back,
+          btnColor: colorScheme.background,
+          onPressed: () => context.pop(),
         ),
         actionButtons: [
           GTIconButton(
@@ -45,7 +32,6 @@ class GTBestPlacePage extends StatelessWidget {
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 44),
           const GTSearch(),
