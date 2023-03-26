@@ -36,7 +36,7 @@ class GTBestPlace extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20),
                 child: GTTitle(
                   title: S.of(context).mainPageBestPlace,
-                  onPressed: () => context.goNamed('hot-place'),
+                  onPressed: () => context.goNamed('best-place'),
                 ),
               ),
             ),

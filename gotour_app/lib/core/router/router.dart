@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/features/auth/forgot_password/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login/login_page.dart';
 import 'package:gotour_app/features/auth/sign_up/sign_up.dart';
+import 'package:gotour_app/features/best_place/best_place_page.dart';
 import 'package:gotour_app/features/hot_place/hot_place_page.dart';
 import 'package:gotour_app/features/main/main_page.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
@@ -47,6 +48,11 @@ final GoRouter router = GoRouter(
           builder: (context, state) => GTTourDetails(
             id: state.params['id'],
           ),
+        ),
+        GoRoute(
+          name: 'best-place',
+          path: 'best-place',
+          builder: (context, state) => const GTBestPlacePage(),
         ),
         GoRoute(
           name: 'hot-place',
