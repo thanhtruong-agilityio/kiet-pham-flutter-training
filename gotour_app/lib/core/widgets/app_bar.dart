@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class GTAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GTAppBar({
     super.key,
-    required this.leading,
+    this.leading,
     this.actionButtons,
     this.title,
   });
 
-  final Widget leading;
+  final Widget? leading;
   final List<Widget>? actionButtons;
   final Widget? title;
 

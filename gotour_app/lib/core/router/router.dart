@@ -9,6 +9,7 @@ import 'package:gotour_app/features/chat/chat_page.dart';
 import 'package:gotour_app/features/hot_place/hot_place_page.dart';
 import 'package:gotour_app/features/main/main_page.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
+import 'package:gotour_app/features/notification/notification_page.dart';
 import 'package:gotour_app/features/tour_details/tour_details_page.dart';
 
 final GoRouter router = GoRouter(
@@ -66,6 +67,10 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const GTChatPage(),
         ),
       ],
+    ),
+    GoRoute(
+      path: '/notifications',
+      builder: (context, state) => const GTNotificationPage(),
     ),
   ],
 );
