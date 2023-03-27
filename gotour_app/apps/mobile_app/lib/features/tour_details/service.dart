@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
-
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 
 class GTService extends StatefulWidget {
   const GTService({super.key});
@@ -16,11 +15,11 @@ class GTService extends StatefulWidget {
 class _GTServiceState extends State<GTService> {
   int selectedIndex = 0;
   List<String> icons = [
-    Assets.icons.sun,
-    Assets.icons.air,
-    Assets.icons.boat,
-    Assets.icons.car,
-    Assets.icons.moto,
+    GTAssets().sun,
+    GTAssets().air,
+    GTAssets().boat,
+    GTAssets().car,
+    GTAssets().moto,
   ];
   @override
   Widget build(BuildContext context) {

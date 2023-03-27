@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTGender extends StatefulWidget {
   const GTGender({super.key});
@@ -126,7 +126,7 @@ class _GTCheckBoxState extends State<GTCheckBox> {
           borderRadius: BorderRadius.circular(5),
         ),
         child: _isChecked
-            ? SvgPicture.asset(Assets.icons.checkmark)
+            ? SvgPicture.asset('packages/gotour_ui/assets/icons/checkmark.svg')
             : Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 7.5,

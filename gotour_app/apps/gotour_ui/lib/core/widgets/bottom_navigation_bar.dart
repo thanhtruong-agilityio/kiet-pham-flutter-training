@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/button.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
 
 class GTBottomNavigationBar extends StatefulWidget {
   const GTBottomNavigationBar({super.key});
@@ -12,11 +12,11 @@ class GTBottomNavigationBar extends StatefulWidget {
 class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
   int selectedIndex = 0;
   List<String> data = [
-    Assets.icons.options,
-    Assets.icons.bell,
-    Assets.icons.message,
-    Assets.icons.location,
-    Assets.icons.person,
+    'packages/gotour_ui/assets/icons/options.svg',
+    'packages/gotour_ui/assets/icons/bell.svg',
+    'packages/gotour_ui/assets/icons/message.svg',
+    'packages/gotour_ui/assets/icons/location.svg',
+    'packages/gotour_ui/assets/icons/person.svg',
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,7 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
                 data.length,
                 (index) => GTIconButton(
                   icon: data[index],
+                  // icon: 'packages/gotour_ui/assets/icons/options.svg',
                   btnColor: colorScheme.surface,
                   iconColor:
                       index == selectedIndex ? colorScheme.primary : null,

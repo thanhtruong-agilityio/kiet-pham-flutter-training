@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
-import 'package:mobile_app/core/widgets/alert_dialog.dart';
-import 'package:mobile_app/core/widgets/app_bar.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/scaffold.dart';
-import 'package:mobile_app/core/widgets/text.dart';
-import 'package:mobile_app/core/widgets/textfield.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/alert_dialog.dart';
+import 'package:gotour_ui/core/widgets/app_bar.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/textfield.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/main/best_place.dart';
 import 'package:mobile_app/features/main/my_location.dart';
@@ -41,7 +41,7 @@ class _GTMainView extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: Assets.icons.menu,
+          icon: GTAssets().menu,
           btnColor: colorScheme.background,
           onPressed: () {},
         ),
@@ -70,7 +70,7 @@ class _GTMainView extends StatelessWidget {
                 width: 48,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(Assets.images.author.path),
+                    image: AssetImage(GTAssets().author),
                   ),
                 ),
               ),
@@ -111,7 +111,7 @@ class _GTMainView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: GTIconButton(
-                        icon: Assets.icons.search,
+                        icon: GTAssets().search,
                         iconColor: colorScheme.background,
                         onPressed: () {},
                       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
-import 'package:mobile_app/core/widgets/button.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
 
 class GTSearch extends StatelessWidget {
   const GTSearch({super.key});
@@ -25,7 +24,7 @@ class GTSearch extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           GTIconButton(
-            icon: Assets.icons.search,
+            icon: 'packages/gotour_ui/assets/icons/search.svg',
             iconColor: Theme.of(context).colorScheme.background,
             onPressed: () {},
           ),

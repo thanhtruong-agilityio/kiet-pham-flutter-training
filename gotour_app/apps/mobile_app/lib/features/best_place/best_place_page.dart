@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/app_bar.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/image.dart';
-import 'package:mobile_app/core/widgets/scaffold.dart';
-import 'package:mobile_app/core/widgets/search.dart';
-import 'package:mobile_app/core/widgets/tag.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/app_bar.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/search.dart';
+import 'package:gotour_ui/core/widgets/tag.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 
 class GTBestPlacePage extends StatelessWidget {
   const GTBestPlacePage({super.key});
@@ -19,13 +20,13 @@ class GTBestPlacePage extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: Assets.icons.back,
+          icon: GTAssets().back,
           btnColor: colorScheme.background,
           onPressed: () => context.pop(),
         ),
         actionButtons: [
           GTIconButton(
-            icon: Assets.icons.notification,
+            icon: GTAssets().notification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
@@ -75,7 +76,7 @@ class _CardBestPlace extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: GTImage(
-                    images: Assets.images.chumphon.path,
+                    images: GTAssets().kyoto,
                     height: 92,
                     width: 70,
                   ),
@@ -105,7 +106,7 @@ class _CardBestPlace extends StatelessWidget {
                                 Row(
                                   children: [
                                     SvgPicture.asset(
-                                      Assets.icons.location,
+                                      GTAssets().location,
                                       color: colorScheme.primary,
                                       width: 10,
                                       height: 12,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/app_bar.dart';
-import 'package:mobile_app/core/widgets/scaffold.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/app_bar.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 
 class GTNotificationPage extends StatelessWidget {
   const GTNotificationPage({super.key});
@@ -59,7 +59,13 @@ class _NotificationsCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Assets.images.canyon.image(
+                    // child: Assets.images.canyon.image(
+                    //   width: 44,
+                    //   height: 44,
+                    //   fit: BoxFit.cover,
+                    // ),
+                    child: Image.asset(
+                      GTAssets().canyon,
                       width: 44,
                       height: 44,
                       fit: BoxFit.cover,

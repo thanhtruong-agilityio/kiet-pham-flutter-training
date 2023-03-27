@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/alert_dialog.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/gender.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/textfield.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/core/layouts/sign_up_layout.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
 import 'package:mobile_app/core/shared/snack_bar.dart';
-import 'package:mobile_app/core/widgets/alert_dialog.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/gender.dart';
-import 'package:mobile_app/core/widgets/text.dart';
-import 'package:mobile_app/core/widgets/textfield.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/auth/validator/validator.dart';
 
@@ -108,10 +109,10 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
           FocusScope.of(context).unfocus();
         },
         child: GTSignUpLayout(
-          logo: Assets.images.logo.image(
-            width: 256,
+          logo: Image.asset(
+            GTAssets().logo,
             height: 90,
-            fit: BoxFit.contain,
+            width: 259,
           ),
           title: GTText.displaySmall(
             context,

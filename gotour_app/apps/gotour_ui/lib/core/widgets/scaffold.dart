@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:mobile_app/core/widgets/bottom_navigation_bar.dart';
+import 'package:gotour_ui/core/widgets/bottom_navigation_bar.dart';
 
 class GTScaffold extends StatelessWidget {
   const GTScaffold({

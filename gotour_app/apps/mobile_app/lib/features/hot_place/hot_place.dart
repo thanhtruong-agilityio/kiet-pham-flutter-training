@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
-import 'package:mobile_app/core/widgets/text.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({super.key});

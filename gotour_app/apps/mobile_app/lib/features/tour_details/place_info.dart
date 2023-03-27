@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/location.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/location.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:mobile_app/features/tour_details/repository/tour_details_repository.dart';
 
@@ -69,7 +70,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
               ),
               Row(
                 children: [
-                  SvgPicture.asset(Assets.icons.cloud),
+                  SvgPicture.asset(GTAssets().cloud),
                   const SizedBox(width: 7),
                   Text(
                     '$temperature°C',
@@ -185,7 +186,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                                 if (state
                                                     is TourDetailsImageListLoadedState) {
                                                   return SvgPicture.asset(
-                                                    Assets.icons.bookMark,
+                                                    GTAssets().bookMark,
                                                     color: state.bookmark
                                                         ? colorScheme.primary
                                                         : colorScheme
@@ -201,7 +202,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                                 if (state
                                                     is BookMarkTheTourSuccessState) {
                                                   return SvgPicture.asset(
-                                                    Assets.icons.bookMark,
+                                                    GTAssets().bookMark,
                                                     color: state.bookmark
                                                         ? colorScheme.primary
                                                         : colorScheme
@@ -308,7 +309,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
 //                                     Stack(
 //                                       children: [
 //                                         SvgPicture.asset(
-//                                           Assets.icons.bookMark,
+//                                           GTAssets().bookMark,
 //                                           color: colorScheme.background,
 //                                         ),
 //                                       ],

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/location.dart';
-import 'package:mobile_app/core/widgets/tag.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/location.dart';
+import 'package:gotour_ui/core/widgets/tag.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {
   const GTPlaceInfoHotPlace({
@@ -58,7 +59,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                       Stack(
                         children: [
                           SvgPicture.asset(
-                            Assets.icons.bookMark,
+                            GTAssets().bookMark,
                             color: colorScheme.background,
                           ),
                         ],

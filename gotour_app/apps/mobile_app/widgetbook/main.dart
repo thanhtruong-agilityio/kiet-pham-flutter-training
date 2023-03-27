@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/theme/theme.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/textfield.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/core/shared/snack_bar.dart';
-import 'package:mobile_app/core/theme/theme.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/scaffold.dart';
-import 'package:mobile_app/core/widgets/text.dart';
-import 'package:mobile_app/core/widgets/textfield.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatefulWidget {
@@ -23,35 +23,35 @@ class _WidgetbookHotReloadState extends State<WidgetbookHotReload> {
     final icons = <Option<String>>[
       Option(
         label: 'back',
-        value: Assets.icons.back,
+        value: GTAssets().back,
       ),
       Option(
         label: 'bell',
-        value: Assets.icons.bell,
+        value: GTAssets().bell,
       ),
       Option(
         label: 'boat',
-        value: Assets.icons.boat,
+        value: GTAssets().boat,
       ),
       Option(
         label: 'bookMark',
-        value: Assets.icons.bookMark,
+        value: GTAssets().bookMark,
       ),
       Option(
         label: 'car',
-        value: Assets.icons.car,
+        value: GTAssets().car,
       ),
       Option(
         label: 'checkmark',
-        value: Assets.icons.checkmark,
+        value: GTAssets().checkmark,
       ),
       Option(
         label: 'cloud',
-        value: Assets.icons.cloud,
+        value: GTAssets().cloud,
       ),
       Option(
         label: 'google',
-        value: Assets.icons.google,
+        value: GTAssets().google,
       ),
     ];
     return Widgetbook.material(

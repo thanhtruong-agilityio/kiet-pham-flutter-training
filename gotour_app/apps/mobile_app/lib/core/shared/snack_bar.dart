@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTSnackBar {
   static void show(

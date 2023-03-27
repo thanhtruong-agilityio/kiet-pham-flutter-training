@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/app_bar.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/scaffold.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/app_bar.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:mobile_app/features/tour_details/place_info.dart';
@@ -49,19 +50,19 @@ class _GTTourDetails extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.only(right: 10),
           child: GTIconButton(
-            icon: Assets.icons.back,
+            icon: GTAssets().back,
             btnColor: colorScheme.background,
             onPressed: () => GoRouter.of(context).pop(),
           ),
         ),
         actionButtons: [
           GTIconButton(
-            icon: Assets.icons.notification,
+            icon: GTAssets().notification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
           GTIconButton(
-            icon: Assets.icons.more,
+            icon: GTAssets().more,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),

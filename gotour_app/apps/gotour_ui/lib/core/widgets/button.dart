@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTIconButton extends StatelessWidget {
   const GTIconButton({

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/location.dart';
-import 'package:mobile_app/core/widgets/text.dart';
-import 'package:mobile_app/core/widgets/title.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/location.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/title.dart';
 import 'package:mobile_app/features/main/bloc/main_bloc.dart';
 import 'package:mobile_app/features/main/models/best_place.dart';
 import 'package:mobile_app/features/main/repository/main_repository.dart';

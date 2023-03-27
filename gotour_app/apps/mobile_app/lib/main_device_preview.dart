@@ -5,20 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:mobile_app/core/router/router.dart';
-import 'package:mobile_app/core/theme/theme.dart';
+import 'package:gotour_ui/core/theme/theme.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
-import 'package:mobile_app/features/auth/login/login_page.dart';
 import 'package:mobile_app/features/auth/repository/auth_repository.dart';
-import 'package:mobile_app/features/auth/sign_up/sign_up.dart';
-import 'package:mobile_app/features/hot_place/hot_place_page.dart';
-import 'package:mobile_app/features/main/main_page.dart';
-import 'package:mobile_app/features/misc/onboarding_page.dart';
-import 'package:mobile_app/features/tour_details/tour_details_page.dart';
 import 'package:mobile_app/firebase_options.dart';
-import 'package:mobile_app/main.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

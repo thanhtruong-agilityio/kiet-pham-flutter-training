@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/core/resources/assets_generated/colors.gen.dart';
-import 'package:mobile_app/core/resources/assets_generated/fonts.gen.dart';
+import 'package:gotour_ui/core/resources/assets_generated/colors.gen.dart';
+import 'package:gotour_ui/core/resources/assets_generated/fonts.gen.dart';
 
 ColorScheme _lightColorScheme = const ColorScheme(
   brightness: Brightness.light,

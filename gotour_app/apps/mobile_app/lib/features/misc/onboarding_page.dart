@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/core/resources/assets_generated/assets.gen.dart';
-import 'package:mobile_app/core/widgets/button.dart';
-import 'package:mobile_app/core/widgets/text.dart';
+import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:mobile_app/core/assets/assets.dart';
 
 class GTOnboardingScreen extends StatefulWidget {
   const GTOnboardingScreen({super.key});
@@ -60,7 +61,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GTIconButton(
-                      icon: Assets.icons.left,
+                      icon: GTAssets().left,
                       iconColor: colorScheme.background,
                       onPressed: () {
                         _pageController.previousPage(
@@ -82,7 +83,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                       ),
                     ),
                     GTIconButton(
-                      icon: Assets.icons.right,
+                      icon: GTAssets().right,
                       iconColor: colorScheme.background,
                       onPressed: () => _pageIndex == dataBoards.length - 1
                           ? context.go('/login-page')
@@ -137,17 +138,17 @@ class Onboard {
 
 final List<Onboard> dataBoards = <Onboard>[
   Onboard(
-    image: Assets.images.onboardingfirst.path,
+    image: GTAssets().onboardingfirst,
     title: 'Explore',
     description: 'Explore your favourite destination around the world.',
   ),
   Onboard(
-    image: Assets.images.onboardinglast.path,
+    image: GTAssets().onboardingsecond,
     title: 'Easy Peasy',
     description: 'Make your travel experince very easy & peasy..',
   ),
   Onboard(
-    image: Assets.images.onboardingsecond.path,
+    image: GTAssets().onboardinglast,
     title: 'Enjoy Tour',
     description: 'Enjoy your favourite destination with your love one.',
   ),
