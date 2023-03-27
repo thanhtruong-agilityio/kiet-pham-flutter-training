@@ -1,0 +1,93 @@
+name: mobile_app
+description: GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: 1.0.5
+  flutter_svg: 1.1.6
+
+  flutter_native_splash: 2.2.18
+
+  # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
+  firebase_auth: 4.3.0
+
+  # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
+  firebase_core: 2.8.0
+
+  # A Dart package that helps to implement value based equality without needing to explicitly override == and hashCode.
+  equatable: 2.0.5
+
+  # Flutter plugin for Google Sign-In, a secure authentication system for signing in with a Google account on Android and iOS.
+  google_sign_in: 6.0.2
+
+  # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern. Built to be used with the bloc state management package.
+  flutter_bloc: 8.1.2
+
+  # A powerful HTTP package for Dart/Flutter, which supports Global settings, Interceptors, FormData, Aborting and canceling a request, Files uploading and downloading, Requests timeout, Custom adapters, etc.
+  dio: 5.0.3
+
+  # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization and offline support on Android and iOS.
+  cloud_firestore: 4.4.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  very_good_analysis: 3.1.0
+
+  # The Flutter code generator for your assets, fonts, colors
+  flutter_gen: 5.2.0
+  build_runner: 2.3.3
+  flutter_gen_runner: 5.2.0
+
+  # Approximate how your app looks and performs on another device.
+  device_preview: 1.1.0
+
+  # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
+  # And share them easily with designers and clients.
+  widgetbook: 2.4.1
+
+dependency_overrides:
+  
+  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
+  go_router: 6.2.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/icons/
+  fonts:
+    - family: Gilroy-Bold
+      fonts:
+        - asset: assets/fonts/Gilroy-Bold.ttf
+          weight: 700
+
+    - family: Gilroy-Medium
+      fonts:
+        - asset: assets/fonts/Gilroy-Medium.ttf
+          weight: 400
+
+# Config gen assets
+flutter_gen:
+  output: lib/core/resources/assets_generated/ #Optional (default: lib/gen)
+  colors:
+    inputs:
+      - assets/color/colors.xml
+
+# Config i18n generation
+flutter_intl:
+  enabled: true
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/resources/l10n_generated
