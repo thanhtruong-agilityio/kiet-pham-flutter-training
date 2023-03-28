@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/features/auth/forgot_password/forgot_password_page.dart';
-import 'package:mobile_app/features/auth/login/login_page.dart';
-import 'package:mobile_app/features/auth/sign_up/sign_up.dart';
+import 'package:mobile_app/features/auth/forgot_password_page.dart';
+import 'package:mobile_app/features/auth/login_page.dart';
+import 'package:mobile_app/features/auth/sign_up_page.dart';
 import 'package:mobile_app/features/best_place/best_place_page.dart';
 import 'package:mobile_app/features/chat/chat_page.dart';
 import 'package:mobile_app/features/hot_place/hot_place_page.dart';
