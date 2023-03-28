@@ -8,7 +8,6 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/core/layouts/login_page_layout.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/auth/validator/validator.dart';
 
@@ -96,92 +95,101 @@ class _GTLoginViewState extends State<_GTLoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        child: GTLoginLayout(
-          logo: Image.asset(
-            GTAssets().logo,
-            height: 90,
-            width: 259,
-          ),
-          title: GTText.displaySmall(
-            context,
-            text: S.of(context).loginTitle,
-          ),
-          body: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                GTTextField(
-                  controller: _emailController,
-                  hintText: 'email@example.com',
-                  title: S.of(context).textFieldEmail,
-                  activateLabel: true,
-                  keyboardType: TextInputType.emailAddress,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (email) {
-                    return !AuthValidator.isValidEmail(email!)
-                        ? 'Enter a valid email'
-                        : null;
-                  },
-                ),
-                GTTextField(
-                  controller: _passwordController,
-                  hintText: S.of(context).textFieldPassword,
-                  title: S.of(context).textFieldPassword,
-                  obscureText: true,
-                  activateLabel: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (password) {
-                    return !AuthValidator.isValidPassword(password!)
-                        ? 'Password must be more than 6 characters'
-                        : null;
-                  },
-                ),
-                GTTextHighlightButton(
-                  text: S.of(context).loginPageButtonForgotPassword,
-                  onPressed: () => context.go('/forgot-password-page'),
-                ),
-                const SizedBox(height: 10),
-                GTElevatedHighlightButton(
-                  activateShadow: true,
-                  text: S.of(context).loginPageTitle,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(height: 126),
+                  Image.asset(
+                    GTAssets().logo,
+                    width: 256,
+                    height: 90,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 72),
+                  GTText.displaySmall(
+                    context,
+                    text: S.of(context).loginTitle,
+                  ),
+                  const SizedBox(height: 20),
+                  GTTextField(
+                    controller: _emailController,
+                    hintText: 'email@example.com',
+                    title: S.of(context).textFieldEmail,
+                    activateLabel: true,
+                    keyboardType: TextInputType.emailAddress,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (email) {
+                      return !AuthValidator.isValidEmail(email!)
+                          ? 'Enter a valid email'
+                          : null;
+                    },
+                  ),
+                  GTTextField(
+                    controller: _passwordController,
+                    hintText: S.of(context).textFieldPassword,
+                    title: S.of(context).textFieldPassword,
+                    obscureText: true,
+                    activateLabel: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (password) {
+                      return !AuthValidator.isValidPassword(password!)
+                          ? 'Password must be more than 6 characters'
+                          : null;
+                    },
+                  ),
+                  GTTextHighlightButton(
+                    text: S.of(context).loginPageButtonForgotPassword,
+                    onPressed: () => context.go('/forgot-password-page'),
+                  ),
+                  const SizedBox(height: 10),
+                  GTElevatedHighlightButton(
+                    activateShadow: true,
+                    text: S.of(context).loginPageTitle,
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        BlocProvider.of<AuthBloc>(context).add(
+                          SignInRequested(
+                            _emailController.text,
+                            _passwordController.text,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  GTText.labelLarge(
+                    context,
+                    text: 'Or',
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  const SizedBox(height: 10),
+                  GTElevatedButton(
+                    text: S.of(context).loginPageButtonLoginGG,
+                    icon: GTAssets().google,
+                    onPressed: () {
                       BlocProvider.of<AuthBloc>(context).add(
-                        SignInRequested(
-                          _emailController.text,
-                          _passwordController.text,
-                        ),
+                        GoogleSignInRequested(),
                       );
-                    }
-                  },
-                ),
-                const SizedBox(height: 10),
-                GTText.labelLarge(
-                  context,
-                  text: 'Or',
-                  color: Theme.of(context).colorScheme.tertiary,
-                ),
-                const SizedBox(height: 10),
-                GTElevatedButton(
-                  text: S.of(context).loginPageButtonLoginGG,
-                  icon: GTAssets().google,
-                  onPressed: () {
-                    BlocProvider.of<AuthBloc>(context).add(
-                      GoogleSignInRequested(),
-                    );
-                  },
-                ),
-                const SizedBox(height: 10),
-                GTTextHighlightButton(
-                  text: S.of(context).loginPageButtonSignUpHere,
-                  onPressed: () => context.go('/sign-up-page'),
-                ),
-              ],
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  GTTextHighlightButton(
+                    text: S.of(context).loginPageButtonSignUpHere,
+                    onPressed: () => context.go('/sign-up-page'),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),
@@ -189,93 +197,3 @@ class _GTLoginViewState extends State<_GTLoginView> {
     );
   }
 }
-
-
-// Form(
-//                 key: _formKey,
-//                 child: Column(
-//                   children: [
-//                     // const SizedBox(height: 120),
-//                     Container(
-//                       height: size.width / 2,
-//                       decoration: BoxDecoration(
-//                         image: DecorationImage(
-//                           image: Assets.images.logo.provider(),
-//                         ),
-//                       ),
-//                     ),
-//                     GTText.displaySmall(
-//                       context,
-//                       text: S.of(context).loginTitle,
-//                     ),
-//                     const SizedBox(height: 20),
-//                     GTTextField(
-//                       controller: _emailController,
-//                       hintText: 'email@example.com',
-//                       title: S.of(context).textFieldEmail,
-//                       activateLabel: true,
-//                       keyboardType: TextInputType.emailAddress,
-//                       autovalidateMode: AutovalidateMode.onUserInteraction,
-//                       validator: (email) {
-//                         return !AuthValidator.isValidEmail(email!)
-//                             ? 'Enter a valid email'
-//                             : null;
-//                       },
-//                     ),
-//                     GTTextField(
-//                       controller: _passwordController,
-//                       hintText: S.of(context).textFieldPassword,
-//                       title: S.of(context).textFieldPassword,
-//                       obscureText: true,
-//                       activateLabel: true,
-//                       autovalidateMode: AutovalidateMode.onUserInteraction,
-//                       validator: (password) {
-//                         return !AuthValidator.isValidPassword(password!)
-//                             ? 'Password must be more than 6 characters'
-//                             : null;
-//                       },
-//                     ),
-//                     GTTextHighlightButton(
-//                       text: S.of(context).loginPageButtonForgotPassword,
-//                       onPressed: () => context.go('/forgot-password-page'),
-//                     ),
-//                     const SizedBox(height: 10),
-//                     GTElevatedHighlightButton(
-//                       activateShadow: true,
-//                       text: S.of(context).loginPageTitle,
-//                       onPressed: () {
-//                         if (_formKey.currentState!.validate()) {
-//                           BlocProvider.of<AuthBloc>(context).add(
-//                             SignInRequested(
-//                               _emailController.text,
-//                               _passwordController.text,
-//                             ),
-//                           );
-//                         }
-//                       },
-//                     ),
-//                     const SizedBox(height: 10),
-//                     GTText.labelLarge(
-//                       context,
-//                       text: 'Or',
-//                       color: Theme.of(context).colorScheme.tertiary,
-//                     ),
-//                     const SizedBox(height: 10),
-//                     GTElevatedButton(
-//                       text: S.of(context).loginPageButtonLoginGG,
-//                       icon: Assets.icons.google,
-//                       onPressed: () {
-//                         BlocProvider.of<AuthBloc>(context).add(
-//                           GoogleSignInRequested(),
-//                         );
-//                       },
-//                     ),
-//                     const SizedBox(height: 10),
-//                     GTTextHighlightButton(
-//                       text: S.of(context).loginPageButtonSignUpHere,
-//                       onPressed: () => context.go('/sign-up-page'),
-//                     ),
-//                     const SizedBox(height: 20),
-//                   ],
-//                 ),
-//               )
