@@ -41,6 +41,10 @@ dependencies:
   # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization and offline support on Android and iOS.
   cloud_firestore: 4.4.5
 
+
+  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
+  go_router: 6.2.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,10 +54,10 @@ dev_dependencies:
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
 
+  build_runner: 2.3.3
+
 dependency_overrides:
   
-  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
-  go_router: 6.2.0
 
 flutter:
   uses-material-design: true

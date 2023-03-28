@@ -17,15 +17,17 @@ dependencies:
   gotour_ui:
     path: ../gotour_ui
 
+  # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
+  # And share them easily with designers and clients.
+  widgetbook: 2.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: 2.0.0
 
-  # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
-  # And share them easily with designers and clients.
-  widgetbook: 2.4.1
+  build_runner: 2.3.3
 
 flutter:
 
