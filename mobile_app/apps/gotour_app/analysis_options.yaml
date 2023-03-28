@@ -123,7 +123,7 @@ linter:
     - empty_statements
     - exhaustive_cases
     - null_closures
-    - avoid_redundant_argument_values
+    # - avoid_redundant_argument_values
 
     # OVERRIDDEN-FIELD
     - package_names

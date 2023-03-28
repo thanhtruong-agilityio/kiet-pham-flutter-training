@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:mobile_app/core/router/router.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
+import 'package:mobile_app/core/firebase/firebase_options.dart';
+import 'package:mobile_app/core/router/router.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/auth/repository/auth_repository.dart';
-import 'package:mobile_app/firebase_options.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
