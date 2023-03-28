@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gotour_ui/core/shared/snack_bar.dart';
+import 'package:gotour_widgetbook/core/assets/assets.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
-import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/core/shared/snack_bar.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatefulWidget {
@@ -23,35 +23,35 @@ class _WidgetbookHotReloadState extends State<WidgetbookHotReload> {
     final icons = <Option<String>>[
       Option(
         label: 'back',
-        value: GTAssets().back,
+        value: GTWidgetbookAssets().back,
       ),
       Option(
         label: 'bell',
-        value: GTAssets().bell,
+        value: GTWidgetbookAssets().bell,
       ),
       Option(
         label: 'boat',
-        value: GTAssets().boat,
+        value: GTWidgetbookAssets().boat,
       ),
       Option(
         label: 'bookMark',
-        value: GTAssets().bookMark,
+        value: GTWidgetbookAssets().bookMark,
       ),
       Option(
         label: 'car',
-        value: GTAssets().car,
+        value: GTWidgetbookAssets().car,
       ),
       Option(
         label: 'checkmark',
-        value: GTAssets().checkmark,
+        value: GTWidgetbookAssets().checkmark,
       ),
       Option(
         label: 'cloud',
-        value: GTAssets().cloud,
+        value: GTWidgetbookAssets().cloud,
       ),
       Option(
         label: 'google',
-        value: GTAssets().google,
+        value: GTWidgetbookAssets().google,
       ),
     ];
     return Widgetbook.material(

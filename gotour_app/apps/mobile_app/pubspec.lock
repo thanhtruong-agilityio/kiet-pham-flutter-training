@@ -689,22 +689,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
-  widgetbook:
-    dependency: "direct dev"
-    description:
-      name: widgetbook
-      sha256: c42a3d414d19c008d90f0b6df669c18bb151c5f3012ed073498d96cf133e9caf
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.4.1"
-  widgetbook_models:
-    dependency: transitive
-    description:
-      name: widgetbook_models
-      sha256: "40899314ab0cce1a52b189ee12b79138ba59f445229f850fb326f579c8f63045"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.7"
   win32:
     dependency: transitive
     description:
@@ -725,10 +709,10 @@ packages:
     dependency: transitive
     description:
       name: xml
-      sha256: ac0e3f4bf00ba2708c33fbabbbe766300e509f8c82dbd4ab6525039813f7e2fb
+      sha256: "979ee37d622dec6365e2efa4d906c37470995871fe9ae080d967e192d88286b5"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.0"
+    version: "6.2.2"
   yaml:
     dependency: transitive
     description:

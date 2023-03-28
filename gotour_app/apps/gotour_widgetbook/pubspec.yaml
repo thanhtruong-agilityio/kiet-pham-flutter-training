@@ -1,0 +1,33 @@
+name: gotour_widgetbook
+description: Show all widget in project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: 1.0.5
+
+  gotour_ui:
+    path: ../gotour_ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: 2.0.0
+
+  # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
+  # And share them easily with designers and clients.
+  widgetbook: 2.4.1
+
+flutter:
+
+  uses-material-design: true
+

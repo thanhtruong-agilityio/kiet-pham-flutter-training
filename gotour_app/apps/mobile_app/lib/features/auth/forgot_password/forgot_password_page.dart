@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/core/shared/snack_bar.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
 import 'package:mobile_app/features/auth/validator/validator.dart';
 

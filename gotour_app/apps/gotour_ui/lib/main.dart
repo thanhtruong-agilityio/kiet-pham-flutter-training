@@ -13,3 +13,4 @@ export 'package:gotour_ui/core/widgets/tag.dart';
 export 'package:gotour_ui/core/widgets/text.dart';
 export 'package:gotour_ui/core/widgets/textfield.dart';
 export 'package:gotour_ui/core/widgets/title.dart';
+export 'package:gotour_ui/core/shared/snack_bar.dart';

@@ -1,0 +1,5 @@
+# melos_managed_dependency_overrides: gotour_ui,go_router
+dependency_overrides:
+  gotour_ui:
+    path: ../gotour_ui
+  go_router: 6.2.0

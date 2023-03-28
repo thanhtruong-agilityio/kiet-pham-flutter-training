@@ -50,10 +50,6 @@ dev_dependencies:
   # Approximate how your app looks and performs on another device.
   device_preview: 1.1.0
 
-  # Widgetbooks help catalog widgets, test them quickly across multiple devices and themes.
-  # And share them easily with designers and clients.
-  widgetbook: 2.4.1
-
 dependency_overrides:
   
   #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
