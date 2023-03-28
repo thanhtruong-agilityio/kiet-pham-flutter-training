@@ -1,20 +1,20 @@
-part of 'main_bloc.dart';
+part of 'home_bloc.dart';
 
-abstract class MainState extends Equatable {
-  const MainState();
+abstract class HomeState extends Equatable {
+  const HomeState();
 
   @override
   List<Object> get props => [];
 }
 
-class MainInitialState extends MainState {}
+class HomeInitialState extends HomeState {}
 
-class BestPlaceLoadingState extends MainState {
+class BestPlaceLoadingState extends HomeState {
   @override
   List<Object> get props => [];
 }
 
-class BestPlaceLoadedState extends MainState {
+class BestPlaceLoadedState extends HomeState {
   const BestPlaceLoadedState({
     required this.listBestPlace,
   });
@@ -23,7 +23,7 @@ class BestPlaceLoadedState extends MainState {
   List<Object> get props => [listBestPlace];
 }
 
-class BestPlaceErrorState extends MainState {
+class BestPlaceErrorState extends HomeState {
   const BestPlaceErrorState({required this.error});
 
   final String error;
@@ -32,12 +32,12 @@ class BestPlaceErrorState extends MainState {
   List<Object> get props => [];
 }
 
-class MyLocationLoadingState extends MainState {
+class MyLocationLoadingState extends HomeState {
   @override
   List<Object> get props => [];
 }
 
-class MyLocationLoadedState extends MainState {
+class MyLocationLoadedState extends HomeState {
   const MyLocationLoadedState({
     required this.listMyLocation,
   });
@@ -46,7 +46,7 @@ class MyLocationLoadedState extends MainState {
   List<Object> get props => [listMyLocation];
 }
 
-class MyLocationErrorState extends MainState {
+class MyLocationErrorState extends HomeState {
   const MyLocationErrorState({required this.error});
 
   final String error;
@@ -55,12 +55,12 @@ class MyLocationErrorState extends MainState {
   List<Object> get props => [];
 }
 
-class DeleteMyLocationLoadingState extends MainState {
+class DeleteMyLocationLoadingState extends HomeState {
   @override
   List<Object> get props => [];
 }
 
-class DeleteMyLocationSuccessState extends MainState {
+class DeleteMyLocationSuccessState extends HomeState {
   const DeleteMyLocationSuccessState({
     required this.listMyLocation,
   });
@@ -69,7 +69,7 @@ class DeleteMyLocationSuccessState extends MainState {
   List<Object> get props => [listMyLocation];
 }
 
-class DeleteMyLocationErrorState extends MainState {
+class DeleteMyLocationErrorState extends HomeState {
   const DeleteMyLocationErrorState({required this.error});
 
   final String error;

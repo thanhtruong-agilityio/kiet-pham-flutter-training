@@ -6,9 +6,9 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/title.dart';
-import 'package:mobile_app/features/main/bloc/main_bloc.dart';
-import 'package:mobile_app/features/main/models/best_place.dart';
-import 'package:mobile_app/features/main/repository/main_repository.dart';
+import 'package:mobile_app/features/home/bloc/home_bloc.dart';
+import 'package:mobile_app/features/home/models/best_place.dart';
+import 'package:mobile_app/features/home/repository/home_repository.dart';
 
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
@@ -21,10 +21,10 @@ class GTBestPlace extends StatelessWidget {
 
     final size = MediaQuery.of(context).size;
     return RepositoryProvider(
-      create: (context) => MainRepository(),
+      create: (context) => HomeRepository(),
       child: BlocProvider(
-        create: (context) => MainBloc(
-          mainRepository: RepositoryProvider.of<MainRepository>(context),
+        create: (context) => HomeBloc(
+          mainRepository: RepositoryProvider.of<HomeRepository>(context),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,10 +45,10 @@ class GTBestPlace extends StatelessWidget {
                 SizedBox(
                   height: 180,
                   width: size.width,
-                  child: BlocBuilder<MainBloc, MainState>(
+                  child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
-                      if (state is MainInitialState) {
-                        context.read<MainBloc>().add(BestPlaceFetchDataEvent());
+                      if (state is HomeInitialState) {
+                        context.read<HomeBloc>().add(BestPlaceFetchDataEvent());
                       }
                       if (state is BestPlaceLoadingState) {
                         return Center(

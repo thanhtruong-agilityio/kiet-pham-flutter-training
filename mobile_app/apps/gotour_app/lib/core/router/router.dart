@@ -6,8 +6,8 @@ import 'package:mobile_app/features/auth/login_page.dart';
 import 'package:mobile_app/features/auth/sign_up_page.dart';
 import 'package:mobile_app/features/best_place/best_place_page.dart';
 import 'package:mobile_app/features/chat/chat_page.dart';
+import 'package:mobile_app/features/home/home_page.dart';
 import 'package:mobile_app/features/hot_place/hot_place_page.dart';
-import 'package:mobile_app/features/main/main_page.dart';
 import 'package:mobile_app/features/misc/onboarding_page.dart';
 import 'package:mobile_app/features/notification/notification_page.dart';
 import 'package:mobile_app/features/tour_details/tour_details_page.dart';
@@ -21,7 +21,7 @@ final GoRouter router = GoRouter(
         builder: (context, snapshot) {
           if (snapshot.hasData &&
               FirebaseAuth.instance.currentUser!.emailVerified == true) {
-            return const GTMainPage();
+            return const GTHomePage();
           }
           return const GTOnboardingScreen();
         },
@@ -40,9 +40,9 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const GTSignUpPage(),
     ),
     GoRoute(
-      name: 'main',
-      path: '/main-page',
-      builder: (context, state) => const GTMainPage(),
+      name: 'home',
+      path: '/home-page',
+      builder: (context, state) => const GTHomePage(),
       routes: [
         GoRoute(
           name: 'tour-details',

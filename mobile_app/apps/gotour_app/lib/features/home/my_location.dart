@@ -7,9 +7,9 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/features/main/bloc/main_bloc.dart';
-import 'package:mobile_app/features/main/models/my_location.dart';
-import 'package:mobile_app/features/main/repository/main_repository.dart';
+import 'package:mobile_app/features/home/bloc/home_bloc.dart';
+import 'package:mobile_app/features/home/models/my_location.dart';
+import 'package:mobile_app/features/home/repository/home_repository.dart';
 
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
@@ -21,10 +21,10 @@ class GTMyLocation extends StatelessWidget {
     var data = <MyLocation>[];
     final size = MediaQuery.of(context).size;
     return RepositoryProvider(
-      create: (context) => MainRepository(),
+      create: (context) => HomeRepository(),
       child: BlocProvider(
-        create: (context) => MainBloc(
-          mainRepository: RepositoryProvider.of<MainRepository>(context),
+        create: (context) => HomeBloc(
+          mainRepository: RepositoryProvider.of<HomeRepository>(context),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,10 +44,10 @@ class GTMyLocation extends StatelessWidget {
             SizedBox(
               height: 180,
               width: size.width,
-              child: BlocBuilder<MainBloc, MainState>(
+              child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
-                  if (state is MainInitialState) {
-                    context.read<MainBloc>().add(MyLocationFetchDataEvent());
+                  if (state is HomeInitialState) {
+                    context.read<HomeBloc>().add(MyLocationFetchDataEvent());
                   }
                   if (state is MyLocationLoadingState) {
                     return Center(
@@ -83,7 +83,7 @@ class GTMyLocation extends StatelessWidget {
                             location: data[index].location,
                             descriptions: data[index].descriptions,
                             onBookMark: () {
-                              context.read<MainBloc>().add(
+                              context.read<HomeBloc>().add(
                                     DeleteMyLocationEvent(
                                       tourId: tourId,
                                     ),
@@ -132,7 +132,7 @@ class GTMyLocation extends StatelessWidget {
                             location: data[index].location,
                             descriptions: data[index].descriptions,
                             onBookMark: () {
-                              context.read<MainBloc>().add(
+                              context.read<HomeBloc>().add(
                                     DeleteMyLocationEvent(
                                       tourId: tourId,
                                     ),

@@ -1,25 +1,25 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_app/features/main/models/best_place.dart';
-import 'package:mobile_app/features/main/models/my_location.dart';
-import 'package:mobile_app/features/main/repository/main_repository.dart';
+import 'package:mobile_app/features/home/models/best_place.dart';
+import 'package:mobile_app/features/home/models/my_location.dart';
+import 'package:mobile_app/features/home/repository/home_repository.dart';
 
-part 'main_event.dart';
-part 'main_state.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
-class MainBloc extends Bloc<MainEvent, MainState> {
-  MainBloc({required this.mainRepository}) : super(MainInitialState()) {
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBloc({required this.mainRepository}) : super(HomeInitialState()) {
     on<MyLocationFetchDataEvent>(_handleMyLocationRequestedEvent);
     on<BestPlaceFetchDataEvent>(_handleBestPlaceRequestedEvent);
     on<DeleteMyLocationEvent>(_handleDeleteMyLocationEvent);
   }
 
-  final MainRepository mainRepository;
+  final HomeRepository mainRepository;
 
   Future<void> _handleMyLocationRequestedEvent(
     MyLocationFetchDataEvent event,
-    Emitter<MainState> emit,
+    Emitter<HomeState> emit,
   ) async {
     try {
       emit(MyLocationLoadingState());
@@ -39,7 +39,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   Future<void> _handleBestPlaceRequestedEvent(
     BestPlaceFetchDataEvent event,
-    Emitter<MainState> emit,
+    Emitter<HomeState> emit,
   ) async {
     try {
       emit(BestPlaceLoadingState());
@@ -52,7 +52,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   Future<void> _handleDeleteMyLocationEvent(
     DeleteMyLocationEvent event,
-    Emitter<MainState> emit,
+    Emitter<HomeState> emit,
   ) async {
     try {
       emit(DeleteMyLocationLoadingState());

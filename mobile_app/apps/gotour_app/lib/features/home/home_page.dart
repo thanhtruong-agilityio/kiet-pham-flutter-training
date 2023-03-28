@@ -10,11 +10,11 @@ import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 import 'package:mobile_app/core/assets/assets.dart';
 import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
-import 'package:mobile_app/features/main/best_place.dart';
-import 'package:mobile_app/features/main/my_location.dart';
+import 'package:mobile_app/features/home/best_place.dart';
+import 'package:mobile_app/features/home/my_location.dart';
 
-class GTMainPage extends StatelessWidget {
-  const GTMainPage({super.key});
+class GTHomePage extends StatelessWidget {
+  const GTHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,13 @@ class GTMainPage extends StatelessWidget {
           context.go('/login-page');
         }
       },
-      child: const _GTMainView(),
+      child: const _GTHomeView(),
     );
   }
 }
 
-class _GTMainView extends StatelessWidget {
-  const _GTMainView();
+class _GTHomeView extends StatelessWidget {
+  const _GTHomeView();
 
   @override
   Widget build(BuildContext context) {
