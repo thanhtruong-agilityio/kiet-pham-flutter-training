@@ -1,4 +1,4 @@
-name: mobile_app
+name: gotour_app
 description: GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
