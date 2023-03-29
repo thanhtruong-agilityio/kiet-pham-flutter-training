@@ -16,6 +16,8 @@ class GTSearch extends StatelessWidget {
             child: SizedBox(
               height: 40,
               child: TextFormField(
+                style: Theme.of(context).textTheme.labelMedium,
+                textAlignVertical: TextAlignVertical.bottom,
                 decoration: InputDecoration(
                   hintText: S.of(context).mainPageHintTextSearchButton,
                 ),

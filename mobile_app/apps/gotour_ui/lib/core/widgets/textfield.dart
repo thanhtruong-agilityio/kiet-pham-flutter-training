@@ -57,7 +57,6 @@ class _GTTextFieldState extends State<GTTextField> {
             controller: widget.controller,
             keyboardType: widget.keyboardType,
             autovalidateMode: widget.autovalidateMode,
-            // textAlignVertical: TextAlignVertical.bottom,
             style: Theme.of(context).textTheme.labelMedium,
             cursorColor: colorScheme.onBackground,
             obscureText: _obscureText,
