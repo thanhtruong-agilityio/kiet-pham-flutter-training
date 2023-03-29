@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
@@ -16,6 +17,8 @@ class GTBestPlacePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
+
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
@@ -33,9 +36,9 @@ class GTBestPlacePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 44),
+          SizedBox(height: device.scale(44)),
           const GTSearch(),
-          const SizedBox(height: 20),
+          SizedBox(height: device.scale(20)),
           Expanded(
             child: ListView.builder(
               itemCount: 5,
@@ -59,11 +62,15 @@ class _CardBestPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final device = GTReponsive.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+      padding: EdgeInsets.symmetric(
+        vertical: device.scale(5),
+        horizontal: device.scale(20),
+      ),
       child: SizedBox(
-        height: 132,
-        width: 335,
+        height: device.scale(132),
+        width: device.scale(335),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -73,18 +80,21 @@ class _CardBestPlace extends StatelessWidget {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: device.scale(15)),
                   child: GTImage(
                     images: GTAssets().kyoto,
-                    height: 92,
-                    width: 70,
+                    height: device.scale(92),
+                    width: device.scale(70),
                   ),
                 ),
               ),
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 11, top: 20),
+                  padding: EdgeInsets.only(
+                    left: device.scale(11),
+                    top: device.scale(20),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -99,19 +109,21 @@ class _CardBestPlace extends StatelessWidget {
                                   context,
                                   text: 'Bien Thanh Khe',
                                 ),
-                                const SizedBox(
-                                  height: 10,
+                                SizedBox(
+                                  height: device.scale(10),
                                 ),
                                 Row(
                                   children: [
                                     SvgPicture.asset(
                                       GTAssets().location,
                                       color: colorScheme.primary,
-                                      width: 10,
-                                      height: 12,
+                                      width: device.scale(10),
+                                      height: device.scale(12),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 9),
+                                      padding: EdgeInsets.only(
+                                        left: device.scale(9),
+                                      ),
                                       child: GTText.labelMedium(
                                         context,
                                         text: 'Da Nang',
@@ -120,7 +132,9 @@ class _CardBestPlace extends StatelessWidget {
                                     ),
                                     const Spacer(),
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 19),
+                                      padding: EdgeInsets.only(
+                                        right: device.scale(19),
+                                      ),
                                       child: SizedBox(
                                         height: 25,
                                         child: GTElevatedHighlightButton(
@@ -133,15 +147,16 @@ class _CardBestPlace extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 13,
+                            SizedBox(
+                              height: device.scale(13),
                             ),
                             Row(
                               children: List.generate(
                                 2,
                                 (index) => Container(
-                                  margin: const EdgeInsets.only(right: 12),
-                                  child: GTTag(text: '3 day'),
+                                  margin:
+                                      EdgeInsets.only(right: device.scale(12)),
+                                  child: const GTTag(text: '3 day'),
                                 ),
                               ),
                             )
