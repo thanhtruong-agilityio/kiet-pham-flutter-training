@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_app/features/home/models/best_place.dart';
-import 'package:mobile_app/features/home/models/my_location.dart';
-import 'package:mobile_app/features/home/repository/home_repository.dart';
+import 'package:gotour_app/features/home/models/best_place.dart';
+import 'package:gotour_app/features/home/models/my_location.dart';
+import 'package:gotour_app/features/home/repository/home_repository.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

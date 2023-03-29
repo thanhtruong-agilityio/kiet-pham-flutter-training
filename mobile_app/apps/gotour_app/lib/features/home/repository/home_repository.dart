@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mobile_app/features/home/models/best_place.dart';
-import 'package:mobile_app/features/home/models/my_location.dart';
-import 'package:mobile_app/features/home/models/tour_id.dart';
+import 'package:gotour_app/features/home/models/best_place.dart';
+import 'package:gotour_app/features/home/models/my_location.dart';
+import 'package:gotour_app/features/home/models/tour_id.dart';
 
 class HomeRepository {
   final _firebaseFirestoreBestPlace =

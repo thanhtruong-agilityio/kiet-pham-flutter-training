@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
-import 'package:mobile_app/core/assets/assets.dart';
 
 class GTOnboardingScreen extends StatefulWidget {
   const GTOnboardingScreen({super.key});

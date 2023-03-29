@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_app/features/auth/forgot_password_page.dart';
-import 'package:mobile_app/features/auth/login_page.dart';
-import 'package:mobile_app/features/auth/sign_up_page.dart';
-import 'package:mobile_app/features/best_place/best_place_page.dart';
-import 'package:mobile_app/features/chat/chat_page.dart';
-import 'package:mobile_app/features/home/home_page.dart';
-import 'package:mobile_app/features/hot_place/hot_place_page.dart';
-import 'package:mobile_app/features/misc/onboarding_page.dart';
-import 'package:mobile_app/features/notification/notification_page.dart';
-import 'package:mobile_app/features/tour_details/tour_details_page.dart';
+import 'package:gotour_app/features/auth/forgot_password_page.dart';
+import 'package:gotour_app/features/auth/login_page.dart';
+import 'package:gotour_app/features/auth/sign_up_page.dart';
+import 'package:gotour_app/features/best_place/best_place_page.dart';
+import 'package:gotour_app/features/chat/chat_page.dart';
+import 'package:gotour_app/features/home/home_page.dart';
+import 'package:gotour_app/features/hot_place/hot_place_page.dart';
+import 'package:gotour_app/features/misc/onboarding_page.dart';
+import 'package:gotour_app/features/notification/notification_page.dart';
+import 'package:gotour_app/features/tour_details/tour_details_page.dart';
 
 final GoRouter router = GoRouter(
   routes: [

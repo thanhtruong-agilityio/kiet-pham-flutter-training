@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
@@ -9,7 +9,6 @@ import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
-import 'package:mobile_app/core/assets/assets.dart';
 
 class GTBestPlacePage extends StatelessWidget {
   const GTBestPlacePage({super.key});

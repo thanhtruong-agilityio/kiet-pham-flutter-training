@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
+import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
+import 'package:gotour_app/features/tour_details/place_info.dart';
+import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
+import 'package:gotour_app/features/tour_details/service.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
-import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
-import 'package:mobile_app/features/tour_details/bloc/tour_details_bloc.dart';
-import 'package:mobile_app/features/tour_details/place_info.dart';
-import 'package:mobile_app/features/tour_details/repository/tour_details_repository.dart';
-import 'package:mobile_app/features/tour_details/service.dart';
 
 class GTTourDetails extends StatelessWidget {
   const GTTourDetails({

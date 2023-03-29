@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/features/home/bloc/home_bloc.dart';
+import 'package:gotour_app/features/home/models/my_location.dart';
+import 'package:gotour_app/features/home/repository/home_repository.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
-import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/features/home/bloc/home_bloc.dart';
-import 'package:mobile_app/features/home/models/my_location.dart';
-import 'package:mobile_app/features/home/repository/home_repository.dart';
 
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({

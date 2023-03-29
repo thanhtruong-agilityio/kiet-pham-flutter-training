@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mobile_app/features/tour_details/model/tour_details.dart';
+import 'package:gotour_app/features/tour_details/model/tour_details.dart';
 
 class TourDetailsRepository {
   final _firebaseFirestoreTourDetails =

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
-import 'package:mobile_app/core/assets/assets.dart';
 
 class GTPlaceInfoHotPlace extends StatefulWidget {
   const GTPlaceInfoHotPlace({

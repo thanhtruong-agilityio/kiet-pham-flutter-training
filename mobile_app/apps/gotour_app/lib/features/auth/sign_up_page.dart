@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
+import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
@@ -8,9 +11,6 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/gender.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
-import 'package:mobile_app/core/assets/assets.dart';
-import 'package:mobile_app/features/auth/bloc/auth_bloc.dart';
-import 'package:mobile_app/features/auth/validator/validator.dart';
 
 class GTSignUpPage extends StatelessWidget {
   const GTSignUpPage({super.key});

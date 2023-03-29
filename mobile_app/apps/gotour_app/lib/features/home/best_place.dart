@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/features/home/bloc/home_bloc.dart';
+import 'package:gotour_app/features/home/models/best_place.dart';
+import 'package:gotour_app/features/home/repository/home_repository.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/title.dart';
-import 'package:mobile_app/features/home/bloc/home_bloc.dart';
-import 'package:mobile_app/features/home/models/best_place.dart';
-import 'package:mobile_app/features/home/repository/home_repository.dart';
 
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
