@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
@@ -13,16 +14,22 @@ class GTChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
+
     return GTScaffold(
       appBar: GTAppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 16),
+          padding: EdgeInsets.only(left: device.scale(16)),
           child: InkWell(
             onTap: () {},
-            child: Assets.images.author.image(
-              width: 48,
+            child: Container(
               height: 48,
-              fit: BoxFit.contain,
+              width: 48,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(GTAssets().author),
+                ),
+              ),
             ),
           ),
         ),
@@ -37,9 +44,9 @@ class GTChatPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 44),
+          SizedBox(height: device.scale(44)),
           const GTSearch(),
-          const SizedBox(height: 20),
+          SizedBox(height: device.scale(20)),
           Expanded(
             child: ListView.builder(
               itemCount: 10,
@@ -63,8 +70,13 @@ class _ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final device = GTReponsive.of(context);
     return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+      padding: EdgeInsets.only(
+        left: device.scale(20),
+        right: device.scale(20),
+        top: device.scale(10),
+      ),
       child: Column(
         children: [
           Row(
@@ -80,7 +92,7 @@ class _ChatCard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: device.scale(15)),
                   child: Column(
                     children: [
                       Row(
@@ -115,7 +127,7 @@ class _ChatCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: device.scale(10)),
           Container(
             decoration: BoxDecoration(
               border: Border.all(
