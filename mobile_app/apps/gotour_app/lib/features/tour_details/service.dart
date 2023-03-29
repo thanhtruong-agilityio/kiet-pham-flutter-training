@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -23,9 +24,10 @@ class _GTServiceState extends State<GTService> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      height: 76,
+      padding: EdgeInsets.symmetric(horizontal: device.scale(20)),
+      height: device.scale(76),
       child: Row(
         children: [
           Flexible(
@@ -38,8 +40,8 @@ class _GTServiceState extends State<GTService> {
                   context,
                   text: S.of(context).tourDetailsPageService,
                 ),
-                const SizedBox(
-                  height: 14,
+                SizedBox(
+                  height: device.scale(14),
                 ),
                 Wrap(
                   children: [

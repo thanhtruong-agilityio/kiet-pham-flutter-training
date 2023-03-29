@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
@@ -31,16 +32,20 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
+
     return Column(
       children: [
         ListCardPlaceinfo(
-          size: size,
           onPressed: onPressCard,
           id: id,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 28),
+          padding: EdgeInsets.only(
+            left: device.scale(20),
+            right: device.scale(20),
+            top: device.scale(28),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +60,9 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                     colorLocation: colorScheme.tertiary,
                     colorIcon: colorScheme.primary,
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: device.scale(24)),
                   SizedBox(
-                    height: 25,
+                    height: device.scale(25),
                     child: GTElevatedHighlightButton(
                       text: '\$$price',
                       onPressed: onPressBtn,
@@ -68,7 +73,7 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
               Row(
                 children: [
                   SvgPicture.asset(GTAssets().cloud),
-                  const SizedBox(width: 7),
+                  SizedBox(width: device.scale(7)),
                   Text(
                     '$temperature°C',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -88,12 +93,10 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
 class ListCardPlaceinfo extends StatefulWidget {
   const ListCardPlaceinfo({
     super.key,
-    required this.size,
     required this.onPressed,
     required this.id,
   });
 
-  final Size size;
   final VoidCallback onPressed;
   final String id;
 
@@ -107,8 +110,8 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   List<String> images = [];
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
     return RepositoryProvider(
       create: (context) => TourDetailsRepository(),
       child: BlocProvider(
@@ -134,7 +137,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
               return Column(
                 children: [
                   SizedBox(
-                    height: size.height * 1 / 4,
+                    height: device.scale(200),
                     child: PageView.builder(
                       controller: _pageController,
                       onPageChanged: (index) {
@@ -144,13 +147,14 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                       },
                       itemCount: images.length,
                       itemBuilder: (context, index) => Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        margin:
+                            EdgeInsets.symmetric(horizontal: device.scale(20)),
                         child: GestureDetector(
                           onTap: widget.onPressed,
                           child: Stack(
                             children: [
                               Container(
-                                height: size.height * 1 / 4,
+                                height: device.scale(200),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -159,7 +163,9 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(right: 30),
+                                  padding: EdgeInsets.only(
+                                    right: device.scale(30),
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     crossAxisAlignment:
@@ -226,7 +232,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 15),
+                    margin: EdgeInsets.only(top: device.scale(15)),
                     height: 5,
                     child: Align(
                       child: SizedBox(
@@ -269,88 +275,3 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
     );
   }
 }
-
-// Column(
-//               children: [
-//                 SizedBox(
-//                   height: size.height * 1 / 4,
-//                   child: PageView.builder(
-//                     controller: _pageController,
-//                     onPageChanged: (index) {
-//                       setState(() {
-//                         _selectedIndex = index;
-//                       });
-//                     },
-//                     itemCount: images.length,
-//                     itemBuilder: (context, index) => Container(
-//                       margin: const EdgeInsets.symmetric(horizontal: 20),
-//                       child: GestureDetector(
-//                         onTap: widget.onPressed,
-//                         child: Stack(
-//                           children: [
-//                             Container(
-//                               height: size.height * 1 / 4,
-//                               decoration: BoxDecoration(
-//                                 borderRadius: BorderRadius.circular(20),
-//                                 image: DecorationImage(
-//                                   image: NetworkImage(images[index]),
-//                                   fit: BoxFit.cover,
-//                                 ),
-//                               ),
-//                               child: Padding(
-//                                 padding: const EdgeInsets.only(right: 30),
-//                                 child: Row(
-//                                   mainAxisAlignment: MainAxisAlignment.end,
-//                                   crossAxisAlignment: CrossAxisAlignment.start,
-//                                   children: [
-//                                     Stack(
-//                                       children: [
-//                                         SvgPicture.asset(
-//                                           GTAssets().bookMark,
-//                                           color: colorScheme.background,
-//                                         ),
-//                                       ],
-//                                     ),
-//                                   ],
-//                                 ),
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Container(
-//                   margin: const EdgeInsets.only(top: 15),
-//                   height: 5,
-//                   child: Align(
-//                     child: SizedBox(
-//                       width: 25.0 + (images.length - 1) * 10,
-//                       child: ListView.builder(
-//                         scrollDirection: Axis.horizontal,
-//                         itemCount: images.length,
-//                         // itemBuilder: (context, index) => buildIndicator(
-//                         //   isActivate: index == _selectedIndex,
-//                         //   size: size,
-//                         // ),
-//                         itemBuilder: (context, index) => Center(
-//                           child: AnimatedContainer(
-//                             duration: const Duration(milliseconds: 300),
-//                             margin: const EdgeInsets.symmetric(horizontal: 2.5),
-//                             height: index == _selectedIndex ? 3 : 5,
-//                             width: index == _selectedIndex ? 20 : 5,
-//                             decoration: BoxDecoration(
-//                               color: Theme.of(context)
-//                                   .colorScheme
-//                                   .tertiaryContainer,
-//                               borderRadius: BorderRadius.circular(5),
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 )
-//               ],
-//             )

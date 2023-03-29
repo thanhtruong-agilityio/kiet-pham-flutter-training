@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/place_info.dart';
@@ -44,10 +45,12 @@ class _GTTourDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
+
     return GTScaffold(
       appBar: GTAppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: EdgeInsets.only(right: device.scale(10)),
           child: GTIconButton(
             icon: GTAssets().back,
             btnColor: colorScheme.background,
@@ -96,7 +99,7 @@ class _GTTourDetails extends StatelessWidget {
                   final data = state.tourDetails;
                   return Column(
                     children: [
-                      const SizedBox(height: 44),
+                      SizedBox(height: device.scale(44)),
                       GTPlaceInfoTourDetails(
                         namePlace: data.placeName,
                         location: data.location,
@@ -106,11 +109,13 @@ class _GTTourDetails extends StatelessWidget {
                         onPressBtn: () {},
                         id: id!,
                       ),
-                      const SizedBox(height: 26),
+                      SizedBox(height: device.scale(26)),
                       const GTService(),
-                      const SizedBox(height: 26),
+                      SizedBox(height: device.scale(26)),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: device.scale(20),
+                        ),
                         child: GTText.bodyMedium(
                           context,
                           text: data.descriptions,
