@@ -15,23 +15,14 @@ scripts:
   analyze:
     run: melos exec -- fvm flutter analyze .
     description: Run `dart analyze` in all packages.
-    select-package:
-      scope:
-        - gotour_app
-        - gotour_ui
 
   # Start mobile apps scripts
   run:gotour_app:
-    run: melos exec -- fvm flutter run lib/main.dart
-    select-package:
-      scope:
-        - gotour_app
+    run: melos exec --scope="gotour_app" -- flutter run -d '8354F599-5917-4E03-974F-1C0E8B2A4335'
 
+  # Start devices preview scripts
   run:gotour_app_device_preview:
-    run: melos exec -- fvm flutter run lib/main_device_preview.dart
-    select-package:
-      scope:
-        - gotour_app
+    run: melos exec --scope="gotour_app" -- fvm flutter run lib/main_device_preview.dart -d chrome
 
   # Generation i18n file
   dev:generate:i18n:
@@ -45,22 +36,15 @@ scripts:
 
   # Generation native splash
   dev:generate:native_splash:
-    run: melos exec -- fvm flutter pub get && melos exec -- fvm flutter pub run flutter_native_splash:create
+    run: melos exec --scope="gotour_app" -- fvm flutter pub get && melos exec -- fvm flutter pub run flutter_native_splash:create
     description: "Generation asset to display splash screen"
-    select-package:
-      scope:
-        - gotour_app
 
   build_runner:
     run: |
       melos exec -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
-    select-package:
-      scope:
-        - gotour_ui
-        - gotour_app
 
   # Run widgetbook
   run:gotour_design:widget_book:
-    run: melos exec fvm flutter run lib/main.dart
+    run: melos exec --scope="gotour_widgetbook" -- fvm flutter run -d chrome
     select-package:
       scope: gotour_widgetbook
