@@ -12,7 +12,7 @@ class GTSnackBar {
       SnackBar(
         content: Container(
           padding: const EdgeInsets.all(16),
-          height: 90,
+          height: 80,
           decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: const BorderRadius.all(

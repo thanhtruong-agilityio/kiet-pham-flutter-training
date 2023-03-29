@@ -13,7 +13,6 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
-import 'package:gotour_ui/core/widgets/textfield.dart';
 
 class GTHomePage extends StatelessWidget {
   const GTHomePage({super.key});

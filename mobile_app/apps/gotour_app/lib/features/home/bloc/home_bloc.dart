@@ -55,16 +55,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     try {
-      emit(DeleteMyLocationLoadingState());
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
-      await mainRepository.deleteBookmark(idUser, event.tourId);
-      final tourIds =
-          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
-      final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+      await mainRepository.unBookmark(userId: userId, tourId: event.tourId);
 
-      final listMyLocation =
-          await mainRepository.getDataFromDocuments(documentIds: tourIdList);
-      emit(DeleteMyLocationSuccessState(listMyLocation: listMyLocation));
-    } on Exception catch (e) {}
+      final listBeforDelete = state as MyLocationLoadedState;
+      listBeforDelete.listMyLocation.removeAt(event.index);
+      emit(
+        UnBookmarkSuccessState(
+          listMyLocation: listBeforDelete.listMyLocation,
+        ),
+      );
+      emit(
+        MyLocationLoadedState(
+          listMyLocation: listBeforDelete.listMyLocation,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(UnBookmarkErrorState(error: e.toString()));
+    }
   }
 }
