@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
@@ -32,7 +33,8 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,7 +43,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
           child: Stack(
             children: [
               Container(
-                height: size.height * 1 / 4,
+                height: device.scale(200),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
@@ -50,7 +52,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 30),
+                  padding: EdgeInsets.only(right: device.scale(30)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,8 +72,8 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
             ],
           ),
         ),
-        const SizedBox(
-          height: 28,
+        SizedBox(
+          height: device.scale(28),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,14 +87,14 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                   colorLocation: colorScheme.tertiary,
                   colorIcon: colorScheme.primary,
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: device.scale(15),
                 ),
                 Row(
                   children: List.generate(
                     dataTags.length,
                     (index) => Container(
-                      margin: const EdgeInsets.only(right: 12),
+                      margin: EdgeInsets.only(right: device.scale(12)),
                       child: GTTag(text: dataTags[index]),
                     ),
                   ),

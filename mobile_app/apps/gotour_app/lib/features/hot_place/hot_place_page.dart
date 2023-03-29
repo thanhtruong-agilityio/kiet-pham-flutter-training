@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/hot_place/hot_place.dart';
 import 'package:gotour_app/features/hot_place/place_info.dart';
 import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
@@ -14,10 +15,12 @@ class GTHotPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
+
     return GTScaffold(
       appBar: GTAppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: EdgeInsets.only(right: device.scale(10)),
           child: GTIconButton(
             icon: GTAssets().back,
             btnColor: colorScheme.background,
@@ -38,10 +41,10 @@ class GTHotPlace extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: device.scale(20)),
         child: Column(
           children: [
-            const SizedBox(height: 44),
+            SizedBox(height: device.scale(44)),
             GTPlaceInfoHotPlace(
               image: Assets.images.tibidabo.path,
               placeName: 'Capital of Thailand',
@@ -50,7 +53,7 @@ class GTHotPlace extends StatelessWidget {
               pressCard: () {},
               pressBtn: () {},
             ),
-            const SizedBox(height: 25),
+            SizedBox(height: device.scale(25)),
             const Expanded(child: GTGridViewHotPlace()),
           ],
         ),

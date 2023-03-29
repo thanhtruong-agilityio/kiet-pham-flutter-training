@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -9,6 +10,8 @@ class GTGridViewHotPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final device = GTReponsive.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -17,8 +20,8 @@ class GTGridViewHotPlace extends StatelessWidget {
             GTText.titleMedium(context, text: S.of(context).hotPlacePage),
           ],
         ),
-        const SizedBox(
-          height: 14,
+        SizedBox(
+          height: device.scale(14),
         ),
         const Expanded(
           child: BuildGridview(),
@@ -43,11 +46,13 @@ class BuildGridview extends StatelessWidget {
       Assets.images.phranang.path,
       Assets.images.doipui.path,
     ];
+    final device = GTReponsive.of(context);
+
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        mainAxisSpacing: device.scale(10),
+        crossAxisSpacing: device.scale(10),
       ),
       itemCount: dataImages.length,
       itemBuilder: (context, index) => GestureDetector(
