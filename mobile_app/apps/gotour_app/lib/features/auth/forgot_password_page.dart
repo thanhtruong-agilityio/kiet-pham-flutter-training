@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
@@ -84,7 +85,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -98,25 +99,21 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    // const SizedBox(height: 120),
-                    // Container(
-                    //   height: size.width / 2,
-                    //   decoration: BoxDecoration(
-                    //     image: DecorationImage(
-                    //       image: Image.asset(name),
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(height: device.sh(50)),
                     Image.asset(
                       GTAssets().logo,
-                      height: size.width / 2,
+                      width: device.sw(256),
+                      height: device.sh(90),
+                      fit: BoxFit.contain,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: device.sh(70),
+                    ),
                     GTText.displaySmall(
                       context,
                       text: S.of(context).forgotPasswordPageTitle,
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: device.sh(70)),
                     GTTextField(
                       controller: _emailController,
                       hintText: 'email@example.com',
@@ -130,7 +127,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                             : null;
                       },
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: device.sh(10)),
                     GTElevatedHighlightButton(
                       activateShadow: true,
                       text: S.of(context).forgotPasswordPageButtonSubmit,
@@ -142,7 +139,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                         }
                       },
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: device.sh(20)),
                     GTTextHighlightButton(
                       text:
                           S.of(context).forgotPasswordPageButtonBackToLoginPage,
