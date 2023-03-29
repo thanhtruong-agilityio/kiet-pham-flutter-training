@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -30,12 +31,13 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-              flex: 14,
+              flex: 15,
               child: PageView.builder(
                 itemCount: dataBoards.length,
                 controller: _pageController,
@@ -53,9 +55,8 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
             ),
             Expanded(
               flex: 2,
-              child: Container(
-                // padding: const EdgeInsets.symmetric(horizontal: 20),
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: device.sw(20)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -74,7 +75,9 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                       children: List.generate(
                         dataBoards.length,
                         (index) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: device.sw(5),
+                          ),
                           child: DotIndicator(
                             isActivate: index == _pageIndex,
                           ),
@@ -168,19 +171,19 @@ class OnboardingContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(
           image,
-          width: size.width,
-          height: size.height * 2 / 3,
+          width: device.sw(375),
+          height: device.sh(508),
           fit: BoxFit.fill,
         ),
-        const Spacer(),
+        SizedBox(height: device.sh(15)),
         Padding(
-          padding: const EdgeInsets.only(left: 18),
+          padding: EdgeInsets.only(left: device.sw(18)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -191,7 +194,10 @@ class OnboardingContent extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                width: size.width * 2 / 3,
+                height: device.sh(5),
+              ),
+              SizedBox(
+                width: device.sw(268),
                 child: GTText.labelLarge(
                   context,
                   text: description,
@@ -201,7 +207,6 @@ class OnboardingContent extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
       ],
     );
   }
