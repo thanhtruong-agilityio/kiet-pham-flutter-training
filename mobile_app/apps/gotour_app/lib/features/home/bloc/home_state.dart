@@ -55,13 +55,8 @@ class MyLocationErrorState extends HomeState {
   List<Object> get props => [];
 }
 
-class DeleteMyLocationLoadingState extends HomeState {
-  @override
-  List<Object> get props => [];
-}
-
-class DeleteMyLocationSuccessState extends HomeState {
-  const DeleteMyLocationSuccessState({
+class UnBookmarkSuccessState extends HomeState {
+  const UnBookmarkSuccessState({
     required this.listMyLocation,
   });
   final List<MyLocation> listMyLocation;
@@ -69,8 +64,8 @@ class DeleteMyLocationSuccessState extends HomeState {
   List<Object> get props => [listMyLocation];
 }
 
-class DeleteMyLocationErrorState extends HomeState {
-  const DeleteMyLocationErrorState({required this.error});
+class UnBookmarkErrorState extends HomeState {
+  const UnBookmarkErrorState({required this.error});
 
   final String error;
 

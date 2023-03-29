@@ -69,13 +69,19 @@ class HomeRepository {
   }
 
   // Detele document when user click icon bookmark
-  Future<void> deleteBookmark(String userId, String tourId) async {
+  Future<void> unBookmark({
+    required String userId,
+    required String tourId,
+  }) async {
     final snapshot = await _firebaseFirestoreTourBookMarks
         .where('userId', isEqualTo: userId)
         .where('tourId', isEqualTo: tourId)
         .get();
-    for (final document in snapshot.docs) {
-      await document.reference.delete();
+
+    if (snapshot.docs.isNotEmpty) {
+      for (final document in snapshot.docs) {
+        await document.reference.delete();
+      }
     }
   }
 }
