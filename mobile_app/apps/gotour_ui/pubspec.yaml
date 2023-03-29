@@ -1,0 +1,62 @@
+name: gotour_ui
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  flutter_localizations:
+    sdk: flutter
+  
+  flutter_svg: 1.1.6
+
+  cupertino_icons: 1.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 2.0.0
+
+  flutter_gen: 5.2.0
+  build_runner: 2.3.3
+  flutter_gen_runner: 5.2.0
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/icons/
+  fonts:
+    - family: Gilroy-Bold
+      fonts:
+        - asset: assets/fonts/Gilroy-Bold.ttf
+          weight: 700
+
+    - family: Gilroy-Medium
+      fonts:
+        - asset: assets/fonts/Gilroy-Medium.ttf
+          weight: 400
+
+# Config gen assets
+flutter_gen:
+  output: lib/core/resources/assets_generated/ #Optional (default: lib/gen)
+  colors:
+    inputs:
+      - assets/color/colors.xml
+
+# Config i18n generation
+flutter_intl:
+  enabled: true
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/resources/l10n_generated
+
