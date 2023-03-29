@@ -6,7 +6,7 @@ class GTReponsive {
     screenHeight = MediaQuery.of(context).size.height;
   }
 
-  double sizeOf(double value) {
+  double scale(double value) {
     return screenWidth * value / mockupWidth;
   }
 
