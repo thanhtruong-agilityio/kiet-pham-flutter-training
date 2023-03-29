@@ -66,8 +66,8 @@ class BookMarkTheTourLoadingState extends TourDetailsState {
   List<Object> get props => [];
 }
 
-class BookMarkTheTourSuccessState extends TourDetailsState {
-  const BookMarkTheTourSuccessState({
+class ChangeBookmarkSuccessState extends TourDetailsState {
+  const ChangeBookmarkSuccessState({
     required this.bookmark,
   });
 
@@ -77,8 +77,8 @@ class BookMarkTheTourSuccessState extends TourDetailsState {
   List<Object> get props => [bookmark];
 }
 
-class BookMarkTheTourErrorState extends TourDetailsState {
-  const BookMarkTheTourErrorState({required this.error});
+class ChangeBookmarkErrorState extends TourDetailsState {
+  const ChangeBookmarkErrorState({required this.error});
 
   final String error;
 

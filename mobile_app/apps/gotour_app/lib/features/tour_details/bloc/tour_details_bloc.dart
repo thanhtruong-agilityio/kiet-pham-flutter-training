@@ -14,7 +14,7 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
       : super(TourDetailsInitialState()) {
     on<TourDetailsFetchDataEvent>(_handleTourDetailsFetchDataEvent);
     on<TourDetailsFetchImageListEvent>(_handleTourDetailsFetchImageListEvent);
-    on<pressTheTourBookmarkButtonEvent>(_handleCheckBookMarkTourEvent);
+    on<PressTheTourBookmarkButtonEvent>(_handleCheckBookMarkTourEvent);
   }
 
   final TourDetailsRepository tourDetailsRepository;
@@ -44,11 +44,6 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
         userId: userId,
         tourId: event.id,
       );
-
-      print(checkBookmark);
-
-      final json = jsonEncode(imageList);
-      print(json);
       emit(
         TourDetailsImageListLoadedState(
           imageList: imageList,
@@ -59,25 +54,38 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   }
 
   Future<void> _handleCheckBookMarkTourEvent(
-    pressTheTourBookmarkButtonEvent event,
+    PressTheTourBookmarkButtonEvent event,
     Emitter<TourDetailsState> emit,
   ) async {
     try {
-      emit(BookMarkTheTourLoadingState());
+      final imageList = state as TourDetailsImageListLoadedState;
       final idUser = FirebaseAuth.instance.currentUser!.uid;
-      final checkBookmark = await tourDetailsRepository.tourHasBeenMarked(
-        userId: idUser,
-        tourId: event.tourId,
-      );
 
       await tourDetailsRepository.handleBookmarkTour(
-        bookmark: checkBookmark,
+        bookmark: event.isBookmark,
         tourId: event.tourId,
         userId: idUser,
       );
-      emit(BookMarkTheTourSuccessState(bookmark: checkBookmark));
-      // final json = jsonEncode(imageList);
-      print(json);
-    } on Exception catch (e) {}
+      final checkBookmark = !event.isBookmark;
+      if (checkBookmark == true) {
+        emit(ChangeBookmarkSuccessState(bookmark: checkBookmark));
+        emit(
+          TourDetailsImageListLoadedState(
+            bookmark: checkBookmark,
+            imageList: imageList.imageList,
+          ),
+        );
+      } else {
+        emit(ChangeBookmarkSuccessState(bookmark: checkBookmark));
+        emit(
+          TourDetailsImageListLoadedState(
+            bookmark: checkBookmark,
+            imageList: imageList.imageList,
+          ),
+        );
+      }
+    } on Exception catch (e) {
+      emit(ChangeBookmarkErrorState(error: e.toString()));
+    }
   }
 }
