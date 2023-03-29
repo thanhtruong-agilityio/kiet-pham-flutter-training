@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_app/features/home/repository/home_repository.dart';
@@ -18,7 +19,7 @@ class GTMyLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var data = <MyLocation>[];
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     return RepositoryProvider(
       create: (context) => HomeRepository(),
       child: BlocProvider(
@@ -41,8 +42,7 @@ class GTMyLocation extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 180,
-              width: size.width,
+              height: device.scale(150),
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state is HomeInitialState) {
@@ -181,22 +181,24 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     return GestureDetector(
       onTap: widget.press,
       child: Container(
-        margin: const EdgeInsets.only(
-          left: 5,
-          top: 14,
+        margin: EdgeInsets.only(
+          left: device.scale(5),
+          top: device.scale(14),
         ),
-        width: size.width * 0.75,
-        height: 136,
+        width: device.scale(295),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: colorScheme.surface,
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 20),
+          padding: EdgeInsets.only(
+            left: device.scale(15),
+            right: device.scale(20),
+          ),
           child: Stack(
             children: [
               Column(
@@ -207,14 +209,14 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 24),
+                        padding: EdgeInsets.only(top: device.scale(24)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
                                 imagePlace(),
-                                const SizedBox(width: 11),
+                                SizedBox(width: device.scale(11)),
                                 GTLocation(
                                   placeName: widget.placeName,
                                   location: widget.location,
@@ -228,13 +230,13 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                       iconBookMark()
                     ],
                   ),
-                  const SizedBox(height: 11),
+                  SizedBox(height: device.scale(11)),
                   Container(
-                    padding: const EdgeInsets.only(right: 39),
+                    padding: EdgeInsets.only(right: device.scale(39)),
                     child: GTText.bodyMedium(
                       context,
                       text: widget.descriptions,
-                      maxLines: 3,
+                      maxLines: 2,
                       color: colorScheme.tertiary,
                     ),
                   )

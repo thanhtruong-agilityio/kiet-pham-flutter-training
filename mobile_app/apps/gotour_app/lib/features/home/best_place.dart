@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/best_place.dart';
 import 'package:gotour_app/features/home/repository/home_repository.dart';
@@ -19,7 +20,7 @@ class GTBestPlace extends StatelessWidget {
   Widget build(BuildContext context) {
     var data = <BestPlace>[];
 
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     return RepositoryProvider(
       create: (context) => HomeRepository(),
       child: BlocProvider(
@@ -30,10 +31,10 @@ class GTBestPlace extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.only(right: 20),
-              margin: const EdgeInsets.only(bottom: 14),
+              padding: EdgeInsets.only(right: device.scale(20)),
+              margin: EdgeInsets.only(bottom: device.scale(14)),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: device.scale(20)),
                 child: GTTitle(
                   title: S.of(context).mainPageBestPlace,
                   onPressed: () => context.goNamed('best-place'),
@@ -43,8 +44,8 @@ class GTBestPlace extends StatelessWidget {
             Row(
               children: [
                 SizedBox(
-                  height: 180,
-                  width: size.width,
+                  height: device.scale(180),
+                  width: device.scale(375),
                   child: BlocBuilder<HomeBloc, HomeState>(
                     builder: (context, state) {
                       if (state is HomeInitialState) {
@@ -58,11 +59,11 @@ class GTBestPlace extends StatelessWidget {
                       if (state is BestPlaceLoadedState) {
                         data = state.listBestPlace;
                         return ListView.builder(
-                          padding: const EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(left: device.scale(20)),
                           scrollDirection: Axis.horizontal,
                           itemCount: data.length,
                           itemBuilder: (context, index) => Container(
-                            margin: const EdgeInsets.only(right: 20),
+                            margin: EdgeInsets.only(right: device.scale(20)),
                             child: GTCardBestPlace(
                               image: data[index].imageUrl,
                               placeName: data[index].placeName,
@@ -110,12 +111,12 @@ class GTCardBestPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final device = GTReponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: pressCard,
       child: Container(
-        width: size.width * 0.8,
+        width: device.scale(295),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
@@ -124,7 +125,10 @@ class GTCardBestPlace extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+          padding: EdgeInsets.symmetric(
+            vertical: device.scale(20),
+            horizontal: device.scale(15),
+          ),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
@@ -146,7 +150,7 @@ class GTCardBestPlace extends StatelessWidget {
                   ),
                   const Spacer(),
                   SizedBox(
-                    height: 25,
+                    height: device.scale(25),
                     child: GTElevatedHighlightButton(
                       text: '\$$price',
                       onPressed: pressBtnPrice,
