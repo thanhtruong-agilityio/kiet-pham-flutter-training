@@ -165,7 +165,7 @@ class _CardBestPlace extends StatelessWidget {
                                   text: placeName,
                                 ),
                                 SizedBox(
-                                  height: device.scale(10),
+                                  height: device.scale(6),
                                 ),
                                 Row(
                                   children: [
@@ -203,7 +203,7 @@ class _CardBestPlace extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: device.scale(13),
+                              height: device.scale(10),
                             ),
                             Row(
                               children: List.generate(
