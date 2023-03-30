@@ -58,8 +58,10 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           name: 'hot-place',
-          path: 'hot-place',
-          builder: (context, state) => const GTHotPlace(),
+          path: 'hot-place/:id',
+          builder: (context, state) => GTHotPlace(
+            id: state.params['id']!,
+          ),
         ),
         GoRoute(
           name: 'chat',

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
-  const GTGridViewHotPlace({super.key});
+  const GTGridViewHotPlace({
+    super.key,
+    required this.imageList,
+  });
+
+  final List<String> imageList;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,10 @@ class GTGridViewHotPlace extends StatelessWidget {
         SizedBox(
           height: device.scale(14),
         ),
-        const Expanded(
-          child: BuildGridview(),
+        Expanded(
+          child: BuildGridview(
+            imageList: imageList,
+          ),
         ),
       ],
     );
@@ -34,18 +39,14 @@ class GTGridViewHotPlace extends StatelessWidget {
 class BuildGridview extends StatelessWidget {
   const BuildGridview({
     super.key,
+    required this.imageList,
   });
+
+  final List<String> imageList;
 
   @override
   Widget build(BuildContext context) {
-    final dataImages = <String>[
-      Assets.images.kyoto.path,
-      Assets.images.chumphon.path,
-      Assets.images.tibidabo.path,
-      Assets.images.krabi.path,
-      Assets.images.phranang.path,
-      Assets.images.doipui.path,
-    ];
+    final dataImages = imageList;
     final device = GTReponsive.of(context);
 
     return GridView.builder(
@@ -57,13 +58,13 @@ class BuildGridview extends StatelessWidget {
       itemCount: dataImages.length,
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {
-          context.goNamed('tour-details');
+          // context.goNamed('tour-details');
         },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             image: DecorationImage(
-              image: AssetImage(
+              image: NetworkImage(
                 dataImages[index],
               ),
               fit: BoxFit.cover,

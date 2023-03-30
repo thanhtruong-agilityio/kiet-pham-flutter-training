@@ -15,25 +15,31 @@ class GTPlaceInfoHotPlace extends StatefulWidget {
     required this.price,
     required this.pressCard,
     required this.pressBtn,
+    required this.tagList,
+    required this.isBookmark,
+    required this.onBookmark,
   });
+
   final VoidCallback pressCard;
   final VoidCallback pressBtn;
   final String image;
   final String placeName;
   final String location;
   final String price;
+  final List<String> tagList;
+  final bool isBookmark;
+  final VoidCallback onBookmark;
 
   @override
   State<GTPlaceInfoHotPlace> createState() => _GTPlaceInfoHotPlaceState();
 }
 
 class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
-  List<String> dataTags = ['7 day', 'summer'];
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+    final dataTags = widget.tagList;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +53,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(widget.image),
+                    image: NetworkImage(widget.image),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -59,9 +65,14 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                     children: [
                       Stack(
                         children: [
-                          SvgPicture.asset(
-                            GTAssets().bookMark,
-                            color: colorScheme.background,
+                          InkWell(
+                            onTap: widget.onBookmark,
+                            child: SvgPicture.asset(
+                              GTAssets().bookMark,
+                              color: widget.isBookmark
+                                  ? colorScheme.primary
+                                  : colorScheme.background,
+                            ),
                           ),
                         ],
                       ),
