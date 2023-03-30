@@ -62,8 +62,8 @@ class _GTHomeView extends StatelessWidget {
                     onOk: () {
                       context.read<AuthBloc>().add(SignOutRequested());
                     },
-                    title: 'Log Out',
-                    content: 'Do you want to log out',
+                    title: S.of(context).LogOut,
+                    content: S.of(context).logOutMessage,
                   ),
                 );
               },

@@ -23,8 +23,7 @@ class GTForgotPasswordPage extends StatelessWidget {
           // Navigating to the dashboard screen if the user is authenticated
           GTSnackBar.show(
             context,
-            message:
-                '''We have sent you a password reset email. Please check your email''',
+            message: S.of(context).forgotPasswordMessage,
             backgroundColor: colorScheme.secondaryContainer,
           );
           context.go('/login-page');
@@ -123,7 +122,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (email) {
                         return !AuthValidator.isValidEmail(email!)
-                            ? 'Enter a valid email'
+                            ? S.of(context).errorInValidEmail
                             : null;
                       },
                     ),

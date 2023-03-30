@@ -5,6 +5,7 @@ import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
@@ -126,13 +127,13 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
               if (state.bookmark == true) {
                 GTSnackBar.show(
                   context,
-                  message: 'Bookmark tour success',
+                  message: S.of(context).bookMarkSuccessMessage,
                   backgroundColor: colorScheme.secondaryContainer,
                 );
               } else {
                 GTSnackBar.show(
                   context,
-                  message: 'Un Bookmark tour success',
+                  message: S.of(context).unBookMarkSuccessMessage,
                   backgroundColor: colorScheme.secondaryContainer,
                 );
               }

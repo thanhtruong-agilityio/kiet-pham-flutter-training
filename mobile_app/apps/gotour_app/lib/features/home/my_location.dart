@@ -34,7 +34,7 @@ class GTMyLocation extends StatelessWidget {
             if (state is UnBookmarkSuccessState) {
               GTSnackBar.show(
                 context,
-                message: 'Un bookmark success',
+                message: S.of(context).unBookMarkSuccessMessage,
                 backgroundColor: colorScheme.secondaryContainer,
               );
             }
@@ -114,47 +114,6 @@ class GTMyLocation extends StatelessWidget {
                         },
                       );
                     }
-                    // if (state is UnBookmarkSuccessState) {
-                    //   data = state.listMyLocation;
-                    //   if (state.listMyLocation.isEmpty) {
-                    //     return Center(
-                    //       child: GTText.labelLarge(
-                    //         context,
-                    //         text: ' My Location is empty',
-                    //         color: Theme.of(context).colorScheme.secondary,
-                    //       ),
-                    //     );
-                    //   }
-                    //   return ListView.builder(
-                    //     padding: const EdgeInsets.only(left: 20),
-                    //     scrollDirection: Axis.horizontal,
-                    //     itemCount: data.length,
-                    //     itemBuilder: (context, index) {
-                    //       final tourId = data[index].id;
-                    //       return Container(
-                    //         margin: const EdgeInsets.only(right: 20),
-                    //         child: GTCardMyLocation(
-                    //           press: () => context.goNamed(
-                    //             'tour-details',
-                    //             params: {'id': data[index].id},
-                    //           ),
-                    //           image: data[index].imageUrl,
-                    //           placeName: data[index].placeName,
-                    //           location: data[index].location,
-                    //           descriptions: data[index].descriptions,
-                    //           onBookMark: () {
-                    //             context.read<HomeBloc>().add(
-                    //                   DeleteMyLocationEvent(
-                    //                     tourId: tourId,
-                    //                     index: index,
-                    //                   ),
-                    //                 );
-                    //           },
-                    //         ),
-                    //       );
-                    //     },
-                    //   );
-                    // }
                     return Center(
                       child: GTText.bodyLarge(context, text: 'Fail'),
                     );

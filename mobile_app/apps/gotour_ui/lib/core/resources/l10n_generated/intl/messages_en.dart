@@ -22,6 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "bookMarkSuccessMessage":
+            MessageLookupByLibrary.simpleMessage("Bookmark tour success"),
+        "checkyourEmailMessage":
+            MessageLookupByLibrary.simpleMessage("Please check your email"),
+        "errorInValidEmail":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email"),
+        "errorInValidPassword": MessageLookupByLibrary.simpleMessage(
+            "Password must be more than 6 characters"),
+        "errorInvalidPasswordConfirm": MessageLookupByLibrary.simpleMessage(
+            "Confirm password must be same as password"),
+        "forgotPasswordMessage": MessageLookupByLibrary.simpleMessage(
+            "We have sent you a password reset email. Please check your email"),
         "forgotPasswordPageButtonBackToLoginPage":
             MessageLookupByLibrary.simpleMessage("Back to Login Page."),
         "forgotPasswordPageButtonSubmit":
@@ -29,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordPageTitle":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "hotPlacePage": MessageLookupByLibrary.simpleMessage("Hot Place"),
+        "logOutMessage":
+            MessageLookupByLibrary.simpleMessage("Do you want to log out"),
         "loginPageButtonForgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "loginPageButtonLoginGG":
@@ -68,9 +83,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I agree and accept the "),
         "signUpPageTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "sugnUpPageAllreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "textFieldEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "textFieldPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "tourDetailsPageService":
-            MessageLookupByLibrary.simpleMessage("Service")
+            MessageLookupByLibrary.simpleMessage("Service"),
+        "unBookMarkSuccessMessage":
+            MessageLookupByLibrary.simpleMessage("Un bookmark success"),
+        "verifyEmailMessage":
+            MessageLookupByLibrary.simpleMessage("Please verify email")
       };
 }
