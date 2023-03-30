@@ -7,6 +7,7 @@ import 'package:gotour_app/features/hot_place/bloc/hot_place_bloc.dart';
 import 'package:gotour_app/features/hot_place/hot_place.dart';
 import 'package:gotour_app/features/hot_place/place_info.dart';
 import 'package:gotour_app/features/hot_place/repository/hot_place_repository.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
@@ -62,13 +63,13 @@ class GTHotPlace extends StatelessWidget {
                 if (state.bookmark == true) {
                   GTSnackBar.show(
                     context,
-                    message: 'Bookmark tour success',
+                    message: S.of(context).bookMarkSuccessMessage,
                     backgroundColor: colorScheme.secondaryContainer,
                   );
                 } else {
                   GTSnackBar.show(
                     context,
-                    message: 'Un Bookmark tour success',
+                    message: S.of(context).unBookMarkSuccessMessage,
                     backgroundColor: colorScheme.secondaryContainer,
                   );
                 }

@@ -90,6 +90,16 @@ class S {
     );
   }
 
+  /// `Log Out`
+  String get LogOut {
+    return Intl.message(
+      'Log Out',
+      name: 'LogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Explore`
   String get onboardingPageFistTitle {
     return Intl.message(
@@ -250,6 +260,16 @@ class S {
     );
   }
 
+  /// `Already have an account?`
+  String get sugnUpPageAllreadyHaveAnAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'sugnUpPageAllreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot Password`
   String get forgotPasswordPageTitle {
     return Intl.message(
@@ -345,6 +365,96 @@ class S {
     return Intl.message(
       'Hot Place',
       name: 'hotPlacePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid email`
+  String get errorInValidEmail {
+    return Intl.message(
+      'Enter a valid email',
+      name: 'errorInValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be more than 6 characters`
+  String get errorInValidPassword {
+    return Intl.message(
+      'Password must be more than 6 characters',
+      name: 'errorInValidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password must be same as password`
+  String get errorInvalidPasswordConfirm {
+    return Intl.message(
+      'Confirm password must be same as password',
+      name: 'errorInvalidPasswordConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent you a password reset email. Please check your email`
+  String get forgotPasswordMessage {
+    return Intl.message(
+      'We have sent you a password reset email. Please check your email',
+      name: 'forgotPasswordMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please verify email`
+  String get verifyEmailMessage {
+    return Intl.message(
+      'Please verify email',
+      name: 'verifyEmailMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your email`
+  String get checkyourEmailMessage {
+    return Intl.message(
+      'Please check your email',
+      name: 'checkyourEmailMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to log out`
+  String get logOutMessage {
+    return Intl.message(
+      'Do you want to log out',
+      name: 'logOutMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bookmark tour success`
+  String get bookMarkSuccessMessage {
+    return Intl.message(
+      'Bookmark tour success',
+      name: 'bookMarkSuccessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Un bookmark success`
+  String get unBookMarkSuccessMessage {
+    return Intl.message(
+      'Un bookmark success',
+      name: 'unBookMarkSuccessMessage',
       desc: '',
       args: [],
     );

@@ -1,8 +1,10 @@
 {
+    "@@locale": "en",
     "loginTitle": "Log In",
     "signUpTitle": "Sign Up",
     "textFieldEmail": "Email",
     "textFieldPassword": "Password",
+    "LogOut": "Log Out",
     
     "onboardingPageFistTitle": "Explore",
     "onboardingPageSecondTitle": "Easy Peasy",
@@ -24,6 +26,7 @@
     "signUpPageConfirmPassword": "Confirm Password",
     "signUpPageTextTerms": "I agree and accept the ",
     "signUpPageTextButtonTerms": "terms ot use.",
+    "sugnUpPageAllreadyHaveAnAccount": "Already have an account?",
 
     "forgotPasswordPageTitle": "Forgot Password",
     "forgotPasswordPageButtonSubmit": "Submit",
@@ -38,5 +41,17 @@
 
     "tourDetailsPageService": "Service",
 
-    "hotPlacePage": "Hot Place"
+    "hotPlacePage": "Hot Place",
+
+    "errorInValidEmail": "Enter a valid email",
+    "errorInValidPassword": "Password must be more than 6 characters",
+    "errorInvalidPasswordConfirm": "Confirm password must be same as password",
+
+    "forgotPasswordMessage": "We have sent you a password reset email. Please check your email",
+    "verifyEmailMessage": "Please verify email",
+    "checkyourEmailMessage": "Please check your email",
+    "logOutMessage": "Do you want to log out",
+    "bookMarkSuccessMessage": "Bookmark tour success",
+    "unBookMarkSuccessMessage": "Un bookmark success"
+
 }

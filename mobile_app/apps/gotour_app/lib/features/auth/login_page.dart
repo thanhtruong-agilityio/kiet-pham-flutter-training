@@ -33,8 +33,8 @@ class GTLoginPage extends StatelessWidget {
               onOk: () {
                 Navigator.of(context).pop();
               },
-              title: 'verify email',
-              content: 'check your email',
+              title: S.of(context).verifyEmailMessage,
+              content: S.of(context).checkyourEmailMessage,
             ),
           );
         }
@@ -132,7 +132,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (email) {
                         return !AuthValidator.isValidEmail(email!)
-                            ? 'Enter a valid email'
+                            ? S.of(context).errorInValidEmail
                             : null;
                       },
                     ),
@@ -145,7 +145,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (password) {
                         return !AuthValidator.isValidPassword(password!)
-                            ? 'Password must be more than 6 characters'
+                            ? S.of(context).errorInValidPassword
                             : null;
                       },
                     ),

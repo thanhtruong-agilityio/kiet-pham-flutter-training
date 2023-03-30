@@ -34,8 +34,8 @@ class GTSignUpPage extends StatelessWidget {
               onOk: () {
                 context.go('/login-page');
               },
-              title: 'verify email',
-              content: 'check your email',
+              title: S.of(context).verifyEmailMessage,
+              content: S.of(context).checkyourEmailMessage,
             ),
           );
         }
@@ -138,7 +138,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (email) {
                         return !AuthValidator.isValidEmail(email!)
-                            ? 'Enter a valid email'
+                            ? S.of(context).errorInValidEmail
                             : null;
                       },
                     ),
@@ -154,7 +154,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (password) {
                         return !AuthValidator.isValidPassword(password!)
-                            ? 'Password must be more than 6 characters'
+                            ? S.of(context).errorInValidPassword
                             : null;
                       },
                     ),
@@ -170,7 +170,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                           _passwordController.text,
                           passwordConfirm!,
                         )
-                            ? 'Confirm password must be same as password'
+                            ? S.of(context).errorInvalidPasswordConfirm
                             : null;
                       },
                     ),
@@ -216,7 +216,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     ),
                     const SizedBox(height: 10),
                     GTTextHighlightButton(
-                      text: 'Already have an account?',
+                      text: S.of(context).sugnUpPageAllreadyHaveAnAccount,
                       onPressed: () => context.go('/login-page'),
                     ),
                     const SizedBox(height: 20),
