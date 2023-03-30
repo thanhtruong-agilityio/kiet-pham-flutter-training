@@ -70,7 +70,7 @@ class GTBestPlace extends StatelessWidget {
                               location: data[index].location,
                               price: data[index].price,
                               pressCard: () => context.goNamed(
-                                'tour-details',
+                                'hot-place',
                                 params: {'id': data[index].id},
                               ),
                               pressBtnPrice: () {},

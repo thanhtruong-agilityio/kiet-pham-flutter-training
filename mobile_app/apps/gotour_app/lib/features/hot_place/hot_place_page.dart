@@ -10,7 +10,12 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 
 class GTHotPlace extends StatelessWidget {
-  const GTHotPlace({super.key});
+  const GTHotPlace({
+    super.key,
+    required this.id,
+  });
+
+  final String id;
 
   @override
   Widget build(BuildContext context) {
