@@ -81,6 +81,10 @@ class GTBestPlacePage extends StatelessWidget {
                               price: data[index].price,
                               imageUrl: data[index].imageUrl,
                               tag: data[index].tagList,
+                              onPressed: () => context.goNamed(
+                                'hot-place',
+                                params: {'id': data[index].id},
+                              ),
                             );
                           },
                         ),
@@ -105,6 +109,7 @@ class _CardBestPlace extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     required this.tag,
+    required this.onPressed,
   });
 
   final String placeName;
@@ -112,6 +117,7 @@ class _CardBestPlace extends StatelessWidget {
   final String price;
   final String imageUrl;
   final List<String> tag;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -131,98 +137,101 @@ class _CardBestPlace extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           elevation: 0,
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: device.scale(15)),
-                  child: GTImage(
-                    images: GTAssets().kyoto,
-                    height: device.scale(92),
-                    width: device.scale(70),
+          child: InkWell(
+            onTap: onPressed,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: device.scale(15)),
+                    child: GTImage(
+                      images: GTAssets().kyoto,
+                      height: device.scale(92),
+                      width: device.scale(70),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: device.scale(11),
-                    top: device.scale(20),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                GTText.titleSmall(
-                                  context,
-                                  text: placeName,
-                                ),
-                                SizedBox(
-                                  height: device.scale(6),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      GTAssets().location,
-                                      color: colorScheme.primary,
-                                      width: device.scale(10),
-                                      height: device.scale(12),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: device.scale(9),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: device.scale(11),
+                      top: device.scale(20),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GTText.titleSmall(
+                                    context,
+                                    text: placeName,
+                                  ),
+                                  SizedBox(
+                                    height: device.scale(6),
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        GTAssets().location,
+                                        color: colorScheme.primary,
+                                        width: device.scale(10),
+                                        height: device.scale(12),
                                       ),
-                                      child: GTText.labelMedium(
-                                        context,
-                                        text: location,
-                                        color: colorScheme.tertiary,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: device.scale(19),
-                                      ),
-                                      child: SizedBox(
-                                        height: 25,
-                                        child: GTElevatedHighlightButton(
-                                          text: '\$$price',
-                                          onPressed: () {},
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: device.scale(9),
+                                        ),
+                                        child: GTText.labelMedium(
+                                          context,
+                                          text: location,
+                                          color: colorScheme.tertiary,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: device.scale(10),
-                            ),
-                            Row(
-                              children: List.generate(
-                                tag.length,
-                                (index) => Container(
-                                  margin:
-                                      EdgeInsets.only(right: device.scale(12)),
-                                  child: GTTag(text: tag[index]),
-                                ),
+                                      const Spacer(),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          right: device.scale(19),
+                                        ),
+                                        child: SizedBox(
+                                          height: 25,
+                                          child: GTElevatedHighlightButton(
+                                            text: '\$$price',
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                height: device.scale(10),
+                              ),
+                              Row(
+                                children: List.generate(
+                                  tag.length,
+                                  (index) => Container(
+                                    margin: EdgeInsets.only(
+                                        right: device.scale(12)),
+                                    child: GTTag(text: tag[index]),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
