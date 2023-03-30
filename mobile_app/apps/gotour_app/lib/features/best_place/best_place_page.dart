@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
+import 'package:gotour_app/features/best_place/model/best_place.dart';
+import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
@@ -18,6 +22,7 @@ class GTBestPlacePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+    var data = <BestPlace>[];
 
     return GTScaffold(
       appBar: GTAppBar(
@@ -34,20 +39,60 @@ class GTBestPlacePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(height: device.scale(44)),
-          const GTSearch(),
-          SizedBox(height: device.scale(20)),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return _CardBestPlace(colorScheme: colorScheme);
-              },
-            ),
+      body: RepositoryProvider(
+        create: (context) => BestPlaceRepository(),
+        child: BlocProvider(
+          create: (context) => BestPlaceBloc(
+            bestPlaceRepository:
+                RepositoryProvider.of<BestPlaceRepository>(context),
           ),
-        ],
+          child: BlocBuilder<BestPlaceBloc, BestPlaceState>(
+            builder: (context, state) {
+              if (state is BestPlaceInitial) {
+                context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
+              }
+              if (state is BestPlaceLoadingState) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: colorScheme.primary,
+                  ),
+                );
+              }
+              if (state is BestPlaceLoadedState) {
+                data = state.bestPlaceList;
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    context
+                        .read<BestPlaceBloc>()
+                        .add(BestPlaceFetchDataEvent());
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(height: device.scale(44)),
+                      const GTSearch(),
+                      SizedBox(height: device.scale(20)),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return _CardBestPlace(
+                              placeName: data[index].placeName,
+                              location: data[index].location,
+                              price: data[index].price,
+                              imageUrl: data[index].imageUrl,
+                              tag: data[index].tagList,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return GTText.bodyLarge(context, text: 'fail');
+            },
+          ),
+        ),
       ),
     );
   }
@@ -55,14 +100,24 @@ class GTBestPlacePage extends StatelessWidget {
 
 class _CardBestPlace extends StatelessWidget {
   const _CardBestPlace({
-    required this.colorScheme,
+    required this.placeName,
+    required this.location,
+    required this.price,
+    required this.imageUrl,
+    required this.tag,
   });
 
-  final ColorScheme colorScheme;
+  final String placeName;
+  final String location;
+  final String price;
+  final String imageUrl;
+  final List<String> tag;
 
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: device.scale(5),
@@ -107,10 +162,10 @@ class _CardBestPlace extends StatelessWidget {
                               children: [
                                 GTText.titleSmall(
                                   context,
-                                  text: 'Bien Thanh Khe',
+                                  text: placeName,
                                 ),
                                 SizedBox(
-                                  height: device.scale(10),
+                                  height: device.scale(6),
                                 ),
                                 Row(
                                   children: [
@@ -126,7 +181,7 @@ class _CardBestPlace extends StatelessWidget {
                                       ),
                                       child: GTText.labelMedium(
                                         context,
-                                        text: 'Da Nang',
+                                        text: location,
                                         color: colorScheme.tertiary,
                                       ),
                                     ),
@@ -138,7 +193,7 @@ class _CardBestPlace extends StatelessWidget {
                                       child: SizedBox(
                                         height: 25,
                                         child: GTElevatedHighlightButton(
-                                          text: r'$2 000',
+                                          text: '\$$price',
                                           onPressed: () {},
                                         ),
                                       ),
@@ -148,15 +203,15 @@ class _CardBestPlace extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: device.scale(13),
+                              height: device.scale(10),
                             ),
                             Row(
                               children: List.generate(
-                                2,
+                                tag.length,
                                 (index) => Container(
                                   margin:
                                       EdgeInsets.only(right: device.scale(12)),
-                                  child: const GTTag(text: '3 day'),
+                                  child: GTTag(text: tag[index]),
                                 ),
                               ),
                             )
