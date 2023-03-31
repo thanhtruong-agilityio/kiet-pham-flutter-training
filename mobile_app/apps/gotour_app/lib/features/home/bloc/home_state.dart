@@ -9,50 +9,30 @@ abstract class HomeState extends Equatable {
 
 class HomeInitialState extends HomeState {}
 
-class BestPlaceLoadingState extends HomeState {
-  @override
-  List<Object> get props => [];
-}
+class HomeLoadingState extends HomeState {}
 
-class BestPlaceLoadedState extends HomeState {
-  const BestPlaceLoadedState({
-    required this.listBestPlace,
+class HomeLoadedState extends HomeState {
+  const HomeLoadedState({
+    required this.bestPlaceList,
+    required this.myLocationList,
   });
-  final List<BestPlace> listBestPlace;
+
+  final List<BestPlace> bestPlaceList;
+  final List<MyLocation> myLocationList;
+
   @override
-  List<Object> get props => [listBestPlace];
+  List<Object> get props => [bestPlaceList, myLocationList];
 }
 
-class BestPlaceErrorState extends HomeState {
-  const BestPlaceErrorState({required this.error});
+class HomeErrorState extends HomeState {
+  const HomeErrorState({
+    required this.error,
+  });
 
   final String error;
 
   @override
-  List<Object> get props => [];
-}
-
-class MyLocationLoadingState extends HomeState {
-  @override
-  List<Object> get props => [];
-}
-
-class MyLocationLoadedState extends HomeState {
-  const MyLocationLoadedState({
-    required this.listMyLocation,
-  });
-  final List<MyLocation> listMyLocation;
-  @override
-  List<Object> get props => [listMyLocation];
-}
-
-class MyLocationErrorState extends HomeState {
-  const MyLocationErrorState({required this.error});
-
-  final String error;
-
-  @override
-  List<Object> get props => [];
+  List<Object> get props => [error];
 }
 
 class UnBookmarkSuccessState extends HomeState {
