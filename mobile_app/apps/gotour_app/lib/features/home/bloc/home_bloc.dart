@@ -10,45 +10,11 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.mainRepository}) : super(HomeInitialState()) {
-    on<MyLocationFetchDataEvent>(_handleMyLocationRequestedEvent);
-    on<BestPlaceFetchDataEvent>(_handleBestPlaceRequestedEvent);
     on<DeleteMyLocationEvent>(_handleDeleteMyLocationEvent);
+    on<HomeFetchDataEvent>(_handleHomeFetchDataEvent);
   }
 
   final HomeRepository mainRepository;
-
-  Future<void> _handleMyLocationRequestedEvent(
-    MyLocationFetchDataEvent event,
-    Emitter<HomeState> emit,
-  ) async {
-    try {
-      emit(MyLocationLoadingState());
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
-      final tourIds =
-          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
-
-      final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
-
-      final listMyLocation =
-          await mainRepository.getDataFromDocuments(documentIds: tourIdList);
-      emit(MyLocationLoadedState(listMyLocation: listMyLocation));
-    } on Exception catch (e) {
-      emit(MyLocationErrorState(error: e.toString()));
-    }
-  }
-
-  Future<void> _handleBestPlaceRequestedEvent(
-    BestPlaceFetchDataEvent event,
-    Emitter<HomeState> emit,
-  ) async {
-    try {
-      emit(BestPlaceLoadingState());
-      final listBestPlace = await mainRepository.fetchDataBestPlace();
-      emit(BestPlaceLoadedState(listBestPlace: listBestPlace));
-    } on Exception catch (e) {
-      emit(BestPlaceErrorState(error: e.toString()));
-    }
-  }
 
   Future<void> _handleDeleteMyLocationEvent(
     DeleteMyLocationEvent event,
@@ -58,20 +24,48 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final userId = FirebaseAuth.instance.currentUser!.uid;
       await mainRepository.unBookmark(userId: userId, tourId: event.tourId);
 
-      final listBeforDelete = state as MyLocationLoadedState;
-      listBeforDelete.listMyLocation.removeAt(event.index);
+      final listBeforDelete = state as HomeLoadedState;
+      listBeforDelete.myLocationList.removeAt(event.index);
       emit(
         UnBookmarkSuccessState(
-          listMyLocation: listBeforDelete.listMyLocation,
+          listMyLocation: listBeforDelete.myLocationList,
         ),
       );
       emit(
-        MyLocationLoadedState(
-          listMyLocation: listBeforDelete.listMyLocation,
+        HomeLoadedState(
+          bestPlaceList: listBeforDelete.bestPlaceList,
+          myLocationList: listBeforDelete.myLocationList,
         ),
       );
     } on Exception catch (e) {
       emit(UnBookmarkErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> _handleHomeFetchDataEvent(
+    HomeFetchDataEvent event,
+    Emitter<HomeState> emit,
+  ) async {
+    try {
+      emit(HomeLoadingState());
+      final idUser = FirebaseAuth.instance.currentUser!.uid;
+      final tourIds =
+          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
+
+      final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
+
+      final myLocationList =
+          await mainRepository.getDataFromDocuments(documentIds: tourIdList);
+
+      final bestPlaceList = await mainRepository.fetchDataBestPlace();
+      emit(
+        HomeLoadedState(
+          bestPlaceList: bestPlaceList,
+          myLocationList: myLocationList,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(HomeErrorState(error: e.toString()));
     }
   }
 }
