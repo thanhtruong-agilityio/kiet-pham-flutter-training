@@ -21,9 +21,8 @@ class GTWBBuildButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CodeView(
-              title: 'Button Icon',
-              code:
-                  '''GTButton.icon(\n  icon: icon,\n  iconColor: color,\n  onPress: () {},\n)\n''',
+              title: 'Icon Button',
+              code: '''GTIconButton(\n icon: icon,\n onPressed: () {},\n)''',
             ),
             const SizedBox(height: 10),
             GTIconButton(
@@ -36,9 +35,9 @@ class GTWBBuildButton extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             const CodeView(
-              title: 'Button Normal',
+              title: 'Normal Button',
               code:
-                  '''GTButton.normal(\n  icon: icon,\n  text: text,\n  onPress: () {},\n)\n''',
+                  '''GTElevatedButton(\n  text: text,\n  icon: icon,\n  onPressed: () {},\n)''',
             ),
             const SizedBox(height: 10),
             GTElevatedButton(
@@ -48,9 +47,9 @@ class GTWBBuildButton extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             const CodeView(
-              title: 'Button Highlight',
+              title: 'Highlight Button',
               code:
-                  '''GTButton.highlight(\n  text: text,\n  activateShadow: true\n  onPress: () {},\n)\n''',
+                  '''GTElevatedHighlightButton(\n  text: text,\n  onPressed: (){},\n)''',
             ),
             const SizedBox(height: 10),
             GTElevatedHighlightButton(
@@ -66,26 +65,25 @@ class GTWBBuildButton extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             const CodeView(
-              title: 'Button Text',
-              code: '''GTButton.text(\n  text: text,\n  onPress: () {},\n)\n''',
+              title: 'Text Button',
+              code: '''GTTextButton(\n  text: text,\n  onPressed: () {},\n)''',
             ),
             const SizedBox(height: 10),
             GTTextButton(
-              text: context.knobs.text(
-                label: 'Text',
-              ),
+              text: context.knobs
+                  .text(label: 'Text', initialValue: 'text button'),
               onPressed: () {},
             ),
             const SizedBox(height: 40),
             const CodeView(
               title: 'Button Text Highlight',
-              code: '''GTButton.text(\n  text: text,\n  onPress: () {},\n)\n''',
+              code:
+                  '''GTTextHighlightButton(\n  text: text,\n  onPressed: () {},\n)''',
             ),
             const SizedBox(height: 10),
             GTTextHighlightButton(
-              text: context.knobs.text(
-                label: 'Text',
-              ),
+              text: context.knobs
+                  .text(label: 'Text', initialValue: 'text hightlight button'),
               onPressed: () {},
             ),
           ],
