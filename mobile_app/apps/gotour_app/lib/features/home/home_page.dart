@@ -5,14 +5,18 @@ import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/home/best_place.dart';
+import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/my_location.dart';
+import 'package:gotour_app/features/home/repository/home_repository.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
+import 'package:gotour_ui/core/widgets/title.dart';
 
 class GTHomePage extends StatelessWidget {
   const GTHomePage({super.key});
@@ -80,34 +84,116 @@ class _GTHomeView extends StatelessWidget {
           ),
         ],
       ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: device.scale(40)),
-              // Title
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: device.scale(20)),
-                child: GTText.titleLarge(
+      body: RepositoryProvider(
+        create: (context) => HomeRepository(),
+        child: BlocProvider(
+          create: (context) => HomeBloc(
+            mainRepository: RepositoryProvider.of<HomeRepository>(context),
+          ),
+          child: BlocListener<HomeBloc, HomeState>(
+            listener: (context, state) {
+              if (state is UnBookmarkSuccessState) {
+                GTSnackBar.show(
                   context,
-                  text: S.of(context).mainPageTitle,
+                  message: S.of(context).unBookMarkSuccessMessage,
+                  backgroundColor: colorScheme.secondaryContainer,
+                );
+              }
+            },
+            child: GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: device.scale(40)),
+                    // Title
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: device.scale(20)),
+                      child: GTText.titleLarge(
+                        context,
+                        text: S.of(context).mainPageTitle,
+                      ),
+                    ),
+                    SizedBox(height: device.scale(30)),
+                    // Search Box
+                    const GTSearch(),
+                    SizedBox(height: device.scale(30)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: GTText.titleMedium(
+                        context,
+                        text: S.of(context).mainPageMyLocation,
+                      ),
+                    ),
+                    // My Location
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        if (state is HomeInitialState) {
+                          context.read<HomeBloc>().add(HomeFetchDataEvent());
+                        }
+                        if (state is HomeLoadingState) {
+                          return const GTMyLocation(mylocatonList: []);
+                        }
+                        if (state is HomeLoadedState) {
+                          if (state.myLocationList.isEmpty) {
+                            return SizedBox(
+                              width: device.scale(375),
+                              height: device.scale(150),
+                              child: Center(
+                                child: GTText.labelLarge(
+                                  context,
+                                  text: ' My Location is empty',
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                              ),
+                            );
+                          }
+                          return GTMyLocation(
+                            mylocatonList: state.myLocationList,
+                          );
+                        }
+                        return GTText.bodyLarge(context, text: 'Failed');
+                      },
+                    ),
+                    SizedBox(height: device.scale(20)),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: device.scale(20)),
+                      child: GTTitle(
+                        title: S.of(context).mainPageBestPlace,
+                        onPressed: () => context.goNamed('best-place'),
+                      ),
+                    ),
+                    SizedBox(height: device.scale(14)),
+                    BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        if (state is HomeInitialState) {
+                          context.read<HomeBloc>().add(HomeFetchDataEvent());
+                        }
+                        if (state is HomeLoadingState) {
+                          return const GTBestPlace(
+                            bestPlaceList: [],
+                          );
+                        }
+                        if (state is HomeLoadedState) {
+                          return GTBestPlace(
+                            bestPlaceList: state.bestPlaceList,
+                          );
+                        }
+                        return const GTBestPlace(
+                          bestPlaceList: [],
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: device.scale(30)),
-              // Search Box
-              const GTSearch(),
-              SizedBox(height: device.scale(30)),
-              // My Location
-              const GTMyLocation(),
-              SizedBox(height: device.scale(20)),
-              // Best Place
-              // Text(data.length.toString()),
-              const GTBestPlace(),
-            ],
+            ),
           ),
         ),
       ),

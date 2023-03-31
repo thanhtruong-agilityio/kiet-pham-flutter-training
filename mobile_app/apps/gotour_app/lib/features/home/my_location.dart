@@ -6,124 +6,58 @@ import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
-import 'package:gotour_app/features/home/repository/home_repository.dart';
-import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
     super.key,
+    required this.mylocatonList,
   });
+
+  final List<MyLocation> mylocatonList;
 
   @override
   Widget build(BuildContext context) {
-    var data = <MyLocation>[];
+    final data = mylocatonList;
     final device = GTReponsive.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
 
-    return RepositoryProvider(
-      create: (context) => HomeRepository(),
-      child: BlocProvider(
-        create: (context) => HomeBloc(
-          mainRepository: RepositoryProvider.of<HomeRepository>(context),
-        ),
-        child: BlocListener<HomeBloc, HomeState>(
-          listener: (context, state) {
-            if (state is UnBookmarkSuccessState) {
-              GTSnackBar.show(
-                context,
-                message: S.of(context).unBookMarkSuccessMessage,
-                backgroundColor: colorScheme.secondaryContainer,
-              );
-            }
-            if (state is UnBookmarkErrorState) {
-              GTSnackBar.show(
-                context,
-                message: state.error,
-                backgroundColor: colorScheme.error,
-              );
-            }
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: GTText.titleMedium(
-                      context,
-                      text: S.of(context).mainPageMyLocation,
-                    ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: device.scale(150),
+          child: ListView.builder(
+            padding: const EdgeInsets.only(left: 20),
+            scrollDirection: Axis.horizontal,
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final tourId = data[index].id;
+              return Container(
+                margin: const EdgeInsets.only(right: 20),
+                child: GTCardMyLocation(
+                  press: () => context.goNamed(
+                    'tour-details',
+                    params: {'id': data[index].id},
                   ),
-                  const Spacer(),
-                ],
-              ),
-              SizedBox(
-                height: device.scale(150),
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  builder: (context, state) {
-                    if (state is HomeInitialState) {
-                      context.read<HomeBloc>().add(MyLocationFetchDataEvent());
-                    }
-                    if (state is MyLocationLoadingState) {
-                      return Center(
-                        child: GTText.bodyLarge(context, text: 'Loading'),
-                      );
-                    }
-                    if (state is MyLocationLoadedState) {
-                      data = state.listMyLocation;
-                      if (state.listMyLocation.isEmpty) {
-                        return Center(
-                          child: GTText.labelLarge(
-                            context,
-                            text: ' My Location is empty',
-                            color: Theme.of(context).colorScheme.secondary,
+                  image: data[index].imageUrl,
+                  placeName: data[index].placeName,
+                  location: data[index].location,
+                  descriptions: data[index].descriptions,
+                  onBookMark: () {
+                    context.read<HomeBloc>().add(
+                          DeleteMyLocationEvent(
+                            tourId: tourId,
+                            index: index,
                           ),
                         );
-                      }
-                      return ListView.builder(
-                        padding: const EdgeInsets.only(left: 20),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          final tourId = data[index].id;
-                          return Container(
-                            margin: const EdgeInsets.only(right: 20),
-                            child: GTCardMyLocation(
-                              press: () => context.goNamed(
-                                'tour-details',
-                                params: {'id': data[index].id},
-                              ),
-                              image: data[index].imageUrl,
-                              placeName: data[index].placeName,
-                              location: data[index].location,
-                              descriptions: data[index].descriptions,
-                              onBookMark: () {
-                                context.read<HomeBloc>().add(
-                                      DeleteMyLocationEvent(
-                                        tourId: tourId,
-                                        index: index,
-                                      ),
-                                    );
-                              },
-                            ),
-                          );
-                        },
-                      );
-                    }
-                    return Center(
-                      child: GTText.bodyLarge(context, text: 'Fail'),
-                    );
                   },
                 ),
-              )
-            ],
+              );
+            },
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
