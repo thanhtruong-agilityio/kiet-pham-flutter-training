@@ -34,7 +34,7 @@ class GTBestPlace extends StatelessWidget {
                 placeName: data[index].placeName,
                 location: data[index].location,
                 price: data[index].price,
-                pressCard: () => context.goNamed(
+                pressCard: () => context.pushNamed(
                   'hot-place',
                   params: {'id': data[index].id},
                 ),

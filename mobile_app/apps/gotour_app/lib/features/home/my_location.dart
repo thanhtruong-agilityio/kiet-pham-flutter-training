@@ -36,7 +36,7 @@ class GTMyLocation extends StatelessWidget {
               return Container(
                 margin: const EdgeInsets.only(right: 20),
                 child: GTCardMyLocation(
-                  press: () => context.goNamed(
+                  press: () => context.pushNamed(
                     'tour-details',
                     params: {'id': data[index].id},
                   ),
