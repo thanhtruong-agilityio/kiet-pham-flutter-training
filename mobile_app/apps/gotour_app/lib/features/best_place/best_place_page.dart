@@ -81,7 +81,7 @@ class GTBestPlacePage extends StatelessWidget {
                               price: data[index].price,
                               imageUrl: data[index].imageUrl,
                               tag: data[index].tagList,
-                              onPressed: () => context.goNamed(
+                              onPressed: () => context.pushNamed(
                                 'hot-place',
                                 params: {'id': data[index].id},
                               ),

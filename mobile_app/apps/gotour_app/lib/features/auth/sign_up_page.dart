@@ -217,7 +217,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     const SizedBox(height: 10),
                     GTTextHighlightButton(
                       text: S.of(context).sugnUpPageAllreadyHaveAnAccount,
-                      onPressed: () => context.go('/login-page'),
+                      onPressed: () => context.pop(),
                     ),
                     const SizedBox(height: 20),
                   ],

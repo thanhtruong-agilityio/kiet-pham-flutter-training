@@ -151,7 +151,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     ),
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonForgotPassword,
-                      onPressed: () => context.go('/forgot-password-page'),
+                      onPressed: () => context.push('/forgot-password-page'),
                     ),
                     SizedBox(height: device.sh(10)),
                     GTElevatedHighlightButton(
@@ -187,7 +187,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     SizedBox(height: device.sh(10)),
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonSignUpHere,
-                      onPressed: () => context.go('/sign-up-page'),
+                      onPressed: () => context.push('/sign-up-page'),
                     ),
                     SizedBox(height: device.sh(20)),
                   ],
