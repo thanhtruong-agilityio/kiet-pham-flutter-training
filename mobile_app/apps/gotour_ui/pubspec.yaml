@@ -34,6 +34,10 @@ dev_dependencies:
   # intl_utils is a dart library that generates Dart localization code from ARB file. Generated code relies on Intl library.
   intl_utils: 2.7.0
 
+dependency_overrides:
+  #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
+  go_router: 6.2.0
+
 flutter:
 
   uses-material-design: true

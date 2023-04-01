@@ -34,7 +34,7 @@ class GTHotPlace extends StatelessWidget {
           child: GTIconButton(
             icon: GTAssets().back,
             btnColor: colorScheme.background,
-            onPressed: () => GoRouter.of(context).pop(),
+            onPressed: () => context.pushReplacementNamed('home'),
           ),
         ),
         actionButtons: [

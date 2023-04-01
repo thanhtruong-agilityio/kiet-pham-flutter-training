@@ -44,6 +44,7 @@ class _GTHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
@@ -166,7 +167,7 @@ class _GTHomeView extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: device.scale(20)),
                       child: GTTitle(
                         title: S.of(context).mainPageBestPlace,
-                        onPressed: () => context.goNamed('best-place'),
+                        onPressed: () => context.pushNamed('best-place'),
                       ),
                     ),
                     SizedBox(height: device.scale(14)),
