@@ -111,4 +111,32 @@ class GTAssets {
   String get canyon {
     return 'packages/gotour_ui/assets/images/canyon.png';
   }
+
+  String get currency {
+    return 'packages/gotour_ui/assets/icons/currency.svg';
+  }
+
+  String get language {
+    return 'packages/gotour_ui/assets/icons/language.svg';
+  }
+
+  String get notifications {
+    return 'packages/gotour_ui/assets/icons/notifications.svg';
+  }
+
+  String get payment {
+    return 'packages/gotour_ui/assets/icons/payment.svg';
+  }
+
+  String get privacy {
+    return 'packages/gotour_ui/assets/icons/privacy.svg';
+  }
+
+  String get terms {
+    return 'packages/gotour_ui/assets/icons/terms.svg';
+  }
+
+  String get arrow {
+    return 'packages/gotour_ui/assets/icons/arrow.svg';
+  }
 }

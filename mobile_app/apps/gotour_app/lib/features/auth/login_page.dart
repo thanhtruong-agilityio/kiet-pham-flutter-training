@@ -21,7 +21,7 @@ class GTLoginPage extends StatelessWidget {
       listener: (context, state) {
         if (state is Authenticated) {
           // Navigating to the dashboard screen if the user is authenticated
-          context.go('/home-page');
+          context.go('/');
         }
         if (state is UnVerifyEmail) {
           showDialog<String>(
