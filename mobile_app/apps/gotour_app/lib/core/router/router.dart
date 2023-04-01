@@ -12,6 +12,7 @@ import 'package:gotour_app/features/home/home_page.dart';
 import 'package:gotour_app/features/hot_place/hot_place_page.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
 import 'package:gotour_app/features/notification/notification_page.dart';
+import 'package:gotour_app/features/profile/profile_page.dart';
 import 'package:gotour_app/features/tour_details/tour_details_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -86,6 +87,11 @@ final GoRouter router = GoRouter(
           name: 'notifications',
           path: '/notifications',
           builder: (context, state) => const GTNotificationPage(),
+        ),
+        GoRoute(
+          name: 'profile',
+          path: '/profile',
+          builder: (context, state) => const GTProfilePage(),
         ),
       ],
       builder: (context, state, child) => DashBoardScreen(body: child),
