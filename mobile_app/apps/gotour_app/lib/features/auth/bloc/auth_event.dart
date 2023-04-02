@@ -21,11 +21,13 @@ class SignUpRequested extends AuthEvent {
     this.email,
     this.password,
     this.passwordConfirm,
+    this.gender,
   );
 
   final String email;
   final String password;
   final String passwordConfirm;
+  final int gender;
 }
 
 class ForgotPasswordRequested extends AuthEvent {
