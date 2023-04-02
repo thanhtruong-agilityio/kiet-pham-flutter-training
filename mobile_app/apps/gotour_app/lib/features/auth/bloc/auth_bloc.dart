@@ -59,7 +59,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(Loading());
     try {
-      await authRepository.signUp(email: event.email, password: event.password);
+      await authRepository.signUp(
+        email: event.email,
+        password: event.password,
+        gender: event.gender,
+      );
       final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
       if (isVerifyEmail == true) {
         emit(Authenticated());
