@@ -27,7 +27,7 @@ class _GTServiceState extends State<GTService> {
     final device = GTReponsive.of(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: device.scale(20)),
-      height: device.scale(76),
+      height: device.scale(86),
       child: Row(
         children: [
           Flexible(
