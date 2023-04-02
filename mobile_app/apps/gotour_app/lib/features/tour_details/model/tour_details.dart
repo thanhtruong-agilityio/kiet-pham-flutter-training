@@ -7,6 +7,7 @@ class TourDetails {
     required this.placeName,
     required this.price,
     required this.weather,
+    required this.imageList,
   });
 
   factory TourDetails.fromJson(Map<String, dynamic> json) => TourDetails(
@@ -17,6 +18,7 @@ class TourDetails {
         placeName: json['placeName'] as String,
         price: json['price'] as String,
         weather: json['weather'] as String,
+        imageList: json['imageList'] as List<String>,
       );
 
   String descriptions;
@@ -26,6 +28,7 @@ class TourDetails {
   String placeName;
   String price;
   String weather;
+  List<String> imageList;
 
   Map<String, dynamic> toJson() => {
         'descriptions': descriptions,
