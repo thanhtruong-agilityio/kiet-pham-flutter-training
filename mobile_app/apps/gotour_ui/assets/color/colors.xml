@@ -4,7 +4,7 @@
     <color name="onPrimaryColor">#FFFFFF</color>
     <color name="secondaryColor">#888888</color>
     <color name="onSecondaryColor">#FFFFFF</color>
-    <color name="errorColor">#FF0000</color>
+    <color name="errorColor">#FF3232</color>
     <color name="onErrorColor">#FFFFFF</color>
     <color name="backgroundColor">#FFFFFF</color>
     <color name="onBackgroundColor">#000000</color>
