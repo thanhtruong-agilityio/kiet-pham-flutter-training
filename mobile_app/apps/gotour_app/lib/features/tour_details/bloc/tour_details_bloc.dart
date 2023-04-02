@@ -13,7 +13,6 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   TourDetailsBloc({required this.tourDetailsRepository})
       : super(TourDetailsInitialState()) {
     on<TourDetailsFetchDataEvent>(_handleTourDetailsFetchDataEvent);
-    on<TourDetailsFetchImageListEvent>(_handleTourDetailsFetchImageListEvent);
     on<PressTheTourBookmarkButtonEvent>(_handleCheckBookMarkTourEvent);
   }
 
@@ -25,29 +24,18 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   ) async {
     try {
       emit(TourDetailsLoadingState());
+      final userId = FirebaseAuth.instance.currentUser!.uid;
       final tourDetails = await tourDetailsRepository.fetchDataTour(
         tourId: event.id,
       );
-      emit(TourDetailsLoadedState(tourDetails: tourDetails));
-    } on Exception catch (e) {}
-  }
-
-  Future<void> _handleTourDetailsFetchImageListEvent(
-    TourDetailsFetchImageListEvent event,
-    Emitter<TourDetailsState> emit,
-  ) async {
-    try {
-      final imageList =
-          await tourDetailsRepository.fetchListImage(tourId: event.id);
-      final userId = FirebaseAuth.instance.currentUser!.uid;
-      final checkBookmark = await tourDetailsRepository.tourHasBeenMarked(
-        userId: userId,
+      final isBookMark = await tourDetailsRepository.tourHasBeenMarked(
         tourId: event.id,
+        userId: userId,
       );
       emit(
-        TourDetailsImageListLoadedState(
-          imageList: imageList,
-          bookmark: checkBookmark,
+        TourDetailsLoadedState(
+          tourDetails: tourDetails,
+          isBookmark: isBookMark,
         ),
       );
     } on Exception catch (e) {}
@@ -58,7 +46,7 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
     Emitter<TourDetailsState> emit,
   ) async {
     try {
-      final imageList = state as TourDetailsImageListLoadedState;
+      final stateLoaded = state as TourDetailsLoadedState;
       final idUser = FirebaseAuth.instance.currentUser!.uid;
 
       await tourDetailsRepository.handleBookmarkTour(
@@ -68,19 +56,19 @@ class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
       );
       final checkBookmark = !event.isBookmark;
       if (checkBookmark == true) {
-        emit(ChangeBookmarkSuccessState(bookmark: checkBookmark));
+        emit(ChangeBookmarkSuccessState(isBookmark: checkBookmark));
         emit(
-          TourDetailsImageListLoadedState(
-            bookmark: checkBookmark,
-            imageList: imageList.imageList,
+          TourDetailsLoadedState(
+            isBookmark: checkBookmark,
+            tourDetails: stateLoaded.tourDetails,
           ),
         );
       } else {
-        emit(ChangeBookmarkSuccessState(bookmark: checkBookmark));
+        emit(ChangeBookmarkSuccessState(isBookmark: checkBookmark));
         emit(
-          TourDetailsImageListLoadedState(
-            bookmark: checkBookmark,
-            imageList: imageList.imageList,
+          TourDetailsLoadedState(
+            isBookmark: checkBookmark,
+            tourDetails: stateLoaded.tourDetails,
           ),
         );
       }
