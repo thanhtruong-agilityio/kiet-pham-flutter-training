@@ -1,13 +1,14 @@
 # GoTour App
 GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services  .
 <p align="center">
-  <img width="460" height="200" src="assets/icons/brand.svg">
+  <img width="460" height="200" src="apps/gotour_ui/assets/icons/brand.svg">
 </p>
 
 - [GoTour App](#gotour-app)
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
   - [Documents](#documents)
+  - [UI](#ui)
   - [Features](#features)
   - [Installation](#installation)
   - [How to run](#how-to-run)
@@ -45,14 +46,29 @@ samples, guidance on mobile development, and a full API reference.
 - [Plan](https://docs.google.com/document/d/1wXBmGxw3MWo0XH2EPemtJ80JpLqXbyYruugSHyn4lmo/edit?usp=sharing)
 - [Estimate](https://docs.google.com/document/d/1FZhhYIz-_ePHHlYJ7Di0fdHL3KvnBjAUNCYWAtAocTc/edit?usp=sharing)
 
+## UI
+- [x] UI Splash Screen
+- [x] UI Onboarding Screen
+- [x] UI Login Screen
+- [x] UI Register Screen
+- [x] UI Forgot Password Screen
+- [x] UI Home Page
+- [x] UI Tour Detail
+- [x] UI Best Place Place
+- [x] UI Hot Place
+- [x] UI Chat Page
+- [x] UI Notifications page
+- [ ] UI Location Page
+- [x] UI Profile Page
+  
 ## Features
-- [ ] UI Splash Screen
-- [ ] UI Onboarding Screen
-- [ ] UI Login Screen
-- [ ] UI Register Screen
-- [ ] UI Main Page
-- [ ] UI Tour Detail
-- [ ] UI Hot Place
+- [x] UX Login Screen
+- [x] UX Register Screen
+- [x] UX Forgot Password Screen
+- [x] UX Home Page
+- [x] UX Tour Detail
+- [x] UX Best Place
+- [x] UX Hot Place
 
 ## Installation
 1. Clone the repository:  
@@ -63,28 +79,24 @@ samples, guidance on mobile development, and a full API reference.
 2. Checkout branch:  
 
     ```
-    git checkout -b feature/gotour-app
+    git checkout -b feature/stable
     ```
 3. Pull origin branch:  
 
     ```
-    git pull origin feature/gotour-app
+    git pull origin feature/stable
     ```
-4. Run pub get  
-   ```
-   flutter pub get
-   ```
-   
 
 ## How to run
-* With Mac OS: Press <kbd>__COMMAND__</kbd> <kbd>__SHIFT__</kbd> <kbd>__D__</kbd>
-    - Run Device Preview: Choose <kbd>__Device Preview__</kbd>
-    - Run Widgetbook: Choose <kbd>__Widgetbook__</kbd>
-    - Run App: Choose <kbd>__Gotour App__</kbd>
-* With Windows: Press <kbd>__CTRL__</kbd> <kbd>__SHIFT__</kbd> <kbd>__D__</kbd> 
-    - Run Device Preview: Choose <kbd>___Device Preview___</kbd>
-    - Run Widgetbook: Choose <kbd>___Widgetbook___</kbd>
-    - Run App: Choose <kbd>___Gotour App___</kbd>
+* Open terminal: input <kbd>__melos__</kbd> <kbd>__run__</kbd>
+    - Run bootstrap: Choose <kbd>__1__</kbd>
+    - Generate i18n: Choose <kbd>__2__</kbd>
+    - Generate nativate_splash: Choose <kbd>__3__</kbd>
+    - Build runner: Choose <kbd>__4__</kbd>
+    - Run analyze: Choose <kbd>__5__</kbd>
+    - Run Device Preview: Choose <kbd>__6__</kbd>
+    - Run Widgetbook: Choose <kbd>__7__</kbd>
+    - Run App: Choose <kbd>__8__</kbd>
 
 ## Overview
 - This document provides the requirement for UI and Navigation Flutter.
@@ -95,6 +107,10 @@ samples, guidance on mobile development, and a full API reference.
 - [Flutter](https://flutter.dev/)
 - [Flutter gen](https://pub.dev/packages/flutter_gen)
 - [Device Preview](https://pub.dev/packages/device_preview)
+- [Melos](https://pub.dev/packages/melos)
+- [Firebase Auth](https://pub.dev/packages/firebase_auth)
+- [Firebase Core](https://pub.dev/packages/firebase_core)
+- [Cloud firestore](https://pub.dev/packages/cloud_firestore)
 - [Go router](https://pub.dev/packages/go_router)
 - [Widgetbook](https://pub.dev/packages/widgetbook)
 
