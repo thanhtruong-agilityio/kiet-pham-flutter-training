@@ -9,6 +9,7 @@ import 'package:gotour_app/features/best_place/best_place_page.dart';
 import 'package:gotour_app/features/chat/chat_page.dart';
 import 'package:gotour_app/features/home/home_page.dart';
 import 'package:gotour_app/features/hot_place/hot_place_page.dart';
+import 'package:gotour_app/features/location/location_page.dart';
 import 'package:gotour_app/features/misc/onboarding_page.dart';
 import 'package:gotour_app/features/notification/notification_page.dart';
 import 'package:gotour_app/features/profile/profile_page.dart';
@@ -26,6 +27,8 @@ final GoRouter router = GoRouter(
       state.namedLocation('best-place'),
       state.namedLocation('chat'),
       state.namedLocation('notifications'),
+      state.namedLocation('location'),
+      state.namedLocation('profile'),
     ];
     final unAuthenList = [
       state.namedLocation('login-page'),
@@ -142,6 +145,22 @@ final GoRouter router = GoRouter(
           path: '/notifications',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTNotificationPage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
+        ),
+        GoRoute(
+          name: 'location',
+          path: '/location',
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTLocationPage(),
             transitionDuration: const Duration(milliseconds: 700),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
