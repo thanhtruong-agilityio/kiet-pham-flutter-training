@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
-import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/place_info.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 import 'package:gotour_app/features/tour_details/service.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
@@ -54,57 +55,84 @@ class GTTourDetails extends StatelessWidget {
               tourDetailsRepository:
                   RepositoryProvider.of<TourDetailsRepository>(context),
             ),
-            child: BlocBuilder<TourDetailsBloc, TourDetailsState>(
-              builder: (context, state) {
-                if (state is TourDetailsInitialState) {
-                  context.read<TourDetailsBloc>().add(
-                        TourDetailsFetchDataEvent(
-                          id: id!,
-                        ),
-                      );
-                  return Center(
-                    child: GTText.bodyLarge(context, text: 'initial'),
-                  );
+            child: BlocListener<TourDetailsBloc, TourDetailsState>(
+              listener: (context, state) {
+                if (state is ChangeBookmarkSuccessState) {
+                  if (state.isBookmark == true) {
+                    GTSnackBar.show(
+                      context,
+                      message: S.of(context).bookMarkSuccessMessage,
+                      backgroundColor: colorScheme.secondaryContainer,
+                    );
+                  } else {
+                    GTSnackBar.show(
+                      context,
+                      message: S.of(context).unBookMarkSuccessMessage,
+                      backgroundColor: colorScheme.secondaryContainer,
+                    );
+                  }
                 }
-                if (state is TourDetailsLoadingState) {
-                  return Center(
-                    child: GTText.bodyLarge(context, text: 'Loading'),
-                  );
-                }
-                if (state is TourDetailsLoadedState) {
-                  final data = state.tourDetails;
-                  return Column(
-                    children: [
-                      SizedBox(height: device.scale(44)),
-                      GTPlaceInfoTourDetails(
-                        namePlace: data.placeName,
-                        location: data.location,
-                        price: data.price,
-                        temperature: data.weather,
-                        onPressCard: () {},
-                        onPressBtn: () {},
-                        id: id!,
-                      ),
-                      SizedBox(height: device.scale(26)),
-                      const GTService(),
-                      SizedBox(height: device.scale(26)),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: device.scale(20),
-                        ),
-                        child: GTText.bodyMedium(
-                          context,
-                          text: data.descriptions,
-                          color: colorScheme.secondary,
-                        ),
-                      )
-                    ],
-                  );
-                }
-                return Center(
-                  child: GTText.bodyLarge(context, text: 'Failed'),
-                );
               },
+              child: BlocBuilder<TourDetailsBloc, TourDetailsState>(
+                builder: (context, state) {
+                  if (state is TourDetailsInitialState) {
+                    context.read<TourDetailsBloc>().add(
+                          TourDetailsFetchDataEvent(
+                            id: id,
+                          ),
+                        );
+                  }
+                  if (state is TourDetailsLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: colorScheme.primary,
+                      ),
+                    );
+                  }
+                  if (state is TourDetailsLoadedState) {
+                    final data = state.tourDetails;
+
+                    return Column(
+                      children: [
+                        SizedBox(height: device.scale(44)),
+                        GTPlaceInfoTourDetails(
+                          namePlace: data.placeName,
+                          location: data.location,
+                          price: data.price,
+                          temperature: data.weather,
+                          isBookmark: state.isBookmark,
+                          imageList: data.imageList,
+                          onPressBtn: () {},
+                          onBookmark: () {
+                            context.read<TourDetailsBloc>().add(
+                                  PressTheTourBookmarkButtonEvent(
+                                    isBookmark: state.isBookmark,
+                                    tourId: data.id,
+                                  ),
+                                );
+                          },
+                        ),
+                        SizedBox(height: device.scale(26)),
+                        const GTService(),
+                        SizedBox(height: device.scale(26)),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: device.scale(20),
+                          ),
+                          child: GTText.bodyMedium(
+                            context,
+                            text: data.descriptions,
+                            color: colorScheme.secondary,
+                          ),
+                        )
+                      ],
+                    );
+                  }
+                  return Center(
+                    child: GTText.bodyLarge(context, text: 'Failed'),
+                  );
+                },
+              ),
             ),
           ),
         ),
