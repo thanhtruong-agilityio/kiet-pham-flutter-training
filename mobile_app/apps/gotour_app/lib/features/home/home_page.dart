@@ -137,7 +137,7 @@ class _GTHomeView extends StatelessWidget {
                           context.read<HomeBloc>().add(HomeFetchDataEvent());
                         }
                         if (state is HomeLoadingState) {
-                          return const GTMyLocation(mylocatonList: []);
+                          return const GTMylocationShimmerList();
                         }
                         if (state is HomeLoadedState) {
                           if (state.myLocationList.isEmpty) {
@@ -177,9 +177,7 @@ class _GTHomeView extends StatelessWidget {
                           context.read<HomeBloc>().add(HomeFetchDataEvent());
                         }
                         if (state is HomeLoadingState) {
-                          return const GTBestPlace(
-                            bestPlaceList: [],
-                          );
+                          return const GTBestPlaceShimmerList();
                         }
                         if (state is HomeLoadedState) {
                           return GTBestPlace(
