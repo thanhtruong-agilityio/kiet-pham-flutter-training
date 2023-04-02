@@ -6,7 +6,7 @@ class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseFirestore = FirebaseFirestore.instance.collection('users');
 
-  Object _mapFirebaseUser(User user) {
+  Object _mapFirebaseUser({required User user, required int gender}) {
     var splittedName = ['Name ', 'LastName'];
     if (user.displayName != null) {
       splittedName = user.displayName!.split(' ');
@@ -19,7 +19,7 @@ class AuthRepository {
       'email': user.email ?? '',
       'imageUrl': user.photoURL ?? '',
       'age': '',
-      'gender': '',
+      'gender': gender,
       'phoneNumber': '',
       'address': '',
     };
@@ -29,6 +29,7 @@ class AuthRepository {
   Future<void> signUp({
     required String email,
     required String password,
+    required int gender,
   }) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -36,9 +37,12 @@ class AuthRepository {
         password: password,
       );
       final user = _firebaseAuth.currentUser;
-      await _firebaseFirestore
-          .doc(user!.uid)
-          .set(_mapFirebaseUser(userCredential.user!) as Map<String, dynamic>);
+      await _firebaseFirestore.doc(user!.uid).set(
+            _mapFirebaseUser(
+              user: userCredential.user!,
+              gender: gender,
+            ) as Map<String, dynamic>,
+          );
       await _firebaseAuth.currentUser!.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
