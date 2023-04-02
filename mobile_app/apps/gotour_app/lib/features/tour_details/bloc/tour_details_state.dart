@@ -17,12 +17,14 @@ class TourDetailsLoadingState extends TourDetailsState {
 class TourDetailsLoadedState extends TourDetailsState {
   const TourDetailsLoadedState({
     required this.tourDetails,
+    required this.isBookmark,
   });
 
   final TourDetails tourDetails;
+  final bool isBookmark;
 
   @override
-  List<Object> get props => [tourDetails];
+  List<Object> get props => [tourDetails, isBookmark];
 }
 
 class TourDetailsErrorState extends TourDetailsState {
@@ -34,47 +36,15 @@ class TourDetailsErrorState extends TourDetailsState {
   List<Object> get props => [];
 }
 
-class TourDetailsImageListLoadingState extends TourDetailsState {
-  @override
-  List<Object> get props => [];
-}
-
-class TourDetailsImageListLoadedState extends TourDetailsState {
-  const TourDetailsImageListLoadedState({
-    required this.imageList,
-    required this.bookmark,
-  });
-
-  final List<String> imageList;
-  final bool bookmark;
-
-  @override
-  List<Object> get props => [imageList];
-}
-
-class TourDetailsImageListErrorState extends TourDetailsState {
-  const TourDetailsImageListErrorState({required this.error});
-
-  final String error;
-
-  @override
-  List<Object> get props => [];
-}
-
-class BookMarkTheTourLoadingState extends TourDetailsState {
-  @override
-  List<Object> get props => [];
-}
-
 class ChangeBookmarkSuccessState extends TourDetailsState {
   const ChangeBookmarkSuccessState({
-    required this.bookmark,
+    required this.isBookmark,
   });
 
-  final bool bookmark;
+  final bool isBookmark;
 
   @override
-  List<Object> get props => [bookmark];
+  List<Object> get props => [isBookmark];
 }
 
 class ChangeBookmarkErrorState extends TourDetailsState {

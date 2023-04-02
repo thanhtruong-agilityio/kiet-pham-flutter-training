@@ -74,7 +74,7 @@ final GoRouter router = GoRouter(
           path: '/tour-details/:id',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: GTTourDetails(
-              id: state.params['id'],
+              id: state.params['id']!,
             ),
             transitionDuration: const Duration(milliseconds: 700),
             transitionsBuilder:

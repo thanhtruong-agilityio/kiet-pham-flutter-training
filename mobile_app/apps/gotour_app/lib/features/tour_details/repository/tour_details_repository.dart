@@ -12,6 +12,7 @@ class TourDetailsRepository {
     required String tourId,
   }) async {
     final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
+
     return TourDetails(
       id: data['id'] as String,
       imageUrl: data['imageUrl'] as String,
@@ -20,20 +21,8 @@ class TourDetailsRepository {
       price: data['price'] as String,
       descriptions: data['descriptions'] as String,
       weather: data['weather'] as String,
+      imageList: List<String>.from(data['imageList'] as List),
     );
-  }
-
-  Future<List<String>> fetchListImage({
-    required String tourId,
-  }) async {
-    final documentSnapshot =
-        await _firebaseFirestoreTourDetails.doc(tourId).get();
-
-    final arrayImage = documentSnapshot.data()!['imageList'];
-    final imageList =
-        (arrayImage as List<dynamic>).map((e) => e.toString()).toList();
-
-    return imageList;
   }
 
   Future<bool> tourHasBeenMarked({
