@@ -4,25 +4,12 @@ sdkPath: .fvm/flutter_sdk
 
 packages:
   - apps/**
-  - packages/**
 
 scripts:
   postbootstrap: >
     melos exec -- fvm flutter pub get && 
     fvm dart pub global activate flutter_gen &&
     melos run build_runner
-
-  analyze:
-    run: melos exec -- fvm flutter analyze .
-    description: Run `dart analyze` in all packages.
-
-  # Start mobile apps scripts
-  run:gotour_app:
-    run: melos exec --scope="gotour_app" -- flutter run -d '8354F599-5917-4E03-974F-1C0E8B2A4335'
-
-  # Start devices preview scripts
-  run:gotour_app_device_preview:
-    run: melos exec --scope="gotour_app" -- fvm flutter run lib/main_device_preview.dart -d chrome
 
   # Generation i18n file
   dev:generate:i18n:
@@ -39,12 +26,30 @@ scripts:
     run: melos exec --scope="gotour_app" -- fvm flutter pub get && melos exec -- fvm flutter pub run flutter_native_splash:create
     description: "Generation asset to display splash screen"
 
+  # Start buid_runner
   build_runner:
     run: |
       melos exec -- "fvm flutter pub run build_runner build --delete-conflicting-outputs"
 
+  # Start analyze scripts
+  analyze:
+    run: melos exec -- fvm flutter analyze .
+    description: Run `dart analyze` in all packages.
+
+  # Start mobile apps scripts
+  # Change '8354F599-5917-4E03-974F-1C0E8B2A4335' to your device id
+  run:gotour_app:
+    run: melos exec --scope="gotour_app" -- flutter run -d '8354F599-5917-4E03-974F-1C0E8B2A4335'
+    description: "run mobile app. Open melos.yaml file, change '8354F599-5917-4E03-974F-1C0E8B2A4335' to your device id"
+
+  # Start devices preview scripts
+  run:gotour_app_device_preview:
+    run: melos exec --scope="gotour_app" -- fvm flutter run lib/main_device_preview.dart -d chrome --web-renderer html
+    description: "run device preview in web"
+
   # Run widgetbook
   run:gotour_design:widget_book:
     run: melos exec --scope="gotour_widgetbook" -- fvm flutter run -d chrome
+    description: "run widgetbook in web"
     select-package:
       scope: gotour_widgetbook
