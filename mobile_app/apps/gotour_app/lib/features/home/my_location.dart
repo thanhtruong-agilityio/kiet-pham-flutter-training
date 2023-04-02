@@ -22,42 +22,37 @@ class GTMyLocation extends StatelessWidget {
     final data = mylocatonList;
     final device = GTReponsive.of(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: device.scale(150),
-          child: ListView.builder(
-            padding: const EdgeInsets.only(left: 20),
-            scrollDirection: Axis.horizontal,
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final tourId = data[index].id;
-              return Container(
-                margin: const EdgeInsets.only(right: 20),
-                child: GTCardMyLocation(
-                  press: () => context.pushNamed(
-                    'tour-details',
-                    params: {'id': data[index].id},
-                  ),
-                  image: data[index].imageUrl,
-                  placeName: data[index].placeName,
-                  location: data[index].location,
-                  descriptions: data[index].descriptions,
-                  onBookMark: () {
-                    context.read<HomeBloc>().add(
-                          DeleteMyLocationEvent(
-                            tourId: tourId,
-                            index: index,
-                          ),
-                        );
-                  },
-                ),
-              );
-            },
-          ),
-        )
-      ],
+    return SizedBox(
+      height: device.scale(150),
+      child: ListView.builder(
+        padding: const EdgeInsets.only(left: 20),
+        scrollDirection: Axis.horizontal,
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          final tourId = data[index].id;
+          return Container(
+            margin: const EdgeInsets.only(right: 20),
+            child: GTCardMyLocation(
+              press: () => context.pushNamed(
+                'tour-details',
+                params: {'id': data[index].id},
+              ),
+              image: data[index].imageUrl,
+              placeName: data[index].placeName,
+              location: data[index].location,
+              descriptions: data[index].descriptions,
+              onBookMark: () {
+                context.read<HomeBloc>().add(
+                      DeleteMyLocationEvent(
+                        tourId: tourId,
+                        index: index,
+                      ),
+                    );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -89,6 +84,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return GestureDetector(
       onTap: widget.press,
       child: Container(
@@ -172,10 +168,149 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
       width: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(widget.image),
+        ),
+      ),
+    );
+  }
+}
+
+class GTMylocationShimmerList extends StatefulWidget {
+  const GTMylocationShimmerList({super.key});
+
+  @override
+  State<GTMylocationShimmerList> createState() =>
+      _GTMylocationShimmerListState();
+}
+
+class _GTMylocationShimmerListState extends State<GTMylocationShimmerList> {
+  @override
+  Widget build(BuildContext context) {
+    final device = GTReponsive.of(context);
+
+    return SizedBox(
+      height: device.scale(150),
+      child: ListView.builder(
+        padding: const EdgeInsets.only(left: 20),
+        scrollDirection: Axis.horizontal,
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return const _GTShimmerLayout();
+        },
+      ),
+    );
+  }
+}
+
+class _GTShimmerLayout extends StatelessWidget {
+  const _GTShimmerLayout();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final device = GTReponsive.of(context);
+    return Container(
+      margin: EdgeInsets.only(
+        right: 20,
+        left: device.scale(5),
+        top: device.scale(14),
+      ),
+      width: device.scale(295),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: colorScheme.surface,
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: device.scale(15),
+          right: device.scale(20),
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: device.scale(24)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                height: 55,
+                                width: 55,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: colorScheme.onSecondaryContainer,
+                                ),
+                              ),
+                              SizedBox(width: device.scale(11)),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: colorScheme.onSecondaryContainer,
+                                    ),
+                                    height: device.scale(20),
+                                    width: device.scale(139),
+                                  ),
+                                  SizedBox(
+                                    height: device.scale(10),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: colorScheme.onSecondaryContainer,
+                                    ),
+                                    width: device.scale(120),
+                                    height: device.scale(16),
+                                    padding: EdgeInsets.only(
+                                      left: device.scale(9),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    // iconBookMark()
+                  ],
+                ),
+                SizedBox(height: device.scale(11)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: colorScheme.onSecondaryContainer,
+                  ),
+                  height: device.scale(15),
+                  width: device.scale(242),
+                  padding: EdgeInsets.only(right: device.scale(39)),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: colorScheme.onSecondaryContainer,
+                  ),
+                  height: device.scale(15),
+                  width: device.scale(242),
+                  padding: EdgeInsets.only(right: device.scale(39)),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
