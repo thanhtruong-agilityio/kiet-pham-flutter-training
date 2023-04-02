@@ -16,8 +16,8 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color backgroundColor = Color(0xFFFFFFFF);
 
-  /// Color: #FF0000
-  static const Color errorColor = Color(0xFFFF0000);
+  /// Color: #FF3232
+  static const Color errorColor = Color(0xFFFF3232);
 
   /// Color: #FFD1AA
   static const Color inversePrimaryColor = Color(0xFFFFD1AA);

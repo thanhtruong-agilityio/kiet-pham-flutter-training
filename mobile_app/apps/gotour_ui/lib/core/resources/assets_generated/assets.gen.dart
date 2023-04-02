@@ -15,6 +15,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/air.svg
   String get air => 'assets/icons/air.svg';
 
+  /// File path: assets/icons/arrow.svg
+  String get arrow => 'assets/icons/arrow.svg';
+
   /// File path: assets/icons/ava.svg
   String get ava => 'assets/icons/ava.svg';
 
@@ -42,8 +45,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/cloud.svg
   String get cloud => 'assets/icons/cloud.svg';
 
+  /// File path: assets/icons/currency.svg
+  String get currency => 'assets/icons/currency.svg';
+
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
+
+  /// File path: assets/icons/language.svg
+  String get language => 'assets/icons/language.svg';
 
   /// File path: assets/icons/left.svg
   String get left => 'assets/icons/left.svg';
@@ -66,11 +75,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notification.svg
   String get notification => 'assets/icons/notification.svg';
 
+  /// File path: assets/icons/notifications.svg
+  String get notifications => 'assets/icons/notifications.svg';
+
   /// File path: assets/icons/options.svg
   String get options => 'assets/icons/options.svg';
 
+  /// File path: assets/icons/payment.svg
+  String get payment => 'assets/icons/payment.svg';
+
   /// File path: assets/icons/person.svg
   String get person => 'assets/icons/person.svg';
+
+  /// File path: assets/icons/privacy.svg
+  String get privacy => 'assets/icons/privacy.svg';
 
   /// File path: assets/icons/right.svg
   String get right => 'assets/icons/right.svg';
@@ -81,9 +99,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/sun.svg
   String get sun => 'assets/icons/sun.svg';
 
+  /// File path: assets/icons/terms.svg
+  String get terms => 'assets/icons/terms.svg';
+
   /// List of all assets
   List<String> get values => [
         air,
+        arrow,
         ava,
         back,
         bell,
@@ -93,7 +115,9 @@ class $AssetsIconsGen {
         car,
         checkmark,
         cloud,
+        currency,
         google,
+        language,
         left,
         location,
         menu,
@@ -101,11 +125,15 @@ class $AssetsIconsGen {
         more,
         moto,
         notification,
+        notifications,
         options,
+        payment,
         person,
+        privacy,
         right,
         search,
-        sun
+        sun,
+        terms
       ];
 }
 
