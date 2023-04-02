@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTGender extends StatefulWidget {
-  const GTGender({super.key});
+  const GTGender({
+    super.key,
+    required this.gender,
+  });
+
+  final int gender;
 
   @override
   State<GTGender> createState() => _GTGenderState();
 }
 
 class _GTGenderState extends State<GTGender> {
-  int _selectedValue = 0;
+  late int selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.gender;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +44,10 @@ class _GTGenderState extends State<GTGender> {
                 height: 18,
                 width: 18,
                 child: GTCheckBox(
-                  isChecked: _selectedValue == 0,
+                  isChecked: selectedValue == 0,
                   onPressed: (value) {
                     setState(() {
-                      _selectedValue = (value ? 0 : null)!;
+                      selectedValue = (value ? 0 : null)!;
                     });
                   },
                 ),
@@ -48,10 +58,10 @@ class _GTGenderState extends State<GTGender> {
               ),
               onTap: () {
                 setState(() {
-                  _selectedValue = 0;
+                  selectedValue = 0;
                 });
               },
-              selected: _selectedValue == 0,
+              selected: selectedValue == 0,
             ),
           ),
         ),
@@ -71,10 +81,10 @@ class _GTGenderState extends State<GTGender> {
                 height: 18,
                 width: 18,
                 child: GTCheckBox(
-                  isChecked: _selectedValue == 1,
+                  isChecked: selectedValue == 1,
                   onPressed: (value) {
                     setState(() {
-                      _selectedValue = (value ? 1 : null)!;
+                      selectedValue = (value ? 1 : null)!;
                     });
                   },
                 ),
@@ -85,10 +95,10 @@ class _GTGenderState extends State<GTGender> {
               ),
               onTap: () {
                 setState(() {
-                  _selectedValue = 1;
+                  selectedValue = 1;
                 });
               },
-              selected: _selectedValue == 1,
+              selected: selectedValue == 1,
             ),
           ),
         ),
@@ -101,23 +111,26 @@ class GTCheckBox extends StatefulWidget {
   const GTCheckBox({
     super.key,
     required this.isChecked,
-    required this.onPressed,
+    this.onPressed,
+    this.onTap,
   });
 
   final bool isChecked;
   final void Function(bool)? onPressed;
+  final VoidCallback? onTap;
 
   @override
   State<GTCheckBox> createState() => _GTCheckBoxState();
 }
 
 class _GTCheckBoxState extends State<GTCheckBox> {
-  bool _isChecked = false;
+  late bool _isChecked;
+
   @override
   Widget build(BuildContext context) {
     _isChecked = widget.isChecked;
     return InkWell(
-      // onTap: widget.onPressed,
+      onTap: widget.onTap,
       onHighlightChanged: widget.onPressed,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 600),

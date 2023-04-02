@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/core/shared/dashboard.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
@@ -38,9 +39,12 @@ final GoRouter router = GoRouter(
     final auth = FirebaseAuth.instance;
     final isLoggedIn =
         auth.currentUser != null && auth.currentUser!.emailVerified;
-    // final googleUser = GoogleSignIn().currentUser != null;
+    final googleUser = GoogleSignIn().currentUser != null;
     // final isLoggedIn = authFirebase || googleUser;
     if (isLoggedIn && mainList.contains(state.subloc)) {
+      return null;
+    }
+    if (googleUser && mainList.contains(state.subloc)) {
       return null;
     }
     if (unAuthenList.contains(state.subloc)) {
