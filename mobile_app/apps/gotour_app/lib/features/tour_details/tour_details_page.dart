@@ -14,33 +14,9 @@ import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTTourDetails extends StatelessWidget {
-  const GTTourDetails({
-    super.key,
-    this.id,
-  });
+  const GTTourDetails({super.key, required this.id});
 
-  final String? id;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is UnAuthenticated) {
-          context.go('/login-page');
-        }
-        if (state is UnVerifyEmail) {
-          context.go('/login-page');
-        }
-      },
-      child: _GTTourDetails(id),
-    );
-  }
-}
-
-class _GTTourDetails extends StatelessWidget {
-  const _GTTourDetails(this.id);
-
-  final String? id;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
