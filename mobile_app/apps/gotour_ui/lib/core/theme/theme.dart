@@ -58,6 +58,7 @@ class GTTheme {
           width: 1.5,
           color: _lightColorScheme.error,
         ),
+        borderRadius: BorderRadius.circular(7),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
