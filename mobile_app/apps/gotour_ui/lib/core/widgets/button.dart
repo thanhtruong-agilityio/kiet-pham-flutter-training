@@ -166,11 +166,13 @@ class GTElevatedHighlightButton extends StatelessWidget {
     required this.text,
     this.activateShadow = false,
     required this.onPressed,
+    this.backgroudColor,
   });
 
   final String text;
   final bool activateShadow;
   final VoidCallback onPressed;
+  final Color? backgroudColor;
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +195,7 @@ class GTElevatedHighlightButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7),
           ),
-          backgroundColor: colorScheme.primary,
+          backgroundColor: backgroudColor ?? colorScheme.primary,
         ),
         onPressed: onPressed,
         child: Container(
