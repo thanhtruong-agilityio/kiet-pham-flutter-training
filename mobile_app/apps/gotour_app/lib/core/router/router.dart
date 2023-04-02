@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/core/shared/dashboard.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
@@ -57,41 +56,118 @@ final GoRouter router = GoRouter(
         GoRoute(
           name: 'home',
           path: '/',
-          builder: (context, state) => const GTHomePage(),
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTHomePage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
         ),
         GoRoute(
           name: 'tour-details',
           path: '/tour-details/:id',
-          builder: (context, state) => GTTourDetails(
-            id: state.params['id'],
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: GTTourDetails(
+              id: state.params['id'],
+            ),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
           ),
         ),
         GoRoute(
           name: 'best-place',
           path: '/best-place',
-          builder: (context, state) => const GTBestPlacePage(),
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTBestPlacePage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
         ),
         GoRoute(
           name: 'hot-place',
           path: '/hot-place/:id',
-          builder: (context, state) => GTHotPlace(
-            id: state.params['id']!,
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: GTHotPlace(
+              id: state.params['id']!,
+            ),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
           ),
         ),
         GoRoute(
           name: 'chat',
           path: '/chat',
-          builder: (context, state) => const GTChatPage(),
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTChatPage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
         ),
         GoRoute(
           name: 'notifications',
           path: '/notifications',
-          builder: (context, state) => const GTNotificationPage(),
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTNotificationPage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
         ),
         GoRoute(
           name: 'profile',
           path: '/profile',
-          builder: (context, state) => const GTProfilePage(),
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const GTProfilePage(),
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                child: child,
+              );
+            },
+          ),
         ),
       ],
       builder: (context, state, child) => DashBoardScreen(body: child),
@@ -99,22 +175,58 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: 'onaboarding',
       path: '/onboarding',
-      builder: (context, state) => const GTOnboardingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        child: const GTOnboardingScreen(),
+        transitionDuration: const Duration(milliseconds: 700),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+            child: child,
+          );
+        },
+      ),
     ),
     GoRoute(
       name: 'login-page',
       path: '/login-page',
-      builder: (context, state) => const GTLoginPage(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        child: const GTLoginPage(),
+        transitionDuration: const Duration(milliseconds: 700),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+            child: child,
+          );
+        },
+      ),
     ),
     GoRoute(
       name: 'forgot-password-page',
       path: '/forgot-password-page',
-      builder: (context, state) => const GTForgotPasswordPage(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        child: const GTForgotPasswordPage(),
+        transitionDuration: const Duration(milliseconds: 700),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+            child: child,
+          );
+        },
+      ),
     ),
     GoRoute(
       name: 'sign-up-page',
       path: '/sign-up-page',
-      builder: (context, state) => const GTSignUpPage(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        child: const GTSignUpPage(),
+        transitionDuration: const Duration(milliseconds: 700),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+            child: child,
+          );
+        },
+      ),
     ),
   ],
 );
