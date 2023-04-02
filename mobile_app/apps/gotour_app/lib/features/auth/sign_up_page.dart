@@ -84,12 +84,12 @@ class _GTSignUpView extends StatefulWidget {
 }
 
 class _GTSignUpViewState extends State<_GTSignUpView> {
-  bool agreeTerms = false;
-
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
+  bool agreeTerms = false;
+  int gender = 0;
 
   @override
   void dispose() {
@@ -102,6 +102,8 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -143,7 +145,9 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       },
                     ),
                     SizedBox(height: device.sh(5)),
-                    const GTGender(),
+                    GTGender(
+                      gender: gender,
+                    ),
                     SizedBox(height: device.sh(20)),
                     GTTextField(
                       controller: _passwordController,
@@ -181,9 +185,9 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                           padding: const EdgeInsets.only(right: 10),
                           child: GTCheckBox(
                             isChecked: agreeTerms,
-                            onPressed: (value) {
+                            onTap: () {
                               setState(() {
-                                value = !agreeTerms;
+                                agreeTerms = !agreeTerms;
                               });
                             },
                           ),
@@ -202,17 +206,23 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     GTElevatedHighlightButton(
                       text: S.of(context).signUpTitle,
                       activateShadow: true,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            SignUpRequested(
-                              _emailController.text,
-                              _passwordController.text,
-                              _passwordConfirmController.text,
-                            ),
-                          );
-                        }
-                      },
+                      backgroudColor: agreeTerms
+                          ? colorScheme.primary
+                          : colorScheme.secondary,
+                      onPressed: agreeTerms
+                          ? () {
+                              if (_formKey.currentState!.validate()) {
+                                BlocProvider.of<AuthBloc>(context).add(
+                                  SignUpRequested(
+                                    _emailController.text,
+                                    _passwordController.text,
+                                    _passwordConfirmController.text,
+                                    gender,
+                                  ),
+                                );
+                              }
+                            }
+                          : () {},
                     ),
                     const SizedBox(height: 10),
                     GTTextHighlightButton(
