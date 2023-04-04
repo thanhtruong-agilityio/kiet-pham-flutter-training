@@ -18,7 +18,7 @@ class TourDetails {
         placeName: json['placeName'] as String,
         price: json['price'] as String,
         weather: json['weather'] as String,
-        imageList: json['imageList'] as List<String>,
+        imageList: List<String>.from(json['imageList'] as List),
       );
 
   String descriptions;
