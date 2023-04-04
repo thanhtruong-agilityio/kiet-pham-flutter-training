@@ -15,8 +15,8 @@ class HotPlace {
         location: json['location'] as String,
         placeName: json['placeName'] as String,
         price: json['price'] as String,
-        tagList: json['tagList'] as List<String>,
-        imageList: json['imageList'] as List<String>,
+        tagList: List<String>.from(json['tagList'] as List),
+        imageList: List<String>.from(json['imageList'] as List),
       );
 
   String id;
