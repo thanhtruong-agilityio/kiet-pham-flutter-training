@@ -11,16 +11,21 @@ dependencies:
   flutter:
     sdk: flutter
   
+  # Flutter Localization is a package use for in-app localization with map data.
   flutter_localizations:
     sdk: flutter
     
+  # Default icons asset for Cupertino widgets based on Apple styled icons
   cupertino_icons: 1.0.5
 
+  # backage ui
   gotour_ui:
     path: ../gotour_ui
   
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files.
   flutter_svg: 1.1.6
 
+  # Customize Flutter's default white native splash screen with background color and splash image. Supports dark mode, full screen, and more.
   flutter_native_splash: 2.2.18
 
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, identity providers like Google.
@@ -44,7 +49,6 @@ dependencies:
   # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live synchronization and offline support on Android and iOS.
   cloud_firestore: 4.4.5
 
-
   #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
   go_router: 6.2.0
 
@@ -60,7 +64,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+  # A build system for Dart code generation and modular compilation.
   build_runner: 2.3.3
 
 flutter:
