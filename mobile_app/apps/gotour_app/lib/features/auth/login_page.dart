@@ -26,11 +26,11 @@ class GTLoginPage extends StatelessWidget {
         } else {
           gtIndicatorOverlay.hide(context);
         }
-        if (state is Authenticated) {
+        if (state is AuthenticatedState) {
           // Navigating to the dashboard screen if the user is authenticated
           context.go('/');
         }
-        if (state is UnVerifyEmail) {
+        if (state is UnVerifyEmailState) {
           GTIndicatorOverlay().hide(context);
           showDialog<String>(
             context: context,
@@ -46,7 +46,7 @@ class GTLoginPage extends StatelessWidget {
             ),
           );
         }
-        if (state is AuthError) {
+        if (state is AuthErrorState) {
           // Showing the error message if the user has entered invalid credentials
           GTSnackBar.failure(
             context,

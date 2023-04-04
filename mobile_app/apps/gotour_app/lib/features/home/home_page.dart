@@ -26,10 +26,10 @@ class GTHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is UnAuthenticated) {
+        if (state is UnAuthenticatedState) {
           context.go('/login-page');
         }
-        if (state is UnVerifyEmail) {
+        if (state is UnVerifyEmailState) {
           context.go('/login-page');
         }
       },

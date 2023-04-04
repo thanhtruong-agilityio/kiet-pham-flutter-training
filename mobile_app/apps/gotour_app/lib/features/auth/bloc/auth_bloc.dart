@@ -9,7 +9,7 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.authRepository}) : super(UnAuthenticated()) {
+  AuthBloc({required this.authRepository}) : super(UnAuthenticatedState()) {
     // When User Presses the SignIn Button, we will send
     // the SignInRequested Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
@@ -52,15 +52,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // and if email isn't verified change state UnAuthenticated State
       if (isVerifyEmail == true) {
         //emit authenticated state
-        emit(Authenticated());
+        emit(AuthenticatedState());
       } else {
         // emit unauthenticated state
-        emit(UnVerifyEmail());
+        emit(UnVerifyEmailState());
       }
     } on Exception catch (e) {
       // emit error case
-      emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
+      emit(AuthErrorState(e.toString()));
+      emit(UnAuthenticatedState());
     }
   }
 
@@ -83,7 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(SignUpSubmitedState());
     } on Exception catch (e) {
       // emit error case
-      emit(AuthError(e.toString()));
+      emit(AuthErrorState(e.toString()));
     }
   }
 
@@ -99,11 +99,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await authRepository.signInWithGoogle();
 
       //emit authentication state
-      emit(Authenticated());
+      emit(AuthenticatedState());
     } on Exception catch (e) {
       // emit error case
-      emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
+      emit(AuthErrorState(e.toString()));
+      emit(UnAuthenticatedState());
     }
   }
 
@@ -119,11 +119,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await authRepository.signOut();
 
       // emit unauthenticated state
-      emit(UnAuthenticated());
+      emit(UnAuthenticatedState());
     } on Exception catch (e) {
       //emit error case
-      emit(AuthError(e.toString()));
-      emit(Authenticated());
+      emit(AuthErrorState(e.toString()));
+      emit(AuthenticatedState());
     }
   }
 
@@ -142,7 +142,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ForgotPasswordSubmitedState());
     } on Exception catch (e) {
       // emit erorr case
-      emit(AuthError(e.toString()));
+      emit(AuthErrorState(e.toString()));
       emit(ErrorForgotPassword());
     }
   }

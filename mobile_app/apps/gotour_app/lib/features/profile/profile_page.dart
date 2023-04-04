@@ -22,7 +22,7 @@ class GTProfilePage extends StatelessWidget {
 
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is UnAuthenticated) {
+        if (state is UnAuthenticatedState) {
           context.go('/login-page');
         }
       },
