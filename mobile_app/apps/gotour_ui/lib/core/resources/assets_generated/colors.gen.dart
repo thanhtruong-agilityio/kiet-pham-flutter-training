@@ -55,8 +55,8 @@ class ColorName {
   /// Color: #888888
   static const Color secondaryColor = Color(0xFF888888);
 
-  /// Color: #17E364
-  static const Color secondaryContainerColor = Color(0xFF17E364);
+  /// Color: #4CAF50
+  static const Color secondaryContainerColor = Color(0xFF4CAF50);
 
   /// Color: #F8F8F8
   static const Color surfaceColor = Color(0xFFF8F8F8);
