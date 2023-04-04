@@ -29,9 +29,7 @@ class HomeRepository {
     final data = await _firebaseFirestoreTourBookMarks
         .where('userId', isEqualTo: idUser)
         .get();
-    return (data.docs)
-        .map((tour) => TourId(tourId: tour['tourId'] as String))
-        .toList();
+    return (data.docs).map((tour) => TourId.fromJson(tour.data())).toList();
   }
 
   // Fetch My Location Place from the firebase
@@ -47,12 +45,8 @@ class HomeRepository {
       if (querySnapshot.docs.isNotEmpty) {
         final dataList = querySnapshot.docs
             .map<MyLocation>(
-              (json) => MyLocation(
-                id: json['id'] as String,
-                descriptions: json['descriptions'] as String,
-                imageUrl: json['imageUrl'] as String,
-                location: json['location'] as String,
-                placeName: json['placeName'] as String,
+              (json) => MyLocation.fromJson(
+                json.data() as Map<String, dynamic>? ?? {},
               ),
             )
             .toList();

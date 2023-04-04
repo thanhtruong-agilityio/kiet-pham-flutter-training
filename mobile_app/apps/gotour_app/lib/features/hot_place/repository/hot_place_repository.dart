@@ -12,15 +12,7 @@ class HotPlaceRepository {
     required String tourId,
   }) async {
     final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
-    return HotPlace(
-      id: data['id'] as String,
-      imageUrl: data['imageUrl'] as String,
-      location: data['location'] as String,
-      placeName: data['placeName'] as String,
-      price: data['price'] as String,
-      tagList: List<String>.from(data['tagList'] as List),
-      imageList: List<String>.from(data['imageList'] as List),
-    );
+    return HotPlace.fromJson(data.data() ?? {});
   }
 
   Future<bool> tourHasBeenMarked({

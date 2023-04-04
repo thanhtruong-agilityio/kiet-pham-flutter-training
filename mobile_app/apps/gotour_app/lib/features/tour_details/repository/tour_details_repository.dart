@@ -13,16 +13,7 @@ class TourDetailsRepository {
   }) async {
     final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
 
-    return TourDetails(
-      id: data['id'] as String,
-      imageUrl: data['imageUrl'] as String,
-      location: data['location'] as String,
-      placeName: data['placeName'] as String,
-      price: data['price'] as String,
-      descriptions: data['descriptions'] as String,
-      weather: data['weather'] as String,
-      imageList: List<String>.from(data['imageList'] as List),
-    );
+    return TourDetails.fromJson(data.data() ?? {});
   }
 
   Future<bool> tourHasBeenMarked({
