@@ -9,12 +9,12 @@ import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/my_location.dart';
 import 'package:gotour_app/features/home/repository/home_repository.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
+import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/title.dart';
 
@@ -94,10 +94,9 @@ class _GTHomeView extends StatelessWidget {
           child: BlocListener<HomeBloc, HomeState>(
             listener: (context, state) {
               if (state is UnBookmarkSuccessState) {
-                GTSnackBar.show(
+                GTSnackBar.success(
                   context,
                   message: S.of(context).unBookMarkSuccessMessage,
-                  backgroundColor: colorScheme.secondaryContainer,
                 );
               }
             },

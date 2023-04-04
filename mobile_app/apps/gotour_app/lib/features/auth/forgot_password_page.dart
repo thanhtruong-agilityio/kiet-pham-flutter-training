@@ -6,7 +6,6 @@ import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
@@ -16,25 +15,15 @@ class GTForgotPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SubmitForgotPassword) {
           // Navigating to the dashboard screen if the user is authenticated
-          GTSnackBar.show(
+          GTSnackBar.success(
             context,
             message: S.of(context).forgotPasswordMessage,
-            backgroundColor: colorScheme.secondaryContainer,
           );
           context.go('/login-page');
-        }
-        if (state is AuthError) {
-          // Showing the error message if the user has entered invalid credentials
-          GTSnackBar.show(
-            context,
-            message: state.error,
-            backgroundColor: colorScheme.error,
-          );
         }
       },
       child: const _GTForgotPasswordPage(),

@@ -8,10 +8,10 @@ import 'package:gotour_app/features/tour_details/place_info.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 import 'package:gotour_app/features/tour_details/service.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
+import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTTourDetails extends StatelessWidget {
@@ -59,16 +59,14 @@ class GTTourDetails extends StatelessWidget {
               listener: (context, state) {
                 if (state is ChangeBookmarkSuccessState) {
                   if (state.isBookmark == true) {
-                    GTSnackBar.show(
+                    GTSnackBar.success(
                       context,
                       message: S.of(context).bookMarkSuccessMessage,
-                      backgroundColor: colorScheme.secondaryContainer,
                     );
                   } else {
-                    GTSnackBar.show(
+                    GTSnackBar.success(
                       context,
                       message: S.of(context).unBookMarkSuccessMessage,
-                      backgroundColor: colorScheme.secondaryContainer,
                     );
                   }
                 }

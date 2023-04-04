@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
+import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 
 class CopyButton extends StatelessWidget {
@@ -14,10 +14,9 @@ class CopyButton extends StatelessWidget {
       text: 'Copy',
       onPressed: () {
         Clipboard.setData(ClipboardData(text: text));
-        GTSnackBar.show(
+        GTSnackBar.success(
           context,
           message: 'Copied to clipboard',
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         );
       },
     );

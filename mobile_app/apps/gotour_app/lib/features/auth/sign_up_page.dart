@@ -6,7 +6,6 @@ import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
-import 'package:gotour_ui/core/shared/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/gender.dart';
@@ -37,14 +36,6 @@ class GTSignUpPage extends StatelessWidget {
               title: S.of(context).verifyEmailMessage,
               content: S.of(context).checkyourEmailMessage,
             ),
-          );
-        }
-        if (state is AuthError) {
-          // Showing the error message if the user has entered invalid credentials
-          GTSnackBar.show(
-            context,
-            message: state.error,
-            backgroundColor: Theme.of(context).colorScheme.error,
           );
         }
       },
