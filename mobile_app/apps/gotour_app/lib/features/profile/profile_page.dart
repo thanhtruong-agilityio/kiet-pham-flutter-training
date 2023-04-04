@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/profile/banking_and_payment_card.dart';
 import 'package:gotour_app/features/profile/preference_card.dart';

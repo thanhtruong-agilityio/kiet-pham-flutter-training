@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/text.dart';

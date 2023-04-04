@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/best_place/model/best_place.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';

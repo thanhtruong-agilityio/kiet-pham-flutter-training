@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/hot_place/bloc/hot_place_bloc.dart';
 import 'package:gotour_app/features/hot_place/hot_place.dart';
 import 'package:gotour_app/features/hot_place/place_info.dart';
