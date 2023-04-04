@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -61,7 +61,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GTIconButton(
-                      icon: GTAssets().left,
+                      icon: GTAssets().icPrev,
                       iconColor: colorScheme.background,
                       onPressed: () {
                         _pageController.previousPage(
@@ -85,7 +85,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                       ),
                     ),
                     GTIconButton(
-                      icon: GTAssets().right,
+                      icon: GTAssets().icNext,
                       iconColor: colorScheme.background,
                       onPressed: () => _pageIndex == dataBoards.length - 1
                           ? context.go('/login-page')
@@ -140,17 +140,17 @@ class Onboard {
 
 final List<Onboard> dataBoards = <Onboard>[
   Onboard(
-    image: GTAssets().onboardingfirst,
+    image: GTAssets().imgOnboardingfirst,
     title: 'Explore',
     description: 'Explore your favourite destination around the world.',
   ),
   Onboard(
-    image: GTAssets().onboardingsecond,
+    image: GTAssets().imgOnboardingsecond,
     title: 'Easy Peasy',
     description: 'Make your travel experince very easy & peasy..',
   ),
   Onboard(
-    image: GTAssets().onboardinglast,
+    image: GTAssets().imgOnboardinglast,
     title: 'Enjoy Tour',
     description: 'Enjoy your favourite destination with your love one.',
   ),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -157,7 +157,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
     return GestureDetector(
       onTap: widget.onBookMark,
       child: SvgPicture.asset(
-        GTAssets().bookMark,
+        GTAssets().icBookMark,
         color: Theme.of(context).colorScheme.primary,
       ),
     );

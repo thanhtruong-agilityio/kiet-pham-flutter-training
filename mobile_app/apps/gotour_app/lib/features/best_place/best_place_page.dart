@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/best_place/model/best_place.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
@@ -28,13 +28,13 @@ class GTBestPlacePage extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: GTAssets().back,
+          icon: GTAssets().icArrowBack,
           btnColor: colorScheme.background,
           onPressed: () => context.pop(),
         ),
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().notification,
+            icon: GTAssets().icNotification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
@@ -179,7 +179,7 @@ class _CardBestPlace extends StatelessWidget {
                                   Row(
                                     children: [
                                       SvgPicture.asset(
-                                        GTAssets().location,
+                                        GTAssets().icLocation,
                                         color: colorScheme.primary,
                                         width: device.scale(10),
                                         height: device.scale(12),

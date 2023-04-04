@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';

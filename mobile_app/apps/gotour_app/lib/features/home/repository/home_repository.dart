@@ -17,13 +17,7 @@ class HomeRepository {
         .get();
     return (data.docs)
         .map(
-          (tour) => BestPlace(
-            id: tour['id'] as String,
-            imageUrl: tour['imageUrl'] as String,
-            location: tour['location'] as String,
-            placeName: tour['placeName'] as String,
-            price: tour['price'] as String,
-          ),
+          (tour) => BestPlace.fromJson(tour.data()),
         )
         .toList();
   }

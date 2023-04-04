@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/place_info.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 import 'package:gotour_app/features/tour_details/service.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
@@ -30,7 +30,7 @@ class GTTourDetails extends StatelessWidget {
         leading: Padding(
           padding: EdgeInsets.only(right: device.scale(10)),
           child: GTIconButton(
-            icon: GTAssets().back,
+            icon: GTAssets().icArrowBack,
             btnColor: colorScheme.background,
             onPressed: () =>
                 context.pushReplacementNamed(RouterNamedLocation.home),
@@ -38,12 +38,12 @@ class GTTourDetails extends StatelessWidget {
         ),
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().notification,
+            icon: GTAssets().icNotification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
           GTIconButton(
-            icon: GTAssets().more,
+            icon: GTAssets().icMore,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),

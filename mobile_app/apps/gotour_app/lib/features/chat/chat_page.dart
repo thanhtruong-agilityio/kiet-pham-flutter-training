@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
@@ -27,7 +26,7 @@ class GTChatPage extends StatelessWidget {
               width: 48,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(GTAssets().author),
+                  image: AssetImage(GTAssets().imgAvatarDefault),
                 ),
               ),
             ),
@@ -36,7 +35,7 @@ class GTChatPage extends StatelessWidget {
         title: GTText.titleLarge(context, text: 'Chat'),
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().notification,
+            icon: GTAssets().icNotification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),

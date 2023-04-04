@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class BankingAndPaymentCard extends StatelessWidget {
@@ -32,7 +32,7 @@ class BankingAndPaymentCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().payment,
+                  GTAssets().icPayment,
                   height: 20,
                   width: 20,
                 ),
@@ -44,7 +44,7 @@ class BankingAndPaymentCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets().icArrowNext,
                   height: 11,
                 )
               ],
@@ -60,7 +60,7 @@ class BankingAndPaymentCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().privacy,
+                  GTAssets().icPrivacy,
                   height: 20,
                   width: 20,
                 ),
@@ -72,7 +72,7 @@ class BankingAndPaymentCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets().icArrowNext,
                   height: 11,
                 )
               ],
@@ -88,7 +88,7 @@ class BankingAndPaymentCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().terms,
+                  GTAssets().icTerms,
                   height: 20,
                   width: 20,
                 ),
@@ -100,7 +100,7 @@ class BankingAndPaymentCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets().icArrowNext,
                   height: 11,
                 )
               ],

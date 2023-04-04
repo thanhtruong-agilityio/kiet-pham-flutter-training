@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_app/core/assets/assets.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
@@ -68,7 +68,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                           InkWell(
                             onTap: widget.onBookmark,
                             child: SvgPicture.asset(
-                              GTAssets().bookMark,
+                              GTAssets().icBookMark,
                               color: widget.isBookmark
                                   ? colorScheme.primary
                                   : colorScheme.background,

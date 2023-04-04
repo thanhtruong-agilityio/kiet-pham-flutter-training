@@ -30,8 +30,6 @@ void main() async {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  static const String title = 'Kiet Anh';
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -76,34 +74,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     Future.delayed(const Duration(seconds: 2)).then(
-//       (value) => {
-//         FlutterNativeSplash.remove(),
-//       },
-//     );
-//   }
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) => MaterialApp.router(
-//         locale: const Locale('en', 'US'),
-//         localizationsDelegates: const [
-//           S.delegate,
-//           GlobalMaterialLocalizations.delegate,
-//           GlobalWidgetsLocalizations.delegate,
-//           GlobalCupertinoLocalizations.delegate,
-//         ],
-//         supportedLocales: S.delegate.supportedLocales,
-//         debugShowCheckedModeBanner: false,
-//         routerDelegate: _router.routerDelegate,
-//         routeInformationParser: _router.routeInformationParser,
-//         theme: GTTheme.lightTheme,
-//       );
-// }
