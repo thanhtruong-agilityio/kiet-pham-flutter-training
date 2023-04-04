@@ -38,16 +38,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(Loading());
+
+      // firebase check email and password
       await authRepository.signIn(email: event.email, password: event.password);
+
+      // firebase  check email is verified?
       final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
+
+      // if email is verified, change state to authenticated
+      // and if email isn't verified change state UnAuthenticated State
       if (isVerifyEmail == true) {
+        //emit authenticated state
         emit(Authenticated());
       } else {
+        // emit unauthenticated state
         emit(UnVerifyEmail());
       }
     } on Exception catch (e) {
+      // emit error case
       emit(AuthError(e.toString()));
       emit(UnAuthenticated());
     }
@@ -57,22 +68,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(Loading());
+
+      // request to sign up
       await authRepository.signUp(
         email: event.email,
         password: event.password,
         gender: event.gender,
       );
-      final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
-      if (isVerifyEmail == true) {
-        emit(Authenticated());
-      } else {
-        emit(UnVerifyEmail());
-      }
+
+      // emit sign up submited state
+      emit(SignUpSubmitedState());
     } on Exception catch (e) {
+      // emit error case
       emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
     }
   }
 
@@ -80,11 +91,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     GoogleSignInRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(Loading());
+
+      // request to sign in with Google
       await authRepository.signInWithGoogle();
+
+      //emit authentication state
       emit(Authenticated());
     } on Exception catch (e) {
+      // emit error case
       emit(AuthError(e.toString()));
       emit(UnAuthenticated());
     }
@@ -94,11 +111,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignOutRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(Loading());
+
+      // request signout
       await authRepository.signOut();
+
+      // emit unauthenticated state
       emit(UnAuthenticated());
     } on Exception catch (e) {
+      //emit error case
       emit(AuthError(e.toString()));
       emit(Authenticated());
     }
@@ -108,11 +131,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     ForgotPasswordRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(Loading());
+
+      // request forgot password
       await authRepository.forgotPassword(email: event.email);
-      emit(SubmitForgotPassword());
+
+      // emit forgot password submited state
+      emit(ForgotPasswordSubmitedState());
     } on Exception catch (e) {
+      // emit erorr case
       emit(AuthError(e.toString()));
       emit(ErrorForgotPassword());
     }

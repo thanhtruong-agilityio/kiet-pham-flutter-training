@@ -17,19 +17,20 @@ class SignInRequested extends AuthEvent {
 // When the user signing up with email and password this event is called
 // And the [AuthRepository] is called to sign up the user
 class SignUpRequested extends AuthEvent {
-  SignUpRequested(
-    this.email,
-    this.password,
-    this.passwordConfirm,
-    this.gender,
-  );
+  SignUpRequested({
+    required this.email,
+    required this.password,
+    required this.confirmPassword,
+    required this.gender,
+  });
 
   final String email;
   final String password;
-  final String passwordConfirm;
+  final String confirmPassword;
   final int gender;
 }
 
+// When the user request forgot password this event is called
 class ForgotPasswordRequested extends AuthEvent {
   ForgotPasswordRequested(this.email);
 

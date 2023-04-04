@@ -75,7 +75,9 @@ class AuthRepository {
         idToken: googleAuth?.idToken,
       );
 
-      await _firebaseAuth.signInWithCredential(credential);
+      final authResult = await _firebaseAuth.signInWithCredential(credential);
+      final user = authResult.user != null;
+      print(user);
     } on FirebaseAuthException catch (e) {
       throw Exception(e);
     } on Exception catch (e) {

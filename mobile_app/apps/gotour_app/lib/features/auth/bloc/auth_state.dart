@@ -14,7 +14,8 @@ class Authenticated extends AuthState {
   List<Object?> get props => [];
 }
 
-// This is the initial state of the bloc. When the user is not authenticated the state is changed to Unauthenticated.
+// This is the initial state of the bloc.
+// When the user is not authenticated the state is changed to Unauthenticated.
 class UnAuthenticated extends AuthState {
   @override
   List<Object?> get props => [];
@@ -34,7 +35,12 @@ class ErrorForgotPassword extends AuthState {
   List<Object?> get props => [];
 }
 
-class SubmitForgotPassword extends AuthState {
+class ForgotPasswordSubmitedState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SignUpSubmitedState extends AuthState {
   @override
   List<Object?> get props => [];
 }

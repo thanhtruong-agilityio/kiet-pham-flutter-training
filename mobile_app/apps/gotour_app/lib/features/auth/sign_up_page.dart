@@ -56,7 +56,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _passwordConfirmController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool agreeTerms = false;
   int gender = 0;
 
@@ -64,7 +64,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _passwordConfirmController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -132,7 +132,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       },
                     ),
                     GTTextField(
-                      controller: _passwordConfirmController,
+                      controller: _confirmPasswordController,
                       hintText: S.of(context).signUpPageConfirmPassword,
                       title: S.of(context).signUpPageConfirmPassword,
                       obscureText: true,
@@ -183,10 +183,11 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                               if (_formKey.currentState!.validate()) {
                                 BlocProvider.of<AuthBloc>(context).add(
                                   SignUpRequested(
-                                    _emailController.text,
-                                    _passwordController.text,
-                                    _passwordConfirmController.text,
-                                    gender,
+                                    email: _emailController.text,
+                                    password: _passwordController.text,
+                                    confirmPassword:
+                                        _confirmPasswordController.text,
+                                    gender: gender,
                                   ),
                                 );
                               }
