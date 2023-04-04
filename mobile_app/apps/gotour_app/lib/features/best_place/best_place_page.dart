@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/best_place/model/best_place.dart';
@@ -82,7 +83,7 @@ class GTBestPlacePage extends StatelessWidget {
                               imageUrl: data[index].imageUrl,
                               tag: data[index].tagList,
                               onPressed: () => context.pushNamed(
-                                'hot-place',
+                                RouterNamedLocation.hotPlace,
                                 params: {'id': data[index].id},
                               ),
                             );

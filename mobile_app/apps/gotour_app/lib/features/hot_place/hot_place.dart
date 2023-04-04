@@ -57,9 +57,7 @@ class BuildGridview extends StatelessWidget {
       ),
       itemCount: dataImages.length,
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          // context.goNamed('tour-details');
-        },
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

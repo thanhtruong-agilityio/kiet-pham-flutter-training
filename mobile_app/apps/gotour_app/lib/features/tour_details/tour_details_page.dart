@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
 import 'package:gotour_app/features/tour_details/place_info.dart';
@@ -31,7 +32,8 @@ class GTTourDetails extends StatelessWidget {
           child: GTIconButton(
             icon: GTAssets().back,
             btnColor: colorScheme.background,
-            onPressed: () => context.pushReplacementNamed('home'),
+            onPressed: () =>
+                context.pushReplacementNamed(RouterNamedLocation.home),
           ),
         ),
         actionButtons: [

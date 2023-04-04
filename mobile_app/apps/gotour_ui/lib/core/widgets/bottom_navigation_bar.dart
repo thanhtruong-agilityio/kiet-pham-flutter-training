@@ -14,7 +14,7 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
 
   List<String> shellRoutes = [
     '/',
-    '/notifications',
+    '/notification',
     '/chat',
     '/location',
     '/profile',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/models/best_place.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
@@ -33,7 +34,7 @@ class GTBestPlace extends StatelessWidget {
             location: data[index].location,
             price: data[index].price,
             pressCard: () => context.pushNamed(
-              'hot-place',
+              RouterNamedLocation.hotPlace,
               params: {'id': data[index].id},
             ),
             pressBtnPrice: () {},

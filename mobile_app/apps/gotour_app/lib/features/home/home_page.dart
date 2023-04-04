@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/home/best_place.dart';
@@ -166,7 +167,8 @@ class _GTHomeView extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: device.scale(20)),
                       child: GTTitle(
                         title: S.of(context).mainPageBestPlace,
-                        onPressed: () => context.pushNamed('best-place'),
+                        onPressed: () =>
+                            context.pushNamed(RouterNamedLocation.bestPlace),
                       ),
                     ),
                     SizedBox(height: device.scale(14)),

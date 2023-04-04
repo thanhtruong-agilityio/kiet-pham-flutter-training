@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
@@ -34,7 +35,7 @@ class GTMyLocation extends StatelessWidget {
             margin: const EdgeInsets.only(right: 20),
             child: GTCardMyLocation(
               press: () => context.pushNamed(
-                'tour-details',
+                RouterNamedLocation.tourDetails,
                 params: {'id': data[index].id},
               ),
               image: data[index].imageUrl,

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/shared/dashboard.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
@@ -23,35 +24,20 @@ final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   redirect: (context, state) {
-    final mainList = [
-      state.namedLocation('home'),
-      state.namedLocation('best-place'),
-      state.namedLocation('chat'),
-      state.namedLocation('notifications'),
-      state.namedLocation('location'),
-      state.namedLocation('profile'),
-    ];
     final unAuthenList = [
-      state.namedLocation('login-page'),
-      state.namedLocation('sign-up-page'),
-      state.namedLocation('forgot-password-page'),
+      state.namedLocation(RouterNamedLocation.login),
+      state.namedLocation(RouterNamedLocation.signUp),
+      state.namedLocation(RouterNamedLocation.forgotPassword),
     ];
     final auth = FirebaseAuth.instance;
     final isLoggedIn =
         auth.currentUser != null && auth.currentUser!.emailVerified;
     final googleUser = GoogleSignIn().currentUser != null;
-    // final isLoggedIn = authFirebase || googleUser;
-    if (isLoggedIn && mainList.contains(state.subloc)) {
-      return null;
-    }
-    if (googleUser && mainList.contains(state.subloc)) {
-      return null;
-    }
     if (unAuthenList.contains(state.subloc)) {
       return null;
     }
     if (!isLoggedIn) {
-      return state.namedLocation('login-page');
+      return state.namedLocation(RouterNamedLocation.login);
       // return null;
     }
     return null;
@@ -61,7 +47,7 @@ final GoRouter router = GoRouter(
       navigatorKey: _shellNavigatorKey,
       routes: [
         GoRoute(
-          name: 'home',
+          name: RouterNamedLocation.home,
           path: '/',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTHomePage(),
@@ -77,7 +63,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'tour-details',
+          name: RouterNamedLocation.tourDetails,
           path: '/tour-details/:id',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: GTTourDetails(
@@ -95,7 +81,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'best-place',
+          name: RouterNamedLocation.bestPlace,
           path: '/best-place',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTBestPlacePage(),
@@ -111,7 +97,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'hot-place',
+          name: RouterNamedLocation.hotPlace,
           path: '/hot-place/:id',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: GTHotPlace(
@@ -129,7 +115,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'chat',
+          name: RouterNamedLocation.chat,
           path: '/chat',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTChatPage(),
@@ -145,8 +131,8 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'notifications',
-          path: '/notifications',
+          name: RouterNamedLocation.notification,
+          path: '/notification',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTNotificationPage(),
             transitionDuration: const Duration(milliseconds: 700),
@@ -161,7 +147,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'location',
+          name: RouterNamedLocation.location,
           path: '/location',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTLocationPage(),
@@ -177,7 +163,7 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          name: 'profile',
+          name: RouterNamedLocation.profile,
           path: '/profile',
           pageBuilder: (context, state) => CustomTransitionPage(
             child: const GTProfilePage(),
@@ -196,7 +182,7 @@ final GoRouter router = GoRouter(
       builder: (context, state, child) => DashBoardScreen(body: child),
     ),
     GoRoute(
-      name: 'onaboarding',
+      name: RouterNamedLocation.onboarding,
       path: '/onboarding',
       pageBuilder: (context, state) => CustomTransitionPage(
         child: const GTOnboardingScreen(),
@@ -210,7 +196,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      name: 'login-page',
+      name: RouterNamedLocation.login,
       path: '/login-page',
       pageBuilder: (context, state) => CustomTransitionPage(
         child: const GTLoginPage(),
@@ -224,7 +210,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      name: 'forgot-password-page',
+      name: RouterNamedLocation.forgotPassword,
       path: '/forgot-password-page',
       pageBuilder: (context, state) => CustomTransitionPage(
         child: const GTForgotPasswordPage(),
@@ -238,7 +224,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      name: 'sign-up-page',
+      name: RouterNamedLocation.signUp,
       path: '/sign-up-page',
       pageBuilder: (context, state) => CustomTransitionPage(
         child: const GTSignUpPage(),
