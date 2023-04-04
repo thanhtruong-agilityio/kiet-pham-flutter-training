@@ -8,6 +8,8 @@ import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
+import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 
@@ -18,19 +20,26 @@ class GTLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        // if state is Loading then show indicator
+        if (state is Loading) {
+          gtIndicatorOverlay.show(context, 'loading...');
+        } else {
+          gtIndicatorOverlay.hide(context);
+        }
         if (state is Authenticated) {
           // Navigating to the dashboard screen if the user is authenticated
           context.go('/');
         }
         if (state is UnVerifyEmail) {
+          GTIndicatorOverlay().hide(context);
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
               onCancel: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               onOk: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               title: S.of(context).verifyEmailMessage,
               content: S.of(context).checkyourEmailMessage,
@@ -46,30 +55,7 @@ class GTLoginPage extends StatelessWidget {
           );
         }
       },
-      child: const _GTLoginPage(),
-    );
-  }
-}
-
-class _GTLoginPage extends StatelessWidget {
-  const _GTLoginPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        if (state is Loading) {
-          // Showing the loading indicator while the user is signing in
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          );
-        }
-        return const _GTLoginView();
-      },
+      child: const _GTLoginView(),
     );
   }
 }

@@ -7,6 +7,8 @@ import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
+import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 
@@ -17,7 +19,13 @@ class GTForgotPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is SubmitForgotPassword) {
+        // if state is Loading then show indicator
+        if (state is Loading) {
+          gtIndicatorOverlay.show(context, 'loading');
+        } else {
+          gtIndicatorOverlay.hide(context);
+        }
+        if (state is ForgotPasswordSubmitedState) {
           // Navigating to the dashboard screen if the user is authenticated
           GTSnackBar.success(
             context,
@@ -26,30 +34,7 @@ class GTForgotPasswordPage extends StatelessWidget {
           context.go('/login-page');
         }
       },
-      child: const _GTForgotPasswordPage(),
-    );
-  }
-}
-
-class _GTForgotPasswordPage extends StatelessWidget {
-  const _GTForgotPasswordPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        if (state is Loading) {
-          // Showing the loading indicator while the user is signing in
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          );
-        }
-        return const _GTForgotPasswordView();
-      },
+      child: const _GTForgotPasswordView(),
     );
   }
 }

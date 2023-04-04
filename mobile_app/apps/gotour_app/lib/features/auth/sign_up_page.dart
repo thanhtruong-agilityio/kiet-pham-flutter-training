@@ -9,6 +9,7 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/gender.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 
@@ -19,16 +20,16 @@ class GTSignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is Authenticated) {
-          // Navigating to the dashboard screen if the user is authenticated
-          context.go('/home-page');
+        // if state is Loading then show indicator
+        if (state is Loading) {
+          gtIndicatorOverlay.show(context, 'loading...');
         }
-        if (state is UnVerifyEmail) {
+        if (state is SignUpSubmitedState) {
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
               onCancel: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               onOk: () {
                 context.go('/login-page');
@@ -39,30 +40,7 @@ class GTSignUpPage extends StatelessWidget {
           );
         }
       },
-      child: const _GTLoginPage(),
-    );
-  }
-}
-
-class _GTLoginPage extends StatelessWidget {
-  const _GTLoginPage();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        if (state is Loading) {
-          // Showing the loading indicator while the user is signing in
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          );
-        }
-        return const _GTSignUpView();
-      },
+      child: const _GTSignUpView(),
     );
   }
 }
