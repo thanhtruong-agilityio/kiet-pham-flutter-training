@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/dashboard.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
 import 'package:gotour_app/features/auth/sign_up_page.dart';
@@ -16,6 +15,7 @@ import 'package:gotour_app/features/misc/onboarding_page.dart';
 import 'package:gotour_app/features/notification/notification_page.dart';
 import 'package:gotour_app/features/profile/profile_page.dart';
 import 'package:gotour_app/features/tour_details/tour_details_page.dart';
+import 'package:gotour_ui/core/widgets/dashboard.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
