@@ -13,15 +13,15 @@ class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
   const HomeLoadedState({
-    required this.bestPlaceList,
-    required this.myLocationList,
+    required this.myLocations,
+    required this.bestPlaces,
   });
 
-  final List<BestPlace> bestPlaceList;
-  final List<MyLocation> myLocationList;
+  final List<BestPlace> bestPlaces;
+  final List<MyLocation> myLocations;
 
   @override
-  List<Object> get props => [bestPlaceList, myLocationList];
+  List<Object> get props => [bestPlaces, myLocations];
 }
 
 class HomeErrorState extends HomeState {
@@ -37,11 +37,13 @@ class HomeErrorState extends HomeState {
 
 class UnBookmarkSuccessState extends HomeState {
   const UnBookmarkSuccessState({
-    required this.listMyLocation,
+    required this.myLocations,
   });
-  final List<MyLocation> listMyLocation;
+
+  final List<MyLocation> myLocations;
+
   @override
-  List<Object> get props => [listMyLocation];
+  List<Object> get props => [myLocations];
 }
 
 class UnBookmarkErrorState extends HomeState {

@@ -24,17 +24,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final userId = FirebaseAuth.instance.currentUser!.uid;
       await mainRepository.unBookmark(userId: userId, tourId: event.tourId);
 
-      final listBeforDelete = state as HomeLoadedState;
-      listBeforDelete.myLocationList.removeAt(event.index);
+      final beforDelete = state as HomeLoadedState;
+      beforDelete.myLocations.removeAt(event.index);
       emit(
         UnBookmarkSuccessState(
-          listMyLocation: listBeforDelete.myLocationList,
+          myLocations: beforDelete.myLocations,
         ),
       );
       emit(
         HomeLoadedState(
-          bestPlaceList: listBeforDelete.bestPlaceList,
-          myLocationList: listBeforDelete.myLocationList,
+          bestPlaces: beforDelete.bestPlaces,
+          myLocations: beforDelete.myLocations,
         ),
       );
     } on Exception catch (e) {
@@ -54,14 +54,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
 
-      final myLocationList =
+      final myLocations =
           await mainRepository.getDataFromDocuments(documentIds: tourIdList);
 
-      final bestPlaceList = await mainRepository.fetchDataBestPlace();
+      final bestPlaces = await mainRepository.fetchDataBestPlace();
       emit(
         HomeLoadedState(
-          bestPlaceList: bestPlaceList,
-          myLocationList: myLocationList,
+          bestPlaces: bestPlaces,
+          myLocations: myLocations,
         ),
       );
     } on Exception catch (e) {

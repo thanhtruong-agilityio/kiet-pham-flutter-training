@@ -140,7 +140,7 @@ class _GTHomeView extends StatelessWidget {
                           return const GTMylocationShimmerList();
                         }
                         if (state is HomeLoadedState) {
-                          if (state.myLocationList.isEmpty) {
+                          if (state.myLocations.isEmpty) {
                             return SizedBox(
                               width: device.scale(375),
                               height: device.scale(150),
@@ -155,7 +155,7 @@ class _GTHomeView extends StatelessWidget {
                             );
                           }
                           return GTMyLocation(
-                            mylocatonList: state.myLocationList,
+                            mylocatonList: state.myLocations,
                           );
                         }
                         return GTText.bodyLarge(context, text: 'Failed');
@@ -182,7 +182,7 @@ class _GTHomeView extends StatelessWidget {
                         }
                         if (state is HomeLoadedState) {
                           return GTBestPlace(
-                            bestPlaceList: state.bestPlaceList,
+                            bestPlaceList: state.bestPlaces,
                           );
                         }
                         return const GTBestPlace(
