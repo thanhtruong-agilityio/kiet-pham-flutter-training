@@ -13,13 +13,17 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
 
 void main() async {
+  //show splash screen
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // initializes the Firebase SDK
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
+    // provides the ability to preview the application on various devices.
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => const MyApp(), // Wrap your app
@@ -39,6 +43,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
+    // remove splash screen after the 2-second delay,
     Future.delayed(
       const Duration(seconds: 2),
       FlutterNativeSplash.remove,

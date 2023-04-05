@@ -11,9 +11,11 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
 
 void main() async {
+  // show splash screen
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  WidgetsFlutterBinding.ensureInitialized();
+
+  // initializes the Firebase SDK
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -32,6 +34,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
+    // remove splash screen after the 2-second delay,
     Future.delayed(
       const Duration(seconds: 2),
       FlutterNativeSplash.remove,
