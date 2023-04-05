@@ -35,6 +35,8 @@ class HomeErrorState extends HomeState {
   List<Object> get props => [error];
 }
 
+class UnBookmarkLoadingState extends HomeState {}
+
 class UnBookmarkSuccessState extends HomeState {
   const UnBookmarkSuccessState({
     required this.myLocations,

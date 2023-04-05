@@ -26,4 +26,14 @@ class HotPlace {
   String price;
   List<String> tagList;
   List<String> imageList;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'imageUrl': imageUrl,
+        'location': location,
+        'placeName': placeName,
+        'price': price,
+        'tagList': tagList,
+        'imageList': imageList,
+      };
 }
