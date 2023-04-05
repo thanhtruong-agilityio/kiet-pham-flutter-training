@@ -58,7 +58,7 @@ class GTProfilePage extends StatelessWidget {
                           Navigator.of(context).pop();
                         },
                         onOk: () {
-                          context.read<AuthBloc>().add(SignOutRequested());
+                          context.read<AuthBloc>().add(SignOutRequestedEvent());
                         },
                         title: S.of(context).LogOut,
                         content: S.of(context).logOutMessage,
