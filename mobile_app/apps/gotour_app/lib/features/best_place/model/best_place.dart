@@ -24,11 +24,11 @@ class BestPlace {
   String price;
   List<String> tagList;
 
-  // Map<String, dynamic> toJson() => {
-  //       'id': id,
-  //       'price': price,
-  //       'imageUrl': imageUrl,
-  //       'location': location,
-  //       'placeName': placeName,
-  //     };
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'price': price,
+        'imageUrl': imageUrl,
+        'location': location,
+        'placeName': placeName,
+      };
 }
