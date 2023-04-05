@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class GTScaffold extends StatelessWidget {
   const GTScaffold({
     super.key,
-    required this.appBar,
+    this.appBar,
     required this.body,
   });
 
-  final PreferredSizeWidget appBar;
+  final PreferredSizeWidget? appBar;
   final Widget body;
 
   @override
