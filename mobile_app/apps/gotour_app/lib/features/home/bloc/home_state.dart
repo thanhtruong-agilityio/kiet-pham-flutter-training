@@ -7,10 +7,13 @@ abstract class HomeState extends Equatable {
   List<Object> get props => [];
 }
 
+// initial state
 class HomeInitialState extends HomeState {}
 
+// home loading state
 class HomeLoadingState extends HomeState {}
 
+// home loaded state
 class HomeLoadedState extends HomeState {
   const HomeLoadedState({
     required this.myLocations,
@@ -24,6 +27,7 @@ class HomeLoadedState extends HomeState {
   List<Object> get props => [bestPlaces, myLocations];
 }
 
+// Home error state
 class HomeErrorState extends HomeState {
   const HomeErrorState({
     required this.error,
@@ -35,6 +39,7 @@ class HomeErrorState extends HomeState {
   List<Object> get props => [error];
 }
 
+// unbookmark loading state
 class UnBookmarkLoadingState extends HomeState {}
 
 class UnBookmarkSuccessState extends HomeState {
@@ -48,6 +53,7 @@ class UnBookmarkSuccessState extends HomeState {
   List<Object> get props => [myLocations];
 }
 
+// Unbookmark error state
 class UnBookmarkErrorState extends HomeState {
   const UnBookmarkErrorState({required this.error});
 

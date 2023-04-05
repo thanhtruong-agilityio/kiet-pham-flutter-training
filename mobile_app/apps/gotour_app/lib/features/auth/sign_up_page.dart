@@ -91,6 +91,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(height: device.sh(30)),
+                    // Logo image
                     Image.asset(
                       GTAssets().imgLogo,
                       width: device.sw(256),
@@ -98,11 +99,13 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       fit: BoxFit.contain,
                     ),
                     SizedBox(height: device.sh(30)),
+                    // Title
                     GTText.displaySmall(
                       context,
                       text: S.of(context).signUpTitle,
                     ),
                     SizedBox(height: device.sh(70)),
+                    // Email TextField
                     GTTextField(
                       controller: _emailController,
                       hintText: 'email@example.com',
@@ -117,10 +120,12 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       },
                     ),
                     SizedBox(height: device.sh(5)),
+                    // Gender list tile
                     GTGender(
                       gender: gender,
                     ),
                     SizedBox(height: device.sh(20)),
+                    // Password TextField
                     GTTextField(
                       controller: _passwordController,
                       hintText: S.of(context).textFieldPassword,
@@ -134,6 +139,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                             : null;
                       },
                     ),
+                    // Confirm password Textfield
                     GTTextField(
                       controller: _confirmPasswordController,
                       hintText: S.of(context).signUpPageConfirmPassword,
@@ -150,7 +156,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                             : null;
                       },
                     ),
-                    // const SizedBox(height: 20),
+                    // Terms Checkbox
                     Row(
                       children: [
                         Padding(
@@ -175,6 +181,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       ],
                     ),
                     const SizedBox(height: 10),
+                    // Sign Up Button
                     BlocBuilder<AuthBloc, AuthState>(
                       builder: (context, state) {
                         return GTElevatedHighlightButton(
@@ -206,6 +213,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       },
                     ),
                     const SizedBox(height: 10),
+                    // Go back login page Button
                     GTTextHighlightButton(
                       text: S.of(context).sugnUpPageAllreadyHaveAnAccount,
                       onPressed: () => context.pop(),

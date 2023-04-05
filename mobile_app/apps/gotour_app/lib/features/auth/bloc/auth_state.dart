@@ -50,6 +50,7 @@ class AuthErrorState extends AuthState {
   List<Object?> get props => [error];
 }
 
+// If forgot password error, state is changed to ErrorForgotPassword
 class ErrorForgotPassword extends AuthState {
   ErrorForgotPassword({required this.error});
 
@@ -59,16 +60,19 @@ class ErrorForgotPassword extends AuthState {
   List<Object?> get props => [error];
 }
 
+// If forgot password error, state is changed to ForgotPasswordSubmited
 class ForgotPasswordSubmitedState extends AuthState {
   @override
   List<Object?> get props => [];
 }
 
+// If SignUp success, state is changed to SignUpSubmitedState
 class SignUpSubmitedState extends AuthState {
   @override
   List<Object?> get props => [];
 }
 
+// If email unverify, state is changed to UnVerifyEmailState
 class UnVerifyEmailState extends AuthState {
   @override
   List<Object?> get props => [];

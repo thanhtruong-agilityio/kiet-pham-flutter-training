@@ -9,6 +9,7 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
@@ -27,11 +28,11 @@ class GTLoginPage extends StatelessWidget {
           gtIndicatorOverlay.hide(context);
         }
         if (state is AuthenticatedState) {
-          // Navigating to the dashboard screen if the user is authenticated
+          // Navigating to the home screen if the user is authenticated
           context.go('/');
         }
+        // if state is UnVerifyEmailState, then show snackbar
         if (state is UnVerifyEmailState) {
-          GTIndicatorOverlay().hide(context);
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
@@ -46,8 +47,8 @@ class GTLoginPage extends StatelessWidget {
             ),
           );
         }
+        // Showing the error message if the user has entered invalid credentials
         if (state is AuthErrorState) {
-          // Showing the error message if the user has entered invalid credentials
           GTSnackBar.failure(
             context,
             message: state.error,
@@ -82,7 +83,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
-    return Scaffold(
+    return GTScaffold(
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -96,6 +97,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                 child: Column(
                   children: [
                     SizedBox(height: device.sh(100)),
+                    // logo image
                     Image.asset(
                       GTAssets().imgLogo,
                       width: device.sw(256),
@@ -103,11 +105,13 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       fit: BoxFit.contain,
                     ),
                     SizedBox(height: device.sh(72)),
+                    // Title
                     GTText.displaySmall(
                       context,
                       text: S.of(context).loginTitle,
                     ),
                     SizedBox(height: device.sh(20)),
+                    // Email Textfield
                     GTTextField(
                       controller: _emailController,
                       hintText: 'email@example.com',
@@ -121,6 +125,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                             : null;
                       },
                     ),
+                    // Password Textfield
                     GTTextField(
                       controller: _passwordController,
                       hintText: S.of(context).textFieldPassword,
@@ -134,11 +139,13 @@ class _GTLoginViewState extends State<_GTLoginView> {
                             : null;
                       },
                     ),
+                    // Forgot Password Button
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonForgotPassword,
                       onPressed: () => context.push('/forgot-password-page'),
                     ),
                     SizedBox(height: device.sh(10)),
+                    // Login Button
                     GTElevatedHighlightButton(
                       activateShadow: true,
                       text: S.of(context).loginPageTitle,
@@ -160,6 +167,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
                     SizedBox(height: device.sh(10)),
+                    // Login with google button
                     GTElevatedButton(
                       text: S.of(context).loginPageButtonLoginGG,
                       icon: GTAssets().icGoogle,
@@ -170,6 +178,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       },
                     ),
                     SizedBox(height: device.sh(10)),
+                    // go to Sign Up button
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonSignUpHere,
                       onPressed: () => context.push('/sign-up-page'),

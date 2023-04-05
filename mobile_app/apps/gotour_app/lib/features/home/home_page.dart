@@ -74,8 +74,8 @@ class _GTHomeView extends StatelessWidget {
                 );
               },
               child: Container(
-                height: 48,
-                width: 48,
+                height: device.scale(48),
+                width: device.scale(48),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(GTAssets().imgAvatarDefault),
@@ -94,6 +94,7 @@ class _GTHomeView extends StatelessWidget {
           ),
           child: BlocListener<HomeBloc, HomeState>(
             listener: (context, state) {
+              // if state is UnBookmarkSuccessState, then show snack bar
               if (state is UnBookmarkSuccessState) {
                 GTSnackBar.success(
                   context,
@@ -114,6 +115,7 @@ class _GTHomeView extends StatelessWidget {
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: device.scale(20)),
+                      // title home page
                       child: GTText.titleLarge(
                         context,
                         text: S.of(context).mainPageTitle,
@@ -123,6 +125,7 @@ class _GTHomeView extends StatelessWidget {
                     // Search Box
                     const GTSearch(),
                     SizedBox(height: device.scale(30)),
+                    // title my location
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: GTText.titleMedium(

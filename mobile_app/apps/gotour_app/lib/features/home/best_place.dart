@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/home/models/best_place.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
@@ -17,11 +17,12 @@ class GTBestPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = bestPlaceList;
-
     final device = GTReponsive.of(context);
+
     return SizedBox(
       height: device.scale(180),
       width: device.scale(375),
+      // best place list
       child: ListView.builder(
         padding: EdgeInsets.only(left: device.scale(20)),
         scrollDirection: Axis.horizontal,
@@ -73,6 +74,7 @@ class GTCardBestPlace extends StatelessWidget {
         width: device.scale(295),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
+          // best place image
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(image),
@@ -93,6 +95,7 @@ class GTCardBestPlace extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // location
                       GTLocation(
                         placeName: placeName,
                         location: location,
@@ -103,6 +106,7 @@ class GTCardBestPlace extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
+                  // price
                   SizedBox(
                     height: device.scale(25),
                     child: GTElevatedHighlightButton(

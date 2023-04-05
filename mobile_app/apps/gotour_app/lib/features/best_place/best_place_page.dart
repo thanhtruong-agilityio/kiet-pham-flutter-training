@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/best_place/model/best_place.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
-import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
@@ -72,6 +71,7 @@ class GTBestPlacePage extends StatelessWidget {
                       SizedBox(height: device.scale(44)),
                       const GTSearch(),
                       SizedBox(height: device.scale(20)),
+                      // best place list
                       Expanded(
                         child: ListView.builder(
                           itemCount: data.length,
@@ -142,13 +142,18 @@ class _CardBestPlace extends StatelessWidget {
             onTap: onPressed,
             child: Row(
               children: [
+                SizedBox(width: device.scale(15)),
+                // image
                 Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: device.scale(15)),
-                    child: GTImage(
-                      images: GTAssets().kyoto,
-                      height: device.scale(92),
-                      width: device.scale(70),
+                  child: Container(
+                    height: device.scale(92),
+                    width: device.scale(70),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(imageUrl),
+                      ),
                     ),
                   ),
                 ),
@@ -169,6 +174,7 @@ class _CardBestPlace extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  // place name
                                   GTText.titleSmall(
                                     context,
                                     text: placeName,
@@ -176,6 +182,7 @@ class _CardBestPlace extends StatelessWidget {
                                   SizedBox(
                                     height: device.scale(6),
                                   ),
+                                  // icon
                                   Row(
                                     children: [
                                       SvgPicture.asset(
@@ -188,6 +195,7 @@ class _CardBestPlace extends StatelessWidget {
                                         padding: EdgeInsets.only(
                                           left: device.scale(9),
                                         ),
+                                        // location
                                         child: GTText.labelMedium(
                                           context,
                                           text: location,
@@ -199,6 +207,7 @@ class _CardBestPlace extends StatelessWidget {
                                         padding: EdgeInsets.only(
                                           right: device.scale(19),
                                         ),
+                                        // price
                                         child: SizedBox(
                                           height: 25,
                                           child: GTElevatedHighlightButton(
@@ -214,12 +223,14 @@ class _CardBestPlace extends StatelessWidget {
                               SizedBox(
                                 height: device.scale(10),
                               ),
+                              // tag list
                               Row(
                                 children: List.generate(
                                   tag.length,
                                   (index) => Container(
                                     margin: EdgeInsets.only(
-                                        right: device.scale(12)),
+                                      right: device.scale(12),
+                                    ),
                                     child: GTTag(text: tag[index]),
                                   ),
                                 ),
