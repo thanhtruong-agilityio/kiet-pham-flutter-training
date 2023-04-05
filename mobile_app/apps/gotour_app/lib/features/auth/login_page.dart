@@ -23,7 +23,7 @@ class GTLoginPage extends StatelessWidget {
       listener: (context, state) {
         // if state is Loading then show indicator
         if (state is LoginLoadingState || state is GoogleSignInRequestedEvent) {
-          gtIndicatorOverlay.show(context, 'loading...');
+          gtIndicatorOverlay.show(context, S.of(context).loading);
         } else {
           gtIndicatorOverlay.hide(context);
         }

@@ -24,7 +24,7 @@ class GTSignUpPage extends StatelessWidget {
       listener: (context, state) {
         // if state is Loading then show indicator
         if (state is SignUpLoadingState) {
-          gtIndicatorOverlay.show(context, 'loading...');
+          gtIndicatorOverlay.show(context, S.of(context).loading);
         }
         // if state is SignUpSubmit them show dialog
         if (state is SignUpSubmitedState) {
