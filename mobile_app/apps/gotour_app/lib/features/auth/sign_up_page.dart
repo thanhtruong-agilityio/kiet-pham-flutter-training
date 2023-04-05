@@ -8,8 +8,10 @@ import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/checkbox.dart';
 import 'package:gotour_ui/core/widgets/gender.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
 
@@ -24,6 +26,7 @@ class GTSignUpPage extends StatelessWidget {
         if (state is SignUpLoadingState) {
           gtIndicatorOverlay.show(context, 'loading...');
         }
+        // if state is SignUpSubmit them show dialog
         if (state is SignUpSubmitedState) {
           showDialog<String>(
             context: context,
@@ -73,7 +76,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
     final device = GTReponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Scaffold(
+    return GTScaffold(
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -218,33 +221,3 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
     );
   }
 }
-
-
-// class GTTerms extends StatefulWidget {
-//   const GTTerms({
-//     super.key,
-//     required this.onChanged,
-//   });
-
-//   final Function(bool) onChanged;
-
-//   @override
-//   State<GTTerms> createState() => _GTTermsState();
-// }
-
-// class _GTTermsState extends State<GTTerms> {
-//   var _isChecked = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return GTCheckBox(
-//       isChecked: _isChecked,
-//       onPressed: (value) {
-//         setState(() {
-//           _isChecked = value ?? false;
-//           widget.onChanged(value ?? false);
-//         });
-//       },
-//     );
-//   }
-// }
