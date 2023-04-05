@@ -1,7 +1,7 @@
 name: gotour_app
 description: GoTour App is a travel and living utility application. we help you discover and buy a variety of tourism products, local services.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -52,6 +52,7 @@ dependencies:
   #A declarative routing package for Flutter that uses the Router API to provide a convenient, url-based API for navigating between different screens.
   go_router: 6.2.0
 
+  # Lint rules for Dart and Flutter used internally at Very Good Ventures.
   very_good_analysis: 3.1.0
 
   # Approximate how your app looks and performs on another device.
