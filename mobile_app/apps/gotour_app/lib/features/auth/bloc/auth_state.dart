@@ -3,7 +3,27 @@ part of 'auth_bloc.dart';
 @immutable
 abstract class AuthState extends Equatable {}
 
-class Loading extends AuthState {
+class LoginLoadingState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SignUpLoadingState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginWithGoogleLoadingState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ForgotPasswordLoadingState extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
+
+class LogOutLoadingState extends AuthState {
   @override
   List<Object?> get props => [];
 }
@@ -31,8 +51,12 @@ class AuthErrorState extends AuthState {
 }
 
 class ErrorForgotPassword extends AuthState {
+  ErrorForgotPassword({required this.error});
+
+  final String error;
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }
 
 class ForgotPasswordSubmitedState extends AuthState {
@@ -48,4 +72,22 @@ class SignUpSubmitedState extends AuthState {
 class UnVerifyEmailState extends AuthState {
   @override
   List<Object?> get props => [];
+}
+
+class TermRequestSuccessState extends AuthState {
+  TermRequestSuccessState({required this.enabled});
+
+  final bool enabled;
+
+  @override
+  List<Object?> get props => [enabled];
+}
+
+class TermRequestFailureState extends AuthState {
+  TermRequestFailureState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object?> get props => [error];
 }
