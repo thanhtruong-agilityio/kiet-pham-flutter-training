@@ -167,18 +167,20 @@ class GTElevatedHighlightButton extends StatelessWidget {
     this.activateShadow = false,
     required this.onPressed,
     this.backgroudColor,
+    this.isEnabled = true,
   });
 
   final String text;
   final bool activateShadow;
   final VoidCallback onPressed;
   final Color? backgroudColor;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Container(
-      decoration: activateShadow == true
+      decoration: activateShadow && isEnabled
           ? BoxDecoration(
               boxShadow: [
                 BoxShadow(
