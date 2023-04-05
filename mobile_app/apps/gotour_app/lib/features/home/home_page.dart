@@ -66,7 +66,7 @@ class _GTHomeView extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     onOk: () {
-                      context.read<AuthBloc>().add(SignOutRequested());
+                      context.read<AuthBloc>().add(SignOutRequestedEvent());
                     },
                     title: S.of(context).LogOut,
                     content: S.of(context).logOutMessage,
@@ -133,12 +133,15 @@ class _GTHomeView extends StatelessWidget {
                     // My Location
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
+                        // intial state
                         if (state is HomeInitialState) {
                           context.read<HomeBloc>().add(HomeFetchDataEvent());
                         }
+                        // loading state
                         if (state is HomeLoadingState) {
                           return const GTMylocationShimmerList();
                         }
+                        // success state
                         if (state is HomeLoadedState) {
                           if (state.myLocations.isEmpty) {
                             return SizedBox(
@@ -147,7 +150,7 @@ class _GTHomeView extends StatelessWidget {
                               child: Center(
                                 child: GTText.labelLarge(
                                   context,
-                                  text: ' My Location is empty',
+                                  text: 'My Location is empty',
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                 ),
