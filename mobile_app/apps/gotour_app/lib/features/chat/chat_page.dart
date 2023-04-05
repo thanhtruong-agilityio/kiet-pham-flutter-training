@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/chat/chat_card.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
@@ -28,17 +29,17 @@ class GTChatPage extends StatelessWidget {
               width: device.scale(44),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(GTAssets().imgAvatarDefault),
+                  image: AssetImage(GTAssets.imgAvatarDefault),
                 ),
               ),
             ),
           ),
         ),
-        title: GTText.titleLarge(context, text: 'Chat'),
+        title: GTText.titleLarge(context, text: S.of(context).chatPageTitle),
         // notification button
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().icNotification,
+            icon: GTAssets.icNotification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
@@ -54,7 +55,7 @@ class GTChatPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return ChatCard(colorScheme: colorScheme);
+                return const ChatCard();
               },
             ),
           ),

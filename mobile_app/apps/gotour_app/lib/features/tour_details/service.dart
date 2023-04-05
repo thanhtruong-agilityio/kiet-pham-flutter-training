@@ -15,16 +15,18 @@ class GTService extends StatefulWidget {
 class _GTServiceState extends State<GTService> {
   int selectedIndex = 0;
   List<String> icons = [
-    GTAssets().icSun,
-    GTAssets().icAir,
-    GTAssets().icBoat,
-    GTAssets().icCar,
-    GTAssets().icMoto,
+    GTAssets.icSun,
+    GTAssets.icAir,
+    GTAssets.icBoat,
+    GTAssets.icCar,
+    GTAssets.icMoto,
   ];
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: device.scale(20)),
       height: device.scale(86),

@@ -95,3 +95,25 @@ class TermRequestFailureState extends AuthState {
   @override
   List<Object?> get props => [error];
 }
+
+class ValueChangedLoadingState extends AuthState {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class ValueChangedSuccessState extends AuthState {
+  ValueChangedSuccessState({required this.value});
+
+  final String value;
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class ValueChangedErrorState extends AuthState {
+  ValueChangedErrorState({this.error});
+
+  final String? error;
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}

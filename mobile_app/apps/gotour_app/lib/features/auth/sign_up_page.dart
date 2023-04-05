@@ -74,7 +74,6 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
 
     return GTScaffold(
       body: GestureDetector(
@@ -93,7 +92,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     SizedBox(height: device.sh(30)),
                     // Logo image
                     Image.asset(
-                      GTAssets().imgLogo,
+                      GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
                       fit: BoxFit.contain,
@@ -113,8 +112,13 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       keyboardType: TextInputType.emailAddress,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (email) {
-                        return !AuthValidator.isValidEmail(email!)
+                        return !AuthValidator.isValidEmail(email ?? '')
                             ? S.of(context).errorInValidEmail
                             : null;
                       },
@@ -133,8 +137,13 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       obscureText: true,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (password) {
-                        return !AuthValidator.isValidPassword(password!)
+                        return !AuthValidator.isValidPassword(password ?? '')
                             ? S.of(context).errorInValidPassword
                             : null;
                       },
@@ -147,10 +156,15 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       obscureText: true,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (passwordConfirm) {
-                        return !AuthValidator.isValidPasswordConfirm(
+                        return !AuthValidator.isValidConfirmPassword(
                           _passwordController.text,
-                          passwordConfirm!,
+                          passwordConfirm ?? '',
                         )
                             ? S.of(context).errorInvalidPasswordConfirm
                             : null;
@@ -176,39 +190,49 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                         ),
                         GTTextHighlightButton(
                           text: S.of(context).signUpPageTextButtonTerms,
-                          onPressed: () {},
+                          onPressed: () {
+                            // TODO(KietPham): show terms
+                          },
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     // Sign Up Button
                     BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          current is ValueChangedSuccessState ||
+                          current is TermRequestSuccessState,
                       builder: (context, state) {
+                        final formValid = AuthValidator.formSignUpValid(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          confirmPassword: _confirmPasswordController.text,
+                        );
+
                         return GTElevatedHighlightButton(
                           text: S.of(context).signUpTitle,
                           activateShadow: true,
-                          isEnabled:
-                              state is TermRequestSuccessState && state.enabled,
-                          backgroudColor:
-                              state is TermRequestSuccessState && state.enabled
-                                  ? colorScheme.primary
-                                  : colorScheme.secondary,
-                          onPressed:
-                              state is TermRequestSuccessState && state.enabled
-                                  ? () {
-                                      if (_formKey.currentState!.validate()) {
-                                        BlocProvider.of<AuthBloc>(context).add(
-                                          SignUpRequestedEvent(
-                                            email: _emailController.text,
-                                            password: _passwordController.text,
-                                            confirmPassword:
-                                                _confirmPasswordController.text,
-                                            gender: gender,
-                                          ),
-                                        );
-                                      }
-                                    }
-                                  : () {},
+                          isEnabled: state is TermRequestSuccessState &&
+                              state.enabled &&
+                              formValid,
+                          onPressed: state is TermRequestSuccessState &&
+                                  state.enabled &&
+                                  formValid
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    BlocProvider.of<AuthBloc>(context).add(
+                                      SignUpRequestedEvent(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        confirmPassword:
+                                            _confirmPasswordController.text,
+                                        gender: gender,
+                                      ),
+                                    );
+                                  }
+                                }
+                              : () {},
                         );
                       },
                     ),

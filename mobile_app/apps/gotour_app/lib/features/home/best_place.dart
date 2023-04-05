@@ -9,7 +9,7 @@ import 'package:gotour_ui/core/widgets/location.dart';
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
     super.key,
-    required this.bestPlaceList,
+    this.bestPlaceList = const [],
   });
 
   final List<BestPlace> bestPlaceList;
@@ -34,11 +34,11 @@ class GTBestPlace extends StatelessWidget {
             placeName: data[index].placeName,
             location: data[index].location,
             price: data[index].price,
-            pressCard: () => context.pushNamed(
+            onCard: () => context.pushNamed(
               RouterNamedLocation.hotPlace,
               params: {'id': data[index].id},
             ),
-            pressBtnPrice: () {},
+            onPrice: () {},
           ),
         ),
       ),
@@ -51,14 +51,14 @@ class GTCardBestPlace extends StatelessWidget {
     super.key,
     required this.image,
     required this.placeName,
-    required this.location,
-    required this.price,
-    required this.pressCard,
-    required this.pressBtnPrice,
+    this.location = '',
+    this.price = '',
+    this.onCard,
+    this.onPrice,
   });
 
-  final VoidCallback pressCard;
-  final VoidCallback pressBtnPrice;
+  final VoidCallback? onCard;
+  final VoidCallback? onPrice;
   final String image;
   final String placeName;
   final String location;
@@ -69,7 +69,7 @@ class GTCardBestPlace extends StatelessWidget {
     final device = GTReponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: pressCard,
+      onTap: onCard,
       child: Container(
         width: device.scale(295),
         decoration: BoxDecoration(
@@ -111,7 +111,7 @@ class GTCardBestPlace extends StatelessWidget {
                     height: device.scale(25),
                     child: GTElevatedHighlightButton(
                       text: '\$$price',
-                      onPressed: pressBtnPrice,
+                      onPressed: onPrice ?? () {},
                     ),
                   )
                 ],

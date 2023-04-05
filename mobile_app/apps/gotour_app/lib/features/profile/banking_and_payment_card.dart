@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class BankingAndPaymentCard extends StatelessWidget {
@@ -13,6 +14,7 @@ class BankingAndPaymentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+    final i10n = S.of(context);
 
     return Container(
       height: device.scale(194),
@@ -26,25 +28,25 @@ class BankingAndPaymentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: device.scale(27)),
-          GTText.titleSmall(context, text: 'Banking & Payment'),
+          GTText.titleSmall(context, text: i10n.profileScreenBankingAndPayment),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().icPayment,
+                  GTAssets.icPayment,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Payment method',
+                  text: i10n.profileScreenPaymentMethod,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().icArrowNext,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],
@@ -60,19 +62,19 @@ class BankingAndPaymentCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().icPrivacy,
+                  GTAssets.icPrivacy,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Privacy Policy',
+                  text: i10n.profileScreenPrivacyPolicy,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().icArrowNext,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],
@@ -88,19 +90,19 @@ class BankingAndPaymentCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().icTerms,
+                  GTAssets.icTerms,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Terms of Use',
+                  text: i10n.profileScreenTermsofUse,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().icArrowNext,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],

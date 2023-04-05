@@ -50,3 +50,9 @@ class TermsRequestedEvent extends AuthEvent {
 
   final bool value;
 }
+
+class ValueChangedEvent extends AuthEvent {
+  ValueChangedEvent({this.value});
+
+  final String? value;
+}

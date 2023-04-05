@@ -100,6 +100,76 @@ class S {
     );
   }
 
+  /// `Dark`
+  String get DarkTheme {
+    return Intl.message(
+      'Dark',
+      name: 'DarkTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get LightTheme {
+    return Intl.message(
+      'Light',
+      name: 'LightTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `coming soon...`
+  String get comingSoon {
+    return Intl.message(
+      'coming soon...',
+      name: 'comingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `example@email.com`
+  String get emailExample {
+    return Intl.message(
+      'example@email.com',
+      name: 'emailExample',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `loading...`
+  String get loading {
+    return Intl.message(
+      'loading...',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Explore`
   String get onboardingPageFistTitle {
     return Intl.message(
@@ -345,6 +415,326 @@ class S {
     return Intl.message(
       'See All',
       name: 'mainPageTextButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My location is empty`
+  String get mainPageMyLocationIsEmpty {
+    return Intl.message(
+      'My location is empty',
+      name: 'mainPageMyLocationIsEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profileScreenTitle {
+    return Intl.message(
+      'Profile',
+      name: 'profileScreenTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preference`
+  String get profileScreenPreference {
+    return Intl.message(
+      'Preference',
+      name: 'profileScreenPreference',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get profileScreenNotification {
+    return Intl.message(
+      'Notification',
+      name: 'profileScreenNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get profileScreenLanguage {
+    return Intl.message(
+      'Language',
+      name: 'profileScreenLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency`
+  String get profileScreenCurrency {
+    return Intl.message(
+      'Currency',
+      name: 'profileScreenCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Banking & Payment`
+  String get profileScreenBankingAndPayment {
+    return Intl.message(
+      'Banking & Payment',
+      name: 'profileScreenBankingAndPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment method`
+  String get profileScreenPaymentMethod {
+    return Intl.message(
+      'Payment method',
+      name: 'profileScreenPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get profileScreenPrivacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'profileScreenPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Use`
+  String get profileScreenTermsofUse {
+    return Intl.message(
+      'Terms of Use',
+      name: 'profileScreenTermsofUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gotour Widgetbook`
+  String get widgetbookTitle {
+    return Intl.message(
+      'Gotour Widgetbook',
+      name: 'widgetbookTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Widgets`
+  String get widgetbookWidgets {
+    return Intl.message(
+      'Widgets',
+      name: 'widgetbookWidgets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTButtons`
+  String get widgetbookButtons {
+    return Intl.message(
+      'GTButtons',
+      name: 'widgetbookButtons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Button`
+  String get widgetbookAllButtons {
+    return Intl.message(
+      'All Button',
+      name: 'widgetbookAllButtons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTTextField`
+  String get widgetbookTextFields {
+    return Intl.message(
+      'GTTextField',
+      name: 'widgetbookTextFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTText`
+  String get widgetbookText {
+    return Intl.message(
+      'GTText',
+      name: 'widgetbookText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTScaffold`
+  String get widgetbookScaffold {
+    return Intl.message(
+      'GTScaffold',
+      name: 'widgetbookScaffold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTBottomNavigationBar`
+  String get widgetbookBottomNavigationBar {
+    return Intl.message(
+      'GTBottomNavigationBar',
+      name: 'widgetbookBottomNavigationBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTColor`
+  String get widgetbookGTColor {
+    return Intl.message(
+      'GTColor',
+      name: 'widgetbookGTColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color`
+  String get widgetbookColor {
+    return Intl.message(
+      'Color',
+      name: 'widgetbookColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTCheckbox`
+  String get widgetbookGTCheckbox {
+    return Intl.message(
+      'GTCheckbox',
+      name: 'widgetbookGTCheckbox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GTGenders`
+  String get widgetbookGTGenders {
+    return Intl.message(
+      'GTGenders',
+      name: 'widgetbookGTGenders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notificationPageNotifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notificationPageNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bookmarked`
+  String get notificationPageBookmarked {
+    return Intl.message(
+      'Bookmarked',
+      name: 'notificationPageBookmarked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `26/03 2023`
+  String get notificationPageDay {
+    return Intl.message(
+      '26/03 2023',
+      name: 'notificationPageDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `16:53 PM`
+  String get notificationPageTime {
+    return Intl.message(
+      '16:53 PM',
+      name: 'notificationPageTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have added da nang tour to your bookmarks list`
+  String get notificationPageMessage {
+    return Intl.message(
+      'You have added da nang tour to your bookmarks list',
+      name: 'notificationPageMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat`
+  String get chatPageTitle {
+    return Intl.message(
+      'Chat',
+      name: 'chatPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Name`
+  String get chatPageTitleMessage {
+    return Intl.message(
+      'User Name',
+      name: 'chatPageTitleMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to gotour chat`
+  String get chatPageContent {
+    return Intl.message(
+      'Welcome to gotour chat',
+      name: 'chatPageContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `16:53 PM`
+  String get chatPageTime {
+    return Intl.message(
+      '16:53 PM',
+      name: 'chatPageTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `26/03 2023`
+  String get chatPageDay {
+    return Intl.message(
+      '26/03 2023',
+      name: 'chatPageDay',
       desc: '',
       args: [],
     );

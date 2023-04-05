@@ -1,10 +1,10 @@
 class MyLocation {
   MyLocation({
     required this.id,
-    required this.descriptions,
     required this.imageUrl,
-    required this.location,
-    required this.placeName,
+    this.descriptions = '',
+    this.location = '',
+    this.placeName = '',
   });
 
   factory MyLocation.fromJson(Map<String, dynamic> json) => MyLocation(

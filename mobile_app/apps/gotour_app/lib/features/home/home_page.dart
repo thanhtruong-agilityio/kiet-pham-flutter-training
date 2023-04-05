@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/home/best_place.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
@@ -49,7 +49,7 @@ class _GTHomeView extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: GTAssets().icMenu,
+          icon: GTAssets.icMenu,
           btnColor: colorScheme.background,
           onPressed: () {},
         ),
@@ -78,7 +78,7 @@ class _GTHomeView extends StatelessWidget {
                 width: device.scale(48),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(GTAssets().imgAvatarDefault),
+                    image: AssetImage(GTAssets.imgAvatarDefault),
                   ),
                 ),
               ),
@@ -153,7 +153,7 @@ class _GTHomeView extends StatelessWidget {
                               child: Center(
                                 child: GTText.labelLarge(
                                   context,
-                                  text: 'My Location is empty',
+                                  text: S.of(context).mainPageMyLocationIsEmpty,
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                 ),
@@ -191,9 +191,7 @@ class _GTHomeView extends StatelessWidget {
                             bestPlaceList: state.bestPlaces,
                           );
                         }
-                        return const GTBestPlace(
-                          bestPlaceList: [],
-                        );
+                        return const GTBestPlace();
                       },
                     ),
                   ],

@@ -15,7 +15,7 @@ class HotPlaceLoadingState extends HotPlaceState {}
 class HotPlaceLoadedState extends HotPlaceState {
   const HotPlaceLoadedState({
     required this.hotPlace,
-    required this.isBookMark,
+    this.isBookMark = false,
   });
 
   final HotPlace hotPlace;
@@ -25,11 +25,18 @@ class HotPlaceLoadedState extends HotPlaceState {
   List<Object?> get props => [hotPlace, isBookMark];
 }
 
-class HotPlaceErrorState extends HotPlaceState {}
+class HotPlaceErrorState extends HotPlaceState {
+  const HotPlaceErrorState({this.error});
+
+  final String? error;
+
+  @override
+  List<Object?> get props => [error];
+}
 
 class ChangeBookmarkHotPlaceSuccessState extends HotPlaceState {
   const ChangeBookmarkHotPlaceSuccessState({
-    required this.bookmark,
+    this.bookmark = false,
   });
 
   final bool bookmark;

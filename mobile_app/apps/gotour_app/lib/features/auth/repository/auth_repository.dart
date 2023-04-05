@@ -32,7 +32,7 @@ class AuthRepository {
       await _firebaseFirestore.doc(user?.uid).set(userEntity.toJson());
 
       // send the verification link to the email you just created
-      await _firebaseAuth.currentUser!.sendEmailVerification();
+      await _firebaseAuth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       // case error
       throw Exception(_determineError(e));

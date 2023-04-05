@@ -66,11 +66,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeLoadingState());
 
       // fetch user id
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
+      final userId = FirebaseAuth.instance.currentUser!.uid;
 
       // fetch list tour bookmark with id
       final tourIds =
-          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
+          await mainRepository.fetchListTourBookmarkByUser(userId: userId);
 
       // add tour to list
       final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();

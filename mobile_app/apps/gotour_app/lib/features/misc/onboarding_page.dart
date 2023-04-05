@@ -32,6 +32,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -61,7 +62,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GTIconButton(
-                      icon: GTAssets().icPrev,
+                      icon: GTAssets.icPrev,
                       iconColor: colorScheme.background,
                       onPressed: () {
                         _pageController.previousPage(
@@ -85,7 +86,7 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
                       ),
                     ),
                     GTIconButton(
-                      icon: GTAssets().icNext,
+                      icon: GTAssets.icNext,
                       iconColor: colorScheme.background,
                       onPressed: () => _pageIndex == dataBoards.length - 1
                           ? context.go('/login-page')
@@ -110,11 +111,13 @@ class DotIndicator extends StatelessWidget {
     super.key,
     this.isActivate = false,
   });
+
   final bool isActivate;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: 8,
@@ -133,6 +136,7 @@ class Onboard {
     required this.title,
     required this.description,
   });
+
   final String image;
   final String title;
   final String description;
@@ -140,17 +144,17 @@ class Onboard {
 
 final List<Onboard> dataBoards = <Onboard>[
   Onboard(
-    image: GTAssets().imgOnboardingfirst,
+    image: GTAssets.imgOnboardingfirst,
     title: 'Explore',
     description: 'Explore your favourite destination around the world.',
   ),
   Onboard(
-    image: GTAssets().imgOnboardingsecond,
+    image: GTAssets.imgOnboardingsecond,
     title: 'Easy Peasy',
     description: 'Make your travel experince very easy & peasy..',
   ),
   Onboard(
-    image: GTAssets().imgOnboardinglast,
+    image: GTAssets.imgOnboardinglast,
     title: 'Enjoy Tour',
     description: 'Enjoy your favourite destination with your love one.',
   ),
@@ -172,6 +176,7 @@ class OnboardingContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

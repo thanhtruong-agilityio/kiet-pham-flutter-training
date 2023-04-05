@@ -12,7 +12,32 @@ class AuthValidator {
   }
 
   // Confirm password must match password
-  static bool isValidPasswordConfirm(String password, String passwordConfirm) {
-    return passwordConfirm == password;
+  static bool isValidConfirmPassword(String password, String confirmPassword) {
+    return confirmPassword == password;
+  }
+
+  static bool formSignUpValid({
+    String email = '',
+    String password = '',
+    String confirmPassword = '',
+  }) {
+    return (email.isNotEmpty && isValidEmail(email)) &&
+        (password.isNotEmpty && isValidPassword(password)) &&
+        (confirmPassword.isNotEmpty &&
+            isValidConfirmPassword(password, confirmPassword));
+  }
+
+  static bool formLoginValid({
+    String email = '',
+    String password = '',
+  }) {
+    return (email.isNotEmpty && isValidEmail(email)) &&
+        (password.isNotEmpty && isValidPassword(password));
+  }
+
+  static bool formForgotPaasswordValid({
+    String email = '',
+  }) {
+    return email.isNotEmpty && isValidEmail(email);
   }
 }

@@ -1,142 +1,142 @@
 class GTAssets {
   // Logo image
-  String get imgLogo {
+  static String get imgLogo {
     return 'packages/gotour_ui/assets/images/logo.png';
   }
 
-  String get imgAvatarDefault {
+  static String get imgAvatarDefault {
     return 'packages/gotour_ui/assets/images/author.png';
   }
 
-  String get icPrev {
+  static String get icPrev {
     return 'packages/gotour_ui/assets/icons/left.svg';
   }
 
-  String get icNext {
+  static String get icNext {
     return 'packages/gotour_ui/assets/icons/right.svg';
   }
 
-  String get icSearch {
+  static String get icSearch {
     return 'packages/gotour_ui/assets/icons/search.svg';
   }
 
-  String get icMenu {
+  static String get icMenu {
     return 'packages/gotour_ui/assets/icons/menu.svg';
   }
 
-  String get icHome {
+  static String get icHome {
     return 'packages/gotour_ui/assets/icons/options.svg';
   }
 
-  String get icBell {
+  static String get icBell {
     return 'packages/gotour_ui/assets/icons/bell.svg';
   }
 
-  String get icChat {
+  static String get icChat {
     return 'packages/gotour_ui/assets/icons/message.svg';
   }
 
-  String get icLocation {
+  static String get icLocation {
     return 'packages/gotour_ui/assets/icons/location.svg';
   }
 
-  String get icPerson {
+  static String get icPerson {
     return 'packages/gotour_ui/assets/icons/person.svg';
   }
 
-  String get icBookMark {
+  static String get icBookMark {
     return 'packages/gotour_ui/assets/icons/bookMark.svg';
   }
 
-  String get icGoogle {
+  static String get icGoogle {
     return 'packages/gotour_ui/assets/icons/google.svg';
   }
 
-  String get icArrowBack {
+  static String get icArrowBack {
     return 'packages/gotour_ui/assets/icons/back.svg';
   }
 
-  String get icNotification {
+  static String get icNotification {
     return 'packages/gotour_ui/assets/icons/notification.svg';
   }
 
-  String get icMore {
+  static String get icMore {
     return 'packages/gotour_ui/assets/icons/more.svg';
   }
 
-  String get icCloud {
+  static String get icCloud {
     return 'packages/gotour_ui/assets/icons/cloud.svg';
   }
 
-  String get icSun {
+  static String get icSun {
     return 'packages/gotour_ui/assets/icons/sun.svg';
   }
 
-  String get icAir {
+  static String get icAir {
     return 'packages/gotour_ui/assets/icons/air.svg';
   }
 
-  String get icBoat {
+  static String get icBoat {
     return 'packages/gotour_ui/assets/icons/boat.svg';
   }
 
-  String get icCar {
+  static String get icCar {
     return 'packages/gotour_ui/assets/icons/car.svg';
   }
 
-  String get icMoto {
+  static String get icMoto {
     return 'packages/gotour_ui/assets/icons/moto.svg';
   }
 
-  String get icCheck {
+  static String get icCheck {
     return 'packages/gotour_ui/assets/icons/checkmark.svg';
   }
 
-  String get imgOnboardingfirst {
+  static String get imgOnboardingfirst {
     return 'packages/gotour_ui/assets/images/onboardingfirst.png';
   }
 
-  String get imgOnboardingsecond {
+  static String get imgOnboardingsecond {
     return 'packages/gotour_ui/assets/images/onboardingsecond.png';
   }
 
-  String get imgOnboardinglast {
+  static String get imgOnboardinglast {
     return 'packages/gotour_ui/assets/images/onboardinglast.png';
   }
 
-  String get kyoto {
+  static String get kyoto {
     return 'packages/gotour_ui/assets/images/kyoto.png';
   }
 
-  String get canyon {
+  static String get canyon {
     return 'packages/gotour_ui/assets/images/canyon.png';
   }
 
-  String get currency {
+  static String get currency {
     return 'packages/gotour_ui/assets/icons/currency.svg';
   }
 
-  String get language {
+  static String get language {
     return 'packages/gotour_ui/assets/icons/language.svg';
   }
 
-  String get icNoti {
+  static String get icNoti {
     return 'packages/gotour_ui/assets/icons/notifications.svg';
   }
 
-  String get icPayment {
+  static String get icPayment {
     return 'packages/gotour_ui/assets/icons/payment.svg';
   }
 
-  String get icPrivacy {
+  static String get icPrivacy {
     return 'packages/gotour_ui/assets/icons/privacy.svg';
   }
 
-  String get icTerms {
+  static String get icTerms {
     return 'packages/gotour_ui/assets/icons/terms.svg';
   }
 
-  String get icArrowNext {
+  static String get icArrowNext {
     return 'packages/gotour_ui/assets/icons/arrow.svg';
   }
 }

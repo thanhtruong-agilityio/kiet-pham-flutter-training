@@ -24,18 +24,33 @@ class HomeRepository {
 
   // Fetch List Tour from the firebase
   Future<List<TourId>> fetchListTourBookmarkByUser({
-    required String idUser,
+    required String userId,
   }) async {
+    // fetch data with userId
     final data = await _firebaseFirestoreTourBookMarks
-        .where('userId', isEqualTo: idUser)
+        .where('userId', isEqualTo: userId)
         .get();
     return (data.docs).map((tour) => TourId.fromJson(tour.data())).toList();
   }
+
+  // Future<List<String>> fetchListTourBookmarkByUser({
+  //   required String userId,
+  // }) async {
+  //   // fetch data with userId
+  //   final data = await _firebaseFirestoreTourBookMarks
+  //       .where('userId', isEqualTo: userId)
+  //       .get();
+
+  //   final docs = data.docs;
+  //   final tourIds = docs.map((tour) => tour.id).toList();
+  //   return tourIds;
+  // }
 
   // Fetch My Location Place from the firebase
   Future<List<MyLocation>> getDataFromDocuments({
     required List<String> documentIds,
   }) async {
+    // fetch data with documentIds
     if (documentIds.isNotEmpty) {
       final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('tour-details')
@@ -61,11 +76,13 @@ class HomeRepository {
     required String userId,
     required String tourId,
   }) async {
+    // fetch data from firebase
     final snapshot = await _firebaseFirestoreTourBookMarks
         .where('userId', isEqualTo: userId)
         .where('tourId', isEqualTo: tourId)
         .get();
 
+    // delete item
     if (snapshot.docs.isNotEmpty) {
       for (final document in snapshot.docs) {
         await document.reference.delete();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_ui/core/resources/assets_generated/assets.gen.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTLocation extends StatelessWidget {

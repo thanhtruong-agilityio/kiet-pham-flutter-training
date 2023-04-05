@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/bottom_navigation_bar.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -19,7 +19,22 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.body,
-      bottomNavigationBar: const GTBottomNavigationBar(),
+      bottomNavigationBar: GTBottomNavigationBar(
+        routes: const [
+          '/',
+          '/notification',
+          '/chat',
+          '/location',
+          '/profile',
+        ],
+        icons: [
+          GTAssets.icHome,
+          GTAssets.icBell,
+          GTAssets.icChat,
+          GTAssets.icLocation,
+          GTAssets.icPerson,
+        ],
+      ),
     );
   }
 }

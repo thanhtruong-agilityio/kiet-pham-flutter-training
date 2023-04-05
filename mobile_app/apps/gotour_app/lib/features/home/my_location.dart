@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_ui/core/assets.dart';
@@ -34,7 +34,7 @@ class GTMyLocation extends StatelessWidget {
           return Container(
             margin: const EdgeInsets.only(right: 20),
             child: GTCardMyLocation(
-              press: () => context.pushNamed(
+              onPressed: () => context.pushNamed(
                 RouterNamedLocation.tourDetails,
                 params: {'id': data[index].id},
               ),
@@ -61,20 +61,20 @@ class GTMyLocation extends StatelessWidget {
 class GTCardMyLocation extends StatefulWidget {
   const GTCardMyLocation({
     super.key,
-    required this.press,
     required this.image,
     required this.placeName,
-    required this.location,
-    required this.descriptions,
-    required this.onBookMark,
+    this.location = '',
+    this.descriptions = '',
+    this.onBookMark,
+    this.onPressed,
   });
 
-  final VoidCallback press;
   final String image;
   final String placeName;
   final String location;
   final String descriptions;
-  final VoidCallback onBookMark;
+  final VoidCallback? onPressed;
+  final VoidCallback? onBookMark;
 
   @override
   State<GTCardMyLocation> createState() => _GTCardMyLocationState();
@@ -87,7 +87,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
     final device = GTReponsive.of(context);
 
     return GestureDetector(
-      onTap: widget.press,
+      onTap: widget.onPressed,
       child: Container(
         margin: EdgeInsets.only(
           left: device.scale(5),
@@ -119,7 +119,20 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                           children: [
                             Row(
                               children: [
-                                imagePlace(),
+                                Container(
+                                  height: 55,
+                                  width: 55,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(widget.image),
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(width: device.scale(11)),
                                 GTLocation(
                                   placeName: widget.placeName,
@@ -131,7 +144,13 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                           ],
                         ),
                       ),
-                      iconBookMark()
+                      GestureDetector(
+                        onTap: widget.onBookMark,
+                        child: SvgPicture.asset(
+                          GTAssets.icBookMark,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(height: device.scale(11)),
@@ -148,31 +167,6 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  GestureDetector iconBookMark() {
-    return GestureDetector(
-      onTap: widget.onBookMark,
-      child: SvgPicture.asset(
-        GTAssets().icBookMark,
-        color: Theme.of(context).colorScheme.primary,
-      ),
-    );
-  }
-
-  Container imagePlace() {
-    return Container(
-      height: 55,
-      width: 55,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(widget.image),
         ),
       ),
     );
@@ -213,6 +207,7 @@ class _GTShimmerLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+
     return Container(
       margin: EdgeInsets.only(
         right: 20,

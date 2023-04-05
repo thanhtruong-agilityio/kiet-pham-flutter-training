@@ -12,23 +12,23 @@ class GTPlaceInfoHotPlace extends StatefulWidget {
     required this.image,
     required this.placeName,
     required this.location,
-    required this.price,
-    required this.pressCard,
-    required this.pressBtn,
-    required this.tagList,
-    required this.isBookmark,
-    required this.onBookmark,
+    this.price = '',
+    this.onCard,
+    this.onPrice,
+    this.tagList = const [],
+    this.isBookmark = false,
+    this.onBookmark,
   });
 
-  final VoidCallback pressCard;
-  final VoidCallback pressBtn;
+  final VoidCallback? onCard;
+  final VoidCallback? onPrice;
   final String image;
   final String placeName;
   final String location;
   final String price;
   final List<String> tagList;
   final bool isBookmark;
-  final VoidCallback onBookmark;
+  final VoidCallback? onBookmark;
 
   @override
   State<GTPlaceInfoHotPlace> createState() => _GTPlaceInfoHotPlaceState();
@@ -45,7 +45,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: widget.pressCard,
+          onTap: widget.onCard,
           child: Stack(
             children: [
               Container(
@@ -68,7 +68,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
                           InkWell(
                             onTap: widget.onBookmark,
                             child: SvgPicture.asset(
-                              GTAssets().icBookMark,
+                              GTAssets.icBookMark,
                               color: widget.isBookmark
                                   ? colorScheme.primary
                                   : colorScheme.background,
@@ -116,7 +116,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
               height: 25,
               child: GTElevatedHighlightButton(
                 text: '\$${widget.price}',
-                onPressed: widget.pressBtn,
+                onPressed: widget.onPrice ?? () {},
               ),
             )
           ],

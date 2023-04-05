@@ -34,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     // we will send TermsRequested Event to AuthBloc to handle it
     // and emit the TermsRequestSuccess
     on<TermsRequestedEvent>(_handleTermsRequest);
+    on<ValueChangedEvent>(_handleValueChanged);
   }
 
   final AuthRepository authRepository;
@@ -152,10 +153,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
+      // check value
       final enabled = event.value;
       emit(TermRequestSuccessState(enabled: enabled));
     } on Exception catch (e) {
+      // error case
       emit(TermRequestFailureState(error: e.toString()));
+    }
+  }
+
+  Future<void> _handleValueChanged(
+    ValueChangedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // loading state
+      emit(ValueChangedLoadingState());
+      final value = event.value;
+
+      // succes state
+      if (value?.isNotEmpty ?? false) {
+        emit(ValueChangedSuccessState(value: value ?? ''));
+      }
+    } on Exception catch (e) {
+      // error case
+      emit(ValueChangedErrorState(error: e.toString()));
     }
   }
 }

@@ -27,76 +27,71 @@ class GTBestPlacePage extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: GTAssets().icArrowBack,
+          icon: GTAssets.icArrowBack,
           btnColor: colorScheme.background,
           onPressed: () => context.pop(),
         ),
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().icNotification,
+            icon: GTAssets.icNotification,
             btnColor: colorScheme.background,
             onPressed: () {},
           ),
         ],
       ),
-      body: RepositoryProvider(
-        create: (context) => BestPlaceRepository(),
-        child: BlocProvider(
-          create: (context) => BestPlaceBloc(
-            bestPlaceRepository:
-                RepositoryProvider.of<BestPlaceRepository>(context),
-          ),
-          child: BlocBuilder<BestPlaceBloc, BestPlaceState>(
-            builder: (context, state) {
-              if (state is BestPlaceInitial) {
-                context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
-              }
-              if (state is BestPlaceLoadingState) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: colorScheme.primary,
-                  ),
-                );
-              }
-              if (state is BestPlaceLoadedState) {
-                data = state.bestPlaceList;
-                return RefreshIndicator(
-                  onRefresh: () async {
-                    context
-                        .read<BestPlaceBloc>()
-                        .add(BestPlaceFetchDataEvent());
-                  },
-                  child: Column(
-                    children: [
-                      SizedBox(height: device.scale(44)),
-                      const GTSearch(),
-                      SizedBox(height: device.scale(20)),
-                      // best place list
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            return _CardBestPlace(
-                              placeName: data[index].placeName,
-                              location: data[index].location,
-                              price: data[index].price,
-                              imageUrl: data[index].imageUrl,
-                              tag: data[index].tagList,
-                              onPressed: () => context.pushNamed(
-                                RouterNamedLocation.hotPlace,
-                                params: {'id': data[index].id},
-                              ),
-                            );
-                          },
-                        ),
+      body: BlocProvider(
+        create: (context) => BestPlaceBloc(
+          bestPlaceRepository: BestPlaceRepository(),
+        ),
+        child: BlocBuilder<BestPlaceBloc, BestPlaceState>(
+          builder: (context, state) {
+            if (state is BestPlaceInitial) {
+              context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
+            }
+            if (state is BestPlaceLoadingState) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: colorScheme.primary,
+                ),
+              );
+            }
+            if (state is BestPlaceLoadedState) {
+              data = state.bestPlaceList;
+
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
+                },
+                child: Column(
+                  children: [
+                    SizedBox(height: device.scale(44)),
+                    const GTSearch(),
+                    SizedBox(height: device.scale(20)),
+                    // best place list
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return _CardBestPlace(
+                            placeName: data[index].placeName,
+                            location: data[index].location,
+                            price: data[index].price,
+                            imageUrl: data[index].imageUrl,
+                            tags: data[index].tagList,
+                            onPressed: () => context.pushNamed(
+                              RouterNamedLocation.hotPlace,
+                              params: {'id': data[index].id},
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
-                );
-              }
-              return GTText.bodyLarge(context, text: 'fail');
-            },
-          ),
+                    ),
+                  ],
+                ),
+              );
+            }
+            return GTText.bodyLarge(context, text: 'fail');
+          },
         ),
       ),
     );
@@ -105,20 +100,20 @@ class GTBestPlacePage extends StatelessWidget {
 
 class _CardBestPlace extends StatelessWidget {
   const _CardBestPlace({
-    required this.placeName,
-    required this.location,
-    required this.price,
     required this.imageUrl,
-    required this.tag,
-    required this.onPressed,
+    required this.placeName,
+    this.location = '',
+    this.price = '',
+    this.tags = const [],
+    this.onPressed,
   });
 
   final String placeName;
   final String location;
   final String price;
   final String imageUrl;
-  final List<String> tag;
-  final VoidCallback onPressed;
+  final List<String> tags;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +181,7 @@ class _CardBestPlace extends StatelessWidget {
                                   Row(
                                     children: [
                                       SvgPicture.asset(
-                                        GTAssets().icLocation,
+                                        GTAssets.icLocation,
                                         color: colorScheme.primary,
                                         width: device.scale(10),
                                         height: device.scale(12),
@@ -226,12 +221,12 @@ class _CardBestPlace extends StatelessWidget {
                               // tag list
                               Row(
                                 children: List.generate(
-                                  tag.length,
+                                  tags.length,
                                   (index) => Container(
                                     margin: EdgeInsets.only(
                                       right: device.scale(12),
                                     ),
-                                    child: GTTag(text: tag[index]),
+                                    child: GTTag(text: tags[index]),
                                   ),
                                 ),
                               )

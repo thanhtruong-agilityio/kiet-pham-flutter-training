@@ -77,7 +77,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                     SizedBox(height: device.sh(50)),
                     // logo image
                     Image.asset(
-                      GTAssets().imgLogo,
+                      GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
                       fit: BoxFit.contain,
@@ -99,23 +99,45 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       activateLabel: true,
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (email) {
-                        return !AuthValidator.isValidEmail(email!)
+                        return !AuthValidator.isValidEmail(email ?? '')
                             ? S.of(context).errorInValidEmail
                             : null;
                       },
                     ),
                     SizedBox(height: device.sh(10)),
                     // Button submit
-                    GTElevatedHighlightButton(
-                      activateShadow: true,
-                      text: S.of(context).forgotPasswordPageButtonSubmit,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            ForgotPasswordRequestedEvent(_emailController.text),
-                          );
-                        }
+                    BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          current is ValueChangedSuccessState,
+                      builder: (context, state) {
+                        final formValid =
+                            AuthValidator.formForgotPaasswordValid(
+                          email: _emailController.text,
+                        );
+
+                        return GTElevatedHighlightButton(
+                          activateShadow: true,
+                          isEnabled: formValid,
+                          text: S.of(context).forgotPasswordPageButtonSubmit,
+                          onPressed: formValid
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    BlocProvider.of<AuthBloc>(context).add(
+                                      ForgotPasswordRequestedEvent(
+                                        _emailController.text,
+                                      ),
+                                    );
+                                  }
+                                }
+                              : () {},
+                        );
                       },
                     ),
                     SizedBox(height: device.sh(20)),

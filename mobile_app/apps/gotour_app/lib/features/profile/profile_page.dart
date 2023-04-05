@@ -19,6 +19,7 @@ class GTProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
+    final i10n = S.of(context);
 
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
@@ -28,7 +29,7 @@ class GTProfilePage extends StatelessWidget {
       },
       child: GTScaffold(
         appBar: GTAppBar(
-          title: GTText.titleLarge(context, text: 'Profile'),
+          title: GTText.titleLarge(context, text: i10n.profileScreenTitle),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -37,9 +38,9 @@ class GTProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: device.scale(45)),
-                const ProfileCard(
-                  userName: 'Kiet Anh',
-                  email: 'kietpva010299@gmail.com',
+                ProfileCard(
+                  userName: i10n.chatPageTitleMessage,
+                  email: i10n.emailExample,
                 ),
                 SizedBox(height: device.scale(30)),
                 const PreferenceCard(),

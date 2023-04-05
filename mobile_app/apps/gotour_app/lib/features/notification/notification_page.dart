@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -10,9 +11,13 @@ class GTNotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
     return GTScaffold(
       appBar: GTAppBar(
-        title: GTText.titleLarge(context, text: 'Notifications'),
+        title: GTText.titleLarge(
+          context,
+          text: S.of(context).notificationPageNotifications,
+        ),
       ),
       body: Column(
         children: [
@@ -38,6 +43,8 @@ class _NotificationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i10n = S.of(context);
+
     return Container(
       height: 100,
       padding: const EdgeInsets.only(
@@ -59,13 +66,8 @@ class _NotificationsCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    // child: Assets.images.canyon.image(
-                    //   width: 44,
-                    //   height: 44,
-                    //   fit: BoxFit.cover,
-                    // ),
                     child: Image.asset(
-                      GTAssets().canyon,
+                      GTAssets.canyon,
                       width: 44,
                       height: 44,
                       fit: BoxFit.cover,
@@ -81,12 +83,12 @@ class _NotificationsCard extends StatelessWidget {
                           children: [
                             GTText.titleSmall(
                               context,
-                              text: 'Bookmarked',
+                              text: i10n.notificationPageBookmarked,
                             ),
                             const Spacer(),
                             GTText.bodySmall(
                               context,
-                              text: '26/03 2023',
+                              text: i10n.notificationPageDay,
                               color: colorScheme.tertiary,
                             )
                           ],
@@ -98,8 +100,7 @@ class _NotificationsCard extends StatelessWidget {
                               width: 180,
                               child: GTText.bodySmall(
                                 context,
-                                text:
-                                    '''You have added da nang tour to your bookmarks list''',
+                                text: i10n.notificationPageMessage,
                                 maxLines: 2,
                                 color: colorScheme.tertiary,
                               ),
@@ -107,7 +108,7 @@ class _NotificationsCard extends StatelessWidget {
                             const Spacer(),
                             GTText.bodySmall(
                               context,
-                              text: '16:53 PM',
+                              text: i10n.notificationPageTime,
                               color: colorScheme.tertiary,
                             )
                           ],

@@ -3,7 +3,14 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:go_router/go_router.dart';
 
 class GTBottomNavigationBar extends StatefulWidget {
-  const GTBottomNavigationBar({super.key});
+  const GTBottomNavigationBar({
+    super.key,
+    required this.routes,
+    required this.icons,
+  });
+
+  final List<String> routes;
+  final List<String> icons;
 
   @override
   State<GTBottomNavigationBar> createState() => _GTBottomNavigationBarState();
@@ -11,22 +18,6 @@ class GTBottomNavigationBar extends StatefulWidget {
 
 class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
   int selectedIndex = 0;
-
-  List<String> shellRoutes = [
-    '/',
-    '/notification',
-    '/chat',
-    '/location',
-    '/profile',
-  ];
-
-  List<String> data = [
-    'packages/gotour_ui/assets/icons/options.svg',
-    'packages/gotour_ui/assets/icons/bell.svg',
-    'packages/gotour_ui/assets/icons/message.svg',
-    'packages/gotour_ui/assets/icons/location.svg',
-    'packages/gotour_ui/assets/icons/person.svg',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +34,16 @@ class _GTBottomNavigationBarState extends State<GTBottomNavigationBar> {
             child: Wrap(
               alignment: WrapAlignment.spaceAround,
               children: List.generate(
-                data.length,
+                widget.icons.length,
                 (index) => GTIconButton(
-                  icon: data[index],
+                  icon: widget.icons[index],
                   btnColor: colorScheme.surface,
                   iconColor:
                       index == selectedIndex ? colorScheme.primary : null,
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
-                      context.go(shellRoutes[index]);
+                      context.go(widget.routes[index]);
                     });
                   },
                 ),

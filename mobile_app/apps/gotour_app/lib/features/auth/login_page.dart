@@ -99,7 +99,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     SizedBox(height: device.sh(100)),
                     // logo image
                     Image.asset(
-                      GTAssets().imgLogo,
+                      GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
                       fit: BoxFit.contain,
@@ -119,8 +119,13 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       activateLabel: true,
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (email) {
-                        return !AuthValidator.isValidEmail(email!)
+                        return !AuthValidator.isValidEmail(email ?? '')
                             ? S.of(context).errorInValidEmail
                             : null;
                       },
@@ -133,8 +138,13 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       obscureText: true,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (password) {
-                        return !AuthValidator.isValidPassword(password!)
+                        return !AuthValidator.isValidPassword(password ?? '')
                             ? S.of(context).errorInValidPassword
                             : null;
                       },
@@ -146,18 +156,33 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     ),
                     SizedBox(height: device.sh(10)),
                     // Login Button
-                    GTElevatedHighlightButton(
-                      activateShadow: true,
-                      text: S.of(context).loginPageTitle,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            SignInRequestedEvent(
-                              _emailController.text,
-                              _passwordController.text,
-                            ),
-                          );
-                        }
+                    BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          current is ValueChangedSuccessState,
+                      builder: (context, state) {
+                        final formValid = AuthValidator.formLoginValid(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+
+                        return GTElevatedHighlightButton(
+                          activateShadow: true,
+                          text: S.of(context).loginPageTitle,
+                          isEnabled: formValid,
+                          onPressed: formValid
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    BlocProvider.of<AuthBloc>(context).add(
+                                      SignInRequestedEvent(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      ),
+                                    );
+                                  }
+                                }
+                              : () {},
+                        );
                       },
                     ),
                     SizedBox(height: device.sh(10)),
@@ -170,7 +195,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     // Login with google button
                     GTElevatedButton(
                       text: S.of(context).loginPageButtonLoginGG,
-                      icon: GTAssets().icGoogle,
+                      icon: GTAssets.icGoogle,
                       onPressed: () {
                         BlocProvider.of<AuthBloc>(context).add(
                           GoogleSignInRequestedEvent(),

@@ -6,7 +6,7 @@ import 'package:gotour_ui/core/widgets/text.dart';
 class GTGridViewHotPlace extends StatelessWidget {
   const GTGridViewHotPlace({
     super.key,
-    required this.imageList,
+    this.imageList = const [],
   });
 
   final List<String> imageList;

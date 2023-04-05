@@ -2,9 +2,9 @@ class BestPlace {
   BestPlace({
     required this.id,
     required this.imageUrl,
-    required this.location,
-    required this.placeName,
-    required this.price,
+    this.location = '',
+    this.placeName = '',
+    this.price = '',
   });
 
   factory BestPlace.fromJson(Map<String, dynamic> json) => BestPlace(

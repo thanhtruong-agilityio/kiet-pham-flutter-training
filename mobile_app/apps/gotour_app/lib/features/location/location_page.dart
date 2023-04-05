@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -14,7 +15,7 @@ class GTLocationPage extends StatelessWidget {
         highlightColor: colorScheme.primary,
         child: GTText.labelLarge(
           context,
-          text: 'Coming soon...',
+          text: S.of(context).comingSoon,
         ),
       ),
     );

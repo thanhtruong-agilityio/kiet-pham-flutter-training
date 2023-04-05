@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class ChatCard extends StatelessWidget {
   const ChatCard({
     super.key,
-    required this.colorScheme,
   });
-
-  final ColorScheme colorScheme;
 
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
+    final i10n = S.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: EdgeInsets.only(
         left: device.scale(20),
@@ -27,9 +28,9 @@ class ChatCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  GTAssets().canyon,
-                  width: 44,
-                  height: 44,
+                  GTAssets.canyon,
+                  width: device.scale(44),
+                  height: device.scale(44),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -40,11 +41,14 @@ class ChatCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          GTText.titleSmall(context, text: 'Kiet Pham'),
+                          GTText.titleSmall(
+                            context,
+                            text: i10n.chatPageTitleMessage,
+                          ),
                           const Spacer(),
                           GTText.bodySmall(
                             context,
-                            text: '26/03 2023',
+                            text: i10n.chatPageDay,
                             color: colorScheme.tertiary,
                           )
                         ],
@@ -53,13 +57,13 @@ class ChatCard extends StatelessWidget {
                         children: [
                           GTText.bodySmall(
                             context,
-                            text: 'Welcome to gotour chat',
+                            text: i10n.chatPageContent,
                             color: colorScheme.tertiary,
                           ),
                           const Spacer(),
                           GTText.bodySmall(
                             context,
-                            text: '16:53 PM',
+                            text: i10n.chatPageTime,
                             color: colorScheme.tertiary,
                           )
                         ],

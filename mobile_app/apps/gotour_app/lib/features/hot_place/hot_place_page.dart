@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/hot_place/bloc/hot_place_bloc.dart';
 import 'package:gotour_app/features/hot_place/hot_place.dart';
 import 'package:gotour_app/features/hot_place/place_info.dart';
@@ -33,7 +33,7 @@ class GTHotPlace extends StatelessWidget {
         leading: Padding(
           padding: EdgeInsets.only(right: device.scale(10)),
           child: GTIconButton(
-            icon: GTAssets().icArrowBack,
+            icon: GTAssets.icArrowBack,
             btnColor: colorScheme.background,
             onPressed: () =>
                 context.pushReplacementNamed(RouterNamedLocation.home),
@@ -41,14 +41,18 @@ class GTHotPlace extends StatelessWidget {
         ),
         actionButtons: [
           GTIconButton(
-            icon: GTAssets().icNotification,
+            icon: GTAssets.icNotification,
             btnColor: colorScheme.background,
-            onPressed: () {},
+            onPressed: () {
+              // TODO(KietPham): show notification
+            },
           ),
           GTIconButton(
-            icon: GTAssets().icMore,
+            icon: GTAssets.icMore,
             btnColor: colorScheme.background,
-            onPressed: () {},
+            onPressed: () {
+              // TODO(KietPham): show more
+            },
           ),
         ],
       ),
@@ -105,8 +109,6 @@ class GTHotPlace extends StatelessWidget {
                           price: data.price,
                           tagList: data.tagList,
                           isBookmark: isBookMark,
-                          pressBtn: () {},
-                          pressCard: () {},
                           onBookmark: () {
                             context.read<HotPlaceBloc>().add(
                                   PressTheBookmarkButtonEvent(

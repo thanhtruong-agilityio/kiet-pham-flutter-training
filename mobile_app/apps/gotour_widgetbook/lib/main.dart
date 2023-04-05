@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
 import 'package:gotour_ui/core/widgets/bottom_navigation_bar.dart';
-import 'package:gotour_ui/core/widgets/dashboard.dart';
 import 'package:gotour_widgetbook/core/models/color.dart';
 import 'package:gotour_widgetbook/core/widgets/card_color.dart';
 import 'package:gotour_widgetbook/core/widgets_component/button.dart';
@@ -86,7 +85,10 @@ class _WidgetbookHotReloadState extends State<WidgetbookHotReload> {
                   name: 'Bottom Navigation Bar',
                   builder: (context) => const SafeArea(
                       child: Scaffold(
-                    bottomNavigationBar: GTBottomNavigationBar(),
+                    bottomNavigationBar: GTBottomNavigationBar(
+                      icons: [],
+                      routes: [],
+                    ),
                   )),
                 )
               ],

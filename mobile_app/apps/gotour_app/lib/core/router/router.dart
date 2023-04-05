@@ -33,12 +33,14 @@ final GoRouter router = GoRouter(
 
     final auth = FirebaseAuth.instance;
 
+    // check user login with email and password
     final isLoggedIn =
         auth.currentUser != null && auth.currentUser!.emailVerified;
 
     final googleSignIn =
         RepositoryProvider.of<AuthRepository>(context).googleSignIn;
 
+    // check user login with google
     final googleUser = googleSignIn.currentUser != null;
 
     if (unAuthenList.contains(state.subloc)) {
@@ -73,7 +75,7 @@ final GoRouter router = GoRouter(
           name: RouterNamedLocation.tourDetails,
           path: '/tour-details/:id',
           pageBuilder: (context, state) => CustomTransitionPage(
-            child: GTTourDetails(
+            child: GTTourDetail(
               id: state.params['id']!,
             ),
             transitionDuration: const Duration(milliseconds: 700),

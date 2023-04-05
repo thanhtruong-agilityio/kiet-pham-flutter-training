@@ -22,11 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "DarkTheme": MessageLookupByLibrary.simpleMessage("Dark"),
+        "LightTheme": MessageLookupByLibrary.simpleMessage("Light"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "bookMarkSuccessMessage":
             MessageLookupByLibrary.simpleMessage("Bookmark tour success"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "chatPageContent":
+            MessageLookupByLibrary.simpleMessage("Welcome to gotour chat"),
+        "chatPageDay": MessageLookupByLibrary.simpleMessage("26/03 2023"),
+        "chatPageTime": MessageLookupByLibrary.simpleMessage("16:53 PM"),
+        "chatPageTitle": MessageLookupByLibrary.simpleMessage("Chat"),
+        "chatPageTitleMessage":
+            MessageLookupByLibrary.simpleMessage("User Name"),
         "checkyourEmailMessage":
             MessageLookupByLibrary.simpleMessage("Please check your email"),
+        "comingSoon": MessageLookupByLibrary.simpleMessage("coming soon..."),
+        "emailExample":
+            MessageLookupByLibrary.simpleMessage("example@email.com"),
         "errorInValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email"),
         "errorInValidPassword": MessageLookupByLibrary.simpleMessage(
@@ -42,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordPageTitle":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "hotPlacePage": MessageLookupByLibrary.simpleMessage("Hot Place"),
+        "loading": MessageLookupByLibrary.simpleMessage("loading..."),
         "logOutMessage":
             MessageLookupByLibrary.simpleMessage("Do you want to log out"),
         "loginPageButtonForgotPassword":
@@ -57,9 +71,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Find your location..."),
         "mainPageMyLocation":
             MessageLookupByLibrary.simpleMessage("My Location"),
+        "mainPageMyLocationIsEmpty":
+            MessageLookupByLibrary.simpleMessage("My location is empty"),
         "mainPageTextButton": MessageLookupByLibrary.simpleMessage("See All"),
         "mainPageTitle": MessageLookupByLibrary.simpleMessage(
             "Get Ready For\nThe Travel Trip!"),
+        "notificationPageBookmarked":
+            MessageLookupByLibrary.simpleMessage("Bookmarked"),
+        "notificationPageDay":
+            MessageLookupByLibrary.simpleMessage("26/03 2023"),
+        "notificationPageMessage": MessageLookupByLibrary.simpleMessage(
+            "You have added da nang tour to your bookmarks list"),
+        "notificationPageNotifications":
+            MessageLookupByLibrary.simpleMessage("Notifications"),
+        "notificationPageTime":
+            MessageLookupByLibrary.simpleMessage("16:53 PM"),
         "onboardingPageFirstDescription": MessageLookupByLibrary.simpleMessage(
             "Explore your favourite destination around the world."),
         "onboardingPageFistTitle":
@@ -72,6 +98,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Easy Peasy"),
         "onboardingPagelastTitle":
             MessageLookupByLibrary.simpleMessage("Enjoy Tour"),
+        "profileScreenBankingAndPayment":
+            MessageLookupByLibrary.simpleMessage("Banking & Payment"),
+        "profileScreenCurrency":
+            MessageLookupByLibrary.simpleMessage("Currency"),
+        "profileScreenLanguage":
+            MessageLookupByLibrary.simpleMessage("Language"),
+        "profileScreenNotification":
+            MessageLookupByLibrary.simpleMessage("Notification"),
+        "profileScreenPaymentMethod":
+            MessageLookupByLibrary.simpleMessage("Payment method"),
+        "profileScreenPreference":
+            MessageLookupByLibrary.simpleMessage("Preference"),
+        "profileScreenPrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "profileScreenTermsofUse":
+            MessageLookupByLibrary.simpleMessage("Terms of Use"),
+        "profileScreenTitle": MessageLookupByLibrary.simpleMessage("Profile"),
         "signUpPageConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "signUpPageGenderFemale":
@@ -92,6 +135,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "unBookMarkSuccessMessage":
             MessageLookupByLibrary.simpleMessage("Un bookmark success"),
         "verifyEmailMessage":
-            MessageLookupByLibrary.simpleMessage("Please verify email")
+            MessageLookupByLibrary.simpleMessage("Please verify email"),
+        "widgetbookAllButtons":
+            MessageLookupByLibrary.simpleMessage("All Button"),
+        "widgetbookBottomNavigationBar":
+            MessageLookupByLibrary.simpleMessage("GTBottomNavigationBar"),
+        "widgetbookButtons": MessageLookupByLibrary.simpleMessage("GTButtons"),
+        "widgetbookColor": MessageLookupByLibrary.simpleMessage("Color"),
+        "widgetbookGTCheckbox":
+            MessageLookupByLibrary.simpleMessage("GTCheckbox"),
+        "widgetbookGTColor": MessageLookupByLibrary.simpleMessage("GTColor"),
+        "widgetbookGTGenders":
+            MessageLookupByLibrary.simpleMessage("GTGenders"),
+        "widgetbookScaffold":
+            MessageLookupByLibrary.simpleMessage("GTScaffold"),
+        "widgetbookText": MessageLookupByLibrary.simpleMessage("GTText"),
+        "widgetbookTextFields":
+            MessageLookupByLibrary.simpleMessage("GTTextField"),
+        "widgetbookTitle":
+            MessageLookupByLibrary.simpleMessage("Gotour Widgetbook"),
+        "widgetbookWidgets": MessageLookupByLibrary.simpleMessage("Widgets"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }
