@@ -21,7 +21,7 @@ class GTSignUpPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         // if state is Loading then show indicator
-        if (state is Loading) {
+        if (state is SignUpLoadingState) {
           gtIndicatorOverlay.show(context, 'loading...');
         }
         if (state is SignUpSubmitedState) {
@@ -152,13 +152,13 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: GTCheckBox(
-                            isChecked: agreeTerms,
-                            onTap: () {
-                              setState(() {
-                                agreeTerms = !agreeTerms;
-                              });
+                          child: GTMyCheckbox(
+                            onChanged: (value) {
+                              context
+                                  .read<AuthBloc>()
+                                  .add(TermsRequestedEvent(value: value));
                             },
+                            initialValue: agreeTerms,
                           ),
                         ),
                         GTText.labelMedium(
@@ -172,27 +172,35 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    GTElevatedHighlightButton(
-                      text: S.of(context).signUpTitle,
-                      activateShadow: true,
-                      backgroudColor: agreeTerms
-                          ? colorScheme.primary
-                          : colorScheme.secondary,
-                      onPressed: agreeTerms
-                          ? () {
-                              if (_formKey.currentState!.validate()) {
-                                BlocProvider.of<AuthBloc>(context).add(
-                                  SignUpRequested(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                    confirmPassword:
-                                        _confirmPasswordController.text,
-                                    gender: gender,
-                                  ),
-                                );
-                              }
-                            }
-                          : () {},
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return GTElevatedHighlightButton(
+                          text: S.of(context).signUpTitle,
+                          activateShadow: true,
+                          isEnabled:
+                              state is TermRequestSuccessState && state.enabled,
+                          backgroudColor:
+                              state is TermRequestSuccessState && state.enabled
+                                  ? colorScheme.primary
+                                  : colorScheme.secondary,
+                          onPressed:
+                              state is TermRequestSuccessState && state.enabled
+                                  ? () {
+                                      if (_formKey.currentState!.validate()) {
+                                        BlocProvider.of<AuthBloc>(context).add(
+                                          SignUpRequestedEvent(
+                                            email: _emailController.text,
+                                            password: _passwordController.text,
+                                            confirmPassword:
+                                                _confirmPasswordController.text,
+                                            gender: gender,
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  : () {},
+                        );
+                      },
                     ),
                     const SizedBox(height: 10),
                     GTTextHighlightButton(
@@ -210,3 +218,33 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
     );
   }
 }
+
+
+// class GTTerms extends StatefulWidget {
+//   const GTTerms({
+//     super.key,
+//     required this.onChanged,
+//   });
+
+//   final Function(bool) onChanged;
+
+//   @override
+//   State<GTTerms> createState() => _GTTermsState();
+// }
+
+// class _GTTermsState extends State<GTTerms> {
+//   var _isChecked = false;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GTCheckBox(
+//       isChecked: _isChecked,
+//       onPressed: (value) {
+//         setState(() {
+//           _isChecked = value ?? false;
+//           widget.onChanged(value ?? false);
+//         });
+//       },
+//     );
+//   }
+// }

@@ -21,7 +21,7 @@ class GTLoginPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         // if state is Loading then show indicator
-        if (state is Loading) {
+        if (state is LoginLoadingState || state is GoogleSignInRequestedEvent) {
           gtIndicatorOverlay.show(context, 'loading...');
         } else {
           gtIndicatorOverlay.hide(context);
@@ -145,7 +145,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
-                            SignInRequested(
+                            SignInRequestedEvent(
                               _emailController.text,
                               _passwordController.text,
                             ),
@@ -165,7 +165,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       icon: GTAssets().icGoogle,
                       onPressed: () {
                         BlocProvider.of<AuthBloc>(context).add(
-                          GoogleSignInRequested(),
+                          GoogleSignInRequestedEvent(),
                         );
                       },
                     ),

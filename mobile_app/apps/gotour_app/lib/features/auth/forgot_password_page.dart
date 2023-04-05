@@ -20,7 +20,7 @@ class GTForgotPasswordPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         // if state is Loading then show indicator
-        if (state is Loading) {
+        if (state is ForgotPasswordLoadingState) {
           gtIndicatorOverlay.show(context, 'loading');
         } else {
           gtIndicatorOverlay.hide(context);
@@ -107,7 +107,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           BlocProvider.of<AuthBloc>(context).add(
-                            ForgotPasswordRequested(_emailController.text),
+                            ForgotPasswordRequestedEvent(_emailController.text),
                           );
                         }
                       },
