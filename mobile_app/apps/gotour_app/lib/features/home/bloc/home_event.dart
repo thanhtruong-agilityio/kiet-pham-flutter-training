@@ -13,8 +13,8 @@ class BestPlaceFetchDataEvent extends HomeEvent {}
 
 class MyLocationFetchDataEvent extends HomeEvent {}
 
-class DeleteMyLocationEvent extends HomeEvent {
-  const DeleteMyLocationEvent({
+class UnbookmarkTourEvent extends HomeEvent {
+  const UnbookmarkTourEvent({
     required this.tourId,
     required this.index,
   });
