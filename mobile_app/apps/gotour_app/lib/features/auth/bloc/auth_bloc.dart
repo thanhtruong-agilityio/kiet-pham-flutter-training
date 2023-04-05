@@ -13,34 +13,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     // When User Presses the SignIn Button, we will send
     // the SignInRequested Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<SignInRequested>(_handleSignInRequested);
+    on<SignInRequestedEvent>(_handleSignIn);
     // When User Presses the SignUp Button, we will send
     //the SignUpRequest Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<SignUpRequested>(_handleSignUpRequested);
+    on<SignUpRequestedEvent>(_handleSignUp);
     // When User Presses the Google Login Button, we will send
     // the GoogleSignInRequest Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<GoogleSignInRequested>(_handleGoogleSignInRequested);
+    on<GoogleSignInRequestedEvent>(_handleGoogleSignIn);
     // When User Presses the SignOut Button, we will send
     // the SignOutRequested Event to the AuthBloc to handle it and
     // emit the UnAuthenticated State
-    on<SignOutRequested>(_handleSignOutRequested);
+    on<SignOutRequestedEvent>(_handleSignOut);
     // When User Presses the Forgot Password Button, we will send
     // the ForgotPasswordRequested Event to the AuthBloc to handle it and
     // emit the UnAuthenticated State
-    on<ForgotPasswordRequested>(_handleForgotPasswordRequested);
+    on<ForgotPasswordRequestedEvent>(_handleForgotPassword);
+    // When User Presses the checkbox terms,
+    // we will send TermsRequested Event to AuthBloc to handle it
+    // and emit the TermsRequestSuccess
+    on<TermsRequestedEvent>(_handleTermsRequest);
   }
 
   final AuthRepository authRepository;
 
-  Future<void> _handleSignInRequested(
-    SignInRequested event,
+  Future<void> _handleSignIn(
+    SignInRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
     try {
       // emit loading state
-      emit(Loading());
+      emit(LoginLoadingState());
 
       // firebase check email and password
       await authRepository.signIn(email: event.email, password: event.password);
@@ -50,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       // if email is verified, change state to authenticated
       // and if email isn't verified change state UnAuthenticated State
-      if (isVerifyEmail == true) {
+      if (isVerifyEmail) {
         //emit authenticated state
         emit(AuthenticatedState());
       } else {
@@ -60,17 +64,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on Exception catch (e) {
       // emit error case
       emit(AuthErrorState(e.toString()));
-      emit(UnAuthenticatedState());
     }
   }
 
-  Future<void> _handleSignUpRequested(
-    SignUpRequested event,
+  Future<void> _handleSignUp(
+    SignUpRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
     try {
       // emit loading state
-      emit(Loading());
+      emit(SignUpLoadingState());
 
       // request to sign up
       await authRepository.signUp(
@@ -87,13 +90,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _handleGoogleSignInRequested(
-    GoogleSignInRequested event,
+  Future<void> _handleGoogleSignIn(
+    GoogleSignInRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
     try {
       // emit loading state
-      emit(Loading());
+      emit(LoginWithGoogleLoadingState());
 
       // request to sign in with Google
       await authRepository.signInWithGoogle();
@@ -103,17 +106,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on Exception catch (e) {
       // emit error case
       emit(AuthErrorState(e.toString()));
-      emit(UnAuthenticatedState());
     }
   }
 
-  Future<void> _handleSignOutRequested(
-    SignOutRequested event,
+  Future<void> _handleSignOut(
+    SignOutRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
     try {
       // emit loading state
-      emit(Loading());
+      emit(LogOutLoadingState());
 
       // request signout
       await authRepository.signOut();
@@ -123,17 +125,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on Exception catch (e) {
       //emit error case
       emit(AuthErrorState(e.toString()));
-      emit(AuthenticatedState());
     }
   }
 
-  Future<void> _handleForgotPasswordRequested(
-    ForgotPasswordRequested event,
+  Future<void> _handleForgotPassword(
+    ForgotPasswordRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
     try {
       // emit loading state
-      emit(Loading());
+      emit(ForgotPasswordLoadingState());
 
       // request forgot password
       await authRepository.forgotPassword(email: event.email);
@@ -143,7 +144,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on Exception catch (e) {
       // emit erorr case
       emit(AuthErrorState(e.toString()));
-      emit(ErrorForgotPassword());
+    }
+  }
+
+  Future<void> _handleTermsRequest(
+    TermsRequestedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      final enabled = event.value;
+      emit(TermRequestSuccessState(enabled: enabled));
+    } on Exception catch (e) {
+      emit(TermRequestFailureState(error: e.toString()));
     }
   }
 }
