@@ -44,7 +44,7 @@ class GTMyLocation extends StatelessWidget {
               descriptions: data[index].descriptions,
               onBookMark: () {
                 context.read<HomeBloc>().add(
-                      DeleteMyLocationEvent(
+                      UnbookmarkTourEvent(
                         tourId: tourId,
                         index: index,
                       ),
