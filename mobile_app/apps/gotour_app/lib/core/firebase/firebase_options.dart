@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
 
   static FirebaseOptions web = FirebaseOptions(
     apiKey: dotenv.env['API_KEY_WEB'] ?? '',
-    appId: dotenv.env['APP_ID'] ?? '',
+    appId: dotenv.env['APP_ID_WEB'] ?? '',
     messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
     projectId: dotenv.env['PROJECT_ID'] ?? '',
     authDomain: dotenv.env['AUTH_DOMAIN'] ?? '',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static FirebaseOptions android = FirebaseOptions(
     apiKey: dotenv.env['API_KEY_ANDROID'] ?? '',
-    appId: dotenv.env['APP_ID'] ?? '',
+    appId: dotenv.env['APP_ID_ANDROID'] ?? '',
     messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
     projectId: dotenv.env['PROJECT_ID'] ?? '',
     storageBucket: dotenv.env['STORAGE_BUCKET'] ?? '',
@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
 
   static FirebaseOptions ios = FirebaseOptions(
     apiKey: dotenv.env['API_KEY_IOS'] ?? '',
-    appId: dotenv.env['APP_ID'] ?? '',
+    appId: dotenv.env['APP_ID_IOS'] ?? '',
     messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
     projectId: dotenv.env['PROJECT_ID'] ?? '',
     storageBucket: dotenv.env['STORAGE_BUCKET'] ?? '',
