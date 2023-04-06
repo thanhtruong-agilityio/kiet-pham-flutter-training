@@ -79,6 +79,9 @@ class GTTourDetail extends StatelessWidget {
                     );
                   }
                 }
+                if (state is BookmarkErrorState) {
+                  GTSnackBar.failure(context, message: state.error);
+                }
               },
               child: BlocBuilder<TourDetailsBloc, TourDetailsState>(
                 builder: (context, state) {

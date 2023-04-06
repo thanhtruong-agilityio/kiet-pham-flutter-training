@@ -46,7 +46,6 @@ class GTSnackBar {
   static void failure(
     BuildContext context, {
     required String message,
-    required Color backgroundColor,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

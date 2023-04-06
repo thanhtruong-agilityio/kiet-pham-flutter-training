@@ -12,13 +12,13 @@ class HotPlaceBloc extends Bloc<HotPlaceEvent, HotPlaceState> {
   HotPlaceBloc({
     required this.hotPlaceRepository,
   }) : super(HotPlaceInitialState()) {
-    on<HotPlaceFetchDataEvent>(_handleHotPlaceFetchDataEvent);
-    on<PressTheBookmarkButtonEvent>(_handlePressTheBookmarkButtonEvent);
+    on<HotPlaceFetchDataEvent>(_fetchData);
+    on<PressTheBookmarkButtonEvent>(_bookmark);
   }
 
   final HotPlaceRepository hotPlaceRepository;
 
-  Future<void> _handleHotPlaceFetchDataEvent(
+  Future<void> _fetchData(
     HotPlaceFetchDataEvent event,
     Emitter<HotPlaceState> emit,
   ) async {
@@ -47,7 +47,7 @@ class HotPlaceBloc extends Bloc<HotPlaceEvent, HotPlaceState> {
     }
   }
 
-  Future<void> _handlePressTheBookmarkButtonEvent(
+  Future<void> _bookmark(
     PressTheBookmarkButtonEvent event,
     Emitter<HotPlaceState> emit,
   ) async {
@@ -84,7 +84,6 @@ class HotPlaceBloc extends Bloc<HotPlaceEvent, HotPlaceState> {
     } on Exception catch (e) {
       // error case
       emit(ChangeBookmarkHotPlaceErrorState(error: e.toString()));
-      emit(HotPlaceErrorState(error: e.toString()));
     }
   }
 }

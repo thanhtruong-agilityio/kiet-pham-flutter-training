@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "comingSoon": MessageLookupByLibrary.simpleMessage("coming soon..."),
         "emailExample":
             MessageLookupByLibrary.simpleMessage("example@email.com"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorInValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email"),
         "errorInValidPassword": MessageLookupByLibrary.simpleMessage(

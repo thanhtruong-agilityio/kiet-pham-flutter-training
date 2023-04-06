@@ -46,7 +46,6 @@ class GTLoginPage extends StatelessWidget {
           GTSnackBar.failure(
             context,
             message: state.error,
-            backgroundColor: Theme.of(context).colorScheme.error,
           );
         }
       },

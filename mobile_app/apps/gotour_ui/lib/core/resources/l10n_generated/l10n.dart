@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Explore`
   String get onboardingPageFistTitle {
     return Intl.message(

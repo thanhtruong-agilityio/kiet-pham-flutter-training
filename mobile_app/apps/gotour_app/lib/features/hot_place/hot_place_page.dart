@@ -78,6 +78,9 @@ class GTHotPlace extends StatelessWidget {
                   );
                 }
               }
+              if (state is ChangeBookmarkHotPlaceErrorState) {
+                GTSnackBar.failure(context, message: state.error);
+              }
             },
             child: BlocBuilder<HotPlaceBloc, HotPlaceState>(
               builder: (context, state) {

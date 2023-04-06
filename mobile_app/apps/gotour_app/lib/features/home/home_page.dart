@@ -98,6 +98,12 @@ class _GTHomeView extends StatelessWidget {
                   message: S.of(context).unBookMarkSuccessMessage,
                 );
               }
+              if (state is UnBookmarkErrorState) {
+                GTSnackBar.failure(
+                  context,
+                  message: state.error,
+                );
+              }
             },
             child: GestureDetector(
               onTap: () {
