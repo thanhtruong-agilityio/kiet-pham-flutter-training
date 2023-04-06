@@ -55,9 +55,6 @@ class GTProfilePage extends StatelessWidget {
                       barrierDismissible: false,
                       context: context,
                       builder: (context) => GTAlertDialog(
-                        onCancel: () {
-                          Navigator.of(context).pop();
-                        },
                         onOk: () {
                           context.read<AuthBloc>().add(SignOutRequestedEvent());
                         },

@@ -36,12 +36,6 @@ class GTLoginPage extends StatelessWidget {
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
-              onCancel: () {
-                context.pop();
-              },
-              onOk: () {
-                context.pop();
-              },
               title: S.of(context).verifyEmailMessage,
               content: S.of(context).checkyourEmailMessage,
             ),
