@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -47,31 +48,30 @@ class DefaultFirebaseOptions {
     );
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDIJxi6-Ea7VGBhrUwZCoRBn9EWRgGkVjE',
-    appId: '1:202132298198:web:7afd40af05c1e1fb0aac77',
-    messagingSenderId: '202132298198',
-    projectId: 'loginfirebase-c9b0b',
-    authDomain: 'loginfirebase-c9b0b.firebaseapp.com',
-    storageBucket: 'loginfirebase-c9b0b.appspot.com',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.env['API_KEY_WEB'] ?? '',
+    appId: dotenv.env['APP_ID'] ?? '',
+    messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
+    projectId: dotenv.env['PROJECT_ID'] ?? '',
+    authDomain: dotenv.env['AUTH_DOMAIN'] ?? '',
+    storageBucket: dotenv.env['STORAGE_BUCKET'] ?? '',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD-vK6sMZsrJ343axK3OQ_S3yUe6HqhyO8',
-    appId: '1:202132298198:android:df5855eb7eb299e80aac77',
-    messagingSenderId: '202132298198',
-    projectId: 'loginfirebase-c9b0b',
-    storageBucket: 'loginfirebase-c9b0b.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['API_KEY_ANDROID'] ?? '',
+    appId: dotenv.env['APP_ID'] ?? '',
+    messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
+    projectId: dotenv.env['PROJECT_ID'] ?? '',
+    storageBucket: dotenv.env['STORAGE_BUCKET'] ?? '',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC__5Fhec2bHhR4KWKCMTLe7RlKVRaV8J0',
-    appId: '1:202132298198:ios:4b7ca2ebb1fa91ec0aac77',
-    messagingSenderId: '202132298198',
-    projectId: 'loginfirebase-c9b0b',
-    storageBucket: 'loginfirebase-c9b0b.appspot.com',
-    iosClientId:
-        '202132298198-vl96hsbtsijtf1phlk0pgt8p522cvduq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.gotourApp',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env['API_KEY_IOS'] ?? '',
+    appId: dotenv.env['APP_ID'] ?? '',
+    messagingSenderId: dotenv.env['MESSAGING_SENDER_ID'] ?? '',
+    projectId: dotenv.env['PROJECT_ID'] ?? '',
+    storageBucket: dotenv.env['STORAGE_BUCKET'] ?? '',
+    iosClientId: dotenv.env['IOS_CLIENT_ID'] ?? '',
+    iosBundleId: dotenv.env['IOS_BUNDLE_ID'] ?? '',
   );
 }
