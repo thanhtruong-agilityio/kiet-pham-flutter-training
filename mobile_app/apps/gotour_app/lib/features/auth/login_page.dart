@@ -108,7 +108,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     // Email Textfield
                     GTTextField(
                       controller: _emailController,
-                      hintText: 'email@example.com',
+                      hintText: S.of(context).emailExample,
                       title: S.of(context).textFieldEmail,
                       activateLabel: true,
                       keyboardType: TextInputType.emailAddress,
@@ -182,7 +182,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
                     SizedBox(height: device.sh(10)),
                     GTText.labelLarge(
                       context,
-                      text: 'Or',
+                      text: S.of(context).or,
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
                     SizedBox(height: device.sh(10)),

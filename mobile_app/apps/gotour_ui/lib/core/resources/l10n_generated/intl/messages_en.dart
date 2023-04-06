@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Easy Peasy"),
         "onboardingPagelastTitle":
             MessageLookupByLibrary.simpleMessage("Enjoy Tour"),
+        "or": MessageLookupByLibrary.simpleMessage("Or"),
         "profileScreenBankingAndPayment":
             MessageLookupByLibrary.simpleMessage("Banking & Payment"),
         "profileScreenCurrency":

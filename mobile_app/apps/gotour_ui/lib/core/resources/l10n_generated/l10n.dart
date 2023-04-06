@@ -170,6 +170,16 @@ class S {
     );
   }
 
+  /// `Or`
+  String get or {
+    return Intl.message(
+      'Or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Explore`
   String get onboardingPageFistTitle {
     return Intl.message(

@@ -94,7 +94,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                     // Email TextField
                     GTTextField(
                       controller: _emailController,
-                      hintText: 'email@example.com',
+                      hintText: S.of(context).emailExample,
                       title: S.of(context).textFieldEmail,
                       activateLabel: true,
                       keyboardType: TextInputType.emailAddress,

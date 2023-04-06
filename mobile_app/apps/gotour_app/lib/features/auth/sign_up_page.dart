@@ -107,7 +107,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     // Email TextField
                     GTTextField(
                       controller: _emailController,
-                      hintText: 'email@example.com',
+                      hintText: S.of(context).emailExample,
                       title: S.of(context).textFieldEmail,
                       keyboardType: TextInputType.emailAddress,
                       activateLabel: true,
