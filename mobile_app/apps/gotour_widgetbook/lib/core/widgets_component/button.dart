@@ -81,10 +81,13 @@ class GTWBBuildButton extends StatelessWidget {
                   '''GTTextHighlightButton(\n  text: text,\n  onPressed: () {},\n)''',
             ),
             const SizedBox(height: 10),
-            GTTextHighlightButton(
-              text: context.knobs
-                  .text(label: 'Text', initialValue: 'text hightlight button'),
-              onPressed: () {},
+            SizedBox(
+              height: 40,
+              child: GTTextHighlightButton(
+                text: context.knobs.text(
+                    label: 'Text', initialValue: 'text hightlight button'),
+                onPressed: () {},
+              ),
             ),
           ],
         ),
