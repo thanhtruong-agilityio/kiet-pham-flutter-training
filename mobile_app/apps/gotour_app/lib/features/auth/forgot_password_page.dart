@@ -22,7 +22,7 @@ class GTForgotPasswordPage extends StatelessWidget {
       listener: (context, state) {
         // if state is Loading then show indicator
         if (state is ForgotPasswordLoadingState) {
-          gtIndicatorOverlay.show(context, 'loading');
+          gtIndicatorOverlay.show(context, S.of(context).loading);
         } else {
           gtIndicatorOverlay.hide(context);
         }
