@@ -71,6 +71,14 @@ dev_dependencies:
   # A build system for Dart code generation and modular compilation.
   build_runner: 2.3.3
 
+  # A package which simplifies the task of updating your Flutter app's launcher icon.
+  flutter_launcher_icons: 0.12.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"  
+
 flutter:
   uses-material-design: true
 
