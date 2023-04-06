@@ -850,20 +850,20 @@ class S {
     );
   }
 
-  /// `Bookmark tour success`
+  /// `Add bookmark successful`
   String get bookMarkSuccessMessage {
     return Intl.message(
-      'Bookmark tour success',
+      'Add bookmark successful',
       name: 'bookMarkSuccessMessage',
       desc: '',
       args: [],
     );
   }
 
-  /// `Un bookmark success`
+  /// `Remove bookmark successful`
   String get unBookMarkSuccessMessage {
     return Intl.message(
-      'Un bookmark success',
+      'Remove bookmark successful',
       name: 'unBookMarkSuccessMessage',
       desc: '',
       args: [],

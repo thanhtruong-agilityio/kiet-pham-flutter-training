@@ -96,7 +96,7 @@
     "verifyEmailMessage": "Please verify email",
     "checkyourEmailMessage": "Please check your email",
     "logOutMessage": "Do you want to log out",
-    "bookMarkSuccessMessage": "Bookmark tour success",
-    "unBookMarkSuccessMessage": "Un bookmark success"
+    "bookMarkSuccessMessage": "Add bookmark successful",
+    "unBookMarkSuccessMessage": "Remove bookmark successful"
 
 }

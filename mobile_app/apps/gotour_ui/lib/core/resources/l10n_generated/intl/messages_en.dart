@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "LightTheme": MessageLookupByLibrary.simpleMessage("Light"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "bookMarkSuccessMessage":
-            MessageLookupByLibrary.simpleMessage("Bookmark tour success"),
+            MessageLookupByLibrary.simpleMessage("Add bookmark successful"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chatPageContent":
             MessageLookupByLibrary.simpleMessage("Welcome to gotour chat"),
@@ -135,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tourDetailsPageService":
             MessageLookupByLibrary.simpleMessage("Service"),
         "unBookMarkSuccessMessage":
-            MessageLookupByLibrary.simpleMessage("Un bookmark success"),
+            MessageLookupByLibrary.simpleMessage("Remove bookmark successful"),
         "verifyEmailMessage":
             MessageLookupByLibrary.simpleMessage("Please verify email"),
         "widgetbookAllButtons":
