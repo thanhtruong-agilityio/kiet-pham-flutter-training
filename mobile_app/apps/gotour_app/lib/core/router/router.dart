@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/dashboard.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
+import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 import 'package:gotour_app/features/auth/sign_up_page.dart';
 import 'package:gotour_app/features/best_place/best_place_page.dart';
 import 'package:gotour_app/features/chat/chat_page.dart';
@@ -16,6 +16,7 @@ import 'package:gotour_app/features/misc/onboarding_page.dart';
 import 'package:gotour_app/features/notification/notification_page.dart';
 import 'package:gotour_app/features/profile/profile_page.dart';
 import 'package:gotour_app/features/tour_details/tour_details_page.dart';
+import 'package:gotour_ui/core/widgets/dashboard.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -29,16 +30,24 @@ final GoRouter router = GoRouter(
       state.namedLocation(RouterNamedLocation.signUp),
       state.namedLocation(RouterNamedLocation.forgotPassword),
     ];
+
     final auth = FirebaseAuth.instance;
+
+    // check user login with email and password
     final isLoggedIn =
         auth.currentUser != null && auth.currentUser!.emailVerified;
-    final googleUser = GoogleSignIn().currentUser != null;
+
+    final googleSignIn =
+        RepositoryProvider.of<AuthRepository>(context).googleSignIn;
+
+    // check user login with google
+    final googleUser = googleSignIn.currentUser != null;
+
     if (unAuthenList.contains(state.subloc)) {
       return null;
     }
-    if (!isLoggedIn) {
-      return state.namedLocation(RouterNamedLocation.login);
-      // return null;
+    if (!isLoggedIn && !googleUser) {
+      return state.namedLocation(RouterNamedLocation.onboarding);
     }
     return null;
   },
@@ -66,7 +75,7 @@ final GoRouter router = GoRouter(
           name: RouterNamedLocation.tourDetails,
           path: '/tour-details/:id',
           pageBuilder: (context, state) => CustomTransitionPage(
-            child: GTTourDetails(
+            child: GTTourDetail(
               id: state.params['id']!,
             ),
             transitionDuration: const Duration(milliseconds: 700),

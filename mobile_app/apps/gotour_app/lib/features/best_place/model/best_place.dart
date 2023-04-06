@@ -1,11 +1,11 @@
 class BestPlace {
   BestPlace({
     required this.id,
-    required this.imageUrl,
-    required this.location,
     required this.placeName,
-    required this.price,
-    required this.tagList,
+    this.imageUrl = '',
+    this.location = '',
+    this.price = '',
+    this.tagList = const [],
   });
 
   factory BestPlace.fromJson(Map<String, dynamic> json) => BestPlace(
@@ -24,11 +24,11 @@ class BestPlace {
   String price;
   List<String> tagList;
 
-  // Map<String, dynamic> toJson() => {
-  //       'id': id,
-  //       'price': price,
-  //       'imageUrl': imageUrl,
-  //       'location': location,
-  //       'placeName': placeName,
-  //     };
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'price': price,
+        'imageUrl': imageUrl,
+        'location': location,
+        'placeName': placeName,
+      };
 }

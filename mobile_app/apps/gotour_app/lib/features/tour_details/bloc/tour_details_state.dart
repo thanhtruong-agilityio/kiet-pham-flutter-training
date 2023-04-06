@@ -17,7 +17,7 @@ class TourDetailsLoadingState extends TourDetailsState {
 class TourDetailsLoadedState extends TourDetailsState {
   const TourDetailsLoadedState({
     required this.tourDetails,
-    required this.isBookmark,
+    this.isBookmark = false,
   });
 
   final TourDetails tourDetails;
@@ -33,12 +33,12 @@ class TourDetailsErrorState extends TourDetailsState {
   final String error;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [error];
 }
 
-class ChangeBookmarkSuccessState extends TourDetailsState {
-  const ChangeBookmarkSuccessState({
-    required this.isBookmark,
+class BookmarkSuccessState extends TourDetailsState {
+  const BookmarkSuccessState({
+    this.isBookmark = false,
   });
 
   final bool isBookmark;
@@ -47,11 +47,11 @@ class ChangeBookmarkSuccessState extends TourDetailsState {
   List<Object> get props => [isBookmark];
 }
 
-class ChangeBookmarkErrorState extends TourDetailsState {
-  const ChangeBookmarkErrorState({required this.error});
+class BookmarkErrorState extends TourDetailsState {
+  const BookmarkErrorState({required this.error});
 
   final String error;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [error];
 }

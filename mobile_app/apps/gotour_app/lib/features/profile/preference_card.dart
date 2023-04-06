@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_app/core/assets/assets.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class PreferenceCard extends StatelessWidget {
@@ -13,6 +14,7 @@ class PreferenceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
+    final i10n = S.of(context);
 
     return Container(
       height: device.scale(194),
@@ -26,25 +28,28 @@ class PreferenceCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: device.scale(27)),
-          GTText.titleSmall(context, text: 'preference'),
+          GTText.titleSmall(
+            context,
+            text: i10n.profileScreenPreference,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().notifications,
+                  GTAssets.icNoti,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Notification',
+                  text: i10n.profileScreenNotification,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],
@@ -60,19 +65,19 @@ class PreferenceCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().language,
+                  GTAssets.language,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Language',
+                  text: i10n.profileScreenLanguage,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],
@@ -88,19 +93,19 @@ class PreferenceCard extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  GTAssets().currency,
+                  GTAssets.currency,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: 'Currency',
+                  text: i10n.profileScreenCurrency,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),
                 SvgPicture.asset(
-                  GTAssets().arrow,
+                  GTAssets.icArrowNext,
                   height: 11,
                 )
               ],

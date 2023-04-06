@@ -15,10 +15,10 @@ class TourDetailsFetchDataEvent extends TourDetailsEvent {
   final String id;
 }
 
-class PressTheTourBookmarkButtonEvent extends TourDetailsEvent {
-  const PressTheTourBookmarkButtonEvent({
+class TourDetailBookmarkEvent extends TourDetailsEvent {
+  const TourDetailBookmarkEvent({
     required this.tourId,
-    required this.isBookmark,
+    this.isBookmark = false,
   });
 
   final String tourId;

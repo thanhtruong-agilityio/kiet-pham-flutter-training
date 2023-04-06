@@ -15,3 +15,6 @@ export 'package:gotour_ui/core/widgets/textfield.dart';
 export 'package:gotour_ui/core/widgets/title.dart';
 export 'package:gotour_ui/core/widgets/snack_bar.dart';
 export 'package:gotour_ui/core/widgets/indicator.dart';
+export 'package:gotour_ui/core/widgets/dashboard.dart';
+export 'package:gotour_ui/core/widgets/checkbox.dart';
+export 'package:gotour_ui/core/assets.dart';

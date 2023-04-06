@@ -10,61 +10,87 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.mainRepository}) : super(HomeInitialState()) {
-    on<DeleteMyLocationEvent>(_handleDeleteMyLocationEvent);
-    on<HomeFetchDataEvent>(_handleHomeFetchDataEvent);
+    // event un bookmark
+    on<UnbookmarkTourEvent>(_handleUnbookmark);
+    // event fetch data
+    on<HomeFetchDataEvent>(_handleHomeFetch);
   }
 
   final HomeRepository mainRepository;
 
-  Future<void> _handleDeleteMyLocationEvent(
-    DeleteMyLocationEvent event,
+  Future<void> _handleUnbookmark(
+    UnbookmarkTourEvent event,
     Emitter<HomeState> emit,
   ) async {
     try {
-      final userId = FirebaseAuth.instance.currentUser!.uid;
-      await mainRepository.unBookmark(userId: userId, tourId: event.tourId);
+      // emit(UnBookmarkLoadingState());
+      // fetch user id
+      final userId = FirebaseAuth.instance.currentUser?.uid;
 
-      final listBeforDelete = state as HomeLoadedState;
-      listBeforDelete.myLocationList.removeAt(event.index);
+      // handle unbookmark
+      await mainRepository.unBookmark(
+        userId: userId ?? '',
+        tourId: event.tourId,
+      );
+
+      // remove tour from local data
+      final oldData = state as HomeLoadedState;
+      oldData.myLocations.removeAt(event.index);
+
+      // emit unbookmark success state
       emit(
         UnBookmarkSuccessState(
-          listMyLocation: listBeforDelete.myLocationList,
+          myLocations: oldData.myLocations,
         ),
       );
+
+      //emit home loaded state
       emit(
         HomeLoadedState(
-          bestPlaceList: listBeforDelete.bestPlaceList,
-          myLocationList: listBeforDelete.myLocationList,
+          bestPlaces: oldData.bestPlaces,
+          myLocations: oldData.myLocations,
         ),
       );
     } on Exception catch (e) {
+      // case error
       emit(UnBookmarkErrorState(error: e.toString()));
     }
   }
 
-  Future<void> _handleHomeFetchDataEvent(
+  Future<void> _handleHomeFetch(
     HomeFetchDataEvent event,
     Emitter<HomeState> emit,
   ) async {
     try {
+      // emit loading state
       emit(HomeLoadingState());
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
-      final tourIds =
-          await mainRepository.fetchListTourBookmarkByUser(idUser: idUser);
 
+      // fetch user id
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+
+      // fetch list tour bookmark with id
+      final tourIds =
+          await mainRepository.fetchListTourBookmarkByUser(userId: userId);
+
+      // add tour to list
       final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
 
-      final myLocationList =
+      // fetch data mylocation
+      final myLocations =
           await mainRepository.getDataFromDocuments(documentIds: tourIdList);
 
-      final bestPlaceList = await mainRepository.fetchDataBestPlace();
+      // fetch data best place
+      final bestPlaces = await mainRepository.fetchDataBestPlace();
+
+      // emit success state
       emit(
         HomeLoadedState(
-          bestPlaceList: bestPlaceList,
-          myLocationList: myLocationList,
+          bestPlaces: bestPlaces,
+          myLocations: myLocations,
         ),
       );
     } on Exception catch (e) {
+      // case error
       emit(HomeErrorState(error: e.toString()));
     }
   }

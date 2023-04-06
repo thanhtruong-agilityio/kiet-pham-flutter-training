@@ -12,6 +12,7 @@ class GTTextField extends StatefulWidget {
     this.autovalidateMode,
     this.validator,
     this.controller,
+    this.onChanged,
   });
 
   final String? title;
@@ -22,6 +23,7 @@ class GTTextField extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final void Function(String)? onChanged;
 
   @override
   State<GTTextField> createState() => _GTTextFieldState();
@@ -61,6 +63,7 @@ class _GTTextFieldState extends State<GTTextField> {
             cursorColor: colorScheme.onBackground,
             obscureText: _obscureText,
             validator: widget.validator,
+            onChanged: widget.onChanged,
             onEditingComplete: () {
               FocusScope.of(context).nextFocus();
             },

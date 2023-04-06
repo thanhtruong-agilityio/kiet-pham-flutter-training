@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/validator/validator.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/textfield.dart';
@@ -21,37 +22,30 @@ class GTLoginPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         // if state is Loading then show indicator
-        if (state is Loading) {
-          gtIndicatorOverlay.show(context, 'loading...');
+        if (state is LoginLoadingState || state is GoogleSignInRequestedEvent) {
+          gtIndicatorOverlay.show(context, S.of(context).loading);
         } else {
           gtIndicatorOverlay.hide(context);
         }
-        if (state is Authenticated) {
-          // Navigating to the dashboard screen if the user is authenticated
+        if (state is AuthenticatedState) {
+          // Navigating to the home screen if the user is authenticated
           context.go('/');
         }
-        if (state is UnVerifyEmail) {
-          GTIndicatorOverlay().hide(context);
+        // if state is UnVerifyEmailState, then show snackbar
+        if (state is UnVerifyEmailState) {
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
-              onCancel: () {
-                context.pop();
-              },
-              onOk: () {
-                context.pop();
-              },
               title: S.of(context).verifyEmailMessage,
               content: S.of(context).checkyourEmailMessage,
             ),
           );
         }
-        if (state is AuthError) {
-          // Showing the error message if the user has entered invalid credentials
+        // Showing the error message if the user has entered invalid credentials
+        if (state is AuthErrorState) {
           GTSnackBar.failure(
             context,
             message: state.error,
-            backgroundColor: Theme.of(context).colorScheme.error,
           );
         }
       },
@@ -82,7 +76,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
-    return Scaffold(
+    return GTScaffold(
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -96,31 +90,40 @@ class _GTLoginViewState extends State<_GTLoginView> {
                 child: Column(
                   children: [
                     SizedBox(height: device.sh(100)),
+                    // logo image
                     Image.asset(
-                      GTAssets().logo,
+                      GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
                       fit: BoxFit.contain,
                     ),
                     SizedBox(height: device.sh(72)),
+                    // Title
                     GTText.displaySmall(
                       context,
                       text: S.of(context).loginTitle,
                     ),
                     SizedBox(height: device.sh(20)),
+                    // Email Textfield
                     GTTextField(
                       controller: _emailController,
-                      hintText: 'email@example.com',
+                      hintText: S.of(context).emailExample,
                       title: S.of(context).textFieldEmail,
                       activateLabel: true,
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (email) {
-                        return !AuthValidator.isValidEmail(email!)
+                        return !AuthValidator.isValidEmail(email ?? '')
                             ? S.of(context).errorInValidEmail
                             : null;
                       },
                     ),
+                    // Password Textfield
                     GTTextField(
                       controller: _passwordController,
                       hintText: S.of(context).textFieldPassword,
@@ -128,48 +131,72 @@ class _GTLoginViewState extends State<_GTLoginView> {
                       obscureText: true,
                       activateLabel: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onChanged: (value) {
+                        context
+                            .read<AuthBloc>()
+                            .add(ValueChangedEvent(value: value));
+                      },
                       validator: (password) {
-                        return !AuthValidator.isValidPassword(password!)
+                        return !AuthValidator.isValidPassword(password ?? '')
                             ? S.of(context).errorInValidPassword
                             : null;
                       },
                     ),
+                    // Forgot Password Button
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonForgotPassword,
                       onPressed: () => context.push('/forgot-password-page'),
                     ),
                     SizedBox(height: device.sh(10)),
-                    GTElevatedHighlightButton(
-                      activateShadow: true,
-                      text: S.of(context).loginPageTitle,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthBloc>(context).add(
-                            SignInRequested(
-                              _emailController.text,
-                              _passwordController.text,
-                            ),
-                          );
-                        }
+                    // Login Button
+                    BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) =>
+                          current is ValueChangedSuccessState,
+                      builder: (context, state) {
+                        final formValid = AuthValidator.formLoginValid(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+
+                        return GTElevatedHighlightButton(
+                          activateShadow: true,
+                          text: S.of(context).loginPageTitle,
+                          isEnabled: formValid,
+                          onPressed: formValid
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    BlocProvider.of<AuthBloc>(context).add(
+                                      SignInRequestedEvent(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      ),
+                                    );
+                                  }
+                                }
+                              : () {},
+                        );
                       },
                     ),
                     SizedBox(height: device.sh(10)),
                     GTText.labelLarge(
                       context,
-                      text: 'Or',
+                      text: S.of(context).or,
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
                     SizedBox(height: device.sh(10)),
+                    // Login with google button
                     GTElevatedButton(
                       text: S.of(context).loginPageButtonLoginGG,
-                      icon: GTAssets().google,
+                      icon: GTAssets.icGoogle,
                       onPressed: () {
                         BlocProvider.of<AuthBloc>(context).add(
-                          GoogleSignInRequested(),
+                          GoogleSignInRequestedEvent(),
                         );
                       },
                     ),
                     SizedBox(height: device.sh(10)),
+                    // go to Sign Up button
                     GTTextHighlightButton(
                       text: S.of(context).loginPageButtonSignUpHere,
                       onPressed: () => context.push('/sign-up-page'),

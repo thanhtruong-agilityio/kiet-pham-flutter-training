@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,68 +10,84 @@ part 'tour_details_state.dart';
 class TourDetailsBloc extends Bloc<TourDetailsEvent, TourDetailsState> {
   TourDetailsBloc({required this.tourDetailsRepository})
       : super(TourDetailsInitialState()) {
-    on<TourDetailsFetchDataEvent>(_handleTourDetailsFetchDataEvent);
-    on<PressTheTourBookmarkButtonEvent>(_handleCheckBookMarkTourEvent);
+    // fetch data tour detail event
+    on<TourDetailsFetchDataEvent>(_fetchData);
+    //
+    on<TourDetailBookmarkEvent>(_bookmark);
   }
 
   final TourDetailsRepository tourDetailsRepository;
 
-  Future<void> _handleTourDetailsFetchDataEvent(
+  Future<void> _fetchData(
     TourDetailsFetchDataEvent event,
     Emitter<TourDetailsState> emit,
   ) async {
     try {
+      // load indicator
       emit(TourDetailsLoadingState());
+
+      // fetch data from firebase
       final userId = FirebaseAuth.instance.currentUser!.uid;
       final tourDetails = await tourDetailsRepository.fetchDataTour(
         tourId: event.id,
       );
-      final isBookMark = await tourDetailsRepository.tourHasBeenMarked(
+      final isBookMark = await tourDetailsRepository.checkTourMarked(
         tourId: event.id,
         userId: userId,
       );
+
+      // load data success
       emit(
         TourDetailsLoadedState(
           tourDetails: tourDetails,
           isBookmark: isBookMark,
         ),
       );
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      // error case
+      emit(TourDetailsErrorState(error: e.toString()));
+    }
   }
 
-  Future<void> _handleCheckBookMarkTourEvent(
-    PressTheTourBookmarkButtonEvent event,
+  Future<void> _bookmark(
+    TourDetailBookmarkEvent event,
     Emitter<TourDetailsState> emit,
   ) async {
     try {
-      final stateLoaded = state as TourDetailsLoadedState;
-      final idUser = FirebaseAuth.instance.currentUser!.uid;
+      // get tour details
+      final tourDetail = (state as TourDetailsLoadedState).tourDetails;
+      final userId = FirebaseAuth.instance.currentUser!.uid;
 
+      // check bookmark
       await tourDetailsRepository.handleBookmarkTour(
-        bookmark: event.isBookmark,
+        isBookmark: event.isBookmark,
         tourId: event.tourId,
-        userId: idUser,
+        userId: userId,
       );
+
+      // change bookmark
       final checkBookmark = !event.isBookmark;
-      if (checkBookmark == true) {
-        emit(ChangeBookmarkSuccessState(isBookmark: checkBookmark));
+
+      if (checkBookmark) {
+        emit(BookmarkSuccessState(isBookmark: checkBookmark));
         emit(
           TourDetailsLoadedState(
             isBookmark: checkBookmark,
-            tourDetails: stateLoaded.tourDetails,
+            tourDetails: tourDetail,
           ),
         );
       } else {
-        emit(ChangeBookmarkSuccessState(isBookmark: checkBookmark));
+        emit(BookmarkSuccessState(isBookmark: checkBookmark));
         emit(
           TourDetailsLoadedState(
             isBookmark: checkBookmark,
-            tourDetails: stateLoaded.tourDetails,
+            tourDetails: tourDetail,
           ),
         );
       }
     } on Exception catch (e) {
-      emit(ChangeBookmarkErrorState(error: e.toString()));
+      // error case
+      emit(BookmarkErrorState(error: e.toString()));
     }
   }
 }

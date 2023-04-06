@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gotour_app/core/firebase/firebase_options.dart';
@@ -11,19 +12,23 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
 
 void main() async {
+  // show splash screen
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  await dotenv.load();
+
+  // initializes the Firebase SDK
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
   runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
-  static const String title = 'Kiet Anh';
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -34,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
+    // remove splash screen after the 2-second delay,
     Future.delayed(
       const Duration(seconds: 2),
       FlutterNativeSplash.remove,

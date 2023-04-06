@@ -9,112 +9,175 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.authRepository}) : super(UnAuthenticated()) {
+  AuthBloc({required this.authRepository}) : super(UnAuthenticatedState()) {
     // When User Presses the SignIn Button, we will send
     // the SignInRequested Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<SignInRequested>(_handleSignInRequested);
+    on<SignInRequestedEvent>(_handleSignIn);
     // When User Presses the SignUp Button, we will send
     //the SignUpRequest Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<SignUpRequested>(_handleSignUpRequested);
+    on<SignUpRequestedEvent>(_handleSignUp);
     // When User Presses the Google Login Button, we will send
     // the GoogleSignInRequest Event to the AuthBloc to handle it and
     // emit the Authenticated State if the user is authenticated
-    on<GoogleSignInRequested>(_handleGoogleSignInRequested);
+    on<GoogleSignInRequestedEvent>(_handleGoogleSignIn);
     // When User Presses the SignOut Button, we will send
     // the SignOutRequested Event to the AuthBloc to handle it and
     // emit the UnAuthenticated State
-    on<SignOutRequested>(_handleSignOutRequested);
+    on<SignOutRequestedEvent>(_handleSignOut);
     // When User Presses the Forgot Password Button, we will send
     // the ForgotPasswordRequested Event to the AuthBloc to handle it and
     // emit the UnAuthenticated State
-    on<ForgotPasswordRequested>(_handleForgotPasswordRequested);
+    on<ForgotPasswordRequestedEvent>(_handleForgotPassword);
+    // When User Presses the checkbox terms,
+    // we will send TermsRequested Event to AuthBloc to handle it
+    // and emit the TermsRequestSuccess
+    on<TermsRequestedEvent>(_handleTermsRequest);
+    on<ValueChangedEvent>(_handleValueChanged);
   }
 
   final AuthRepository authRepository;
 
-  Future<void> _handleSignInRequested(
-    SignInRequested event,
+  Future<void> _handleSignIn(
+    SignInRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(LoginLoadingState());
+
+      // firebase check email and password
       await authRepository.signIn(email: event.email, password: event.password);
+
+      // firebase  check email is verified?
       final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
-      if (isVerifyEmail == true) {
-        emit(Authenticated());
+
+      // if email is verified, change state to authenticated
+      // and if email isn't verified change state UnAuthenticated State
+      if (isVerifyEmail) {
+        //emit authenticated state
+        emit(AuthenticatedState());
       } else {
-        emit(UnVerifyEmail());
+        // emit unauthenticated state
+        emit(UnVerifyEmailState());
       }
     } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
+      // emit error case
+      emit(AuthErrorState(e.toString()));
     }
   }
 
-  Future<void> _handleSignUpRequested(
-    SignUpRequested event,
+  Future<void> _handleSignUp(
+    SignUpRequestedEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(Loading());
     try {
+      // emit loading state
+      emit(SignUpLoadingState());
+
+      // request to sign up
       await authRepository.signUp(
         email: event.email,
         password: event.password,
         gender: event.gender,
       );
-      final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
-      if (isVerifyEmail == true) {
-        emit(Authenticated());
-      } else {
-        emit(UnVerifyEmail());
+
+      // emit sign up submited state
+      emit(SignUpSubmitedState());
+    } on Exception catch (e) {
+      // emit error case
+      emit(AuthErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _handleGoogleSignIn(
+    GoogleSignInRequestedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // emit loading state
+      emit(LoginWithGoogleLoadingState());
+
+      // request to sign in with Google
+      await authRepository.signInWithGoogle();
+
+      //emit authentication state
+      emit(AuthenticatedState());
+    } on Exception catch (e) {
+      // emit error case
+      emit(AuthErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _handleSignOut(
+    SignOutRequestedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // emit loading state
+      emit(LogOutLoadingState());
+
+      // request signout
+      await authRepository.signOut();
+
+      // emit unauthenticated state
+      emit(UnAuthenticatedState());
+    } on Exception catch (e) {
+      //emit error case
+      emit(AuthErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _handleForgotPassword(
+    ForgotPasswordRequestedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // emit loading state
+      emit(ForgotPasswordLoadingState());
+
+      // request forgot password
+      await authRepository.forgotPassword(email: event.email);
+
+      // emit forgot password submited state
+      emit(ForgotPasswordSubmitedState());
+    } on Exception catch (e) {
+      // emit erorr case
+      emit(AuthErrorState(e.toString()));
+    }
+  }
+
+  Future<void> _handleTermsRequest(
+    TermsRequestedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // check value
+      final enabled = event.value;
+      emit(TermRequestSuccessState(enabled: enabled));
+    } on Exception catch (e) {
+      // error case
+      emit(TermRequestFailureState(error: e.toString()));
+    }
+  }
+
+  Future<void> _handleValueChanged(
+    ValueChangedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      // loading state
+      emit(ValueChangedLoadingState());
+      final value = event.value;
+
+      // succes state
+      if (value?.isNotEmpty ?? false) {
+        emit(ValueChangedSuccessState(value: value ?? ''));
       }
     } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
-    }
-  }
-
-  Future<void> _handleGoogleSignInRequested(
-    GoogleSignInRequested event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(Loading());
-    try {
-      await authRepository.signInWithGoogle();
-      emit(Authenticated());
-    } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-      emit(UnAuthenticated());
-    }
-  }
-
-  Future<void> _handleSignOutRequested(
-    SignOutRequested event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(Loading());
-    try {
-      await authRepository.signOut();
-      emit(UnAuthenticated());
-    } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-      emit(Authenticated());
-    }
-  }
-
-  Future<void> _handleForgotPasswordRequested(
-    ForgotPasswordRequested event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(Loading());
-    try {
-      await authRepository.forgotPassword(email: event.email);
-      emit(SubmitForgotPassword());
-    } on Exception catch (e) {
-      emit(AuthError(e.toString()));
-      emit(ErrorForgotPassword());
+      // error case
+      emit(ValueChangedErrorState(error: e.toString()));
     }
   }
 }

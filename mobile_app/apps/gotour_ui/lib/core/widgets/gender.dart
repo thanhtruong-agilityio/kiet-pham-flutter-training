@@ -47,7 +47,7 @@ class _GTGenderState extends State<GTGender> {
                   isChecked: selectedValue == 0,
                   onPressed: (value) {
                     setState(() {
-                      selectedValue = (value ? 0 : null)!;
+                      selectedValue = (value! ? 0 : null)!;
                     });
                   },
                 ),
@@ -84,7 +84,7 @@ class _GTGenderState extends State<GTGender> {
                   isChecked: selectedValue == 1,
                   onPressed: (value) {
                     setState(() {
-                      selectedValue = (value ? 1 : null)!;
+                      selectedValue = (value! ? 1 : null)!;
                     });
                   },
                 ),
@@ -116,7 +116,7 @@ class GTCheckBox extends StatefulWidget {
   });
 
   final bool isChecked;
-  final void Function(bool)? onPressed;
+  final void Function(bool?)? onPressed;
   final VoidCallback? onTap;
 
   @override
@@ -129,6 +129,8 @@ class _GTCheckBoxState extends State<GTCheckBox> {
   @override
   Widget build(BuildContext context) {
     _isChecked = widget.isChecked;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return InkWell(
       onTap: widget.onTap,
       onHighlightChanged: widget.onPressed,
@@ -148,7 +150,7 @@ class _GTCheckBoxState extends State<GTCheckBox> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    color: colorScheme.onSurfaceVariant,
                     width: 1.5,
                   ),
                 ),

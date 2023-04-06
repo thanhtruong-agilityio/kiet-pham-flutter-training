@@ -11,23 +11,32 @@ class BestPlaceBloc extends Bloc<BestPlaceEvent, BestPlaceState> {
   BestPlaceBloc({
     required this.bestPlaceRepository,
   }) : super(BestPlaceInitial()) {
-    on<BestPlaceFetchDataEvent>(_handleBestPlaceFetchDataEvent);
+    // event fetch data
+    on<BestPlaceFetchDataEvent>(_handleFetch);
   }
 
   final BestPlaceRepository bestPlaceRepository;
 
-  Future<void> _handleBestPlaceFetchDataEvent(
+  Future<void> _handleFetch(
     BestPlaceFetchDataEvent event,
     Emitter<BestPlaceState> emit,
   ) async {
     try {
+      // emit loading state
       emit(BestPlaceLoadingState());
+
+      // handle fetch bestPlace list
       final bestPlaceList = await bestPlaceRepository.fetchDataBestPlace();
+
+      // emit success state
       emit(
         BestPlaceLoadedState(
           bestPlaceList: bestPlaceList,
         ),
       );
-    } on Exception catch (e) {}
+    } on Exception catch (e) {
+      // case error
+      emit(BestPlaceErrorState(error: e.toString()));
+    }
   }
 }

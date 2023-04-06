@@ -1,13 +1,13 @@
 class TourDetails {
   TourDetails({
-    required this.descriptions,
     required this.id,
-    required this.imageUrl,
     required this.location,
     required this.placeName,
-    required this.price,
-    required this.weather,
-    required this.imageList,
+    this.descriptions = '',
+    this.imageUrl = '',
+    this.price = '',
+    this.weather = '',
+    this.imageList = const [],
   });
 
   factory TourDetails.fromJson(Map<String, dynamic> json) => TourDetails(
@@ -18,7 +18,7 @@ class TourDetails {
         placeName: json['placeName'] as String,
         price: json['price'] as String,
         weather: json['weather'] as String,
-        imageList: json['imageList'] as List<String>,
+        imageList: List<String>.from(json['imageList'] as List),
       );
 
   String descriptions;

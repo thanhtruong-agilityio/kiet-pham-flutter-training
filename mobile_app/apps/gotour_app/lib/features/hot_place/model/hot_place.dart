@@ -1,12 +1,12 @@
 class HotPlace {
   HotPlace({
     required this.id,
-    required this.imageUrl,
     required this.location,
     required this.placeName,
-    required this.price,
-    required this.tagList,
-    required this.imageList,
+    this.imageUrl = '',
+    this.price = '',
+    this.tagList = const [],
+    this.imageList = const [],
   });
 
   factory HotPlace.fromJson(Map<String, dynamic> json) => HotPlace(
@@ -15,8 +15,8 @@ class HotPlace {
         location: json['location'] as String,
         placeName: json['placeName'] as String,
         price: json['price'] as String,
-        tagList: json['tagList'] as List<String>,
-        imageList: json['imageList'] as List<String>,
+        tagList: List<String>.from(json['tagList'] as List),
+        imageList: List<String>.from(json['imageList'] as List),
       );
 
   String id;
@@ -26,4 +26,14 @@ class HotPlace {
   String price;
   List<String> tagList;
   List<String> imageList;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'imageUrl': imageUrl,
+        'location': location,
+        'placeName': placeName,
+        'price': price,
+        'tagList': tagList,
+        'imageList': imageList,
+      };
 }

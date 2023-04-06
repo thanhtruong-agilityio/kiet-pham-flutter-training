@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/home/models/best_place.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
@@ -9,7 +9,7 @@ import 'package:gotour_ui/core/widgets/location.dart';
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
     super.key,
-    required this.bestPlaceList,
+    this.bestPlaceList = const [],
   });
 
   final List<BestPlace> bestPlaceList;
@@ -17,11 +17,12 @@ class GTBestPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = bestPlaceList;
-
     final device = GTReponsive.of(context);
+
     return SizedBox(
       height: device.scale(180),
       width: device.scale(375),
+      // best place list
       child: ListView.builder(
         padding: EdgeInsets.only(left: device.scale(20)),
         scrollDirection: Axis.horizontal,
@@ -33,11 +34,11 @@ class GTBestPlace extends StatelessWidget {
             placeName: data[index].placeName,
             location: data[index].location,
             price: data[index].price,
-            pressCard: () => context.pushNamed(
+            onCard: () => context.pushNamed(
               RouterNamedLocation.hotPlace,
               params: {'id': data[index].id},
             ),
-            pressBtnPrice: () {},
+            onPrice: () {},
           ),
         ),
       ),
@@ -50,14 +51,14 @@ class GTCardBestPlace extends StatelessWidget {
     super.key,
     required this.image,
     required this.placeName,
-    required this.location,
-    required this.price,
-    required this.pressCard,
-    required this.pressBtnPrice,
+    this.location = '',
+    this.price = '',
+    this.onCard,
+    this.onPrice,
   });
 
-  final VoidCallback pressCard;
-  final VoidCallback pressBtnPrice;
+  final VoidCallback? onCard;
+  final VoidCallback? onPrice;
   final String image;
   final String placeName;
   final String location;
@@ -68,11 +69,12 @@ class GTCardBestPlace extends StatelessWidget {
     final device = GTReponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
-      onTap: pressCard,
+      onTap: onCard,
       child: Container(
         width: device.scale(295),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
+          // best place image
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(image),
@@ -93,6 +95,7 @@ class GTCardBestPlace extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // location
                       GTLocation(
                         placeName: placeName,
                         location: location,
@@ -103,11 +106,12 @@ class GTCardBestPlace extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
+                  // price
                   SizedBox(
                     height: device.scale(25),
                     child: GTElevatedHighlightButton(
                       text: '\$$price',
-                      onPressed: pressBtnPrice,
+                      onPressed: onPrice ?? () {},
                     ),
                   )
                 ],

@@ -146,16 +146,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/canyon.png
   AssetGenImage get canyon => const AssetGenImage('assets/images/canyon.png');
 
-  /// File path: assets/images/chumphon.png
-  AssetGenImage get chumphon =>
-      const AssetGenImage('assets/images/chumphon.png');
-
-  /// File path: assets/images/doipui.png
-  AssetGenImage get doipui => const AssetGenImage('assets/images/doipui.png');
-
-  /// File path: assets/images/krabi.png
-  AssetGenImage get krabi => const AssetGenImage('assets/images/krabi.png');
-
   /// File path: assets/images/kyoto.png
   AssetGenImage get kyoto => const AssetGenImage('assets/images/kyoto.png');
 
@@ -174,37 +164,20 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingsecond =>
       const AssetGenImage('assets/images/onboardingsecond.png');
 
-  /// File path: assets/images/phranang.png
-  AssetGenImage get phranang =>
-      const AssetGenImage('assets/images/phranang.png');
-
   /// File path: assets/images/splashscreen.png
   AssetGenImage get splashscreen =>
       const AssetGenImage('assets/images/splashscreen.png');
-
-  /// File path: assets/images/tambon.png
-  AssetGenImage get tambon => const AssetGenImage('assets/images/tambon.png');
-
-  /// File path: assets/images/tibidabo.png
-  AssetGenImage get tibidabo =>
-      const AssetGenImage('assets/images/tibidabo.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
         author,
         canyon,
-        chumphon,
-        doipui,
-        krabi,
         kyoto,
         logo,
         onboardingfirst,
         onboardinglast,
         onboardingsecond,
-        phranang,
-        splashscreen,
-        tambon,
-        tibidabo
+        splashscreen
       ];
 }
 

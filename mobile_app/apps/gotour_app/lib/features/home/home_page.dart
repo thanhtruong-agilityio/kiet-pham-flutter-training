@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/assets/assets.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/home/best_place.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/my_location.dart';
 import 'package:gotour_app/features/home/repository/home_repository.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
@@ -26,10 +26,10 @@ class GTHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is UnAuthenticated) {
+        if (state is UnAuthenticatedState) {
           context.go('/login-page');
         }
-        if (state is UnVerifyEmail) {
+        if (state is UnVerifyEmailState) {
           context.go('/login-page');
         }
       },
@@ -49,7 +49,7 @@ class _GTHomeView extends StatelessWidget {
     return GTScaffold(
       appBar: GTAppBar(
         leading: GTIconButton(
-          icon: GTAssets().menu,
+          icon: GTAssets.icMenu,
           btnColor: colorScheme.background,
           onPressed: () {},
         ),
@@ -62,11 +62,8 @@ class _GTHomeView extends StatelessWidget {
                   barrierDismissible: false,
                   context: context,
                   builder: (context) => GTAlertDialog(
-                    onCancel: () {
-                      Navigator.of(context).pop();
-                    },
                     onOk: () {
-                      context.read<AuthBloc>().add(SignOutRequested());
+                      context.read<AuthBloc>().add(SignOutRequestedEvent());
                     },
                     title: S.of(context).LogOut,
                     content: S.of(context).logOutMessage,
@@ -74,11 +71,11 @@ class _GTHomeView extends StatelessWidget {
                 );
               },
               child: Container(
-                height: 48,
-                width: 48,
+                height: device.scale(48),
+                width: device.scale(48),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(GTAssets().author),
+                    image: AssetImage(GTAssets.imgAvatarDefault),
                   ),
                 ),
               ),
@@ -94,10 +91,17 @@ class _GTHomeView extends StatelessWidget {
           ),
           child: BlocListener<HomeBloc, HomeState>(
             listener: (context, state) {
+              // if state is UnBookmarkSuccessState, then show snack bar
               if (state is UnBookmarkSuccessState) {
                 GTSnackBar.success(
                   context,
                   message: S.of(context).unBookMarkSuccessMessage,
+                );
+              }
+              if (state is UnBookmarkErrorState) {
+                GTSnackBar.failure(
+                  context,
+                  message: state.error,
                 );
               }
             },
@@ -114,6 +118,7 @@ class _GTHomeView extends StatelessWidget {
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: device.scale(20)),
+                      // title home page
                       child: GTText.titleLarge(
                         context,
                         text: S.of(context).mainPageTitle,
@@ -123,6 +128,7 @@ class _GTHomeView extends StatelessWidget {
                     // Search Box
                     const GTSearch(),
                     SizedBox(height: device.scale(30)),
+                    // title my location
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: GTText.titleMedium(
@@ -133,21 +139,24 @@ class _GTHomeView extends StatelessWidget {
                     // My Location
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
+                        // intial state
                         if (state is HomeInitialState) {
                           context.read<HomeBloc>().add(HomeFetchDataEvent());
                         }
+                        // loading state
                         if (state is HomeLoadingState) {
                           return const GTMylocationShimmerList();
                         }
+                        // success state
                         if (state is HomeLoadedState) {
-                          if (state.myLocationList.isEmpty) {
+                          if (state.myLocations.isEmpty) {
                             return SizedBox(
                               width: device.scale(375),
                               height: device.scale(150),
                               child: Center(
                                 child: GTText.labelLarge(
                                   context,
-                                  text: ' My Location is empty',
+                                  text: S.of(context).mainPageMyLocationIsEmpty,
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                 ),
@@ -155,7 +164,7 @@ class _GTHomeView extends StatelessWidget {
                             );
                           }
                           return GTMyLocation(
-                            mylocatonList: state.myLocationList,
+                            mylocatonList: state.myLocations,
                           );
                         }
                         return GTText.bodyLarge(context, text: 'Failed');
@@ -182,12 +191,10 @@ class _GTHomeView extends StatelessWidget {
                         }
                         if (state is HomeLoadedState) {
                           return GTBestPlace(
-                            bestPlaceList: state.bestPlaceList,
+                            bestPlaceList: state.bestPlaces,
                           );
                         }
-                        return const GTBestPlace(
-                          bestPlaceList: [],
-                        );
+                        return const GTBestPlace();
                       },
                     ),
                   ],

@@ -1,30 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gotour_app/features/auth/models/user_entity.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseFirestore = FirebaseFirestore.instance.collection('users');
-
-  Object _mapFirebaseUser({required User user, required int gender}) {
-    var splittedName = ['Name ', 'LastName'];
-    if (user.displayName != null) {
-      splittedName = user.displayName!.split(' ');
-    }
-
-    final map = <String, dynamic>{
-      'id': user.uid,
-      'firstName': splittedName.first,
-      'lastName': splittedName.last,
-      'email': user.email ?? '',
-      'imageUrl': user.photoURL ?? '',
-      'age': '',
-      'gender': gender,
-      'phoneNumber': '',
-      'address': '',
-    };
-    return map;
-  }
+  final _googleSignIn = GoogleSignIn();
+  bool get isLoggedInGoogle => _googleSignIn.currentUser != null;
+  GoogleSignIn get googleSignIn => _googleSignIn;
 
   Future<void> signUp({
     required String email,
@@ -32,19 +16,25 @@ class AuthRepository {
     required int gender,
   }) async {
     try {
-      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+      // create account with email and password
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       final user = _firebaseAuth.currentUser;
-      await _firebaseFirestore.doc(user!.uid).set(
-            _mapFirebaseUser(
-              user: userCredential.user!,
-              gender: gender,
-            ) as Map<String, dynamic>,
-          );
-      await _firebaseAuth.currentUser!.sendEmailVerification();
+      final userEntity = UserEntity(
+        id: user?.uid ?? '',
+        email: email,
+        gender: gender,
+      );
+
+      // add user entity to cloud firebase
+      await _firebaseFirestore.doc(user?.uid).set(userEntity.toJson());
+
+      // send the verification link to the email you just created
+      await _firebaseAuth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
+      // case error
       throw Exception(_determineError(e));
     }
   }
@@ -54,19 +44,20 @@ class AuthRepository {
     required String password,
   }) async {
     try {
+      // check account verification
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      // await _firebaseFirestore.get();
     } on FirebaseAuthException catch (e) {
+      // case error
       throw Exception(_determineError(e));
     }
   }
 
   Future<void> signInWithGoogle() async {
     try {
-      final googleUser = await GoogleSignIn().signIn();
+      final googleUser = await _googleSignIn.signIn();
 
       final googleAuth = await googleUser?.authentication;
 
@@ -77,6 +68,7 @@ class AuthRepository {
 
       await _firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
+      // case error
       throw Exception(e);
     } on Exception catch (e) {
       throw Exception(e);
@@ -85,8 +77,10 @@ class AuthRepository {
 
   Future<void> signOut() async {
     try {
+      // handel sign out
       await _firebaseAuth.signOut();
     } on FirebaseAuthException catch (e) {
+      // case error
       throw Exception(_determineError(e));
     }
   }
@@ -95,8 +89,10 @@ class AuthRepository {
     required String email,
   }) async {
     try {
+      // handle forgot password
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
+      // case error
       throw Exception(_determineError(e));
     }
   }
@@ -113,10 +109,6 @@ class AuthRepository {
         return AuthError.wrongPassword.value;
       case 'email-already-in-use':
         return AuthError.emailAlreadyInUse.value;
-      case 'account-exists-with-different-credential':
-        return AuthError.accountExistsWithDifferentCredential.value;
-      case 'invalid-credential':
-        return AuthError.invalidCredential.value;
       case 'operation-not-allowed':
         return AuthError.operationNotAllowed.value;
       case 'weak-password':
@@ -139,8 +131,6 @@ enum AuthError {
   userNotFound,
   wrongPassword,
   emailAlreadyInUse,
-  invalidCredential,
-  accountExistsWithDifferentCredential,
   operationNotAllowed,
   missingGoogleAuthToken,
   signInCanceled,
@@ -162,10 +152,6 @@ extension AuthErrorExtension on AuthError {
         return 'The password is invalid.';
       case AuthError.emailAlreadyInUse:
         return 'The email address is already in use by another account.';
-      case AuthError.accountExistsWithDifferentCredential:
-        return '''An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address''';
-      case AuthError.invalidCredential:
-        return '''An account already exists with the same email address but different sign-in credentials.''';
       case AuthError.operationNotAllowed:
         return '''The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section.''';
       case AuthError.weakPassword:

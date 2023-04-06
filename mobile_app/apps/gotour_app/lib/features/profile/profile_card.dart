@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gotour_app/core/assets/assets.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
     super.key,
-    required this.userName,
     required this.email,
+    this.userName = '',
   });
 
-  final String userName;
+  final String? userName;
   final String email;
 
   @override
@@ -32,7 +32,7 @@ class ProfileCard extends StatelessWidget {
             padding: EdgeInsets.only(left: device.scale(15)),
             child: ClipOval(
               child: GTImage(
-                images: GTAssets().kyoto,
+                images: GTAssets.kyoto,
                 height: device.scale(60),
                 width: device.scale(60),
               ),
@@ -57,7 +57,7 @@ class ProfileCard extends StatelessWidget {
                           children: [
                             GTText.titleSmall(
                               context,
-                              text: userName,
+                              text: userName ?? '',
                             ),
                             GTText.bodyMedium(
                               context,
@@ -73,7 +73,7 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
           ),
-          SvgPicture.asset(GTAssets().arrow),
+          SvgPicture.asset(GTAssets.icArrowNext),
           const SizedBox(width: 20),
         ],
       ),

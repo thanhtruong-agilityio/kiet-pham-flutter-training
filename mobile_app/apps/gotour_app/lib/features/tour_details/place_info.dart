@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gotour_app/core/assets/assets.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 
-class GTPlaceInfoTourDetails extends StatelessWidget {
-  const GTPlaceInfoTourDetails({
+class GTPlaceInfo extends StatelessWidget {
+  const GTPlaceInfo({
     super.key,
     required this.namePlace,
     required this.location,
-    required this.price,
-    required this.temperature,
-    required this.onPressBtn,
-    required this.isBookmark,
-    required this.imageList,
-    required this.onBookmark,
+    this.price = '',
+    this.temperature = '',
+    this.isBookmark = false,
+    this.imageList = const [],
+    this.onPressed,
+    this.onBookmark,
   });
 
   final String namePlace;
   final String location;
-  final String price;
-  final String temperature;
-  final VoidCallback onPressBtn;
-  final bool isBookmark;
-  final List<String> imageList;
-  final VoidCallback onBookmark;
+  final String? price;
+  final String? temperature;
+  final VoidCallback? onPressed;
+  final bool? isBookmark;
+  final List<String>? imageList;
+  final VoidCallback? onBookmark;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
       children: [
         ListCardPlaceinfo(
           isBookmark: isBookmark,
-          imageList: imageList,
-          onBookmark: onBookmark,
+          imageList: imageList ?? [],
+          onBookmark: onBookmark ?? () {},
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -66,14 +66,14 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
                     height: device.scale(25),
                     child: GTElevatedHighlightButton(
                       text: '\$$price',
-                      onPressed: onPressBtn,
+                      onPressed: onPressed ?? () {},
                     ),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  SvgPicture.asset(GTAssets().cloud),
+                  SvgPicture.asset(GTAssets.icCloud),
                   SizedBox(width: device.scale(7)),
                   Text(
                     '$temperature°C',
@@ -94,14 +94,14 @@ class GTPlaceInfoTourDetails extends StatelessWidget {
 class ListCardPlaceinfo extends StatefulWidget {
   const ListCardPlaceinfo({
     super.key,
-    required this.isBookmark,
     required this.imageList,
-    required this.onBookmark,
+    this.isBookmark,
+    this.onBookmark,
   });
 
-  final bool isBookmark;
+  final bool? isBookmark;
   final List<String> imageList;
-  final VoidCallback onBookmark;
+  final VoidCallback? onBookmark;
 
   @override
   State<ListCardPlaceinfo> createState() => _ListCardPlaceinfoState();
@@ -110,6 +110,7 @@ class ListCardPlaceinfo extends StatefulWidget {
 class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -158,8 +159,8 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
                                   return InkWell(
                                     onTap: widget.onBookmark,
                                     child: SvgPicture.asset(
-                                      GTAssets().bookMark,
-                                      color: widget.isBookmark
+                                      GTAssets.icBookMark,
+                                      color: widget.isBookmark ?? false
                                           ? colorScheme.primary
                                           : colorScheme.background,
                                     ),
@@ -182,6 +183,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
           height: 5,
           child: Align(
             child: SizedBox(
+              // calculate width of active item
               width: 25.0 + (images.length - 1) * 10,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,

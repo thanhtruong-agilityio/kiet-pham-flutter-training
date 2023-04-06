@@ -8,10 +8,13 @@ abstract class BestPlaceState extends Equatable {
   List<Object> get props => [];
 }
 
+// initial state
 class BestPlaceInitial extends BestPlaceState {}
 
+// loading state
 class BestPlaceLoadingState extends BestPlaceState {}
 
+// success state
 class BestPlaceLoadedState extends BestPlaceState {
   const BestPlaceLoadedState({
     required this.bestPlaceList,
@@ -23,4 +26,12 @@ class BestPlaceLoadedState extends BestPlaceState {
   List<Object> get props => [bestPlaceList];
 }
 
-class BestPlaceErrorState extends BestPlaceState {}
+// error state
+class BestPlaceErrorState extends BestPlaceState {
+  const BestPlaceErrorState({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [error];
+}

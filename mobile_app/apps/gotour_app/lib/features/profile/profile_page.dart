@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gotour_app/core/shared/device_info.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/profile/banking_and_payment_card.dart';
 import 'package:gotour_app/features/profile/preference_card.dart';
@@ -19,16 +19,17 @@ class GTProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final device = GTReponsive.of(context);
+    final i10n = S.of(context);
 
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is UnAuthenticated) {
+        if (state is UnAuthenticatedState) {
           context.go('/login-page');
         }
       },
       child: GTScaffold(
         appBar: GTAppBar(
-          title: GTText.titleLarge(context, text: 'Profile'),
+          title: GTText.titleLarge(context, text: i10n.profileScreenTitle),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -37,9 +38,9 @@ class GTProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: device.scale(45)),
-                const ProfileCard(
-                  userName: 'Kiet Anh',
-                  email: 'kietpva010299@gmail.com',
+                ProfileCard(
+                  userName: i10n.chatPageTitleMessage,
+                  email: i10n.emailExample,
                 ),
                 SizedBox(height: device.scale(30)),
                 const PreferenceCard(),
@@ -54,11 +55,8 @@ class GTProfilePage extends StatelessWidget {
                       barrierDismissible: false,
                       context: context,
                       builder: (context) => GTAlertDialog(
-                        onCancel: () {
-                          Navigator.of(context).pop();
-                        },
                         onOk: () {
-                          context.read<AuthBloc>().add(SignOutRequested());
+                          context.read<AuthBloc>().add(SignOutRequestedEvent());
                         },
                         title: S.of(context).LogOut,
                         content: S.of(context).logOutMessage,
