@@ -22,7 +22,8 @@ class GTLoginPage extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         // if state is Loading then show indicator
-        if (state is LoginLoadingState || state is GoogleSignInRequestedEvent) {
+        if (state is LoginLoadingState ||
+            state is LoginWithGoogleLoadingState) {
           gtIndicatorOverlay.show(context, S.of(context).loading);
         } else {
           gtIndicatorOverlay.hide(context);
