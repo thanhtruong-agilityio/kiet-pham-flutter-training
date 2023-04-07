@@ -30,7 +30,7 @@ class GTWBBuildButton extends StatelessWidget {
                 label: 'Icon',
                 options: icons,
               ),
-              iconColor: colorScheme.background,
+              iconColor: colorScheme.onError,
               onPressed: () {},
             ),
             const SizedBox(height: 40),
