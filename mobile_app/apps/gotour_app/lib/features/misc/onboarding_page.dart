@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTOnboardingScreen extends StatefulWidget {
@@ -180,8 +181,8 @@ class OnboardingContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          image,
+        GTLocalImage(
+          image: image,
           width: device.sw(375),
           height: device.sh(508),
           fit: BoxFit.fill,

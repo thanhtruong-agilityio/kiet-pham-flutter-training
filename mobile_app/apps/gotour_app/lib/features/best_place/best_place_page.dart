@@ -10,6 +10,7 @@ import 'package:gotour_app/features/best_place/repository/best_place_repository.
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
@@ -140,16 +141,10 @@ class _CardBestPlace extends StatelessWidget {
                 SizedBox(width: device.scale(15)),
                 // image
                 Expanded(
-                  child: Container(
-                    height: device.scale(92),
+                  child: GTNetWorkImage(
+                    image: imageUrl,
                     width: device.scale(70),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(imageUrl),
-                      ),
-                    ),
+                    height: device.scale(92),
                   ),
                 ),
                 Expanded(

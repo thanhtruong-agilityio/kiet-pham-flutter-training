@@ -8,6 +8,7 @@ import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
@@ -92,11 +93,10 @@ class _GTLoginViewState extends State<_GTLoginView> {
                   children: [
                     SizedBox(height: device.sh(100)),
                     // logo image
-                    Image.asset(
-                      GTAssets.imgLogo,
+                    GTLocalImage(
+                      image: GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
-                      fit: BoxFit.contain,
                     ),
                     SizedBox(height: device.sh(72)),
                     // Title

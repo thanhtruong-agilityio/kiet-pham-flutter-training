@@ -5,16 +5,18 @@ class GTNetWorkImage extends StatelessWidget {
     super.key,
     required this.image,
     required this.width,
+    required this.height,
     this.borderRadius,
-    this.height,
     this.child,
+    this.fit,
   });
 
   final String image;
   final double width;
-  final double? height;
+  final double height;
   final Widget? child;
   final BorderRadiusGeometry? borderRadius;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class GTNetWorkImage extends StatelessWidget {
         color: Theme.of(context).colorScheme.onSecondaryContainer,
         image: DecorationImage(
           image: NetworkImage(image),
-          fit: BoxFit.cover,
+          fit: fit ?? BoxFit.cover,
         ),
       ),
       child: child,
@@ -39,16 +41,18 @@ class GTLocalImage extends StatelessWidget {
     super.key,
     required this.image,
     required this.width,
+    required this.height,
     this.borderRadius,
-    this.height,
     this.child,
+    this.fit,
   });
 
   final String image;
   final double width;
-  final double? height;
+  final double height;
   final Widget? child;
   final BorderRadiusGeometry? borderRadius;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class GTLocalImage extends StatelessWidget {
         color: Theme.of(context).colorScheme.onSecondaryContainer,
         image: DecorationImage(
           image: AssetImage(image),
-          fit: BoxFit.cover,
+          fit: fit ?? BoxFit.cover,
         ),
       ),
       child: child,

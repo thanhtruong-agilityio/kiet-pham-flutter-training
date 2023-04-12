@@ -7,6 +7,7 @@ import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -119,19 +120,11 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
                           children: [
                             Row(
                               children: [
-                                Container(
-                                  height: 55,
-                                  width: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(widget.image),
-                                    ),
-                                  ),
+                                GTNetWorkImage(
+                                  image: widget.image,
+                                  width: device.scale(55),
+                                  height: device.scale(55),
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
                                 SizedBox(width: device.scale(11)),
                                 GTLocation(

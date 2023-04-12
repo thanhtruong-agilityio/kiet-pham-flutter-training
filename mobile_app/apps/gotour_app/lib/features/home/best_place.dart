@@ -3,8 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/home/models/best_place.dart';
-import 'package:gotour_ui/core/widgets/button.dart';
-import 'package:gotour_ui/core/widgets/location.dart';
+import 'package:gotour_ui/main.dart';
 
 class GTBestPlace extends StatelessWidget {
   const GTBestPlace({
@@ -70,16 +69,12 @@ class GTCardBestPlace extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onCard,
-      child: Container(
+      child: GTNetWorkImage(
         width: device.scale(295),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          // best place image
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(image),
-          ),
-        ),
+        height: device.scale(180),
+        borderRadius: BorderRadius.circular(20),
+        // best place image
+        image: image,
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: device.scale(20),

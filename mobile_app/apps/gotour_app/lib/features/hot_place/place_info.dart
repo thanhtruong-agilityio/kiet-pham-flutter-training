@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
 
@@ -48,15 +49,11 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
           onTap: widget.onCard,
           child: Stack(
             children: [
-              Container(
+              GTNetWorkImage(
+                image: widget.image,
+                width: device.scale(335),
                 height: device.scale(200),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                    image: NetworkImage(widget.image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                borderRadius: BorderRadius.circular(20),
                 child: Padding(
                   padding: EdgeInsets.only(right: device.scale(30)),
                   child: Row(
