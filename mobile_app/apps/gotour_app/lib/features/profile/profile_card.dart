@@ -32,7 +32,7 @@ class ProfileCard extends StatelessWidget {
             padding: EdgeInsets.only(left: device.scale(15)),
             child: ClipOval(
               child: GTImage(
-                images: GTAssets.kyoto,
+                image: GTAssets.kyoto,
                 height: device.scale(60),
                 width: device.scale(60),
               ),
