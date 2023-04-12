@@ -10,6 +10,7 @@ import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/checkbox.dart';
 import 'package:gotour_ui/core/widgets/gender.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -91,11 +92,10 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                   children: [
                     SizedBox(height: device.sh(30)),
                     // Logo image
-                    Image.asset(
-                      GTAssets.imgLogo,
+                    GTLocalImage(
+                      image: GTAssets.imgLogo,
                       width: device.sw(256),
                       height: device.sh(90),
-                      fit: BoxFit.contain,
                     ),
                     SizedBox(height: device.sh(30)),
                     // Title

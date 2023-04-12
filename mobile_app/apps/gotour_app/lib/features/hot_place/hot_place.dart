@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTGridViewHotPlace extends StatelessWidget {
@@ -58,16 +59,11 @@ class BuildGridview extends StatelessWidget {
       itemCount: dataImages.length,
       itemBuilder: (context, index) => GestureDetector(
         onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-              image: NetworkImage(
-                dataImages[index],
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
+        child: GTNetWorkImage(
+          image: dataImages[index],
+          width: device.scale(100),
+          height: device.scale(100),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
     );

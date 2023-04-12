@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
+import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -44,6 +46,7 @@ class _NotificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i10n = S.of(context);
+    final device = GTReponsive.of(context);
 
     return Container(
       height: 100,
@@ -66,11 +69,10 @@ class _NotificationsCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      GTAssets.canyon,
-                      width: 44,
-                      height: 44,
-                      fit: BoxFit.cover,
+                    child: GTLocalImage(
+                      image: GTAssets.canyon,
+                      width: device.scale(44),
+                      height: device.scale(44),
                     ),
                   ),
                 ),

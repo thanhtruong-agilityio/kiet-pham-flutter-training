@@ -35,6 +35,9 @@ migrate_working_dir/
 # Fvm version
 .fvm/flutter_sdk
 
+# Flutter_dotenv
+.env
+
 # Symbolication related
 app.*.symbols
 

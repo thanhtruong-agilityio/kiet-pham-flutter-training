@@ -37,10 +37,10 @@ scripts:
     description: Run `dart analyze` in all packages.
 
   # Start mobile apps scripts
-  # Change '8354F599-5917-4E03-974F-1C0E8B2A4335' to your device id
+  # Change 'EB8DE506-A74B-4B87-9986-A22535E09AFB' to your device id
   run:gotour_app:
-    run: melos exec --scope="gotour_app" -- fvm flutter run -d '8354F599-5917-4E03-974F-1C0E8B2A4335'
-    description: "run mobile app. Open melos.yaml file, change '8354F599-5917-4E03-974F-1C0E8B2A4335' to your device id"
+    run: melos exec --scope="gotour_app" -- fvm flutter run -d 'EB8DE506-A74B-4B87-9986-A22535E09AFB'
+    description: "run mobile app. Open melos.yaml file, change 'EB8DE506-A74B-4B87-9986-A22535E09AFB' to your device id"
 
   # Start devices preview scripts
   run:gotour_app_device_preview:
