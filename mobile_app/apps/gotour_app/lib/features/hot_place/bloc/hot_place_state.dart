@@ -18,7 +18,7 @@ class HotPlaceLoadedState extends HotPlaceState {
     this.isBookMark = false,
   });
 
-  final HotPlace hotPlace;
+  final TourModel hotPlace;
   final bool isBookMark;
 
   @override

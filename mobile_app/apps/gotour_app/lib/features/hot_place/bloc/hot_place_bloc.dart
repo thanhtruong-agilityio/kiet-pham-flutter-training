@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/features/hot_place/model/hot_place.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/features/hot_place/repository/hot_place_repository.dart';
 
 part 'hot_place_event.dart';
