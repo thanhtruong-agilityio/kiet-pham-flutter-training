@@ -11,6 +11,7 @@ import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -78,8 +79,15 @@ class GTHotPlace extends StatelessWidget {
                   );
                 }
               }
+
               if (state is ChangeBookmarkHotPlaceErrorState) {
                 GTSnackBar.failure(context, message: state.error);
+              }
+
+              if (state is HotPlaceLoadingState) {
+                gtIndicatorOverlay.show(context, S.of(context).loading);
+              } else {
+                gtIndicatorOverlay.hide(context);
               }
             },
             child: BlocBuilder<HotPlaceBloc, HotPlaceState>(
