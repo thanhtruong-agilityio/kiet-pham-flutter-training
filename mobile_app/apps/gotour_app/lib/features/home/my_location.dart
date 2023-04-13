@@ -22,7 +22,7 @@ class GTMyLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = mylocatonList;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(150),
@@ -85,7 +85,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GestureDetector(
       onTap: widget.onPressed,
@@ -177,7 +177,7 @@ class GTMylocationShimmerList extends StatefulWidget {
 class _GTMylocationShimmerListState extends State<GTMylocationShimmerList> {
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(150),
@@ -199,7 +199,7 @@ class _GTShimmerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Container(
       margin: EdgeInsets.only(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GTReponsive {
-  GTReponsive.of(BuildContext context) {
+class GTResponsive {
+  GTResponsive.of(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
   }

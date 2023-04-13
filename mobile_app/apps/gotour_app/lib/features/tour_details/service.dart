@@ -25,7 +25,7 @@ class _GTServiceState extends State<GTService> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: device.scale(20)),

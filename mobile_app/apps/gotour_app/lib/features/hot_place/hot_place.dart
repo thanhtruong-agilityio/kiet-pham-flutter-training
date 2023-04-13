@@ -14,7 +14,7 @@ class GTGridViewHotPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +48,7 @@ class BuildGridview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataImages = imageList;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

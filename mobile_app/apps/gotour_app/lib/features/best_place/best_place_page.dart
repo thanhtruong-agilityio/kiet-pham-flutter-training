@@ -24,7 +24,7 @@ class GTBestPlacePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     var data = <TourModel>[];
 
     return GTScaffold(
@@ -121,7 +121,7 @@ class _CardBestPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Padding(

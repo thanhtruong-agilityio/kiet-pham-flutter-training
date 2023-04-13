@@ -33,7 +33,7 @@ class GTPlaceInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Column(
       children: [
@@ -115,7 +115,7 @@ class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final images = widget.imageList;
 
     return Column(

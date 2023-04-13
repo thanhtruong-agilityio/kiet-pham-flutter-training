@@ -46,7 +46,7 @@ class _NotificationsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i10n = S.of(context);
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Container(
       height: 100,
