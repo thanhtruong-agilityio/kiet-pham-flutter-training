@@ -21,7 +21,7 @@ class HomeLoadedState extends HomeState {
   });
 
   final List<TourModel> bestPlaces;
-  final List<MyLocation> myLocations;
+  final List<TourModel> myLocations;
 
   @override
   List<Object> get props => [bestPlaces, myLocations];
@@ -47,7 +47,7 @@ class UnBookmarkSuccessState extends HomeState {
     required this.myLocations,
   });
 
-  final List<MyLocation> myLocations;
+  final List<TourModel> myLocations;
 
   @override
   List<Object> get props => [myLocations];

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gotour_app/core/model/tour_model.dart';
-import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_app/features/home/repository/home_repository.dart';
 
 part 'home_event.dart';
@@ -66,11 +65,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeLoadingState());
 
       // fetch user id
-      final userId = FirebaseAuth.instance.currentUser!.uid;
+      final userId = FirebaseAuth.instance.currentUser?.uid;
 
       // fetch list tour bookmark with id
-      final tourIds =
-          await mainRepository.fetchListTourBookmarkByUser(userId: userId);
+      final tourIds = await mainRepository.fetchListTourBookmarkByUser(
+        userId: userId ?? '',
+      );
 
       // add tour to list
       final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
