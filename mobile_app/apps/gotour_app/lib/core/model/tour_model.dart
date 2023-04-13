@@ -29,6 +29,18 @@ class TourModel {
         placeName: json['placeName'] as String,
       );
 
+  factory TourModel.fromJsonOfTourDetails(Map<String, dynamic> json) =>
+      TourModel(
+        id: json['id'] as String,
+        descriptions: json['descriptions'] as String,
+        imageUrl: json['imageUrl'] as String,
+        location: json['location'] as String,
+        placeName: json['placeName'] as String,
+        price: json['price'] as String,
+        weather: json['weather'] as String,
+        imageList: List<String>.from(json['imageList'] as List),
+      );
+
   String id;
   String imageUrl;
   String location;

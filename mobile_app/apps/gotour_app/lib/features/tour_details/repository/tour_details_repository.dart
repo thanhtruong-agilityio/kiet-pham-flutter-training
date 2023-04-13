@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/tour_details/model/tour_details.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 
 class TourDetailsRepository {
   final _firebaseFirestoreTourDetails =
@@ -9,14 +9,14 @@ class TourDetailsRepository {
       FirebaseFirestore.instance.collection('book-marks');
 
   // fetch data tour details
-  Future<TourDetails> fetchDataTour({
+  Future<TourModel> fetchDataTour({
     required String tourId,
   }) async {
     // fetch data by tourId
     final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
 
     // format tour details
-    return TourDetails.fromJson(data.data() ?? {});
+    return TourModel.fromJsonOfTourDetails(data.data() ?? {});
   }
 
   // check bookmark tour

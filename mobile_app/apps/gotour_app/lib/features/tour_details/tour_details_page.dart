@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/tour_details/bloc/tour_details_bloc.dart';
-import 'package:gotour_app/features/tour_details/model/tour_details.dart';
 import 'package:gotour_app/features/tour_details/place_info.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 import 'package:gotour_app/features/tour_details/service.dart';
@@ -127,7 +127,7 @@ class _TourDetail extends StatelessWidget {
     this.isBookmark = false,
   });
 
-  final TourDetails data;
+  final TourModel data;
   final bool? isBookmark;
 
   @override

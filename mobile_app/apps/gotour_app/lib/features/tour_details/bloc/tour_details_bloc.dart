@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/features/tour_details/model/tour_details.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/features/tour_details/repository/tour_details_repository.dart';
 
 part 'tour_details_event.dart';
