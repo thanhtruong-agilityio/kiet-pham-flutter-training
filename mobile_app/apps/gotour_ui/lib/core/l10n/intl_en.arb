@@ -17,10 +17,10 @@
     
     "onboardingPageFistTitle": "Explore",
     "onboardingPageSecondTitle": "Easy Peasy",
-    "onboardingPagelastTitle": "Enjoy Tour",
-    "onboardingPageFirstDescription": "Explore your favourite destination around the world.",
-    "onboardingPageSecondDescription": "Make your travel experince very easy & peasy.",
-    "onboardingPageLastDescription": "Enjoy your favourite destination with your love one.",
+    "onboardingPageLastTitle": "Enjoy Tour",
+    "onboardingPageFirstDescription": "Explore your favorite destination around the world.",
+    "onboardingPageSecondDescription": "Make your travel experience very easy & peasy.",
+    "onboardingPageLastDescription": "Enjoy your favorite destination with your love one.",
 
 
     "loginPageTitle": "Log In",
@@ -35,7 +35,7 @@
     "signUpPageConfirmPassword": "Confirm Password",
     "signUpPageTextTerms": "I agree and accept the ",
     "signUpPageTextButtonTerms": "terms ot use.",
-    "sugnUpPageAllreadyHaveAnAccount": "Already have an account?",
+    "signUpPageAlreadyHaveAnAccount": "Already have an account?",
 
     "forgotPasswordPageTitle": "Forgot Password",
     "forgotPasswordPageButtonSubmit": "Submit",
@@ -57,7 +57,7 @@
     "profileScreenBankingAndPayment": "Banking & Payment",
     "profileScreenPaymentMethod": "Payment method",
     "profileScreenPrivacyPolicy": "Privacy Policy",
-    "profileScreenTermsofUse": "Terms of Use",
+    "profileScreenTermsOfUse": "Terms of Use",
 
     "widgetbookTitle": "Gotour Widgetbook",
     "widgetbookWidgets": "Widgets",

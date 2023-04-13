@@ -43,7 +43,7 @@ class GTTourDetail extends StatelessWidget {
             icon: GTAssets.icNotification,
             btnColor: colorScheme.background,
             onPressed: () {
-              // TODO(KietPham): show notificaton
+              // TODO(KietPham): show notification
             },
           ),
           GTIconButton(

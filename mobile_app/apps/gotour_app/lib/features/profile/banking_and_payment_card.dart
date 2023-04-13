@@ -97,7 +97,7 @@ class BankingAndPaymentCard extends StatelessWidget {
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: i10n.profileScreenTermsofUse,
+                  text: i10n.profileScreenTermsOfUse,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),

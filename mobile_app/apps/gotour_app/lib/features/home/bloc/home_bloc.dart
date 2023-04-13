@@ -10,15 +10,15 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.mainRepository}) : super(HomeInitialState()) {
     // event un bookmark
-    on<UnbookmarkTourEvent>(_handleUnbookmark);
+    on<UnBookmarkTourEvent>(_handleUnBookmark);
     // event fetch data
     on<HomeFetchDataEvent>(_handleHomeFetch);
   }
 
   final HomeRepository mainRepository;
 
-  Future<void> _handleUnbookmark(
-    UnbookmarkTourEvent event,
+  Future<void> _handleUnBookmark(
+    UnBookmarkTourEvent event,
     Emitter<HomeState> emit,
   ) async {
     try {
@@ -26,7 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // fetch user id
       final userId = FirebaseAuth.instance.currentUser?.uid;
 
-      // handle unbookmark
+      // handle UnBookmark
       await mainRepository.unBookmark(
         userId: userId ?? '',
         tourId: event.tourId,
@@ -36,7 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final oldData = state as HomeLoadedState;
       oldData.myLocations.removeAt(event.index);
 
-      // emit unbookmark success state
+      // emit UnBookmark success state
       emit(
         UnBookmarkSuccessState(
           myLocations: oldData.myLocations,
@@ -75,7 +75,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // add tour to list
       final tourIdList = tourIds.map((tourId) => tourId.tourId).toList();
 
-      // fetch data mylocation
+      // fetch data MyLocation
       final myLocations =
           await mainRepository.getDataFromDocuments(documentIds: tourIdList);
 

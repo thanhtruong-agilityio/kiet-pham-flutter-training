@@ -28,7 +28,7 @@ class GTGridViewHotPlace extends StatelessWidget {
           height: device.scale(14),
         ),
         Expanded(
-          child: BuildGridview(
+          child: BuildGridView(
             imageList: imageList,
           ),
         ),
@@ -37,8 +37,8 @@ class GTGridViewHotPlace extends StatelessWidget {
   }
 }
 
-class BuildGridview extends StatelessWidget {
-  const BuildGridview({
+class BuildGridView extends StatelessWidget {
+  const BuildGridView({
     super.key,
     required this.imageList,
   });

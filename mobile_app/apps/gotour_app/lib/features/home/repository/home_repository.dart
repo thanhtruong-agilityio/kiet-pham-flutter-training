@@ -57,7 +57,7 @@ class HomeRepository {
     return [];
   }
 
-  // Detele document when user click icon bookmark
+  // Delete document when user click icon bookmark
   Future<void> unBookmark({
     required String userId,
     required String tourId,

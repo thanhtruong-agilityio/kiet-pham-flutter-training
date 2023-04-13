@@ -152,12 +152,12 @@ final List<Onboard> dataBoards = <Onboard>[
   Onboard(
     image: GTAssets.imgOnboardingsecond,
     title: 'Easy Peasy',
-    description: 'Make your travel experince very easy & peasy..',
+    description: 'Make your travel experience very easy & peasy.',
   ),
   Onboard(
     image: GTAssets.imgOnboardinglast,
     title: 'Enjoy Tour',
-    description: 'Enjoy your favourite destination with your love one.',
+    description: 'Enjoy your favorite destination with your love one.',
   ),
 ];
 

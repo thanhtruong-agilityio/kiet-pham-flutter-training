@@ -211,39 +211,39 @@ class S {
   }
 
   /// `Enjoy Tour`
-  String get onboardingPagelastTitle {
+  String get onboardingPageLastTitle {
     return Intl.message(
       'Enjoy Tour',
-      name: 'onboardingPagelastTitle',
+      name: 'onboardingPageLastTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Explore your favourite destination around the world.`
+  /// `Explore your favorite destination around the world.`
   String get onboardingPageFirstDescription {
     return Intl.message(
-      'Explore your favourite destination around the world.',
+      'Explore your favorite destination around the world.',
       name: 'onboardingPageFirstDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Make your travel experince very easy & peasy.`
+  /// `Make your travel experience very easy & peasy.`
   String get onboardingPageSecondDescription {
     return Intl.message(
-      'Make your travel experince very easy & peasy.',
+      'Make your travel experience very easy & peasy.',
       name: 'onboardingPageSecondDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enjoy your favourite destination with your love one.`
+  /// `Enjoy your favorite destination with your love one.`
   String get onboardingPageLastDescription {
     return Intl.message(
-      'Enjoy your favourite destination with your love one.',
+      'Enjoy your favorite destination with your love one.',
       name: 'onboardingPageLastDescription',
       desc: '',
       args: [],
@@ -351,10 +351,10 @@ class S {
   }
 
   /// `Already have an account?`
-  String get sugnUpPageAllreadyHaveAnAccount {
+  String get signUpPageAlreadyHaveAnAccount {
     return Intl.message(
       'Already have an account?',
-      name: 'sugnUpPageAllreadyHaveAnAccount',
+      name: 'signUpPageAlreadyHaveAnAccount',
       desc: '',
       args: [],
     );
@@ -531,10 +531,10 @@ class S {
   }
 
   /// `Terms of Use`
-  String get profileScreenTermsofUse {
+  String get profileScreenTermsOfUse {
     return Intl.message(
       'Terms of Use',
-      name: 'profileScreenTermsofUse',
+      name: 'profileScreenTermsOfUse',
       desc: '',
       args: [],
     );
