@@ -8,9 +8,11 @@ import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
 import 'package:gotour_app/features/best_place/model/best_place.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
 import 'package:gotour_ui/core/assets.dart';
+import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/search.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
@@ -44,18 +46,19 @@ class GTBestPlacePage extends StatelessWidget {
         create: (context) => BestPlaceBloc(
           bestPlaceRepository: BestPlaceRepository(),
         ),
-        child: BlocBuilder<BestPlaceBloc, BestPlaceState>(
+        child: BlocConsumer<BestPlaceBloc, BestPlaceState>(
+          listener: (context, state) {
+            if (state is BestPlaceLoadingState) {
+              gtIndicatorOverlay.show(context, S.of(context).loading);
+            } else {
+              gtIndicatorOverlay.hide(context);
+            }
+          },
           builder: (context, state) {
             if (state is BestPlaceInitial) {
               context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
             }
-            if (state is BestPlaceLoadingState) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: colorScheme.primary,
-                ),
-              );
-            }
+
             if (state is BestPlaceLoadedState) {
               data = state.bestPlaceList;
 
