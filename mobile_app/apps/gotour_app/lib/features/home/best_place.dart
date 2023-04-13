@@ -16,7 +16,7 @@ class GTBestPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = bestPlaceList;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(180),
@@ -65,7 +65,7 @@ class GTCardBestPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onCard,
@@ -124,7 +124,7 @@ class GTBestPlaceShimmerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(180),
@@ -144,7 +144,7 @@ class _ShimmerLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(

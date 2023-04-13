@@ -27,8 +27,8 @@ class GTForgotPasswordPage extends StatelessWidget {
         } else {
           gtIndicatorOverlay.hide(context);
         }
-        // if state is ForgotPasswordSubmitedState then show snackbar
-        if (state is ForgotPasswordSubmitedState) {
+        // if state is ForgotPasswordSubmittedState then show snackbar
+        if (state is ForgotPasswordSubmittedState) {
           // Navigating to the dashboard screen if the user is authenticated
           GTSnackBar.success(
             context,
@@ -61,7 +61,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     return GTScaffold(
       body: GestureDetector(
         onTap: () {
@@ -116,8 +116,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
                       buildWhen: (previous, current) =>
                           current is ValueChangedSuccessState,
                       builder: (context, state) {
-                        final formValid =
-                            AuthValidator.formForgotPaasswordValid(
+                        final formValid = AuthValidator.formForgotPasswordValid(
                           email: _emailController.text,
                         );
 

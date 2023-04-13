@@ -77,7 +77,7 @@ class _GTLoginViewState extends State<_GTLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     return GTScaffold(
       body: GestureDetector(
         onTap: () {

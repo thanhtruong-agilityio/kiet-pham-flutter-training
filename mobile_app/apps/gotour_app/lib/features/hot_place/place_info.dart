@@ -39,7 +39,7 @@ class _GTPlaceInfoHotPlaceState extends State<GTPlaceInfoHotPlace> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final dataTags = widget.tagList;
 
     return Column(

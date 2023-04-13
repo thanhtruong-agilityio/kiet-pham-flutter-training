@@ -45,7 +45,7 @@ class _GTHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GTScaffold(
       appBar: GTAppBar(
@@ -136,13 +136,13 @@ class _GTHomeView extends StatelessWidget {
                     // My Location
                     BlocBuilder<HomeBloc, HomeState>(
                       builder: (context, state) {
-                        // intial state
+                        // initial state
                         if (state is HomeInitialState) {
                           context.read<HomeBloc>().add(HomeFetchDataEvent());
                         }
                         // loading state
                         if (state is HomeLoadingState) {
-                          return const GTMylocationShimmerList();
+                          return const GTMyLocationShimmerList();
                         }
                         // success state
                         if (state is HomeLoadedState) {
@@ -161,7 +161,7 @@ class _GTHomeView extends StatelessWidget {
                             );
                           }
                           return GTMyLocation(
-                            mylocatonList: state.myLocations,
+                            myLocationList: state.myLocations,
                           );
                         }
                         return GTText.bodyLarge(context, text: 'Failed');

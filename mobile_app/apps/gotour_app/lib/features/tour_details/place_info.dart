@@ -33,11 +33,11 @@ class GTPlaceInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Column(
       children: [
-        ListCardPlaceinfo(
+        ListCardPlaceInfo(
           isBookmark: isBookmark,
           imageList: imageList ?? [],
           onBookmark: onBookmark ?? () {},
@@ -92,8 +92,8 @@ class GTPlaceInfo extends StatelessWidget {
   }
 }
 
-class ListCardPlaceinfo extends StatefulWidget {
-  const ListCardPlaceinfo({
+class ListCardPlaceInfo extends StatefulWidget {
+  const ListCardPlaceInfo({
     super.key,
     required this.imageList,
     this.isBookmark,
@@ -105,17 +105,17 @@ class ListCardPlaceinfo extends StatefulWidget {
   final VoidCallback? onBookmark;
 
   @override
-  State<ListCardPlaceinfo> createState() => _ListCardPlaceinfoState();
+  State<ListCardPlaceInfo> createState() => _ListCardPlaceInfoState();
 }
 
-class _ListCardPlaceinfoState extends State<ListCardPlaceinfo> {
+class _ListCardPlaceInfoState extends State<ListCardPlaceInfo> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final images = widget.imageList;
 
     return Column(

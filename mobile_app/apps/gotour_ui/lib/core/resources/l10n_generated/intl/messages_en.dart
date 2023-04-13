@@ -88,17 +88,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "notificationPageTime":
             MessageLookupByLibrary.simpleMessage("16:53 PM"),
         "onboardingPageFirstDescription": MessageLookupByLibrary.simpleMessage(
-            "Explore your favourite destination around the world."),
+            "Explore your favorite destination around the world."),
         "onboardingPageFistTitle":
             MessageLookupByLibrary.simpleMessage("Explore"),
         "onboardingPageLastDescription": MessageLookupByLibrary.simpleMessage(
-            "Enjoy your favourite destination with your love one."),
+            "Enjoy your favorite destination with your love one."),
+        "onboardingPageLastTitle":
+            MessageLookupByLibrary.simpleMessage("Enjoy Tour"),
         "onboardingPageSecondDescription": MessageLookupByLibrary.simpleMessage(
-            "Make your travel experince very easy & peasy."),
+            "Make your travel experience very easy & peasy."),
         "onboardingPageSecondTitle":
             MessageLookupByLibrary.simpleMessage("Easy Peasy"),
-        "onboardingPagelastTitle":
-            MessageLookupByLibrary.simpleMessage("Enjoy Tour"),
         "or": MessageLookupByLibrary.simpleMessage("Or"),
         "profileScreenBankingAndPayment":
             MessageLookupByLibrary.simpleMessage("Banking & Payment"),
@@ -114,9 +114,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Preference"),
         "profileScreenPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
-        "profileScreenTermsofUse":
+        "profileScreenTermsOfUse":
             MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "profileScreenTitle": MessageLookupByLibrary.simpleMessage("Profile"),
+        "signUpPageAlreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "signUpPageConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "signUpPageGenderFemale":
@@ -128,8 +130,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I agree and accept the "),
         "signUpPageTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
-        "sugnUpPageAllreadyHaveAnAccount":
-            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "textFieldEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "textFieldPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "tourDetailsPageService":

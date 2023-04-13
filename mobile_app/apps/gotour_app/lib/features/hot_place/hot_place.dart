@@ -14,7 +14,7 @@ class GTGridViewHotPlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,7 @@ class GTGridViewHotPlace extends StatelessWidget {
           height: device.scale(14),
         ),
         Expanded(
-          child: BuildGridview(
+          child: BuildGridView(
             imageList: imageList,
           ),
         ),
@@ -37,8 +37,8 @@ class GTGridViewHotPlace extends StatelessWidget {
   }
 }
 
-class BuildGridview extends StatelessWidget {
-  const BuildGridview({
+class BuildGridView extends StatelessWidget {
+  const BuildGridView({
     super.key,
     required this.imageList,
   });
@@ -48,7 +48,7 @@ class BuildGridview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataImages = imageList;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

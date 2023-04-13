@@ -14,15 +14,15 @@ import 'package:gotour_ui/core/widgets/text.dart';
 class GTMyLocation extends StatelessWidget {
   const GTMyLocation({
     super.key,
-    required this.mylocatonList,
+    required this.myLocationList,
   });
 
-  final List<TourModel> mylocatonList;
+  final List<TourModel> myLocationList;
 
   @override
   Widget build(BuildContext context) {
-    final data = mylocatonList;
-    final device = GTReponsive.of(context);
+    final data = myLocationList;
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(150),
@@ -45,7 +45,7 @@ class GTMyLocation extends StatelessWidget {
               descriptions: data[index].descriptions,
               onBookMark: () {
                 context.read<HomeBloc>().add(
-                      UnbookmarkTourEvent(
+                      UnBookmarkTourEvent(
                         tourId: tourId,
                         index: index,
                       ),
@@ -85,7 +85,7 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GestureDetector(
       onTap: widget.onPressed,
@@ -166,18 +166,18 @@ class _GTCardMyLocationState extends State<GTCardMyLocation> {
   }
 }
 
-class GTMylocationShimmerList extends StatefulWidget {
-  const GTMylocationShimmerList({super.key});
+class GTMyLocationShimmerList extends StatefulWidget {
+  const GTMyLocationShimmerList({super.key});
 
   @override
-  State<GTMylocationShimmerList> createState() =>
-      _GTMylocationShimmerListState();
+  State<GTMyLocationShimmerList> createState() =>
+      _GTMyLocationShimmerListState();
 }
 
-class _GTMylocationShimmerListState extends State<GTMylocationShimmerList> {
+class _GTMyLocationShimmerListState extends State<GTMyLocationShimmerList> {
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return SizedBox(
       height: device.scale(150),
@@ -199,7 +199,7 @@ class _GTShimmerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Container(
       margin: EdgeInsets.only(

@@ -35,7 +35,7 @@ class AuthValidator {
         (password.isNotEmpty && isValidPassword(password));
   }
 
-  static bool formForgotPaasswordValid({
+  static bool formForgotPasswordValid({
     String email = '',
   }) {
     return email.isNotEmpty && isValidEmail(email);

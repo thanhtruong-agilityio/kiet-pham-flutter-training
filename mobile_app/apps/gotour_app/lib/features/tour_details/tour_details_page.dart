@@ -25,7 +25,7 @@ class GTTourDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GTScaffold(
       appBar: GTAppBar(
@@ -43,7 +43,7 @@ class GTTourDetail extends StatelessWidget {
             icon: GTAssets.icNotification,
             btnColor: colorScheme.background,
             onPressed: () {
-              // TODO(KietPham): show notificaton
+              // TODO(KietPham): show notification
             },
           ),
           GTIconButton(
@@ -133,7 +133,7 @@ class _TourDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return Column(
       children: [

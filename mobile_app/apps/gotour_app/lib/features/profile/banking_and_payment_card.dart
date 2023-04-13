@@ -13,7 +13,7 @@ class BankingAndPaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final i10n = S.of(context);
 
     return Container(
@@ -97,7 +97,7 @@ class BankingAndPaymentCard extends StatelessWidget {
                 SizedBox(width: device.scale(15)),
                 GTText.labelMedium(
                   context,
-                  text: i10n.profileScreenTermsofUse,
+                  text: i10n.profileScreenTermsOfUse,
                   color: colorScheme.surfaceTint,
                 ),
                 const Spacer(),

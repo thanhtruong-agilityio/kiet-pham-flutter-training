@@ -30,7 +30,7 @@ class GTSignUpPage extends StatelessWidget {
           gtIndicatorOverlay.hide(context);
         }
         // if state is SignUpSubmit them show dialog
-        if (state is SignUpSubmitedState) {
+        if (state is SignUpSubmittedState) {
           showDialog<String>(
             context: context,
             builder: (context) => GTAlertDialog(
@@ -76,7 +76,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
 
     return GTScaffold(
       body: GestureDetector(
@@ -241,7 +241,7 @@ class _GTSignUpViewState extends State<_GTSignUpView> {
                     const SizedBox(height: 10),
                     // Go back login page Button
                     GTTextHighlightButton(
-                      text: S.of(context).sugnUpPageAllreadyHaveAnAccount,
+                      text: S.of(context).signUpPageAlreadyHaveAnAccount,
                       onPressed: () => context.pop(),
                     ),
                     const SizedBox(height: 20),

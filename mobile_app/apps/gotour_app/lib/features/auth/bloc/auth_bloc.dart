@@ -83,8 +83,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         gender: event.gender,
       );
 
-      // emit sign up submited state
-      emit(SignUpSubmitedState());
+      // emit sign up submitted state
+      emit(SignUpSubmittedState());
     } on Exception catch (e) {
       // emit error case
       emit(AuthErrorState(e.toString()));
@@ -118,7 +118,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // emit loading state
       emit(LogOutLoadingState());
 
-      // request signout
+      // request signOut
       await authRepository.signOut();
 
       // emit unauthenticated state
@@ -140,10 +140,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // request forgot password
       await authRepository.forgotPassword(email: event.email);
 
-      // emit forgot password submited state
-      emit(ForgotPasswordSubmitedState());
+      // emit forgot password submitted state
+      emit(ForgotPasswordSubmittedState());
     } on Exception catch (e) {
-      // emit erorr case
+      // emit error case
       emit(AuthErrorState(e.toString()));
     }
   }
@@ -171,7 +171,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ValueChangedLoadingState());
       final value = event.value;
 
-      // succes state
+      // success state
       if (value?.isNotEmpty ?? false) {
         emit(ValueChangedSuccessState(value: value ?? ''));
       }

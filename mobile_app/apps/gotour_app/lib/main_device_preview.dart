@@ -7,7 +7,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gotour_app/core/firebase/firebase_options.dart';
-// import 'package:gotour_app/core/firebase/firebase_options.dart';
 import 'package:gotour_app/core/router/router.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';

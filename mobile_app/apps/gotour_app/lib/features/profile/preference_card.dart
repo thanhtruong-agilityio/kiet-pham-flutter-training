@@ -13,7 +13,7 @@ class PreferenceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final i10n = S.of(context);
 
     return Container(

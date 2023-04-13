@@ -18,7 +18,7 @@ class GTProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final device = GTReponsive.of(context);
+    final device = GTResponsive.of(context);
     final i10n = S.of(context);
 
     return BlocListener<AuthBloc, AuthState>(
