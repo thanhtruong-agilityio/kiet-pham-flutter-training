@@ -12,6 +12,7 @@ import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
@@ -82,6 +83,12 @@ class GTTourDetail extends StatelessWidget {
                 if (state is BookmarkErrorState) {
                   GTSnackBar.failure(context, message: state.error);
                 }
+
+                if (state is TourDetailsLoadingState) {
+                  gtIndicatorOverlay.show(context, S.of(context).loading);
+                } else {
+                  gtIndicatorOverlay.hide(context);
+                }
               },
               child: BlocBuilder<TourDetailsBloc, TourDetailsState>(
                 builder: (context, state) {
@@ -91,14 +98,6 @@ class GTTourDetail extends StatelessWidget {
                             id: id,
                           ),
                         );
-                  }
-
-                  if (state is TourDetailsLoadingState) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: colorScheme.primary,
-                      ),
-                    );
                   }
 
                   if (state is TourDetailsLoadedState) {
