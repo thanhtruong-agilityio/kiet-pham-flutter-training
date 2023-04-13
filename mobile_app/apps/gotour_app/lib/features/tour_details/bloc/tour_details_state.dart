@@ -20,7 +20,7 @@ class TourDetailsLoadedState extends TourDetailsState {
     this.isBookmark = false,
   });
 
-  final TourDetails tourDetails;
+  final TourModel tourDetails;
   final bool isBookmark;
 
   @override

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/best_place/bloc/best_place_bloc.dart';
-import 'package:gotour_app/features/best_place/model/best_place.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
@@ -25,7 +25,7 @@ class GTBestPlacePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTReponsive.of(context);
-    var data = <BestPlace>[];
+    var data = <TourModel>[];
 
     return GTScaffold(
       appBar: GTAppBar(

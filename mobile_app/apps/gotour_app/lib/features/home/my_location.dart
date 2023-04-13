@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/home/bloc/home_bloc.dart';
-import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/location.dart';
@@ -17,7 +17,7 @@ class GTMyLocation extends StatelessWidget {
     required this.mylocatonList,
   });
 
-  final List<MyLocation> mylocatonList;
+  final List<TourModel> mylocatonList;
 
   @override
   Widget build(BuildContext context) {

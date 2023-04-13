@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/hot_place/model/hot_place.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 
 class HotPlaceRepository {
   final _firebaseFirestoreTourDetails =
@@ -9,12 +9,12 @@ class HotPlaceRepository {
       FirebaseFirestore.instance.collection('book-marks');
 
   // fetch data tour
-  Future<HotPlace> fetchDataTour({
+  Future<TourModel> fetchDataTour({
     required String tourId,
   }) async {
     // handle fetch data with tourId
     final data = await _firebaseFirestoreTourDetails.doc(tourId).get();
-    return HotPlace.fromJson(data.data() ?? {});
+    return TourModel.fromJsonOfHotPlace(data.data() ?? {});
   }
 
   // check bookmark tour

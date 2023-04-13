@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/home/models/best_place.dart';
-import 'package:gotour_app/features/home/models/my_location.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/features/home/models/tour_id.dart';
 
 class HomeRepository {
@@ -11,13 +10,13 @@ class HomeRepository {
       FirebaseFirestore.instance.collection('book-marks');
 
   // Fetch Data Best Place from the firebase
-  Future<List<BestPlace>> fetchDataBestPlace() async {
+  Future<List<TourModel>> fetchDataBestPlace() async {
     final data = await _firebaseFirestoreBestPlace
         .where('hotPlace', isEqualTo: true)
         .get();
     return (data.docs)
         .map(
-          (tour) => BestPlace.fromJson(tour.data()),
+          (tour) => TourModel.fromJsonOfBestPlace(tour.data()),
         )
         .toList();
   }
@@ -33,21 +32,8 @@ class HomeRepository {
     return (data.docs).map((tour) => TourId.fromJson(tour.data())).toList();
   }
 
-  // Future<List<String>> fetchListTourBookmarkByUser({
-  //   required String userId,
-  // }) async {
-  //   // fetch data with userId
-  //   final data = await _firebaseFirestoreTourBookMarks
-  //       .where('userId', isEqualTo: userId)
-  //       .get();
-
-  //   final docs = data.docs;
-  //   final tourIds = docs.map((tour) => tour.id).toList();
-  //   return tourIds;
-  // }
-
   // Fetch My Location Place from the firebase
-  Future<List<MyLocation>> getDataFromDocuments({
+  Future<List<TourModel>> getDataFromDocuments({
     required List<String> documentIds,
   }) async {
     // fetch data with documentIds
@@ -59,8 +45,8 @@ class HomeRepository {
 
       if (querySnapshot.docs.isNotEmpty) {
         final dataList = querySnapshot.docs
-            .map<MyLocation>(
-              (json) => MyLocation.fromJson(
+            .map<TourModel>(
+              (json) => TourModel.fromJsonOfMyLocation(
                 json.data() as Map<String, dynamic>? ?? {},
               ),
             )
