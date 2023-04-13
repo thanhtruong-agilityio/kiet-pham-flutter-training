@@ -10,14 +10,14 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.mainRepository}) : super(HomeInitialState()) {
     // event un bookmark
-    on<UnBookmarkTourEvent>(_handleUnBookmark);
+    on<UnBookmarkTourEvent>(_unBookmark);
     // event fetch data
-    on<HomeFetchDataEvent>(_handleHomeFetch);
+    on<HomeFetchDataEvent>(_fetchDataHome);
   }
 
   final HomeRepository mainRepository;
 
-  Future<void> _handleUnBookmark(
+  Future<void> _unBookmark(
     UnBookmarkTourEvent event,
     Emitter<HomeState> emit,
   ) async {
@@ -56,7 +56,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<void> _handleHomeFetch(
+  Future<void> _fetchDataHome(
     HomeFetchDataEvent event,
     Emitter<HomeState> emit,
   ) async {
