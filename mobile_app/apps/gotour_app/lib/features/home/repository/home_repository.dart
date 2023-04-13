@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gotour_app/features/home/models/best_place.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/features/home/models/my_location.dart';
 import 'package:gotour_app/features/home/models/tour_id.dart';
 
@@ -11,13 +11,13 @@ class HomeRepository {
       FirebaseFirestore.instance.collection('book-marks');
 
   // Fetch Data Best Place from the firebase
-  Future<List<BestPlace>> fetchDataBestPlace() async {
+  Future<List<TourModel>> fetchDataBestPlace() async {
     final data = await _firebaseFirestoreBestPlace
         .where('hotPlace', isEqualTo: true)
         .get();
     return (data.docs)
         .map(
-          (tour) => BestPlace.fromJson(tour.data()),
+          (tour) => TourModel.fromJsonOfBestPlace(tour.data()),
         )
         .toList();
   }

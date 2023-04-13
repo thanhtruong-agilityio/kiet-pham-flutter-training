@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/device_info.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/core/router/named_location.dart';
-import 'package:gotour_app/features/home/models/best_place.dart';
 import 'package:gotour_ui/main.dart';
 
 class GTBestPlace extends StatelessWidget {
@@ -11,7 +11,7 @@ class GTBestPlace extends StatelessWidget {
     this.bestPlaceList = const [],
   });
 
-  final List<BestPlace> bestPlaceList;
+  final List<TourModel> bestPlaceList;
 
   @override
   Widget build(BuildContext context) {

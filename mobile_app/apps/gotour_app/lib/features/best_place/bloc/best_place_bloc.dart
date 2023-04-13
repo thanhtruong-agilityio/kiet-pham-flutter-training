@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gotour_app/features/best_place/model/best_place.dart';
+import 'package:gotour_app/core/model/tour_model.dart';
 import 'package:gotour_app/features/best_place/repository/best_place_repository.dart';
 
 part 'best_place_event.dart';

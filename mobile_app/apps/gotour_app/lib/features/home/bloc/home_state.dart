@@ -20,7 +20,7 @@ class HomeLoadedState extends HomeState {
     required this.bestPlaces,
   });
 
-  final List<BestPlace> bestPlaces;
+  final List<TourModel> bestPlaces;
   final List<MyLocation> myLocations;
 
   @override

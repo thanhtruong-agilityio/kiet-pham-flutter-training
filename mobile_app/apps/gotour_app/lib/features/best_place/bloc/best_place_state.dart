@@ -20,7 +20,7 @@ class BestPlaceLoadedState extends BestPlaceState {
     required this.bestPlaceList,
   });
 
-  final List<BestPlace> bestPlaceList;
+  final List<TourModel> bestPlaceList;
 
   @override
   List<Object> get props => [bestPlaceList];
