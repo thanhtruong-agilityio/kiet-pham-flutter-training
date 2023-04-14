@@ -34,7 +34,7 @@ class GTBestPlace extends StatelessWidget {
             location: data[index].location,
             price: data[index].price,
             onCard: () => context.pushNamed(
-              RouterNamedLocation.hotPlace,
+              RouterNamedLocation.tourDetails,
               params: {'id': data[index].id},
             ),
             onPrice: () {},
