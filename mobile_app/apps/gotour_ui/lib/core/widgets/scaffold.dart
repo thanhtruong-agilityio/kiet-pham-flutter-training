@@ -18,3 +18,21 @@ class GTScaffold extends StatelessWidget {
     );
   }
 }
+
+class GTPublicScaffold extends StatelessWidget {
+  const GTPublicScaffold({
+    super.key,
+    this.appBar,
+    required this.body,
+  });
+
+  final PreferredSizeWidget? appBar;
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(child: body),
+    );
+  }
+}
