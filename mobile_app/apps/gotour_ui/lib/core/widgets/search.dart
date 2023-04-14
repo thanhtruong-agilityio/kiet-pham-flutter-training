@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 
@@ -26,7 +27,7 @@ class GTSearch extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           GTIconButton(
-            icon: 'packages/gotour_ui/assets/icons/search.svg',
+            icon: GTAssets.icSearch,
             iconColor: Theme.of(context).colorScheme.background,
             onPressed: () {},
           ),

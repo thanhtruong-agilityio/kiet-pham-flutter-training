@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTLocation extends StatelessWidget {
@@ -34,7 +35,7 @@ class GTLocation extends StatelessWidget {
         Row(
           children: [
             SvgPicture.asset(
-              'packages/gotour_ui/assets/icons/location.svg',
+              GTAssets.icLocation,
               color: colorIcon,
               width: 10,
               height: 12,
