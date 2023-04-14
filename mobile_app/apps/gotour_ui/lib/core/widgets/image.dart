@@ -61,7 +61,6 @@ class GTLocalImage extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadius.circular(10),
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
         image: DecorationImage(
           image: AssetImage(image),
           fit: fit ?? BoxFit.cover,
