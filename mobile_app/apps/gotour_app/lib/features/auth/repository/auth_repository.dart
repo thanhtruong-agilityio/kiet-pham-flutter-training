@@ -2,11 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gotour_app/features/auth/models/user_entity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseFirestore = FirebaseFirestore.instance.collection('users');
-  final _googleSignIn = GoogleSignIn();
+  final _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+
   bool get isLoggedInGoogle => _googleSignIn.currentUser != null;
   GoogleSignIn get googleSignIn => _googleSignIn;
 
@@ -39,34 +46,50 @@ class AuthRepository {
     }
   }
 
-  Future<void> signIn({
+  Future<User?> signIn({
     required String email,
     required String password,
   }) async {
     try {
       // check account verification
-      await _firebaseAuth.signInWithEmailAndPassword(
+      final userFirebase = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('userID', userFirebase.user!.uid);
+      return userFirebase.user;
     } on FirebaseAuthException catch (e) {
       // case error
       throw Exception(_determineError(e));
     }
   }
 
-  Future<void> signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
 
-      final googleAuth = await googleUser?.authentication;
+      if (googleUser == null) {
+        // User cancelled the sign-in
+        return null;
+      }
+
+      final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken ?? '',
-        idToken: googleAuth?.idToken ?? '',
+        accessToken: googleAuth.accessToken ?? '',
+        idToken: googleAuth.idToken ?? '',
       );
 
-      await _firebaseAuth.signInWithCredential(credential);
+      final userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
+
+      // Save the user ID to SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+
+      await prefs.setString('userID', userCredential.user!.uid);
+
+      return userCredential.user;
     } on FirebaseAuthException catch (e) {
       // case error
       throw Exception(e);
@@ -79,6 +102,8 @@ class AuthRepository {
     try {
       // handel sign out
       await _firebaseAuth.signOut();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('userID');
     } on FirebaseAuthException catch (e) {
       // case error
       throw Exception(_determineError(e));
@@ -93,6 +118,23 @@ class AuthRepository {
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       // case error
+      throw Exception(_determineError(e));
+    }
+  }
+
+  Future<bool> isLoggedIn() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final userID = prefs.getString('userID');
+
+      if (userID != null) {
+        // User is logged in
+        return true;
+      } else {
+        // User is not logged in
+        return false;
+      }
+    } on FirebaseAuthException catch (e) {
       throw Exception(_determineError(e));
     }
   }

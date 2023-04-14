@@ -51,7 +51,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await authRepository.signIn(email: event.email, password: event.password);
 
       // firebase  check email is verified?
-      final isVerifyEmail = FirebaseAuth.instance.currentUser!.emailVerified;
+      final isVerifyEmail =
+          FirebaseAuth.instance.currentUser?.emailVerified ?? false;
 
       // if email is verified, change state to authenticated
       // and if email isn't verified change state UnAuthenticated State

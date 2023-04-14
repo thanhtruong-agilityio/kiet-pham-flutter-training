@@ -75,7 +75,7 @@ class ChatCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: device.scale(10)),
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
                 color: Theme.of(context).colorScheme.onSecondaryContainer,
