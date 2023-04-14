@@ -62,7 +62,7 @@ class __GTForgotPasswordViewState extends State<_GTForgotPasswordView> {
   @override
   Widget build(BuildContext context) {
     final device = GTResponsive.of(context);
-    return GTScaffold(
+    return GTPublicScaffold(
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
