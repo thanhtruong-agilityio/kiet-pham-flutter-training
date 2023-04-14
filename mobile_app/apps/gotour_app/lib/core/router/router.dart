@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gotour_app/core/router/named_location.dart';
 import 'package:gotour_app/features/auth/forgot_password_page.dart';
 import 'package:gotour_app/features/auth/login_page.dart';
-import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 import 'package:gotour_app/features/auth/sign_up_page.dart';
 import 'package:gotour_app/features/best_place/best_place_page.dart';
 import 'package:gotour_app/features/chat/chat_page.dart';
@@ -31,22 +29,12 @@ final GoRouter router = GoRouter(
       state.namedLocation(RouterNamedLocation.forgotPassword),
     ];
 
-    final auth = FirebaseAuth.instance;
-
-    // check user login with email and password
-    final isLoggedIn =
-        auth.currentUser != null && auth.currentUser!.emailVerified;
-
-    final googleSignIn =
-        RepositoryProvider.of<AuthRepository>(context).googleSignIn;
-
-    // check user login with google
-    final googleUser = googleSignIn.currentUser != null;
+    final currentUser = FirebaseAuth.instance.currentUser != null;
 
     if (unAuthenList.contains(state.subloc)) {
       return null;
     }
-    if (!isLoggedIn && !googleUser) {
+    if (!currentUser) {
       return state.namedLocation(RouterNamedLocation.onboarding);
     }
     return null;

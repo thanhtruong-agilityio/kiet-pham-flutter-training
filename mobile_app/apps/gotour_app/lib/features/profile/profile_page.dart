@@ -10,6 +10,7 @@ import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/widgets/alert_dialog.dart';
 import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
+import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
@@ -25,6 +26,12 @@ class GTProfilePage extends StatelessWidget {
       listener: (context, state) {
         if (state is UnAuthenticatedState) {
           context.go('/login-page');
+        }
+
+        if (state is LogOutLoadingState) {
+          gtIndicatorOverlay.show(context, S.of(context).loading);
+        } else {
+          gtIndicatorOverlay.hide(context);
         }
       },
       child: GTScaffold(
