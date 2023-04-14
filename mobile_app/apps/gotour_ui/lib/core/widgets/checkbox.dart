@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gotour_ui/core/assets.dart';
 
 class GTMyCheckbox extends StatefulWidget {
   const GTMyCheckbox({
@@ -40,7 +41,7 @@ class _GTMyCheckboxState extends State<GTMyCheckbox> {
           borderRadius: BorderRadius.circular(5),
         ),
         child: _isChecked
-            ? SvgPicture.asset('packages/gotour_ui/assets/icons/checkmark.svg')
+            ? SvgPicture.asset(GTAssets.icCheck)
             : Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 7.5,
