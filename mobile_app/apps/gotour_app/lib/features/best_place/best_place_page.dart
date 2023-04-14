@@ -83,7 +83,7 @@ class GTBestPlacePage extends StatelessWidget {
                             imageUrl: data[index].imageUrl,
                             tags: data[index].tagList,
                             onPressed: () => context.pushNamed(
-                              RouterNamedLocation.hotPlace,
+                              RouterNamedLocation.tourDetails,
                               params: {'id': data[index].id},
                             ),
                           );
