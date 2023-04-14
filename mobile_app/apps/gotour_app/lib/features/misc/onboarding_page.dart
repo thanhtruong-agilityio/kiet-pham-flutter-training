@@ -4,6 +4,7 @@ import 'package:gotour_app/core/device_info.dart';
 import 'package:gotour_ui/core/assets.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
+import 'package:gotour_ui/core/widgets/scaffold.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTOnboardingScreen extends StatefulWidget {
@@ -34,74 +35,72 @@ class _GTOnboardingScreenState extends State<GTOnboardingScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTResponsive.of(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 15,
-              child: PageView.builder(
-                itemCount: dataBoards.length,
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    _pageIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) => OnboardingContent(
-                  image: dataBoards[index].image,
-                  title: dataBoards[index].title,
-                  description: dataBoards[index].description,
-                ),
+    return GTPublicScaffold(
+      body: Column(
+        children: [
+          Expanded(
+            flex: 15,
+            child: PageView.builder(
+              itemCount: dataBoards.length,
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _pageIndex = index;
+                });
+              },
+              itemBuilder: (context, index) => OnboardingContent(
+                image: dataBoards[index].image,
+                title: dataBoards[index].title,
+                description: dataBoards[index].description,
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: device.sw(20)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GTIconButton(
-                      icon: GTAssets.icPrev,
-                      iconColor: colorScheme.background,
-                      onPressed: () {
-                        _pageController.previousPage(
-                          duration: const Duration(milliseconds: 600),
-                          curve: Curves.ease,
-                        );
-                      },
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(
-                        dataBoards.length,
-                        (index) => Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: device.sw(5),
-                          ),
-                          child: DotIndicator(
-                            isActivate: index == _pageIndex,
-                          ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: device.sw(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GTIconButton(
+                    icon: GTAssets.icPrev,
+                    iconColor: colorScheme.background,
+                    onPressed: () {
+                      _pageController.previousPage(
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.ease,
+                      );
+                    },
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      dataBoards.length,
+                      (index) => Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: device.sw(5),
+                        ),
+                        child: DotIndicator(
+                          isActivate: index == _pageIndex,
                         ),
                       ),
                     ),
-                    GTIconButton(
-                      icon: GTAssets.icNext,
-                      iconColor: colorScheme.background,
-                      onPressed: () => _pageIndex == dataBoards.length - 1
-                          ? context.go('/login-page')
-                          : _pageController.nextPage(
-                              duration: const Duration(milliseconds: 700),
-                              curve: Curves.ease,
-                            ),
-                    ),
-                  ],
-                ),
+                  ),
+                  GTIconButton(
+                    icon: GTAssets.icNext,
+                    iconColor: colorScheme.background,
+                    onPressed: () => _pageIndex == dataBoards.length - 1
+                        ? context.go('/login-page')
+                        : _pageController.nextPage(
+                            duration: const Duration(milliseconds: 700),
+                            curve: Curves.ease,
+                          ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
