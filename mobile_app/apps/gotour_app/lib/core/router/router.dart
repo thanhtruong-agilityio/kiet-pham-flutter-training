@@ -19,6 +19,8 @@ import 'package:gotour_ui/core/widgets/dashboard.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
+late bool isFirstRun;
+
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
@@ -35,7 +37,9 @@ final GoRouter router = GoRouter(
       return null;
     }
     if (!currentUser) {
-      return state.namedLocation(RouterNamedLocation.onboarding);
+      return isFirstRun
+          ? state.namedLocation(RouterNamedLocation.onboarding)
+          : state.namedLocation(RouterNamedLocation.login);
     }
     return null;
   },

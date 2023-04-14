@@ -9,11 +9,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:gotour_app/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // check if this is the first run of the app
+    final prefs = await SharedPreferences.getInstance();
+    var isFirstRun = prefs.getBool('isFirstRun') ?? true;
+
+    if (isFirstRun) {
+      await prefs.setBool('isFirstRun', false);
+    } else {
+      isFirstRun = false;
+    }
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      MyApp(
+        isFirstRun: isFirstRun,
+      ),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

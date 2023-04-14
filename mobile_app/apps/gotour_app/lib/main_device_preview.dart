@@ -12,6 +12,7 @@ import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
 import 'package:gotour_ui/core/resources/l10n_generated/l10n.dart';
 import 'package:gotour_ui/core/theme/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   //show splash screen
@@ -27,17 +28,35 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }
+
+  // check if this is the first run of the app
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  var isFirstRun = prefs.getBool('isFirstRun') ?? true;
+  if (isFirstRun) {
+    await prefs.setBool('isFirstRun', false);
+  } else {
+    isFirstRun = false;
+  }
+
   runApp(
     // provides the ability to preview the application on various devices.
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => const MyApp(), // Wrap your app
+      builder: (context) => MyApp(
+        isFirstRun: isFirstRun,
+      ), // Wrap your app
     ),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+    required this.isFirstRun,
+  });
+
+  final bool isFirstRun;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -53,6 +72,8 @@ class _MyAppState extends State<MyApp> {
       const Duration(seconds: 2),
       FlutterNativeSplash.remove,
     );
+
+    isFirstRun = widget.isFirstRun;
   }
 
   // This widget is the root of your application.
@@ -76,6 +97,8 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: S.delegate.supportedLocales,
           debugShowCheckedModeBanner: false,
           routerConfig: router,
+          // routerDelegate: router.routerDelegate,
+          // routeInformationParser: router.routeInformationParser,
           theme: GTTheme.lightTheme,
           darkTheme: GTTheme.darkTheme,
           useInheritedMediaQuery: true,
