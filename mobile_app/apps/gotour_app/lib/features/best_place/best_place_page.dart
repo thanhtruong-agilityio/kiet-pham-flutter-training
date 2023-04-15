@@ -26,6 +26,7 @@ class GTBestPlacePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final device = GTResponsive.of(context);
     var data = <TourModel>[];
+    final value = TextEditingController();
 
     return GTScaffold(
       appBar: GTAppBar(
@@ -53,6 +54,10 @@ class GTBestPlacePage extends StatelessWidget {
             } else {
               gtIndicatorOverlay.hide(context);
             }
+
+            if (state is BestPlaceSearchSuccessState) {
+              data = state.response;
+            }
           },
           builder: (context, state) {
             if (state is BestPlaceInitial) {
@@ -62,6 +67,40 @@ class GTBestPlacePage extends StatelessWidget {
             if (state is BestPlaceLoadedState) {
               data = state.bestPlaceList;
 
+              if (data.isEmpty) {
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    context
+                        .read<BestPlaceBloc>()
+                        .add(BestPlaceFetchDataEvent());
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(height: device.scale(44)),
+                      GTSearchBox(
+                        controller: value,
+                        onClear: value.clear,
+                        onPressed: () {
+                          context
+                              .read<BestPlaceBloc>()
+                              .add(BestPlaceSearchEvent(value: value.text));
+                        },
+                      ),
+                      SizedBox(height: device.scale(20)),
+                      const Spacer(),
+                      Center(
+                        child: GTText.labelMedium(
+                          context,
+                          text: S.of(context).bestPlaceCouldNotBeFound,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                      const Spacer(flex: 2),
+                    ],
+                  ),
+                );
+              }
+
               return RefreshIndicator(
                 onRefresh: () async {
                   context.read<BestPlaceBloc>().add(BestPlaceFetchDataEvent());
@@ -69,7 +108,15 @@ class GTBestPlacePage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: device.scale(44)),
-                    const GTSearch(),
+                    GTSearchBox(
+                      controller: value,
+                      onClear: value.clear,
+                      onPressed: () {
+                        context
+                            .read<BestPlaceBloc>()
+                            .add(BestPlaceSearchEvent(value: value.text));
+                      },
+                    ),
                     SizedBox(height: device.scale(20)),
                     // best place list
                     Expanded(
@@ -94,7 +141,9 @@ class GTBestPlacePage extends StatelessWidget {
                 ),
               );
             }
-            return GTText.bodyLarge(context, text: 'fail');
+
+            if (state is BestPlaceSearchSuccessState) {}
+            return const SizedBox.shrink();
           },
         ),
       ),
