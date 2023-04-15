@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "DarkTheme": MessageLookupByLibrary.simpleMessage("Dark"),
         "LightTheme": MessageLookupByLibrary.simpleMessage("Light"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "bestPlaceCouldNotBeFound": MessageLookupByLibrary.simpleMessage(
+            "The location/place name could not be found"),
         "bookMarkSuccessMessage":
             MessageLookupByLibrary.simpleMessage("Add bookmark successful"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),

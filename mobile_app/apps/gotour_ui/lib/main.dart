@@ -8,7 +8,7 @@ export 'package:gotour_ui/core/widgets/gender.dart';
 export 'package:gotour_ui/core/widgets/image.dart';
 export 'package:gotour_ui/core/widgets/location.dart';
 export 'package:gotour_ui/core/widgets/scaffold.dart';
-export 'package:gotour_ui/core/widgets/search.dart';
+export 'package:gotour_ui/core/widgets/search_box.dart';
 export 'package:gotour_ui/core/widgets/tag.dart';
 export 'package:gotour_ui/core/widgets/text.dart';
 export 'package:gotour_ui/core/widgets/textfield.dart';

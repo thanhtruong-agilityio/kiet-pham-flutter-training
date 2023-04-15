@@ -18,6 +18,7 @@ class TourModel {
         location: json['location'] as String,
         placeName: json['placeName'] as String,
         price: json['price'] as String,
+        tagList: List<String>.from(json['tagList'] as List),
       );
 
   factory TourModel.fromJsonOfMyLocation(Map<String, dynamic> json) =>

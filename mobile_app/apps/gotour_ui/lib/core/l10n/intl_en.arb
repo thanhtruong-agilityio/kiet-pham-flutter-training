@@ -49,6 +49,8 @@
     "mainPageTextButton": "See All",
     "mainPageMyLocationIsEmpty": "My location is empty",
 
+    "bestPlaceCouldNotBeFound": "The location/place name could not be found",
+
     "profileScreenTitle": "Profile",
     "profileScreenPreference": "Preference",
     "profileScreenNotification": "Notification",

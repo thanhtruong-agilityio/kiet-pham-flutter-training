@@ -35,3 +35,14 @@ class BestPlaceErrorState extends BestPlaceState {
   @override
   List<Object> get props => [error];
 }
+
+class BestPlaceSearchSuccessState extends BestPlaceState {
+  const BestPlaceSearchSuccessState({
+    required this.response,
+  });
+
+  final List<TourModel> response;
+
+  @override
+  List<Object> get props => [response];
+}

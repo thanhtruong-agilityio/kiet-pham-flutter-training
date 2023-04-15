@@ -13,6 +13,8 @@ class BestPlaceBloc extends Bloc<BestPlaceEvent, BestPlaceState> {
   }) : super(BestPlaceInitial()) {
     // event fetch data
     on<BestPlaceFetchDataEvent>(_handleFetch);
+    // event search
+    on<BestPlaceSearchEvent>(_handleSearch);
   }
 
   final BestPlaceRepository bestPlaceRepository;
@@ -34,6 +36,25 @@ class BestPlaceBloc extends Bloc<BestPlaceEvent, BestPlaceState> {
           bestPlaceList: bestPlaceList,
         ),
       );
+    } on Exception catch (e) {
+      // case error
+      emit(BestPlaceErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> _handleSearch(
+    BestPlaceSearchEvent event,
+    Emitter<BestPlaceState> emit,
+  ) async {
+    try {
+      // emit loading state
+      emit(BestPlaceLoadingState());
+
+      // fetch data
+      final response = await bestPlaceRepository.searchData(value: event.value);
+
+      // emit success state
+      emit(BestPlaceLoadedState(bestPlaceList: response));
     } on Exception catch (e) {
       // case error
       emit(BestPlaceErrorState(error: e.toString()));

@@ -450,6 +450,16 @@ class S {
     );
   }
 
+  /// `The location/place name could not be found`
+  String get bestPlaceCouldNotBeFound {
+    return Intl.message(
+      'The location/place name could not be found',
+      name: 'bestPlaceCouldNotBeFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Profile`
   String get profileScreenTitle {
     return Intl.message(

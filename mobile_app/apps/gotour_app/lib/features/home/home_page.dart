@@ -15,7 +15,7 @@ import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
-import 'package:gotour_ui/core/widgets/search.dart';
+import 'package:gotour_ui/core/widgets/search_box.dart';
 import 'package:gotour_ui/core/widgets/snack_bar.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 import 'package:gotour_ui/core/widgets/title.dart';
@@ -75,6 +75,7 @@ class _GTHomeView extends StatelessWidget {
                 image: GTAssets.imgAvatarDefault,
                 width: device.scale(48),
                 height: device.scale(48),
+                fit: BoxFit.none,
               ),
             ),
           ),
@@ -123,7 +124,7 @@ class _GTHomeView extends StatelessWidget {
                     ),
                     SizedBox(height: device.scale(30)),
                     // Search Box
-                    const GTSearch(),
+                    const GTSearchBox(),
                     SizedBox(height: device.scale(30)),
                     // title my location
                     Padding(
