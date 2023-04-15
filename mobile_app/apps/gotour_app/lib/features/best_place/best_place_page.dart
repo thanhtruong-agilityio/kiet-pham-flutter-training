@@ -14,7 +14,7 @@ import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/indicator.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
-import 'package:gotour_ui/core/widgets/search.dart';
+import 'package:gotour_ui/core/widgets/search_box.dart';
 import 'package:gotour_ui/core/widgets/tag.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 

@@ -7,7 +7,7 @@ import 'package:gotour_ui/core/widgets/app_bar.dart';
 import 'package:gotour_ui/core/widgets/button.dart';
 import 'package:gotour_ui/core/widgets/image.dart';
 import 'package:gotour_ui/core/widgets/scaffold.dart';
-import 'package:gotour_ui/core/widgets/search.dart';
+import 'package:gotour_ui/core/widgets/search_box.dart';
 import 'package:gotour_ui/core/widgets/text.dart';
 
 class GTChatPage extends StatelessWidget {
@@ -45,7 +45,7 @@ class GTChatPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: device.scale(44)),
-          const GTSearch(),
+          const GTSearchBox(),
           SizedBox(height: device.scale(20)),
           // chat list
           Expanded(
