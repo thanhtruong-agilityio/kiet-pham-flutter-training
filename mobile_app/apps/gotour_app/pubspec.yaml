@@ -66,6 +66,15 @@ dependencies:
 
   # Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.
   shared_preferences: 2.1.0
+
+  # Flutter plugin for Firebase Cloud Messaging, a cross-platform messaging solution that lets you reliably deliver messages on Android and iOS.
+  firebase_messaging: 14.3.0
+
+  # A Flutter plugin for opening iOS and Android phone settings from an app.
+  app_settings: 4.2.0
+
+  # A cross platform plugin for displaying and scheduling local notifications for Flutter applications with the ability to customise for each platform.
+  flutter_local_notifications: 13.0.0
   
 dev_dependencies:
   flutter_test:
