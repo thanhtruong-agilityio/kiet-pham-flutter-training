@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gotour_app/core/firebase/firebase_options.dart';
+import 'package:gotour_app/core/firebase/notification.dart';
 import 'package:gotour_app/core/router/router.dart';
 import 'package:gotour_app/features/auth/bloc/auth_bloc.dart';
 import 'package:gotour_app/features/auth/repository/auth_repository.dart';
@@ -30,7 +31,6 @@ void main() async {
   }
 
   // check if this is the first run of the app
-  WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   var isFirstRun = prefs.getBool('isFirstRun') ?? true;
   if (isFirstRun) {
@@ -63,6 +63,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  NotificationServices notificationServices = NotificationServices();
+
   @override
   void initState() {
     super.initState();
@@ -74,6 +76,15 @@ class _MyAppState extends State<MyApp> {
     );
 
     isFirstRun = widget.isFirstRun;
+
+    notificationServices
+      ..requrestNotificationPermissions()
+      ..firebaseInit()
+      ..getDeviceToken().then((value) {
+        if (kDebugMode) {
+          print('deviceToken: ${DateTime.now()} $value');
+        }
+      });
   }
 
   // This widget is the root of your application.
